@@ -800,7 +800,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .gt-opt.bad{background:rgba(255,75,75,.16);border-color:var(--red);color:#fff;box-shadow:0 3px 0 var(--red-d)}
 .gt-opt.bad.shake{animation:sbshake .42s cubic-bezier(.36,.07,.19,.97)}
 .gt-opt[disabled]{opacity:.55;pointer-events:none}
-.gt-exp{margin-top:12px;padding:12px 14px;border-radius:13px;border:2px solid var(--green);
+.gt-exp{white-space:pre-line;margin-top:12px;padding:12px 14px;border-radius:13px;border:2px solid var(--green);
   background:rgba(88,204,2,.1);color:#dff3cf;font-size:calc(13px * var(--fs,1));font-weight:700;line-height:1.45;display:none}
 .gt-exp.show{display:block}
 .gt-exp.warn{border-color:var(--red);background:rgba(255,75,75,.1);color:#ffd9d9}
@@ -1544,7 +1544,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 .ct-rep-q{ color:var(--ink); font-weight:700; line-height:1.35; margin-bottom:4px; }
 .ct-rep-ans{ color:var(--ink); font-weight:600; line-height:1.4; }
 .ct-rep-row.good .ct-rep-ans{ color:#3a9d54; }
-.ct-rep-sub{ color:var(--muted); margin-top:4px; line-height:1.4; font-size:calc(13px * var(--fs,1)); }
+.ct-rep-sub{white-space:pre-line; color:var(--muted); margin-top:4px; line-height:1.4; font-size:calc(13px * var(--fs,1)); }
 /* CITIZEN · READ — крупное предложение для чтения вслух */
 .rd-sentence{ font-size:calc(24px * var(--fs,1)); font-weight:800; line-height:1.3; color:var(--ink);
   background:var(--card2); border:2px solid var(--line); border-radius:16px; padding:18px 16px;
@@ -1641,7 +1641,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 6</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 7</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -3695,8 +3695,12 @@ function ctRestart(){
    случайная; листание — свайп влево/вправо или стрелки, по кругу. */
 const CT_PIC_DIR = 'steak_images/';        // ← каталог с картинками (рядом с index.html); поменяй здесь, если переименуешь папку
 const CT_GAL_MAX = 30;                     // страховочный потолок номеров _001.._030
-const CT_GAL_GAPS = 2;                     // сколько дырок подряд терпим в нумерации
 const ctGalCache = {};                     // base → Promise<массив URL>
+/* Проба существования файла. Быстрый путь — HEAD-запрос: сервер отвечает одними
+   заголовками, тело картинки НЕ скачивается, поэтому даже десятки проб проходят
+   мгновенно. Если fetch недоступен (открытие index.html с диска через file://
+   при локальном тесте) — переключаемся на старый способ через Image(). */
+let ctProbeVia = 'head';                   // 'head' | 'img'
 function ctProbeImg(url){
   return new Promise(res=>{
     const im=new Image();
@@ -3704,32 +3708,37 @@ function ctProbeImg(url){
     im.src=url;
   });
 }
+async function ctProbe(url){
+  if(ctProbeVia==='head'){
+    try{
+      const r = await fetch(url, { method:'HEAD', cache:'no-cache' });
+      return !!(r && r.ok);
+    }catch(e){ ctProbeVia='img'; }         // file:// или fetch недоступен — фолбэк
+  }
+  return ctProbeImg(url);
+}
 function ctFindImages(base){
   if(ctGalCache[base]) return ctGalCache[base];
   const exts=['.jpg','.jpeg','.png','.webp'];
   const pad=n=>('00'+n).slice(-3);
   ctGalCache[base]=(async()=>{
-    // расширение определяем по номерам _001.._003 (вдруг _001 удалили)
-    let ext=null;
-    outer: for(const e of exts){
-      for(let n=1;n<=3;n++){
-        if(await ctProbeImg(base+'_'+pad(n)+e)){ ext=e; break outer; }
-      }
-    }
-    const urls=[];
+    // 1) определяем расширение: параллельно пробуем _001.._003 всех расширений
+    //    (на случай, если _001 удалили)
+    const extHits = await Promise.all(exts.map(async e=>{
+      const hits = await Promise.all([1,2,3].map(n=>ctProbe(base+'_'+pad(n)+e)));
+      return hits.some(Boolean) ? e : null;
+    }));
+    const ext = extHits.find(Boolean) || null;
     if(ext){
-      let miss=0;
-      for(let n=1;n<=CT_GAL_MAX;n++){                       // по номерам, терпя дырки
-        const u=base+'_'+pad(n)+ext;
-        if(await ctProbeImg(u)){ urls.push(u); miss=0; }
-        else if(++miss>CT_GAL_GAPS) break;
-      }
-    } else {
-      for(const e of exts){                                 // легаси: одиночный файл без суффикса
-        if(await ctProbeImg(base+e)){ urls.push(base+e); break; }
-      }
+      // 2) все номера 1..MAX параллельно — дырки в нумерации не мешают
+      const nums = Array.from({length:CT_GAL_MAX}, (_,i)=>i+1);
+      const hits = await Promise.all(nums.map(n=>ctProbe(base+'_'+pad(n)+ext)));
+      return nums.filter((n,i)=>hits[i]).map(n=>base+'_'+pad(n)+ext);
     }
-    return urls;
+    // 3) легаси: одиночный файл без суффикса
+    const legacy = await Promise.all(exts.map(e=>ctProbe(base+e)));
+    const le = exts.find((e,i)=>legacy[i]);
+    return le ? [base+le] : [];
   })();
   return ctGalCache[base];
 }
@@ -3742,6 +3751,9 @@ function ctInitGallery(base){
     const order=shuffle(urls.slice());                      // случайный порядок → случайная первая
     ct.gal={urls:order, idx:0};
     ct.q._img=order[0];                                     // конкретный URL для миниатюры в отчёте
+    // фоновая предзагрузка остальных кадров: пока игрок думает над первым фото,
+    // браузер тихо докачивает следующие — свайп показывает их мгновенно
+    order.slice(1).forEach(u=>{ try{ const im=new Image(); im.src=u; }catch(e){} });
     box.innerHTML =
       '<img class="ct-gal-img" id="ctGalImg" src="'+escHtml(order[0])+'" alt="Фото отруба говядины" draggable="false">'+
       (order.length>1
