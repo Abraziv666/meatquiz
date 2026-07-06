@@ -852,6 +852,31 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 /* миниатюра в итоговом отчёте */
 .ct-rep-img{display:block;max-width:160px;max-height:110px;width:auto;height:auto;
   border-radius:8px;margin:6px 0 4px;object-fit:contain}
+/* FIND: интерактивная схема туши. Зоны — как варианты ответа: наведение
+   подсвечивает, неверный клик «гасит» зону красным, верный — зелёным. */
+.ct-cow{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:6px;margin-top:10px}
+.ct-cow svg{display:block;width:100%;height:auto}
+.ct-cow .cow-zone{cursor:pointer}
+.ct-cow .cow-zone polygon,.ct-cow .cow-zone rect,.ct-cow .cow-zone circle{
+  fill:#3a4356;stroke:#131f24;stroke-width:5;transition:fill .12s}
+.ct-cow .cow-zone path{stroke:#3a4356;transition:stroke .12s}
+.ct-cow .cow-deco{fill:#3a4356;stroke:#131f24;stroke-width:5;pointer-events:none}
+.ct-cow .cow-zone text{fill:#fff;font-family:'Nunito';font-weight:800;text-anchor:middle;pointer-events:none}
+@media (hover:hover){
+  .ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover polygon,
+  .ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover rect,
+  .ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover circle{fill:#4c5872}
+  .ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover path{stroke:#4c5872}
+}
+.ct-cow .cow-zone.sel polygon,.ct-cow .cow-zone.sel rect,.ct-cow .cow-zone.sel circle{fill:#1c7fd6}
+.ct-cow .cow-zone.sel path{stroke:#1c7fd6}
+.ct-check{margin-top:10px}
+.ct-cow .cow-zone.ok polygon,.ct-cow .cow-zone.ok rect,.ct-cow .cow-zone.ok circle{fill:#2f9e57}
+.ct-cow .cow-zone.ok path{stroke:#2f9e57}
+.ct-cow .cow-zone.bad polygon,.ct-cow .cow-zone.bad rect,.ct-cow .cow-zone.bad circle{fill:#7a2e38;opacity:.75}
+.ct-cow .cow-zone.bad path{stroke:#7a2e38;opacity:.75}
+.ct-cow .cow-zone.bad,.ct-cow.off .cow-zone{cursor:default;pointer-events:none}
+.ct-cow .cow-zone.shake{animation:shake .4s}
 /* инструкция для вопросов с несколькими ответами */
 .ct-pickneed{margin:14px 2px 8px;font-family:'Nunito';font-weight:800;
   font-size:calc(14px * var(--fs,1));color:var(--purple)}
@@ -1641,7 +1666,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 7</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 18</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -1876,6 +1901,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
       <div class="modeswitch citrow" id="citRow">
       <button id="modeCit"><svg class="ic"><use href="#ic-banner"/></svg><span class="clbl">MeatQuiz</span></button>
       <button id="cbTest" class="csub"><svg class="ic"><use href="#ic-clipboard"/></svg><span class="clbl">Test</span></button>
+      <button id="cbFind" class="csub"><svg class="ic"><use href="#ic-target"/></svg><span class="clbl">Find</span></button>
       <!-- MeatQuiz: режимы Write/Read пока скрыты — работает только Test -->
       <button id="cbWrite" class="csub" style="display:none"><svg class="ic"><use href="#ic-pencil"/></svg><span class="clbl">Write</span></button>
       <button id="cbRead" class="csub" style="display:none"><svg class="ic"><use href="#ic-book"/></svg><span class="clbl">Read</span></button>
@@ -1922,6 +1948,8 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
       <div class="faq-a">MeatQuiz — викторина «угадай отруб говядины по фотографии». На экране показывается фото отруба или стейка и четыре варианта названия — выбери правильный. Жми «Начать тест» на главном экране.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-clipboard"/></svg>Режим Test</div>
       <div class="faq-a">Показывается фотография отруба и варианты ответа. Если фотографий несколько — листай их <b>свайпом влево/вправо</b> (или стрелками ‹ ›). Ошибочный вариант гаснет — можно выбрать другой, но очко за вопрос засчитывается только при верном ответе <b>с первой попытки</b>. Кнопка «Подсказка» даёт намёк без прямого названия. В конце — отчёт по всем вопросам: фото, правильный ответ, подсказка и комментарий о том, как готовится этот отруб и чем он отличается от похожих.</div>
+      <div class="faq-q"><svg class="fic"><use href="#ic-target"/></svg>Режим Find</div>
+      <div class="faq-a">То же фото отруба, но вместо вариантов названия — <b>схема разделки туши</b>. Нажми на ту часть, из которой сделан отруб, — она подсветится <b>синим</b> (выбор можно менять), затем жми «Проверить ответ». Неверная зона гаснет красным (и снижает вес вопроса), верная загорается зелёным; очко — только за попадание с первой попытки. Подсказка в этом режиме недоступна — она называла бы ответ. Вопросы без зоны на схеме (сердце, почки, рубец) в Find не участвуют. Прогресс и статистика Find считаются отдельно от Test.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-target"/></svg>Какие вопросы выпадают?</div>
       <div class="faq-a">Сначала идут <b>новые</b> отрубы, которые ты ещё не проходил, и <b>слабые</b> — те, где чаще ошибаешься (с меньшим весом), с долей случайности для разнообразия. Так трудные отрубы попадаются чаще. Сколько вопросов за тест — задаёт настройка «Раунды».</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-scale"/></svg>Что такое «вес»</div>
@@ -2840,6 +2868,7 @@ function applyQuizHome(on){
   if(covT) covT.style.display='none';
   const s=(citSel==='write' && typeof cwGetStats==='function')?cwGetStats()
         :(citSel==='read' && typeof rdGetStats==='function')?rdGetStats()
+        :(citSel==='find' && typeof fdGetStats==='function')?fdGetStats()
         :((typeof ctGetStats==='function')?ctGetStats():{games:0,answered:0,correct:0});
   $('#hGames').textContent=s.games||0;
   $('#hSeen').textContent=s.answered||0;
@@ -2849,6 +2878,13 @@ function applyQuizHome(on){
     gtStatLabels('Тренировок','Трен','предложений','Предл','верно записано','Верно','с ошибками','Ошиб');
     const totalW=(typeof CWRITING!=='undefined' && CWRITING)?CWRITING.length:0;
     $('#homeSub').textContent='MeatQuiz · Write (в разработке): диктант — вы слушаете предложение и записываете его по-английски. Предложений в базе: '+totalW+'. За тренировку берётся '+( (typeof roundsSetting==='number'&&roundsSetting>0)?Math.min(roundsSetting,totalW||roundsSetting):totalW )+' (как «Раунды» в настройках).';
+    if(sb) sb.innerHTML='<svg class="ic"><use href="#ic-rocket"/></svg>Начать тест';
+    return;
+  }
+  if(citSel==='find'){
+    gtStatLabels('Тестов пройдено','Тесты','вопросов задано','Вопр','верных ответов','Верно','ошибок','Ошиб');
+    const totalF=(typeof CIVICS!=='undefined' && CIVICS)?CIVICS.filter(q=>q.body_part).length:0;
+    $('#homeSub').textContent='MeatQuiz · Find: посмотрите на фото отруба и нажмите на схеме туши ту часть, из которой он сделан. Вопросов в базе: '+totalF+'. За тест берётся '+( (typeof roundsSetting==='number'&&roundsSetting>0)?Math.min(roundsSetting,totalF||roundsSetting):totalF )+' вопросов (как «Раунды» в настройках).';
     if(sb) sb.innerHTML='<svg class="ic"><use href="#ic-rocket"/></svg>Начать тест';
     return;
   }
@@ -3130,6 +3166,7 @@ $('#startBtn').onclick=()=>{
   // «Начать тест» запускает выбранный режим Citizen.
   if(citSel==='write'){ if(typeof cwOpen==='function') cwOpen(); return; }
   if(citSel==='read'){  if(typeof rdOpen==='function') rdOpen(); return; }
+  if(citSel==='find'){ if(typeof ctOpen==='function') ctOpen('find'); return; }
   if(typeof ctOpen==='function') ctOpen();
 };
 // ---------- выход из локального профиля (один профиль на устройство) ----------
@@ -3582,6 +3619,7 @@ function syncQuizRow(){
   $('#citRow').classList.toggle('subsoff', !on);
   if($('#modeCit')) $('#modeCit').classList.toggle('on', on);
   if($('#cbTest'))  $('#cbTest').classList.toggle('on', citSel==='test');
+  if($('#cbFind'))  $('#cbFind').classList.toggle('on', citSel==='find');
   if($('#cbWrite')) $('#cbWrite').classList.toggle('on', citSel==='write');
   if($('#cbRead'))  $('#cbRead').classList.toggle('on', citSel==='read');
 }
@@ -3603,7 +3641,7 @@ if(typeof window!=='undefined') window.addEventListener('resize', ()=>{
   _fitCitT=setTimeout(()=>{ const h=$('#home'); if(h && !h.classList.contains('hide')) fitCitRow(); }, 120);
 });
 function setCitSel(v){
-  citSel = (v==='test'||v==='write'||v==='read') ? v : null;   // test / write / read
+  citSel = (v==='test'||v==='find'||v==='write'||v==='read') ? v : null;   // test / find / write / read
   if(citSel===null) localStorage.removeItem('wm2_citsel');
   else localStorage.setItem('wm2_citsel', citSel);
   syncQuizRow();
@@ -3613,6 +3651,7 @@ function setCitSel(v){
 // «Citizen» включает группу и активирует «Test». Повторный тап ничего не меняет.
 if($('#modeCit')) $('#modeCit').onclick=()=>{ if(citSel===null) setCitSel('test'); };
 if($('#cbTest'))  $('#cbTest').onclick =()=>{ setCitSel('test'); };
+if($('#cbFind'))  $('#cbFind').onclick =()=>{ setCitSel('find'); };
 if($('#cbWrite')) $('#cbWrite').onclick=()=>{ setCitSel('write'); };
 if($('#cbRead'))  $('#cbRead').onclick =()=>{ setCitSel('read'); };
 syncQuizRow();
@@ -3649,6 +3688,18 @@ function ctGetStats(){
   return { games:s.games||0, answered:s.answered||0, correct:s.correct||0, bestPct:s.bestPct||0, lastPct:s.lastPct||0 };
 }
 function ctSetStats(s){ try{ localStorage.setItem('wm2_ctstats', JSON.stringify(s)); }catch(e){} }
+/* ---- локальная статистика режима FIND (отдельная от Test) ---- */
+function fdGetStats(){
+  let s={}; try{ s=JSON.parse(localStorage.getItem('wm2_fdstats'))||{}; }catch(e){ s={}; }
+  return { games:s.games||0, answered:s.answered||0, correct:s.correct||0, bestPct:s.bestPct||0, lastPct:s.lastPct||0 };
+}
+function fdSetStats(s){ try{ localStorage.setItem('wm2_fdstats', JSON.stringify(s)); }catch(e){} }
+function fdRecordStats(correct, total, pct){
+  const s=fdGetStats();
+  s.games=(s.games||0)+1; s.answered=(s.answered||0)+total; s.correct=(s.correct||0)+correct;
+  s.lastPct=pct; s.bestPct=Math.max(s.bestPct||0, pct);
+  fdSetStats(s);
+}
 function ctRecordStats(correct, total, pct){
   const s=ctGetStats();
   s.games=(s.games||0)+1; s.answered=(s.answered||0)+total; s.correct=(s.correct||0)+correct;
@@ -3663,16 +3714,19 @@ function ctUniq(arr){ const seen=new Set(), out=[]; for(const x of arr){ const k
 function ctPlural(n){ const a=Math.abs(n)%100, b=a%10; if(a>10&&a<20) return 'ов'; if(b===1) return ''; if(b>=2&&b<=4) return 'а'; return 'ов'; }
 
 function ctBuildPool(){
-  const shuf = shuffle(CIVICS.map((q,i)=>i));
+  // FIND: только позиции с зоной на схеме (у сердца/почек/рубца body_part пуст)
+  const idx = CIVICS.map((q,i)=>i).filter(i => ct.mode!=='find' || !!CIVICS[i].body_part);
+  const shuf = shuffle(idx);
   const lim = (typeof roundsSetting==='number' && roundsSetting>0) ? Math.min(roundsSetting, shuf.length) : shuf.length;
   ct.order = shuf.slice(0, lim);
   ct.pos=0; ct.score=0; ct.total=0;
 }
-function ctOpen(){
+function ctOpen(mode){
   if(!CIVICS.length){ alert('Файл вопросов не найден. Положите MEAT_QUIZ.js в папку dictionary/.'); return; }
-  ct={ order:[], pos:0, score:0, total:0, results:[] };
+  ct={ order:[], pos:0, score:0, total:0, results:[], mode:(mode==='find'?'find':'test') };
   ctBuildPool();
-  if(!ct.order.length){ alert('Нет вопросов для теста.'); return; }
+  if(!ct.order.length){ alert(ct.mode==='find' ? 'Нет вопросов с отмеченной частью туши (body_part).' : 'Нет вопросов для теста.'); return; }
+  const ht=$('#ctest .gt-htitle'); if(ht) ht.innerHTML='MeatQuiz&nbsp;· '+(ct.mode==='find'?'Find':'Test');
   navPush('ctest');
   ctRenderQuestion();
 }
@@ -3786,12 +3840,57 @@ function ctGalShow(i){
   const c=$('#ctGalCount'); if(c) c.textContent=(ct.gal.idx+1)+' / '+n;
 }
 
+/* ---- FIND: интерактивная схема туши ---------------------------------------
+   Стилизованная схема разделки по мотивам GreenWise Beef: голова слева,
+   17 кликабельных зон. data-zone совпадает со значениями body_part в словаре
+   (CHUCK, RIB, SHORT LOIN, TENDERLOIN, SIRLOIN, TOP SIRLOIN, BOTTOM SIRLOIN,
+   FLANK, PLATE, BRISKET, ROUND, SHANK, OX TAIL, NECK, HEAD, CHEEK, TONGUE).
+   HEAD/CHEEK/SIRLOIN вопросов не имеют — это честные дистракторы, как на
+   настоящем плакате. TENDERLOIN — узкая полоса ПОВЕРХ short loin/sirloin
+   (рисуется последней, поэтому клики достаются ей). Подписи не ловят клики
+   (pointer-events:none в CSS). */
+function ctCowSVG(){
+  const Z=(zone,ru,shape,label)=>'<g class="cow-zone" data-zone="'+zone+'" data-ru="'+ru+'">'+shape+label+'</g>';
+  const T=(x,y,txt,fs)=>'<text x="'+x+'" y="'+y+'" font-size="'+(fs||20)+'">'+txt+'</text>';
+  return '<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg">'
+    // голова + ухо (декор)
+    +'<path class="cow-deco" d="M96 168 L74 128 L118 152 Z"/>'
+    +Z('HEAD','голова','<polygon points="38,236 60,190 96,172 150,168 172,196 172,340 128,352 66,338 40,300"/>',T(96,232,'HEAD',18))
+    +Z('CHEEK','щёки','<circle cx="126" cy="300" r="30"/>',T(126,306,'CHEEK',12))
+    +Z('TONGUE','язык','<polygon points="58,346 108,342 116,382 66,388"/>',T(87,370,'TONGUE',11))
+    +Z('NECK','шея','<polygon points="172,196 252,150 252,360 172,340"/>',T(212,262,'NECK',16))
+    +Z('CHUCK','лопаточно-шейная часть','<polygon points="252,150 428,126 428,348 252,360"/>',T(340,248,'CHUCK',28))
+    +Z('BRISKET','грудинка','<polygon points="252,360 428,348 428,438 252,442"/>',T(340,402,'BRISKET',20))
+    +Z('SHANK','голяшка','<rect x="300" y="442" width="42" height="116"/><rect x="366" y="440" width="42" height="116"/>',
+       '<text x="321" y="512" font-size="13" transform="rotate(-90 321 512)">SHANK</text>')
+    +Z('RIB','рёберная часть','<polygon points="428,126 560,122 560,332 428,348"/>',T(492,240,'RIB',32))
+    +Z('PLATE','подчревок (плейт)','<polygon points="428,348 560,332 560,438 428,438"/>',T(492,394,'PLATE',20))
+    +Z('SHORT LOIN','короткая поясница','<polygon points="560,122 668,126 668,300 560,332"/>',
+       T(612,176,'SHORT',18)+T(612,198,'LOIN',18))
+    +Z('SIRLOIN','сирлойн (оковалок)','<polygon points="668,126 750,132 750,214 668,214"/>',T(709,178,'SIRLOIN',13))
+    +Z('TOP SIRLOIN','верхний сирлойн','<polygon points="668,250 750,250 750,318 668,300"/>',
+       T(709,276,'TOP',13)+T(709,292,'SIRLOIN',13))
+    +Z('BOTTOM SIRLOIN','нижний сирлойн','<polygon points="668,300 750,318 746,398 668,414"/>',
+       T(707,352,'BOTTOM',13)+T(707,368,'SIRLOIN',13))
+    +Z('FLANK','пашина','<polygon points="560,332 668,300 668,414 560,438"/>',T(612,382,'FLANK',18))
+    // TENDERLOIN — узкая полоса ПОВЕРХ стыка short loin/sirloin/top sirloin:
+    // рисуется после них, поэтому в своей области перехватывает клики
+    +Z('TENDERLOIN','вырезка','<polygon points="578,214 748,214 748,250 578,250"/>',T(663,239,'TENDERLOIN',13))
+    +Z('ROUND','задняя нога (окорок)','<polygon points="750,132 856,150 886,220 884,330 850,382 746,398"/>',T(812,266,'ROUND',26))
+    +Z('OX TAIL','хвост','<polygon points="846,96 906,86 926,118 892,146 850,134"/>'
+       +'<path d="M916,140 C948,214 952,296 936,366" fill="none" stroke-width="12" stroke-linecap="round"/>',
+       T(884,120,'OX TAIL',12))
+    +Z('SHANK','голяшка','<rect x="772" y="398" width="42" height="118"/><rect x="838" y="392" width="42" height="118"/>',
+       '<text x="793" y="470" font-size="13" transform="rotate(-90 793 470)">SHANK</text>')
+    +'</svg>';
+}
+
 function ctRenderQuestion(){
   if(!ct) return;
   if(ct.pos>=ct.order.length){ ctFinish(); return; }
   const q = CIVICS[ct.order[ct.pos]]; ct.q=q;
   ct.total++; ct.firstTry=true; ct.locked=false; ct.picked=new Set();
-  if(typeof czMark==='function') czMark('test', String(q.id), null);   // показан
+  if(typeof czMark==='function') czMark(ct.mode||'test', String(q.id), null);   // показан
   // набор показываемых правильных вариантов + сколько надо выбрать
   let correctShown, need;
   if(ctIsMulti(q)){
@@ -3822,7 +3921,8 @@ function ctRenderQuestion(){
   const pickneed = (need>1)
     ? '<div class="ct-pickneed" id="ctPickNeed">Выберите <b>'+need+'</b> вариант'+ctPlural(need)+': найдено <b>0</b> из <b>'+need+'</b></div>'
     : '';
-  const hint = q.hint
+  // FIND: подсказка скрыта — она называет часть туши, т.е. прямой ответ
+  const hint = (q.hint && ct.mode!=='find')
     ? ('<button class="ct-hintbtn" id="ctHintBtn" type="button"><svg class="ic"><use href="#ic-mark"/></svg><span>Подсказка</span></button>'+
        '<div class="ct-hint" id="ctHint">'+escHtml(q.hint)+'</div>')
     : '';
@@ -3836,6 +3936,24 @@ function ctRenderQuestion(){
   const qblock = q.image
     ? '<div class="ct-qimg" id="ctGal"><div class="ct-qimg-load">Загрузка фото…</div></div>'
     : '<div class="ct-question">'+spk+'<span>'+escHtml(q.question||'')+'</span></div>';
+  if(ct.mode==='find'){
+    // правильный ответ — зона туши; выбирается кликом по SVG-схеме
+    ct.need = 1;
+    ct.correctSet = new Set([ String(q.body_part) ]);
+    $('#ctBody').innerHTML =
+        head +
+        qblock +
+        '<div class="gt-q" id="ctQ">Из какой части туши это сделано? Выберите зону на схеме</div>'+
+        '<div class="ct-cow" id="ctCow">'+ctCowSVG()+'</div>'+
+        '<button class="btn block ct-check" id="ctCheck" style="display:none">Проверить ответ</button>'+
+        '<div class="gt-exp" id="ctExp"></div>';
+    $('#ctCow').querySelectorAll('.cow-zone').forEach(g=>{
+      g.addEventListener('click', ()=>ctCowPick(g));
+    });
+    const cb=$('#ctCheck'); if(cb) cb.onclick=()=>ctCowCheck();
+    if(q.image) ctInitGallery(CT_PIC_DIR + String(q.id));
+    return;
+  }
   $('#ctBody').innerHTML =
       head +
       qblock +
@@ -3867,25 +3985,75 @@ function ctPick(btn, val){
     if(ct.picked.size>=ct.need) ctResolve();
   } else {
     ct.firstTry=false;
-    if(typeof czGrade==='function') czGrade('test', String(ct.q.id), false);   // каждый неверный выбор минусует вес
+    if(typeof czGrade==='function') czGrade(ct.mode||'test', String(ct.q.id), false);   // каждый неверный выбор минусует вес
     btn.classList.add('bad','shake'); setTimeout(()=>btn.classList.remove('shake'),450);
     btn.setAttribute('disabled','1');
     exp.className='gt-exp show warn'; exp.textContent='Не то — попробуйте ещё раз.';
   }
 }
 
+// FIND: двухшаговый выбор. Клик по зоне лишь ПОДСВЕЧИВАЕТ её синим (выбор
+// можно менять сколько угодно раз — это не считается ошибкой), а проверка
+// происходит по кнопке «Проверить ответ»: неверная зона гаснет красным и
+// минусует вес (очко за вопрос — только с первой попытки), верная загорается
+// зелёным и завершает вопрос.
+function ctCowPick(g){
+  if(!ct || ct.locked) return;
+  if(g.classList.contains('ok') || g.classList.contains('bad')) return;
+  const cow=$('#ctCow');
+  if(cow) cow.querySelectorAll('.cow-zone.sel').forEach(x=>x.classList.remove('sel'));
+  g.classList.add('sel');                                     // синяя подсветка выбора
+  const cb=$('#ctCheck'); if(cb) cb.style.display='';
+  const exp=$('#ctExp');
+  if(exp && !exp.classList.contains('warn')){                 // предыдущее предупреждение не трогаем
+    exp.className='gt-exp'; exp.textContent='';
+  }
+}
+function ctCowCheck(){
+  if(!ct || ct.locked) return;
+  const cow=$('#ctCow'); if(!cow) return;
+  const g=cow.querySelector('.cow-zone.sel'); if(!g) return;  // ничего не выбрано
+  const zone=g.getAttribute('data-zone');
+  const exp=$('#ctExp');
+  const cb=$('#ctCheck'); if(cb) cb.style.display='none';     // до нового выбора кнопка скрыта
+  g.classList.remove('sel');
+  if(ct.correctSet.has(zone)){
+    g.classList.add('ok');
+    ct.picked.add(zone);
+    ctResolve();
+  } else {
+    ct.firstTry=false;
+    if(typeof czGrade==='function') czGrade(ct.mode||'test', String(ct.q.id), false);
+    g.classList.add('bad','shake'); setTimeout(()=>g.classList.remove('shake'),450);
+    exp.className='gt-exp show warn';
+    exp.textContent='Не то: '+(g.getAttribute('data-ru')||zone)+'. Выберите другую зону.';
+  }
+}
 function ctResolve(){
   ct.locked=true;
   if(ct.firstTry) ct.score++;
-  if(typeof czGrade==='function') czGrade('test', String(ct.q.id), true);   // верно отвечено → +вес
+  if(typeof czGrade==='function') czGrade(ct.mode||'test', String(ct.q.id), true);   // верно отвечено → +вес
   if(ct.results) ct.results.push({
     id: ct.q.id, number: ct.q.number, question: ct.q.question||'',
     image: (ct.q._img)||'',                       // MeatQuiz: найденный URL фото для миниатюры в отчёте
     hint: ct.q.hint||'', comment: ct.q.comment||'',
-    answer: [...ct.correctSet].join(', '), ok: !!ct.firstTry
+    answer: (ct.mode==='find')
+      ? ((ct.q.correct&&ct.q.correct[0])||ct.q.id)+' → '+ct.q.body_part+(ct.q.body_part_ru?' ('+ct.q.body_part_ru+')':'')
+      : [...ct.correctSet].join(', '),
+    ok: !!ct.firstTry
   });
   $('#ctScore').innerHTML=ct.score+'&nbsp;✓';
-  $('#ctOpts').querySelectorAll('.gt-opt').forEach(b=>{ if(!b.classList.contains('ok')) b.setAttribute('disabled','1'); });
+  const ob=$('#ctOpts');
+  if(ob) ob.querySelectorAll('.gt-opt').forEach(b=>{ if(!b.classList.contains('ok')) b.setAttribute('disabled','1'); });
+  const cow=$('#ctCow');
+  if(cow){
+    cow.classList.add('off');                                   // блокируем дальнейшие клики
+    cow.querySelectorAll('.cow-zone.sel').forEach(x=>x.classList.remove('sel'));
+    const okZone=[...ct.correctSet][0];
+    const g=cow.querySelector('.cow-zone[data-zone="'+okZone+'"]');
+    if(g) g.classList.add('ok');                                // подсветить верную зону
+    const cb=$('#ctCheck'); if(cb) cb.style.display='none';
+  }
   const exp=$('#ctExp');
   exp.className='gt-exp show'; exp.textContent=(ct.q&&ct.q.comment)||'';
   const q0=$('#ctQ'); if(q0) q0.textContent='Готово!';
@@ -3898,8 +4066,9 @@ function ctProceed(){
 }
 function ctFinish(){
   const total=ct.total||1, pct=Math.round(ct.score/total*100);
-  ctRecordStats(ct.score, total, pct);
-  if(typeof czCloudPush==='function') czCloudPush('test');
+  if(ct.mode==='find') fdRecordStats(ct.score, total, pct);
+  else ctRecordStats(ct.score, total, pct);
+  if(typeof czCloudPush==='function') czCloudPush(ct.mode||'test');
   $('#ctCount').textContent='Итог';
   $('#ctScore').innerHTML=ct.score+'&nbsp;✓';
   $('#ctBarFill').style.width='100%';
@@ -4235,7 +4404,7 @@ function czStep(plus){
   return CZ_STEP;
 }
 function czClamp(w){ return Math.max(CZ_MIN, Math.min(CZ_MAX, w)); }
-function czKey(mode){ return mode==='write' ? 'wm2_cwweights' : mode==='read' ? 'wm2_rdweights' : 'wm2_ctweights'; }
+function czKey(mode){ return mode==='write' ? 'wm2_cwweights' : mode==='read' ? 'wm2_rdweights' : mode==='find' ? 'wm2_fdweights' : 'wm2_ctweights'; }
 function czData(mode){ return mode==='write' ? (typeof CWRITING!=='undefined'?CWRITING:[]) : mode==='read' ? (typeof CREADING!=='undefined'?CREADING:[]) : (typeof CIVICS!=='undefined'?CIVICS:[]); }
 function czItemId(it){ return String(it && it.id!=null ? it.id : ''); }
 function czLoadW(mode){ try{ return JSON.parse(localStorage.getItem(czKey(mode)))||{}; }catch(e){ return {}; } }
@@ -4290,6 +4459,10 @@ function czBuildSync(mode){
     const s=rdGetStats();
     stats={ mode, games:s.games||0, answered:s.answered||0, correct:0,
             best_pct:0, last_pct:0, total_time:0, extra:{ last:s.last||0, best:s.best||0 } };
+  } else if(mode==='find'){
+    const s=(typeof fdGetStats==='function')?fdGetStats():{games:0,answered:0,correct:0,bestPct:0,lastPct:0};
+    stats={ mode:'find', games:s.games||0, answered:s.answered||0, correct:s.correct||0,
+            best_pct:s.bestPct||0, last_pct:s.lastPct||0, total_time:0, extra:{} };
   } else {
     const s=(typeof ctGetStats==='function')?ctGetStats():{games:0,answered:0,correct:0,bestPct:0,lastPct:0};
     stats={ mode:'test', games:s.games||0, answered:s.answered||0, correct:s.correct||0,
@@ -4365,6 +4538,11 @@ async function czCloudPullStats(){
         const l=rdGetStats(), ex=r.extra||{}, more=(r.games||0)>=(l.games||0);
         rdSetStats({ games:mx(l.games,r.games), answered:mx(l.answered,r.answered),
                      last: more?(ex.last||0):(l.last||0), best:mx(l.best,ex.best) });
+      } else if(r.mode==='find' && typeof fdGetStats==='function'){
+        const l=fdGetStats(), more=(r.games||0)>=(l.games||0);
+        fdSetStats({ games:mx(l.games,r.games), answered:mx(l.answered,r.answered),
+                     correct:mx(l.correct,r.correct), bestPct:mx(l.bestPct,r.best_pct),
+                     lastPct: more?(r.last_pct||0):(l.lastPct||0) });
       } else if(r.mode==='test' && typeof ctGetStats==='function'){
         const l=ctGetStats(), more=(r.games||0)>=(l.games||0);
         ctSetStats({ games:mx(l.games,r.games), answered:mx(l.answered,r.answered),
@@ -4376,7 +4554,7 @@ async function czCloudPullStats(){
 }
 // полный pull прогресса теста из облака: веса всех режимов + личная статистика.
 async function czCloudPullAll(){
-  try{ await Promise.all([czCloudPull('test'), czCloudPull('write'), czCloudPull('read')]); }catch(e){}
+  try{ await Promise.all([czCloudPull('test'), czCloudPull('find'), czCloudPull('write'), czCloudPull('read')]); }catch(e){}
   try{ await czCloudPullStats(); }catch(e){}
 }
 // при загрузке — подтянуть прогресс теста из облака (если залогинен); не блокирует UI

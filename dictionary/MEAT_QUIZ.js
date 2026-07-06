@@ -1,8 +1,11 @@
 // MEAT_QUIZ — вопросы викторины «угадай отруб по фото».
 // Сгенерировано из meat_quiz.json. Формат совместим с движком ctest
 // (см. CIVICS в index.html): { id, number, question, image, correct, wrong, hint, comment }.
-// Подсказка включает часть туши; комментарий — блок «Поставка и разделка на кухне»
-// с переносами строк (\n) — вывод рассчитан на white-space:pre-line.
+// body_part / body_part_ru — крупная зона туши по схеме разделки GreenWise Beef
+//   (значения строго с картинки: CHUCK, RIB, SHORT LOIN, TENDERLOIN, TOP SIRLOIN,
+//   BOTTOM SIRLOIN, FLANK, PLATE, BRISKET, ROUND, SHANK, OX TAIL, NECK, TONGUE).
+//   Пустая строка — позиция на схеме не обозначена (субпродукты: сердце, почки, рубец).
+// Подсказка включает часть туши; комментарий — блок «Поставка и разделка на кухне».
 // Картинки: steak_images/<ID>_NNN.jpg (каталог задаётся константой CT_PIC_DIR в index.html).
 window.MEAT_QUIZ = [
   {
@@ -13,6 +16,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/NEW_YORK_STRIP_ROAST",
+    "body_part": "SHORT LOIN",
+    "body_part_ru": "короткая поясница",
     "correct": [
       "New_York_Strip_Roast"
     ],
@@ -32,6 +37,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BONELESS_NEW_YORK_STRIP_STEAK",
+    "body_part": "SHORT LOIN",
+    "body_part_ru": "короткая поясница",
     "correct": [
       "Boneless_New_York_Strip_Steak"
     ],
@@ -51,6 +58,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/STEAKHOUSE_CUT_BONELESS_NEW_YORK_STRIP_STEAK",
+    "body_part": "SHORT LOIN",
+    "body_part_ru": "короткая поясница",
     "correct": [
       "Steakhouse_Cut_Boneless_New_York_Strip_Steak"
     ],
@@ -70,6 +79,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_BONELESS_NEW_YORK_STRIP_STEAK",
+    "body_part": "SHORT LOIN",
+    "body_part_ru": "короткая поясница",
     "correct": [
       "Thin-Sliced_Boneless_New_York_Strip_Steak"
     ],
@@ -89,6 +100,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/PORTERHOUSE_STEAK",
+    "body_part": "SHORT LOIN",
+    "body_part_ru": "короткая поясница",
     "correct": [
       "Porterhouse_Steak"
     ],
@@ -108,6 +121,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/STEAKHOUSE_CUT_PORTERHOUSE_STEAK",
+    "body_part": "SHORT LOIN",
+    "body_part_ru": "короткая поясница",
     "correct": [
       "Steakhouse_Cut_Porterhouse_Steak"
     ],
@@ -127,6 +142,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_PORTERHOUSE_STEAK",
+    "body_part": "SHORT LOIN",
+    "body_part_ru": "короткая поясница",
     "correct": [
       "Thin-Sliced_Porterhouse_Steak"
     ],
@@ -146,6 +163,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/T-BONE_STEAK",
+    "body_part": "SHORT LOIN",
+    "body_part_ru": "короткая поясница",
     "correct": [
       "T-Bone_Steak"
     ],
@@ -165,6 +184,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/STEAKHOUSE_CUT_T-BONE_STEAK",
+    "body_part": "SHORT LOIN",
+    "body_part_ru": "короткая поясница",
     "correct": [
       "Steakhouse_Cut_T-Bone_Steak"
     ],
@@ -184,6 +205,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_T-BONE_STEAK",
+    "body_part": "SHORT LOIN",
+    "body_part_ru": "короткая поясница",
     "correct": [
       "Thin-Sliced_T-Bone_Steak"
     ],
@@ -203,6 +226,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/STANDING_RIB_ROAST",
+    "body_part": "RIB",
+    "body_part_ru": "рёберная часть",
     "correct": [
       "Standing_Rib_Roast"
     ],
@@ -222,6 +247,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BONE-IN_RIBEYE_STEAK",
+    "body_part": "RIB",
+    "body_part_ru": "рёберная часть",
     "correct": [
       "Bone-In_Ribeye_Steak"
     ],
@@ -241,6 +268,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BONE-IN_STEAKHOUSE_CUT_RIBEYE_STEAK",
+    "body_part": "RIB",
+    "body_part_ru": "рёберная часть",
     "correct": [
       "Bone-In_Steakhouse_Cut_Ribeye_Steak"
     ],
@@ -260,6 +289,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_BONE-IN_RIBEYE_STEAK",
+    "body_part": "RIB",
+    "body_part_ru": "рёберная часть",
     "correct": [
       "Thin-Sliced_Bone-In_Ribeye_Steak"
     ],
@@ -279,6 +310,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BEEF_BACK_RIBS",
+    "body_part": "RIB",
+    "body_part_ru": "рёберная часть",
     "correct": [
       "Beef_Back_Ribs"
     ],
@@ -298,6 +331,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BONELESS_RIBEYE_ROAST",
+    "body_part": "RIB",
+    "body_part_ru": "рёберная часть",
     "correct": [
       "Boneless_Ribeye_Roast"
     ],
@@ -317,6 +352,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BONELESS_RIBEYE_STEAK",
+    "body_part": "RIB",
+    "body_part_ru": "рёберная часть",
     "correct": [
       "Boneless_Ribeye_Steak"
     ],
@@ -336,6 +373,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/STEAKHOUSE_CUT_BONELESS_RIBEYE_STEAK",
+    "body_part": "RIB",
+    "body_part_ru": "рёберная часть",
     "correct": [
       "Steakhouse_Cut_Boneless_Ribeye_Steak"
     ],
@@ -355,6 +394,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_BONELESS_RIBEYE_STEAK",
+    "body_part": "RIB",
+    "body_part_ru": "рёберная часть",
     "correct": [
       "Thin-Sliced_Boneless_Ribeye_Steak"
     ],
@@ -374,6 +415,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BONELESS_TOP_SIRLOIN_STEAK",
+    "body_part": "TOP SIRLOIN",
+    "body_part_ru": "верхний сирлойн",
     "correct": [
       "Boneless_Top_Sirloin_Steak"
     ],
@@ -393,6 +436,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_TOP_SIRLOIN_STEAK",
+    "body_part": "TOP SIRLOIN",
+    "body_part_ru": "верхний сирлойн",
     "correct": [
       "Thin-Sliced_Top_Sirloin_Steak"
     ],
@@ -412,6 +457,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SIRLOIN_CAP_STEAK",
+    "body_part": "TOP SIRLOIN",
+    "body_part_ru": "верхний сирлойн",
     "correct": [
       "Sirloin_Cap_Steak"
     ],
@@ -431,6 +478,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SIRLOIN_FILLET",
+    "body_part": "TOP SIRLOIN",
+    "body_part_ru": "верхний сирлойн",
     "correct": [
       "Sirloin_Fillet"
     ],
@@ -450,6 +499,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/STEAKHOUSE_CUT_SIRLOIN_FILLET",
+    "body_part": "TOP SIRLOIN",
+    "body_part_ru": "верхний сирлойн",
     "correct": [
       "Steakhouse_Cut_Sirloin_Fillet"
     ],
@@ -469,6 +520,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/TOP_SIRLOIN_FOR_STIR_FRY",
+    "body_part": "TOP SIRLOIN",
+    "body_part_ru": "верхний сирлойн",
     "correct": [
       "Top_Sirloin_for_Stir_Fry"
     ],
@@ -488,6 +541,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SIRLOIN_CUBES_FOR_KABOBS",
+    "body_part": "TOP SIRLOIN",
+    "body_part_ru": "верхний сирлойн",
     "correct": [
       "Sirloin_Cubes_for_Kabobs"
     ],
@@ -507,6 +562,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BACON-WRAPPED_SIRLOIN_FILLET",
+    "body_part": "TOP SIRLOIN",
+    "body_part_ru": "верхний сирлойн",
     "correct": [
       "Bacon-Wrapped_Sirloin_Fillet"
     ],
@@ -526,6 +583,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SIRLOIN_TRI-TIP_ROAST",
+    "body_part": "BOTTOM SIRLOIN",
+    "body_part_ru": "нижний сирлойн",
     "correct": [
       "Sirloin_Tri-Tip_Roast"
     ],
@@ -545,6 +604,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SIRLOIN_TRI-TIP_STEAK",
+    "body_part": "BOTTOM SIRLOIN",
+    "body_part_ru": "нижний сирлойн",
     "correct": [
       "Sirloin_Tri-Tip_Steak"
     ],
@@ -564,6 +625,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/TENDERLOIN_ROAST_(CHATEAUBRIAND)",
+    "body_part": "TENDERLOIN",
+    "body_part_ru": "вырезка",
     "correct": [
       "Tenderloin_Roast_(Chateaubriand)"
     ],
@@ -583,6 +646,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/TENDERLOIN_STEAK_(FILET_MIGNON)",
+    "body_part": "TENDERLOIN",
+    "body_part_ru": "вырезка",
     "correct": [
       "Tenderloin_Steak_(Filet_Mignon)"
     ],
@@ -602,6 +667,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/STEAKHOUSE_CUT_TENDERLOIN_STEAK_(FILET_MIGNON)",
+    "body_part": "TENDERLOIN",
+    "body_part_ru": "вырезка",
     "correct": [
       "Steakhouse_Cut_Tenderloin_Steak_(Filet_Mignon)"
     ],
@@ -621,6 +688,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/TENDERLOIN_TIPS",
+    "body_part": "TENDERLOIN",
+    "body_part_ru": "вырезка",
     "correct": [
       "Tenderloin_Tips"
     ],
@@ -640,6 +709,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BACON-WRAPPED_TENDERLOIN_STEAK_(FILET_MIGNON)",
+    "body_part": "TENDERLOIN",
+    "body_part_ru": "вырезка",
     "correct": [
       "Bacon-Wrapped_Tenderloin_Steak_(Filet_Mignon)"
     ],
@@ -659,6 +730,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BOTTOM_SIRLOIN_FLAP_STEAK",
+    "body_part": "BOTTOM SIRLOIN",
+    "body_part_ru": "нижний сирлойн",
     "correct": [
       "Bottom_Sirloin_Flap_Steak"
     ],
@@ -678,6 +751,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BOTTOM_SIRLOIN_FLAP_STEAK_ROLLS",
+    "body_part": "BOTTOM SIRLOIN",
+    "body_part_ru": "нижний сирлойн",
     "correct": [
       "Bottom_Sirloin_Flap_Steak_Rolls"
     ],
@@ -697,6 +772,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/FLANK_STEAK",
+    "body_part": "FLANK",
+    "body_part_ru": "пашина",
     "correct": [
       "Flank_Steak"
     ],
@@ -716,6 +793,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/INSIDE_SKIRT_STEAK",
+    "body_part": "PLATE",
+    "body_part_ru": "подчревок (плейт)",
     "correct": [
       "Inside_Skirt_Steak"
     ],
@@ -735,6 +814,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/OUTSIDE_SKIRT_STEAK",
+    "body_part": "PLATE",
+    "body_part_ru": "подчревок (плейт)",
     "correct": [
       "Outside_Skirt_Steak"
     ],
@@ -754,6 +835,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BONELESS_CHUCK_ROAST",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Boneless_Chuck_Roast"
     ],
@@ -773,6 +856,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BONELESS_CHUCK_STEAK",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Boneless_Chuck_Steak"
     ],
@@ -792,6 +877,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BONELESS_CHUCK_EYE_STEAK",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Boneless_Chuck_Eye_Steak"
     ],
@@ -811,6 +898,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_BONELESS_CHUCK_STEAK",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Thin-Sliced_Boneless_Chuck_Steak"
     ],
@@ -830,6 +919,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/CHUCK_SHORT_RIBS",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Chuck_Short_Ribs"
     ],
@@ -849,6 +940,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BONELESS_CHUCK_SHORT_RIBS",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Boneless_Chuck_Short_Ribs"
     ],
@@ -868,6 +961,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/FLANKEN_STYLE_RIBS",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Flanken_Style_Ribs"
     ],
@@ -887,6 +982,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BONELESS_FLANKEN_STYLE_RIBS",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Boneless_Flanken_Style_Ribs"
     ],
@@ -906,6 +1003,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/MOCK_TENDER_ROAST",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Mock_Tender_Roast"
     ],
@@ -925,6 +1024,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/MOCK_TENDER_STEAK",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Mock_Tender_Steak"
     ],
@@ -944,6 +1045,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_MOCK_TENDER_STEAK",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Thin-Sliced_Mock_Tender_Steak"
     ],
@@ -963,6 +1066,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SHOULDER_ROAST",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Shoulder_Roast"
     ],
@@ -982,6 +1087,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SHOULDER_STEAK",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Shoulder_Steak"
     ],
@@ -1001,6 +1108,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_SHOULDER_STEAK",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Thin-Sliced_Shoulder_Steak"
     ],
@@ -1020,6 +1129,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SHOULDER_TENDER",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Shoulder_Tender"
     ],
@@ -1039,6 +1150,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SHOULDER_TENDER_MEDALLIONS",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Shoulder_Tender_Medallions"
     ],
@@ -1058,6 +1171,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/TOP_BLADE_ROAST",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Top_Blade_Roast"
     ],
@@ -1077,6 +1192,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/TOP_BLADE_STEAK",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Top_Blade_Steak"
     ],
@@ -1096,6 +1213,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_TOP_BLADE_STEAK",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Thin-Sliced_Top_Blade_Steak"
     ],
@@ -1115,6 +1234,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/FLAT_IRON_STEAK",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Flat_Iron_Steak"
     ],
@@ -1134,6 +1255,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SHOULDER_LONDON_BROIL",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Shoulder_London_Broil"
     ],
@@ -1153,6 +1276,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/FLAT_CUT_BRISKET",
+    "body_part": "BRISKET",
+    "body_part_ru": "грудинка",
     "correct": [
       "Flat_Cut_Brisket"
     ],
@@ -1172,6 +1297,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BEEF_FOR_STEW",
+    "body_part": "CHUCK",
+    "body_part_ru": "лопаточно-шейная часть",
     "correct": [
       "Beef_for_Stew"
     ],
@@ -1191,6 +1318,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/TOP_ROUND_LONDON_BROIL",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Top_Round_London_Broil"
     ],
@@ -1210,6 +1339,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/TOP_ROUND_ROAST",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Top_Round_Roast"
     ],
@@ -1229,6 +1360,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/TOP_ROUND_STEAK",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Top_Round_Steak"
     ],
@@ -1248,6 +1381,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_TOP_ROUND_STEAK",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Thin-Sliced_Top_Round_Steak"
     ],
@@ -1267,6 +1402,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/TOP_ROUND_FOR_STIR_FRY",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Top_Round_for_Stir_Fry"
     ],
@@ -1286,6 +1423,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BOTTOM_ROUND_ROAST",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Bottom_Round_Roast"
     ],
@@ -1305,6 +1444,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/RUMP_ROAST",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Rump_Roast"
     ],
@@ -1324,6 +1465,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BOTTOM_ROUND_STEAK",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Bottom_Round_Steak"
     ],
@@ -1343,6 +1486,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_BOTTOM_ROUND_STEAK",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Thin-Sliced_Bottom_Round_Steak"
     ],
@@ -1362,6 +1507,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/EYE_ROUND_ROAST",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Eye_Round_Roast"
     ],
@@ -1381,6 +1528,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/EYE_ROUND_STEAK",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Eye_Round_Steak"
     ],
@@ -1400,6 +1549,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_EYE_ROUND_STEAK",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Thin-Sliced_Eye_Round_Steak"
     ],
@@ -1419,6 +1570,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SIRLOIN_TIP_ROAST",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Sirloin_Tip_Roast"
     ],
@@ -1438,6 +1591,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SIRLOIN_TIP_SIDE_STEAK",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Sirloin_Tip_Side_Steak"
     ],
@@ -1457,6 +1612,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/SIRLOIN_TIP_STEAK",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Sirloin_Tip_Steak"
     ],
@@ -1476,6 +1633,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_SIRLOIN_TIP_SIDE_STEAK",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Thin-Sliced_Sirloin_Tip_Side_Steak"
     ],
@@ -1495,6 +1654,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/THIN-SLICED_SIRLOIN_TIP_STEAK",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Thin-Sliced_Sirloin_Tip_Steak"
     ],
@@ -1514,6 +1675,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/ROUND_CHUNKS",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Round_Chunks"
     ],
@@ -1533,6 +1696,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BEEF_CUBED_STEAK",
+    "body_part": "ROUND",
+    "body_part_ru": "задняя нога (окорок)",
     "correct": [
       "Beef_Cubed_Steak"
     ],
@@ -1552,6 +1717,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/BEEF_SHANK",
+    "body_part": "SHANK",
+    "body_part_ru": "голяшка",
     "correct": [
       "Beef_Shank"
     ],
@@ -1571,6 +1738,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/FRESH_BEEF_HEART",
+    "body_part": "",
+    "body_part_ru": "",
     "correct": [
       "Fresh_Beef_Heart"
     ],
@@ -1590,6 +1759,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/FRESH_BEEF_KIDNEY",
+    "body_part": "",
+    "body_part_ru": "",
     "correct": [
       "Fresh_Beef_Kidney"
     ],
@@ -1609,6 +1780,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/FRESH_BEEF_NECKBONES",
+    "body_part": "NECK",
+    "body_part_ru": "шея",
     "correct": [
       "Fresh_Beef_Neckbones"
     ],
@@ -1628,6 +1801,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/FRESH_BEEF_OXTAILS",
+    "body_part": "OX TAIL",
+    "body_part_ru": "хвост",
     "correct": [
       "Fresh_Beef_Oxtails"
     ],
@@ -1647,6 +1822,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/FRESH_BEEF_TONGUE",
+    "body_part": "TONGUE",
+    "body_part_ru": "язык",
     "correct": [
       "Fresh_Beef_Tongue"
     ],
@@ -1666,6 +1843,8 @@ window.MEAT_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/FRESH_HONEYCOMB_TRIPE",
+    "body_part": "",
+    "body_part_ru": "",
     "correct": [
       "Fresh_Honeycomb_Tripe"
     ],
