@@ -729,7 +729,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .gramrow.subsoff .gsub{opacity:1;background:var(--card2);color:var(--muted)}
 .gramrow #modeGram{background:var(--card2)}
 
-/* ===== строка CITIZEN (Citizen/Test/Write/Read): как строка глаголов, акцент фиолетовый ===== */
+/* ===== строка CITIZEN (MeatQuiz/Test/Write/Read): как строка глаголов, акцент фиолетовый ===== */
 .citrow{margin-top:8px}
 .citrow .csub{font-size:calc(12px * var(--fs,1));font-weight:800}
 #modeCit.on,.citrow .csub.on{background:var(--purple)!important;color:#3a1a4d!important;box-shadow:0 4px 0 #9a5fc4!important}
@@ -763,11 +763,11 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
   #home .citrow button{gap:0}
 }
 
-/* ===== CitizenShip: на главном экране оставлены ТОЛЬКО кнопки режима Citizen =====
+/* ===== MeatQuiz: на главном экране оставлены ТОЛЬКО кнопки основного режима =====
    Ряды Слова/Фразы/Пары, Глаголы и Грамматика скрыты, но остаются в DOM, чтобы
    внутренняя логика (переключатели, подсветка) не падала. Шестерёнка настроек
-   остаётся доступной (верхний правый угол). Режим Citizen включён по умолчанию. */
-#home .citrow{margin-top:0}   /* ряд Citizen (Test / Write / Read) + шестерёнка */
+   остаётся доступной (верхний правый угол). Основной режим включён по умолчанию. */
+#home .citrow{margin-top:0}   /* ряд режимов (Test / Write / Read) + шестерёнка */
 
 /* ===================== ГРАММАТИКА · ТЕСТ (#gtest) ===================== */
 .gt-head{display:flex;align-items:center;gap:10px;padding:6px 2px 2px}
@@ -1518,7 +1518,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
   padding:9px 12px; outline:none; cursor:pointer; -webkit-appearance:none; appearance:none; }
 .voicesel:disabled{ opacity:.45; cursor:not-allowed; }
 .voicesel:focus{ border-color:#7c5cff; }
-/* кнопка «прочитать вопрос» рядом с текстом вопроса в тесте Citizen */
+/* кнопка «прочитать вопрос» рядом с текстом вопроса в тесте */
 .ct-question{ display:flex; align-items:flex-start; gap:10px; }
 .ct-speak{ flex:0 0 auto; margin-top:2px; width:34px; height:34px; border-radius:10px;
   display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
@@ -1671,7 +1671,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 18</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 11</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -1959,13 +1959,15 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
     </div>
     <div class="card">
       <div class="faq-q"><svg class="fic"><use href="#ic-target"/></svg>Что это и что делать?</div>
-      <div class="faq-a">MeatQuiz — викторина «угадай отруб говядины по фотографии». На экране показывается фото отруба или стейка и четыре варианта названия — выбери правильный. Жми «Начать тест» на главном экране.</div>
+      <div class="faq-a">MeatQuiz — викторина «угадай отруб по фотографии». На экране показывается фото отруба или стейка, а ты выбираешь правильный ответ. Есть два набора мяса — <b>Beef</b> (говядина) и <b>Pork</b> (свинина); каждый со своими режимами <b>Test</b> и <b>Find</b>. Выбери нужный набор и режим в двух рядах кнопок сверху главного экрана и жми «Начать тест».</div>
+      <div class="faq-q"><svg class="fic"><use href="#ic-banner"/></svg>Beef и Pork — два набора</div>
+      <div class="faq-a">Верхний ряд (фиолетовый) — <b>Beef</b>, говядина. Второй ряд (розовый) — <b>Pork</b>, свинина. Наборы независимы: у каждого своя база отрубов, свои фотографии и своя схема разделки. Выбор набора в одном ряду выключает другой. Прогресс и статистика по говядине и свинине считаются <b>раздельно</b> и не смешиваются.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-clipboard"/></svg>Режим Test</div>
-      <div class="faq-a">Показывается фотография отруба и варианты ответа. Если фотографий несколько — листай их <b>свайпом влево/вправо</b> (или стрелками ‹ ›). Ошибочный вариант гаснет — можно выбрать другой, но очко за вопрос засчитывается только при верном ответе <b>с первой попытки</b>. Кнопка «Подсказка» даёт намёк без прямого названия. В конце — отчёт по всем вопросам: фото, правильный ответ, подсказка и комментарий о том, как готовится этот отруб и чем он отличается от похожих.</div>
+      <div class="faq-a">Показывается фотография отруба и четыре варианта названия — выбери правильный. Если фотографий несколько — листай их <b>свайпом влево/вправо</b> (или стрелками ‹ ›). Ошибочный вариант гаснет — можно выбрать другой, но очко за вопрос засчитывается только при верном ответе <b>с первой попытки</b>. Кнопка «Подсказка» даёт намёк без прямого названия. В конце — отчёт по всем вопросам: фото, правильный ответ, подсказка и комментарий о том, как готовится этот отруб и чем он отличается от похожих. Работает и для говядины, и для свинины.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-target"/></svg>Режим Find</div>
-      <div class="faq-a">То же фото отруба, но вместо вариантов названия — <b>схема разделки туши</b>. Нажми на ту часть, из которой сделан отруб, — она подсветится <b>синим</b> (выбор можно менять), затем жми «Проверить ответ». Неверная зона гаснет красным (и снижает вес вопроса), верная загорается зелёным; очко — только за попадание с первой попытки. Подсказка в этом режиме недоступна — она называла бы ответ. Вопросы без зоны на схеме (сердце, почки, рубец) в Find не участвуют. Прогресс и статистика Find считаются отдельно от Test.</div>
+      <div class="faq-a">То же фото отруба, но вместо вариантов названия — <b>схема разделки туши</b> (для говядины — коровы, для свинины — свиньи). Нажми на ту часть, из которой сделан отруб, — она подсветится <b>синим</b> (выбор можно менять), затем жми «Проверить ответ». Неверная зона гаснет красным (и снижает вес вопроса), верная загорается зелёным; очко — только за попадание с первой попытки. Подсказка в этом режиме недоступна — она называла бы ответ. Отрубы без зоны на схеме (у говядины — сердце, почки, рубец; у свинины — желудок) в Find не участвуют. Прогресс Find считается отдельно от Test.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-target"/></svg>Какие вопросы выпадают?</div>
-      <div class="faq-a">Сначала идут <b>новые</b> отрубы, которые ты ещё не проходил, и <b>слабые</b> — те, где чаще ошибаешься (с меньшим весом), с долей случайности для разнообразия. Так трудные отрубы попадаются чаще. Сколько вопросов за тест — задаёт настройка «Раунды».</div>
+      <div class="faq-a">Сначала идут <b>новые</b> отрубы, которые ты ещё не проходил, и <b>слабые</b> — те, где чаще ошибаешься (с меньшим весом), с долей случайности для разнообразия. Так трудные отрубы попадаются чаще. Сколько вопросов за тест — задаёт настройка «Раунды». Отбор идёт внутри выбранного набора и режима.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-scale"/></svg>Что такое «вес»</div>
       <div class="faq-a">Вес показывает, насколько хорошо ты знаешь отруб. Верный ответ — вес растёт, ошибка — падает. Чем меньше вес, тем раньше отруб вернётся на повтор. Каждый неверный выбор варианта снижает вес.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-scale"/></svg>Режимы изменения веса</div>
@@ -1983,7 +1985,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
       <div class="faq-q"><svg class="fic"><use href="#ic-save"/></svg>Перенос прогресса</div>
       <div class="faq-a">Настройки → Профиль и данные → Сохранить/Загрузить. Скачай файл перед обновлением или переустановкой. Либо загрузи прогресс в облако: тогда восстановить его можно входом в аккаунт на любом телефоне.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-trophy"/></svg>Рейтинг</div>
-      <div class="faq-a">Рейтинг — таблица игроков <b>за текущую неделю</b>. Топ-3 получают медали. Каждую неделю счёт обнуляется. Чтобы попасть в список — войди в аккаунт и пройди тест; обновить — кнопкой ↻.</div>
+      <div class="faq-a">Рейтинг — таблица игроков <b>за текущую неделю</b>. Топ-3 получают медали. Каждую неделю счёт обнуляется. Чтобы попасть в список — войди в аккаунт и пройди тест по <b>говядине</b>; обновить — кнопкой ↻. <b>Свинина в рейтинг не входит</b>: её прогресс синхронизируется между устройствами, но на недельный зачёт не влияет.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-chronicle"/></svg>История рейтинга — Летопись</div>
       <div class="faq-a">Кнопка-свиток на экране рейтинга открывает <b>Летопись победителей</b> — карточки прошедших недель. Нажми на неделю, чтобы увидеть её топ-3. Новая карточка появляется в понедельник.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-reset"/></svg>Сброс прогресса</div>
@@ -2278,7 +2280,7 @@ const MIN_ROWS=3, MAX_ROWS=12;
 // Турнирный режим: игра попадает в зачёт рейтинга только если в ней
 // минимум RANK_MIN_ROUNDS раундов и минимум RANK_MIN_ROWS слов/фраз в раунде.
 const RANK_MIN_ROUNDS=5, RANK_MIN_ROWS=5;
-// Турнирный режим в CitizenShip — простой переключатель «участвовать в рейтинге».
+// Турнирный режим в MeatQuiz — простой переключатель «участвовать в рейтинге».
 // По умолчанию ВКЛЮЧЁН. Выключение убирает игрока из турнирной таблицы (рейтинга);
 // прогресс (веса) всё равно синхронизируется.
 let tourOn = localStorage.getItem('wm2_tour')!=='0';
@@ -2374,7 +2376,7 @@ let weightMode = localStorage.getItem('wm2_weight_mode') || 'linear';
 if(['linear','progressive','manual'].indexOf(weightMode)<0) weightMode='linear';
 let weightManualPlus = WMODE_MANUAL_DEFAULT.slice();
 let weightManualMinus = WMODE_MANUAL_DEFAULT.slice();
-// Ручной режим для Citizen — ДВЕ величины: +N за верно и −M за ошибку (1..10)
+// Ручной режим для MeatQuiz — ДВЕ величины: +N за верно и −M за ошибку (1..10)
 let czManualPlus  = (function(){ const v=parseInt(localStorage.getItem('wm2_weight_manual_plus_n'),10);  return (v>=1&&v<=10)?v:2; })();
 let czManualMinus = (function(){ const v=parseInt(localStorage.getItem('wm2_weight_manual_minus_n'),10); return (v>=1&&v<=10)?v:2; })();
 (function loadWeightManual(){
@@ -2458,7 +2460,7 @@ function weekStartKey(){
   return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()-diff)).toISOString().slice(0,10);
 }
 function applyMode(){
-  // CitizenShip: активен только тест на гражданство (Test/Write/Read).
+  // MeatQuiz: активен только тест на гражданство (Test/Write/Read).
   // Старые режимы (Слова/Фразы/Пары/Глаголы) удалены — здесь осталась лишь
   // лёгкая миграция профиля: agames/arounds (счётчики всех игр для личной
   // статистики). У старых профилей их нет — заводим от зачётной базы.
@@ -2743,7 +2745,7 @@ function toggleMastery(){
   renderMastery();
 }
 // ---------- уровни сложности (Levels) ----------
-function renderLevels(){ /* старый выбор уровней/тысяч удалён из CitizenShip — DOM-узлов нет */ }
+function renderLevels(){ /* старый выбор уровней/тысяч удалён из MeatQuiz — DOM-узлов нет */ }
 // ---- уровни ПАР ----
 // ---- уровни ФРАЗ ----
 
@@ -2867,9 +2869,9 @@ function refreshHome(){
   try{ if(typeof renderMyCup==='function') renderMyCup(); }catch(e){}
   try{ if(typeof refreshMyCup==='function') refreshMyCup(); }catch(e){}
   try{ if(typeof syncQuizRow==='function') syncQuizRow(); }catch(e){}
-  // Приложение работает ТОЛЬКО в режиме Citizen → главная всегда «citizen».
+  // Приложение работает ТОЛЬКО в основном режиме → главная всегда «основной».
   try{ if(typeof applyQuizHome==='function') applyQuizHome(true); }catch(e){}
-  // адаптив ряда Citizen — после раскладки
+  // адаптив ряда режимов — после раскладки
   try{ if(typeof fitCitRow==='function'){ requestAnimationFrame(fitCitRow); setTimeout(fitCitRow, 60); } }catch(e){}
 }
 function gtStatLabels(g_lf,g_ls,s_lf,s_ls,k_lf,k_ls,w_lf,w_ls){
@@ -2947,7 +2949,7 @@ function applyQuizHome(on){
 
 
 // ---------- сохранение / восстановление прогресса ----------
-// Веса CitizenShip (wm2_ctweights/cwweights/rdweights) переносятся обычным свипом
+// Веса MeatQuiz (wm2_ctweights/cwweights/rdweights) переносятся обычным свипом
 // ключей wm2_*, поэтому отдельная привязка «по слову» не нужна (заглушка).
 function buildByWord(u){ return {}; }
 // Поля статистики НИКОГДА не попадают в файл (время, раунды, игры, слова, дни,
@@ -3042,7 +3044,7 @@ function importText(str){
   location.reload();
 }
 // сброс прогресса у текущего игрока
-function updateResetLabel(){ /* старого ярлыка сброса (#resetWtLbl) нет в DOM CitizenShip */ }
+function updateResetLabel(){ /* старого ярлыка сброса (#resetWtLbl) нет в DOM MeatQuiz */ }
 // Сброс прогресса КОНКРЕТНОГО режима — независимо от того, какой режим сейчас активен.
 // У каждого режима в настройках своя кнопка. Для «Глаголы» сбрасываются ВСЕ подрежимы
 // (все / топ-100 / неправильные / пары). Статистика и история по дням сохраняются.
@@ -3139,7 +3141,7 @@ async function renderRating(){
       const nm = esc(r.name || '—');
       const initial = esc((String(r.name||'?').trim()[0]) || '?');
       const bits=[];
-      // CitizenShip: у теста нет весов/времени — показываем «верных ответов за неделю».
+      // MeatQuiz: у теста нет весов/времени — показываем «верных ответов за неделю».
       // Витрина отдаёт correct уже посчитанным по текущей неделе.
       if(typeof r.correct === 'number')
         bits.push('<span class="rk-stat"><span class="rk-dot g" title="Верных ответов за неделю"></span><span>'+r.correct+'</span></span>');
@@ -3413,16 +3415,34 @@ async function buildDiagReport(){
   L.push('последняя синхронизация: '+(lastSync?(new Date(lastSync).toLocaleString()+' ('+fmtSyncTime(lastSync)+')'):'(никогда)'));
   let players=[]; try{ players=listPlayers(); }catch(e){}
   L.push('профилей на устройстве ('+players.length+'): '+JSON.stringify(players));
-  // Реальные режимы CitizenShip: Test / Write / Read
-  const grab=(fn,key)=>{ try{ if(typeof fn==='function') return fn()||{}; }catch(e){}
-                         try{ return JSON.parse(localStorage.getItem(key))||{}; }catch(e){ return {}; } };
-  const ct=grab(window.ctGetStats,'wm2_ctstats');
-  const cw=grab(window.cwGetStats,'wm2_cwstats');
-  const rr=grab(window.rdGetStats,'wm2_rdstats');
-  L.push('локальная статистика:');
-  L.push('  Test  игр='+pad(ct.games||0,4)+' отвечено='+pad(ct.answered||0,5)+' верно='+pad(ct.correct||0,5)+' лучший='+pad((ct.bestPct||0)+'%',5)+' последний='+((ct.lastPct||0)+'%'));
-  L.push('  Write игр='+pad(cw.games||0,4)+' отвечено='+pad(cw.answered||0,5)+' верно='+pad(cw.correct||0,5)+' лучший='+pad((cw.bestPct||0)+'%',5)+' последний='+((cw.lastPct||0)+'%'));
-  L.push('  Read  игр='+pad(rr.games||0,4)+' прочитано='+pad(rr.answered||0,5)+' рекорд='+pad(rr.best||0,5)+' последний='+(rr.last||0));
+  // Читаем статистику по режимам ПРЯМО из ключей localStorage, а не через
+  // ctGetStats()/fdGetStats() — те зависят от активного набора (meatSet) и в
+  // режиме свинины вернули бы свиные цифры под ярлыком говядины. Здесь нужны
+  // сырые, независимые от текущего экрана данные всех шести режимов.
+  const rawStats=key=>{ try{ return JSON.parse(localStorage.getItem(key))||{}; }catch(e){ return {}; } };
+  const line=(label,s,thirdLbl,thirdVal,fourthLbl,fourthVal)=>
+    '  '+pad(label,11)+'игр='+pad(s.games||0,4)+' отвечено='+pad(s.answered||0,5)+
+    ' '+thirdLbl+'='+pad(thirdVal,5)+' '+fourthLbl+'='+fourthVal;
+  const ct  = rawStats('wm2_ctstats');       // Beef · Test
+  const fd  = rawStats('wm2_fdstats');       // Beef · Find
+  const pk  = rawStats('wm2_porkstats');     // Pork · Test
+  const pkf = rawStats('wm2_porkfdstats');   // Pork · Find
+  const cw  = rawStats('wm2_cwstats');       // Write (в разработке)
+  const rr  = rawStats('wm2_rdstats');       // Read  (в разработке)
+  L.push('локальная статистика (по режимам):');
+  L.push(line('Beef·Test', ct,  'верно',(ct.correct||0),  'посл.',((ct.lastPct||0)+'%')));
+  L.push(line('Beef·Find', fd,  'верно',(fd.correct||0),  'посл.',((fd.lastPct||0)+'%')));
+  L.push(line('Pork·Test', pk,  'верно',(pk.correct||0),  'посл.',((pk.lastPct||0)+'%')));
+  L.push(line('Pork·Find', pkf, 'верно',(pkf.correct||0), 'посл.',((pkf.lastPct||0)+'%')));
+  L.push(line('Write',     cw,  'верно',(cw.correct||0),  'посл.',((cw.lastPct||0)+'%')));
+  L.push('  '+pad('Read',11)+'игр='+pad(rr.games||0,4)+' прочитано='+pad(rr.answered||0,5)+' рекорд='+pad(rr.best||0,5)+' послед.='+(rr.last||0));
+  // Веса (прогресс) по режимам — сколько отрубов «в работе» в каждом наборе.
+  const wCount=key=>{ try{ return Object.keys(JSON.parse(localStorage.getItem(key))||{}).length; }catch(e){ return 0; } };
+  L.push('веса/прогресс (позиций): '+
+    'Beef·Test='+wCount('wm2_ctweights')+
+    ' Beef·Find='+wCount('wm2_fdweights')+
+    ' Pork·Test='+wCount('wm2_porkweights')+
+    ' Pork·Find='+wCount('wm2_porkfdweights'));
   L.push('');
 
   // --- ОБЛАКО ---
@@ -3477,9 +3497,28 @@ async function buildDiagReport(){
   else if(!st.length) L.push('civics_stats: пусто (0 строк) — в облако ещё ничего не ушло');
   else{
     L.push('civics_stats (в облаке):');
-    st.forEach(r=> L.push('  '+pad(r.mode||'?',6)+' игр='+pad(num(r.games),4)+' верно='+pad(num(r.correct),5)+' upd='+(r.updated_at||'')));
+    st.forEach(r=> L.push('  '+pad(r.mode||'?',10)+' игр='+pad(num(r.games),4)+' верно='+pad(num(r.correct),5)+' upd='+(r.updated_at||'')));
   }
-  L.push('civics_weights (весов в облаке): '+num(d.weightsCount));
+  // Веса по режимам (включая свинину). Показываем разбивку, а не одно число.
+  const wbm=d.weightsByMode;
+  if(wbm && !wbm.error){
+    const parts=Object.keys(wbm).sort().map(m=>m+'='+wbm[m]);
+    L.push('civics_weights по режимам: '+(parts.length?parts.join('  '):'пусто'));
+  } else {
+    L.push('civics_weights (весов в облаке): '+num(d.weightsCount));
+  }
+  // Явная проверка защиты рейтинга: свинина синхронизирует ТОЛЬКО веса,
+  // civics_stats под pork/pork_find быть НЕ должно.
+  {
+    const porkStats = Array.isArray(st) ? st.filter(r=>r.mode==='pork'||r.mode==='pork_find') : [];
+    const porkWeights = wbm && !wbm.error && ((wbm.pork||0)+(wbm.pork_find||0))>0;
+    if(porkStats.length){
+      L.push('⚠ ВНИМАНИЕ: у свинины есть строки в civics_stats ('+porkStats.map(r=>r.mode).join(', ')+
+             ') — этого быть не должно, свинина может попасть в рейтинг.');
+    } else if(porkWeights){
+      L.push('свинина: веса синхронизируются, civics_stats пуст → в рейтинг НЕ идёт ✓');
+    }
+  }
 
   if(d.lastLbError){ L.push(''); L.push('последняя ошибка записи рейтинга: '+d.lastLbError); }
   return L.join('\n');
@@ -3611,7 +3650,7 @@ if($('#wmManMinus')){
   if(dn) dn.onclick=()=>setCzManual('minus', czManualMinus-1);
 }
 // Скрыть настройки старых режимов (Слова/Фразы/Пары/Глаголы/Грамматика и игровая
-// механика сопоставления) — в CitizenShip они не используются.
+// механика сопоставления) — в MeatQuiz они не используются.
 function hideLegacySettings(){
   try{
     const set=$('#settings'); if(!set) return;
@@ -3654,11 +3693,11 @@ $('#settingsBtn').onclick=()=>{ try{ if(typeof updateResetLabel==='function') up
 $('#setBack').onclick=goBack;
 $('#nameBack').onclick=goBack;
 
-/* ===== CITIZEN (Citizen / Test / Write / Read) — отдельная группа выбора (фиолетовая) =====
-   «Citizen» включает группу и сразу выбирает «Test» (первую под-кнопку). «Test» можно
+/* ===== CITIZEN (MeatQuiz / Test / Write / Read) — отдельная группа выбора (фиолетовая) =====
+   «Beef» включает верхний ряд и сразу выбирает «Test» (первую под-кнопку). «Test» можно
    нажать и напрямую. «Write» и «Read» пока НЕ активны: они кликабельны, но ничего не
    делают (раздел в разработке). Группа взаимоисключает обычные режимы и грамматику. */
-// CitizenShip: приложение работает только в режиме Citizen — поэтому Test активен
+// MeatQuiz: приложение работает только в основном режиме — поэтому Test активен
 // по умолчанию (остальные ряды режимов скрыты).
 // Два взаимоисключающих ряда: citSel — говядина (test/find/write/read),
 // porkSel — свинина (test/find). Активен ровно один ряд; выбор в одном гасит
@@ -4974,7 +5013,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
             auth: { persistSession: true, autoRefreshToken: true }
         });
-        try{ window.__supa = supabase; }catch(e){}   // доступ к клиенту для модуля Citizen (веса WRITE/READ)
+        try{ window.__supa = supabase; }catch(e){}   // доступ к клиенту для модуля викторины (веса WRITE/READ)
 
         // ===== ПРОГРЕСС/СТАТИСТИКА В ОБЛАКЕ =====
         // Прогресс теста (Test/Write/Read) синхронизируется модулем cz*
@@ -4985,13 +5024,13 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         // Обновление отображаемого ИМЕНИ игрока в строке рейтинга.
         // Используется при: 1) завершении игры, 2) ручной выгрузке в облако, 3) регистрации/входе.
         //
-        // Разделение ответственности (CitizenShip):
+        // Разделение ответственности (MeatQuiz):
         //   • games / correct / недельные базы (wk_games_base, wk_corr_base, wk_start)
         //     — СОБСТВЕННОСТЬ серверного триггера sync_leaderboard, который питается
         //       из civics_stats. Клиент их НЕ ПИШЕТ.
         //   • name — собственность КЛИЕНТА (в civics_stats имени нет).
         // Раньше эта функция суммировала игры старых словарных режимов и upsert-ила
-        // games=<эта сумма>. Для CitizenShip сумма всегда 0 → при каждом входе строка
+        // games=<эта сумма>. Для MeatQuiz сумма всегда 0 → при каждом входе строка
         // рейтинга обнулялась (games 2→0), и зачёт теста, поднятый триггером, пропадал.
         // Теперь функция трогает ТОЛЬКО name (+ updated_at). Строку с нулями создаём лишь
         // если её ещё нет (регистрация/переименование до первой игры) — триггер поднимет
@@ -5087,7 +5126,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         };
 
         // Недельный рейтинг (витрина weekly_leaderboard): топ-20 за текущую неделю.
-        // Витрина отдаёт колонки CitizenShip: games/correct уже посчитаны по неделе
+        // Витрина отдаёт колонки MeatQuiz: games/correct уже посчитаны по неделе
         // (GREATEST(games - wk_games_base, 0) и т.п.) + wk_start. После недельного
         // сброса у всех games=0 → отфильтровываем нули.
         window.cloudFetchWeekly = async () => {
@@ -5167,6 +5206,19 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                             .select('item_id', { count:'exact', head:true }).eq('user_id', uid);
                         out.weightsCount = pr.error ? ('ошибка: '+pr.error.message) : pr.count;
                     } catch(e){ out.weightsCount = 'ошибка: '+String(e); }
+                    // Разбивка весов по режимам — чтобы в диагностике было видно
+                    // свиные веса (mode='pork'/'pork_find') отдельно и убедиться,
+                    // что синхронизация свинины реально работает.
+                    try {
+                        const wm = await supabase.from('civics_weights')
+                            .select('mode').eq('user_id', uid);
+                        if (wm.error) { out.weightsByMode = { error: wm.error.message }; }
+                        else {
+                            const by = {};
+                            (wm.data||[]).forEach(r => { const m=r.mode||'?'; by[m]=(by[m]||0)+1; });
+                            out.weightsByMode = by;
+                        }
+                    } catch(e){ out.weightsByMode = { error: String(e) }; }
                 }
             } catch(e) { out.error = String(e); }
             out.lastLbError = window.__lbLastError ? (window.__lbLastError.message || String(window.__lbLastError)) : null;
@@ -5240,7 +5292,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         // Полная выгрузка локального игрока в облако (веса + статистика + рейтинг).
         // Веса и статистика независимы: ошибка одной таблицы не мешает другой.
         async function pushAllToCloud(uid, name){
-            // CitizenShip: выгружаем прогресс во всех режимах. Веса — для всех
+            // MeatQuiz: выгружаем прогресс во всех режимах. Веса — для всех
             // (test/find/write/read + свинина pork/pork_find). Статистику
             // свинины czCloudPush намеренно не пишет (защита рейтинга).
             try{ await czCloudPush('test');      }catch(e){}
@@ -5254,13 +5306,13 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         // Полностью удалить данные пользователя в облаке (для «заменить новыми»)
         function localHasProgress(name){
             try{
-                // CitizenShip: прогресс теста (Test/Write/Read) — статистика игр или веса.
+                // MeatQuiz: прогресс теста (Test/Write/Read) — статистика игр или веса.
                 const gstat=o=>!!o && ((o.games||0)>0 || (o.answered||0)>0);
                 if( (typeof ctGetStats==='function' && gstat(ctGetStats())) ||
                     (typeof cwGetStats==='function' && gstat(cwGetStats())) ||
                     (typeof rdGetStats==='function' && gstat(rdGetStats())) ) return true;
                 try{ if(['test','write','read'].some(md=>Object.keys(czLoadW(md)).length>0)) return true; }catch(_){}
-                // старые словарные режимы (в CitizenShip обычно пусты) — на всякий случай
+                // старые словарные режимы (в MeatQuiz обычно пусты) — на всякий случай
                 const raw=localStorage.getItem('wm2_user_'+name);
                 if(raw){
                     const u=JSON.parse(raw);
@@ -5291,7 +5343,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                 const name = localStorage.getItem('wm2_current');
                 if(!name) return;                       // локального профиля нет — нечего сверять
                 const deviceLid = ensureLocalId();
-                // CitizenShip: слияние прогресса теста (веса + статистика, max, без потерь и
+                // MeatQuiz: слияние прогресса теста (веса + статистика, max, без потерь и
                 // без задвоения) уже выполнил czCloudPullAll. Осталось выгрузить объединённое
                 // состояние и привязать local_id, чтобы впредь вход был мгновенным. Старые
                 // словарные диалоги «Дополнить/Заменить/Скачать» были нужны лишь из-за
@@ -5435,7 +5487,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             if (!name) { showMsg(elSyncMsg, 'Локальный игрок не выбран', 'var(--muted)'); return; }
             const btn = $('#btn-sync'); busy(btn, true, 'Сохранение...');
             try {
-                // CitizenShip: синхронизация прогресса теста (веса + статистика) — pull(max)→push.
+                // MeatQuiz: синхронизация прогресса теста (веса + статистика) — pull(max)→push.
                 await czCloudPullAll();
                 await pushAllToCloud(session.user.id, name);
                 try { await linkCloudToLocal(ensureLocalId(), name); } catch (e) {}
@@ -5463,7 +5515,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             }
             const btn = $('#btn-load'); busy(btn, true, 'Загрузка...');
             try {
-                // CitizenShip: тянем прогресс теста (веса + статистику) из облака, max-слияние.
+                // MeatQuiz: тянем прогресс теста (веса + статистику) из облака, max-слияние.
                 await czCloudPullAll();
                 await linkCloudToLocal(ensureLocalId(), currentLocalUser);
                 alert('Данные загружены из облака! 🚀');
@@ -5506,7 +5558,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             try {
                 const { data: { session } } = await supabase.auth.getSession();
                 if (session) {
-                    // CitizenShip: восстановить прогресс теста (веса + статистику) из облака.
+                    // MeatQuiz: восстановить прогресс теста (веса + статистику) из облака.
                     await czCloudPullAll();
                     await linkCloudToLocal(lid, name); // аккаунт привязан к этой локальной записи
                 }
