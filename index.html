@@ -881,6 +881,21 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .ct-cow .cow-zone.bad text{opacity:.85}
 .ct-cow .cow-zone.bad,.ct-cow.off .cow-zone{cursor:default;pointer-events:none}
 .ct-cow .cow-zone.shake{animation:shake .4s}
+/* ── СВИНЬЯ (Pork · Find) ── мясницкий стиль: цельная фигура, тонкие линии
+   отрубов, белые подписи. Подсветка выбора/ответа — ТОЛЬКО на тексте названия
+   (заливка фигуры не меняется). Контейнер получает класс .pig в рендере. */
+.ct-cow.pig{background:#e9e9e9}
+.ct-cow.pig .pig-body{fill:#1d1d1d;stroke:none}
+.ct-cow.pig .pig-cut{fill:none;stroke:#e9e9e9;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ct-cow.pig .cow-zone .hit{fill:transparent;stroke:none}
+.ct-cow.pig .cow-zone text{fill:#fff;transition:fill .12s}
+.ct-cow.pig .cow-zone path{fill:none}          /* у пига заливки зон нет — только текст */
+@media (hover:hover){
+  .ct-cow.pig:not(.off) .cow-zone:not(.bad):not(.ok):hover text{fill:#4fb8ff}
+}
+.ct-cow.pig .cow-zone.sel text{fill:#1c7fd6}
+.ct-cow.pig .cow-zone.ok  text{fill:#39d67f}
+.ct-cow.pig .cow-zone.bad text{fill:#ff5f74;opacity:1}
 /* инструкция для вопросов с несколькими ответами */
 .ct-pickneed{margin:14px 2px 8px;font-family:'Nunito';font-weight:800;
   font-size:calc(14px * var(--fs,1));color:var(--purple)}
@@ -973,55 +988,6 @@ body.no-hints .ct-hintbtn{display:none!important}   /* подсказки вык
   background:rgba(255,255,255,.03);border-left:3px solid var(--blue);border-radius:0 9px 9px 0;
   padding:8px 12px;margin-top:6px}
 
-/* ===================== ВРЕМЕНА · просмотр картинки (#tviewer) ===================== */
-.tv-overlay{position:fixed;inset:0;z-index:10001;background:#0b0f12;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none}
-.tv-stage{position:absolute;inset:0;overflow:hidden;z-index:1}
-/* Лента из 2 страниц: ширина 200% сцены, каждая страница = 100% вьюпорта.
-   Сдвигается по горизонтали для листания (translateX). */
-.tv-track{position:absolute;top:0;left:0;height:100%;width:200%;display:flex;
-  will-change:transform;transform:translateX(0)}
-.tv-page{width:50%;height:100%;display:flex;align-items:center;justify-content:center;
-  overflow:hidden}
-/* iframe-страницы — чисто визуальные слои: жесты ловит #tvCatch поверх них */
-#tvFrame0,#tvFrame{border:0;background:transparent;display:block;flex:none;
-  transform-origin:50% 50%;will-change:transform;pointer-events:none;
-  width:1040px;height:786px;color-scheme:dark}
-#tvFrame{width:1100px;height:880px}
-/* Прозрачный перехватчик жестов поверх ленты */
-.tv-catch{position:absolute;inset:0;z-index:5;cursor:grab;touch-action:none}
-.tv-catch:active{cursor:grabbing}
-/* Стрелки листания страниц */
-.tv-nav{position:fixed;top:50%;transform:translateY(-50%);z-index:10;
-  width:46px;height:64px;display:flex;align-items:center;justify-content:center;
-  background:rgba(20,28,34,.78);border:1.5px solid rgba(255,255,255,.16);color:#fff;
-  cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
-  transition:opacity .18s ease}
-.tv-nav-l{left:8px;border-radius:0 16px 16px 0}
-.tv-nav-r{right:8px;border-radius:16px 0 0 16px}
-.tv-nav .ic{width:26px;height:26px;color:#fff}
-.tv-nav:active{filter:brightness(.85)}
-.tv-nav.is-off{opacity:0;pointer-events:none}
-/* Точки-индикатор страниц */
-.tv-dots{position:fixed;left:0;right:0;z-index:10;display:flex;gap:8px;
-  justify-content:center;align-items:center;pointer-events:none;
-  bottom:calc(env(safe-area-inset-bottom,0px) + 78px)}
-.tv-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.32);
-  transition:background .2s ease,width .2s ease}
-.tv-dot.is-on{background:#1cb0f6;width:20px;border-radius:5px}
-.tv-top{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:0;right:0;z-index:10;
-  display:flex;justify-content:space-between;padding:0 12px;pointer-events:none}
-.tv-zoom{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);left:0;right:0;z-index:10;
-  display:flex;justify-content:center;gap:12px;pointer-events:none}
-.tv-btn{pointer-events:auto;width:48px;height:48px;display:flex;align-items:center;justify-content:center;
-  background:rgba(20,28,34,.86);border:1.5px solid rgba(255,255,255,.16);border-radius:14px;color:#fff;
-  cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-.tv-btn:active{transform:translateY(2px)}
-.tv-btn .ic{width:24px;height:24px;color:#fff}
-.tv-zbtn{border-radius:50%}
-.tv-hint{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 100px);left:0;right:0;text-align:center;z-index:10;
-  color:rgba(255,255,255,.72);font-family:'Nunito';font-weight:700;font-size:calc(12px * var(--fs,1));
-  padding:0 16px;pointer-events:none;transition:opacity .6s ease}
 /* Закрепляем строки режимов (Слова/Фразы/Пары/Глаголы) при скролле — на главном и на экране результатов */
 .modesticky{
   position:sticky;top:0;z-index:50;
@@ -1632,8 +1598,6 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
  <symbol id="ic-coin" viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v11c0 1.7 3.1 3 7 3s7-1.3 7-3v-11"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></symbol>
  <symbol id="ic-swap" viewBox="0 0 24 24"><path d="M4 8.5h13M14 5.5l3 3-3 3"/><path d="M20 15.5H7M10 12.5l-3 3 3 3"/></symbol>
  <symbol id="ic-reset" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 3.5v4h-4"/></symbol>
- <symbol id="ic-rot-ccw" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 3.5v4h4"/></symbol>
- <symbol id="ic-rot-cw" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 3.5v4h-4"/></symbol>
  <symbol id="ic-list" viewBox="0 0 24 24"><path d="M8.5 7h10.5M8.5 12h10.5M8.5 17h10.5"/><circle cx="4.7" cy="7" r="1.1"/><circle cx="4.7" cy="12" r="1.1"/><circle cx="4.7" cy="17" r="1.1"/></symbol>
  <symbol id="ic-open" viewBox="0 0 24 24"><path d="M12 6.5C10 5 6.8 5 4.5 6.2V18c2.3-1.2 5.5-1.2 7.5.3 2-1.5 5.2-1.5 7.5-.3V6.2C17.2 5 14 5 12 6.5z"/><path d="M12 6.5V18.3"/></symbol>
  <symbol id="ic-trophy" viewBox="0 0 24 24"><path d="M7 4h10v4.5a5 5 0 0 1-10 0V4z"/><path d="M7 5.5H4.4a2.6 2.6 0 0 0 2.6 2.6"/><path d="M17 5.5h2.6a2.6 2.6 0 0 1-2.6 2.6"/><path d="M12 13.5v2.8M9 20h6M10.2 20l.4-3.7h2.8l.4 3.7"/></symbol>
@@ -1671,7 +1635,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 11</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 12</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -2101,17 +2065,6 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
   <div class="footer2">2026 · Альфаретта </div>
 </div>
 
-<div id="quitModal" class="qm-overlay hide">
-  <div class="qm-card">
-    <div class="qm-title">Выйти из игры?</div>
-    <div class="qm-text">Результат не сохранится — веса пишутся только в конце игры.</div>
-    <div class="qm-row">
-      <button class="btn ghost" id="quitNo"><svg class="ic"><use href="#ic-check"/></svg>Остаться</button>
-      <button class="btn" id="quitYes"><svg class="ic"><use href="#ic-x"/></svg>Выйти</button>
-    </div>
-  </div>
-</div>
-
 <div id="leaveModal" class="qm-overlay hide">
   <div class="qm-card" style="position:relative">
     <button class="icon-btn" id="leaveBack" title="Назад" style="position:absolute;left:14px;top:14px;width:38px;height:38px;font-size:calc(20px * var(--fs,1))">←</button>
@@ -2216,45 +2169,6 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
   </div>
 </div>
 
-<!-- ВРЕМЕНА · просмотр картинки на весь экран (зум кнопками + жесты) -->
-<div id="tviewer" class="tv-overlay hide">
-  <div class="tv-stage" id="tvStage">
-    <!-- Лента из двух «страниц»: 0 — схема времён (HTML/вектор), 1 — развёрнутая таблица (HTML).
-         Сама лента двигается по горизонтали при листании; зум/сдвиг/поворот применяются
-         к содержимому страницы (iframe) отдельным трансформом. -->
-    <div class="tv-track" id="tvTrack">
-      <div class="tv-page">
-        <iframe id="tvFrame0" title="Грамматика · времена" scrolling="no" tabindex="-1"></iframe>
-      </div>
-      <div class="tv-page">
-        <iframe id="tvFrame" title="Грамматика · построение времён" scrolling="no" tabindex="-1"></iframe>
-      </div>
-    </div>
-    <!-- Прозрачный слой-перехватчик жестов: лежит НАД лентой (картинка/iframe имеют
-         pointer-events:none), поэтому свайпы/перетаскивание/зум работают одинаково и
-         над картинкой, и над iframe (события из iframe иначе не доходили бы до нас). -->
-    <div class="tv-catch" id="tvCatch"></div>
-  </div>
-  <div class="tv-top">
-    <button class="tv-btn" id="tvBack" title="Назад"><svg class="ic"><use href="#ic-chevl"/></svg></button>
-    <button class="tv-btn" id="tvClose" title="Закрыть"><svg class="ic"><use href="#ic-x"/></svg></button>
-  </div>
-  <!-- Стрелки листания страниц (влево/вправо) -->
-  <button class="tv-nav tv-nav-l" id="tvPrev" title="Предыдущая"><svg class="ic"><use href="#ic-chevl"/></svg></button>
-  <button class="tv-nav tv-nav-r" id="tvNext" title="Следующая · развёрнутая схема"><svg class="ic"><use href="#ic-chevr"/></svg></button>
-  <div class="tv-zoom">
-    <button class="tv-btn tv-zbtn" id="tvOut" title="Уменьшить"><svg class="ic"><use href="#ic-minus"/></svg></button>
-    <button class="tv-btn tv-zbtn" id="tvRotL" title="Повернуть против часовой"><svg class="ic"><use href="#ic-rot-ccw"/></svg></button>
-    <button class="tv-btn tv-zbtn" id="tvRotR" title="Повернуть по часовой"><svg class="ic"><use href="#ic-rot-cw"/></svg></button>
-    <button class="tv-btn tv-zbtn" id="tvIn" title="Увеличить"><svg class="ic"><use href="#ic-plus"/></svg></button>
-  </div>
-  <!-- Индикатор страниц -->
-  <div class="tv-dots" id="tvDots">
-    <span class="tv-dot is-on" data-p="0"></span>
-    <span class="tv-dot" data-p="1"></span>
-  </div>
-  <div class="tv-hint" id="tvHint">Листайте свайпом или стрелками · щипок/колесо — масштаб · двойной тап — приблизить</div>
-</div>
 
 <div id="confetti"></div>
 
@@ -3704,10 +3618,17 @@ $('#nameBack').onclick=goBack;
 // другой. Активный набор мяса meatSet следует за тем, какой ряд выбран.
 let citSel = 'test';
 let porkSel = null;
+// meatSet ОБЪЯВЛЕНА ЗДЕСЬ, до первого использования (applyMeatRow и блок
+// инициализации ниже обращаются к ней немедленно при загрузке). Раньше её
+// объявление стояло ниже по файлу — из-за temporal dead zone скрипт падал на
+// старте с "Cannot access 'meatSet' before initialization", и все обработчики
+// кнопок не навешивались. Восстанавливаем сохранённый набор здесь же.
+let meatSet = 'beef';
 try{
   const sv=localStorage.getItem('wm2_meatrow');   // 'beef' | 'pork'
   if(sv==='pork'){ porkSel='test'; citSel=null; }
 }catch(e){}
+try{ const ms=localStorage.getItem('wm2_meatset'); if(ms==='pork'||ms==='beef') meatSet=ms; }catch(e){}
 try{ localStorage.setItem('wm2_citsel', citSel||''); }catch(e){}
 function syncQuizRow(){
   // ряд говядины
@@ -3805,10 +3726,9 @@ syncQuizRow();
 // Имя константы CIVICS сохранено, чтобы не трогать остальной код (статистика,
 // веса, синк) — для них это просто «набор вопросов режима test».
 // MeatQuiz: два набора мяса. Beef → window.MEAT_QUIZ, Pork → window.PORK_QUIZ.
-// Активный набор хранится в meatSet и переключается кнопками Beef/Pork сверху.
+// meatSet объявлена и восстановлена ВЫШЕ (рядом с citSel/porkSel), чтобы не
+// падать по temporal dead zone. Здесь — только карта наборов.
 // Каталоги фото: beef → steak_images/, pork → steak_images/pork/.
-let meatSet = 'beef';
-try{ const sv=localStorage.getItem('wm2_meatset'); if(sv==='pork'||sv==='beef') meatSet=sv; }catch(e){}
 const MEAT_SETS = {
   beef: { data:()=> (Array.isArray(window.MEAT_QUIZ)?window.MEAT_QUIZ:[]), dir:'steak_images/',      label:'Beef' },
   pork: { data:()=> (Array.isArray(window.PORK_QUIZ)?window.PORK_QUIZ:[]), dir:'steak_images/pork/', label:'Pork' }
@@ -4108,76 +4028,12 @@ function ctCowSVG(){
 // влево; зоны — крупные читаемые блоки скруглённой формы. viewBox совпадает с
 // коровьим (888×550), чтобы контейнер .ct-cow не менял размеры.
 function ctPigSVG(){
-  const Z = (zone, ru, path, pill) => {
-    // pill: {x,y,w,h,fs,lines:[...], tx, ty, rot?}
-    const lines = pill.lines.map((t,i)=>
-      '<text x="'+pill.tx+'" y="'+(pill.ty + i*(pill.fs+3))+'" font-size="'+pill.fs+'">'+t+'</text>'
-    ).join('');
-    const rot = pill.rot ? ' transform="rotate('+pill.rot+')"' : '';
-    return '<g class="cow-zone" data-zone="'+zone+'" data-ru="'+ru+'">'+
-      '<path d="'+path+'"/>'+
-      '<g class="zl"'+rot+'><rect class="zpill" x="'+pill.x+'" y="'+pill.y+'" width="'+pill.w+'" height="'+pill.h+'" rx="'+Math.round(pill.h/2)+'"/>'+lines+'</g></g>';
-  };
-  // Прямоугольные скруглённые блоки — компонуем силуэт свиньи из сегментов.
-  const rr = (x,y,w,h,r)=>{ // путь скруглённого прямоугольника
-    r=Math.min(r,w/2,h/2);
-    return 'M'+(x+r)+','+y+' h'+(w-2*r)+' a'+r+','+r+' 0 0 1 '+r+','+r+' v'+(h-2*r)+
-           ' a'+r+','+r+' 0 0 1 '+(-r)+','+r+' h'+(-(w-2*r))+' a'+r+','+r+' 0 0 1 '+(-r)+','+(-r)+
-           ' v'+(-(h-2*r))+' a'+r+','+r+' 0 0 1 '+r+','+(-r)+' Z';
-  };
-  const parts = [];
-  // Верхний ряд (спина, слева направо): NECK → SHOULDER(BOSTON BUTT) → LOIN → SIRLOIN → HAM
-  parts.push(Z('HEAD','голова',
-    // голова с рылом слева (простая пятиугольная форма)
-    'M150,150 C120,150 92,168 82,196 C78,208 78,224 84,236 C74,240 66,246 66,254 C66,262 74,268 84,272 '+
-    'C96,300 124,318 156,318 C176,318 194,312 208,300 L208,168 C194,156 176,150 150,150 Z',
-    {x:96,y:222,w:70,h:30,fs:15,tx:131,ty:242,lines:['HEAD']}));
-  parts.push(Z('NECK','шея',
-    rr(212,160,86,150,20),
-    {x:224,y:228,w:62,h:26,fs:14,tx:255,ty:246,lines:['NECK']}));
-  parts.push(Z('SHOULDER (BOSTON BUTT)','лопатка (бостон-батт)',
-    rr(302,150,118,120,22),
-    {x:312,y:196,w:98,h:44,fs:14,tx:361,ty:214,lines:['SHOULDER','(BUTT)']}));
-  parts.push(Z('PICNIC SHOULDER','лопатка (пикник)',
-    rr(302,336,102,110,20),
-    {x:312,y:376,w:82,h:44,fs:12,tx:353,ty:392,lines:['PICNIC','SHOULDER']}));
-  parts.push(Z('LOIN','корейка (спина)',
-    rr(424,150,160,66,22),
-    {x:470,y:166,w:68,h:34,fs:20,tx:504,ty:190,lines:['LOIN']}));
-  parts.push(Z('SIRLOIN','тазовая часть (сирлойн)',
-    rr(588,150,86,88,22),
-    {x:598,y:180,w:66,h:30,fs:12,tx:631,ty:200,lines:['SIRLOIN']}));
-  parts.push(Z('TENDERLOIN','вырезка',
-    rr(424,220,160,40,18),
-    {x:452,y:230,w:104,h:22,fs:11,tx:504,ty:245,lines:['TENDERLOIN']}));
-  parts.push(Z('HAM (LEG)','окорок (задняя нога)',
-    // окорок справа, крупный округлый блок, спускается к голяшке
-    'M678,152 C726,152 764,158 786,172 C806,185 812,208 812,238 C812,290 800,330 786,352 '+
-    'C778,364 762,368 744,368 C724,368 706,362 696,350 C684,334 680,300 680,262 '+
-    'C680,224 678,190 678,164 C678,158 678,154 678,152 Z',
-    {x:706,y:238,w:84,h:44,fs:15,tx:748,ty:256,lines:['HAM','(LEG)'],rot:'-14 748 256'}));
-  parts.push(Z('SPARERIBS / BELLY','рёбра брюшной части',
-    rr(302,276,150,54,18),
-    {x:318,y:290,w:118,h:26,fs:12,tx:377,ty:307,lines:['SPARERIBS']}));
-  parts.push(Z('BELLY (SIDE)','грудинка (брюшина)',
-    rr(456,276,210,54,18),
-    {x:512,y:290,w:98,h:26,fs:13,tx:561,ty:307,lines:['BELLY']}));
-  // ноги: передняя голяшка (HOCK) + копытце (FEET) слева; задняя — под HAM
-  parts.push(Z('HOCK','рулька / голяшка',
-    rr(410,336,58,110,18)+' '+rr(700,372,58,96,18),
-    {x:416,y:380,w:46,h:22,fs:11,tx:439,ty:395,lines:['HOCK']}));
-  parts.push(Z('FEET','ножки (копытца)',
-    rr(410,452,58,70,16)+' '+rr(700,474,58,60,16),
-    {x:416,y:478,w:46,h:22,fs:11,tx:439,ty:493,lines:['FEET']}));
-  parts.push(Z('TAIL','хвост',
-    // хвостик-завиток справа сверху от окорока
-    'M812,196 C838,190 856,200 862,220 C868,240 858,258 842,262 C852,250 852,236 844,228 '+
-    'C836,220 822,222 816,232 C812,238 812,246 816,252 C806,246 800,232 802,220 C804,208 810,200 812,196 Z',
-    {x:820,y:206,w:52,h:20,fs:10,tx:846,ty:220,lines:['TAIL'],rot:'-18 846 220'}));
-
-  return '<svg viewBox="0 0 888 550" xmlns="http://www.w3.org/2000/svg" '+
-    'font-family="\'Nunito\', system-ui, sans-serif" font-weight="800">'+
-    parts.join('')+'</svg>';
+  // Оригинальный силуэт свиньи в «мясницком» стиле (профиль, головой влево),
+  // плавные кривые Безье. Тело — цельная фигура; отрубы разделены тонкими
+  // линиями; кликабельны прозрачные хит-полигоны (.hit) с data-zone = body_part
+  // из PORK_QUIZ. Подсветка выбора/верного/неверного — ТОЛЬКО на тексте
+  // названия (см. CSS .ct-cow.pig .cow-zone.{sel,ok,bad} text).
+  return "<svg viewBox=\"0 0 888 550\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"'Nunito', system-ui, sans-serif\" font-weight=\"800\"><path class=\"pig-body\" d=\"M74,306 C66,296 66,282 76,274 C60,272 54,258 60,246 C66,234 82,232 96,238 C108,214 128,198 152,192 C146,166 152,140 172,130 C180,150 182,174 190,190 C250,168 320,160 400,160 C520,160 620,164 700,176 C742,182 772,196 794,214 C784,196 786,176 800,168 C814,160 830,164 836,178 C841,190 834,202 822,204 C831,200 834,190 829,183 C824,177 815,179 812,187 C810,193 813,200 819,202 C812,220 810,246 808,272 C806,308 802,340 796,360 C794,372 790,386 790,404 C790,440 792,478 792,506 C792,518 783,522 775,522 C767,522 759,518 759,506 C759,474 757,440 753,408 C736,414 714,416 696,410 C696,442 696,476 696,506 C696,518 687,522 679,522 C671,522 663,518 663,506 C663,474 661,440 657,406 C596,416 512,418 446,412 C446,444 446,478 446,506 C446,518 437,522 429,522 C421,522 413,518 413,506 C413,476 411,442 407,410 C393,408 377,404 364,396 C364,432 364,470 364,506 C364,518 355,522 347,522 C339,522 331,518 331,506 C331,470 329,432 325,398 C298,384 280,360 274,336 C226,344 166,346 128,350 C112,352 92,352 80,340 C72,332 70,318 74,306 Z\"/><path class=\"pig-cut\" d=\"M298,196 C294,252 294,306 304,352\"/><path class=\"pig-cut\" d=\"M352,182 C352,240 348,302 356,352\"/><path class=\"pig-cut\" d=\"M444,176 C438,240 432,304 450,360\"/><path class=\"pig-cut\" d=\"M450,214 C520,206 606,206 668,216\"/><path class=\"pig-cut\" d=\"M642,178 C646,232 646,292 652,356\"/><path class=\"pig-cut\" d=\"M356,300 C444,330 560,350 664,352\"/><path class=\"pig-cut\" d=\"M364,394 C462,374 566,370 660,386\"/><path class=\"pig-cut\" d=\"M304,300 C330,322 356,336 364,396\"/><path class=\"pig-cut\" d=\"M668,216 C656,300 660,360 700,410\"/><path class=\"pig-cut\" d=\"M470,264 C542,258 604,260 642,268\"/><g class=\"cow-zone\" data-zone=\"HEAD\" data-ru=\"голова\"><polygon class=\"hit\" points=\"110,262 205,196 300,208 306,352 150,352 96,320\"/><g class=\"zl\"><text x=\"188\" y=\"300\" font-size=\"30\">HEAD</text></g></g><g class=\"cow-zone\" data-zone=\"NECK\" data-ru=\"шея\"><polygon class=\"hit\" points=\"300,200 352,196 356,352 306,352\"/><g class=\"zl\"><text x=\"328\" y=\"282\" font-size=\"15\">NECK</text></g></g><g class=\"cow-zone\" data-zone=\"SHOULDER (BOSTON BUTT)\" data-ru=\"лопатка (бостон-батт)\"><polygon class=\"hit\" points=\"352,192 444,182 450,300 356,300\"/><g class=\"zl\"><text x=\"402\" y=\"248\" font-size=\"16\">SHOULDER</text></g></g><g class=\"cow-zone\" data-zone=\"PICNIC SHOULDER\" data-ru=\"лопатка (пикник)\"><polygon class=\"hit\" points=\"304,300 364,348 364,396 326,398 300,342\"/><g class=\"zl\"><text x=\"338\" y=\"352\" font-size=\"14\">PICNIC</text></g></g><g class=\"cow-zone\" data-zone=\"LOIN\" data-ru=\"корейка\"><polygon class=\"hit\" points=\"450,214 642,214 652,300 450,300\"/><g class=\"zl\"><text x=\"548\" y=\"250\" font-size=\"28\">LOIN</text></g></g><g class=\"cow-zone\" data-zone=\"SIRLOIN\" data-ru=\"сирлойн\"><polygon class=\"hit\" points=\"652,200 700,208 700,356 652,356\"/><g class=\"zl\"><text x=\"690\" y=\"250\" font-size=\"15\">SIRLOIN</text></g></g><g class=\"cow-zone\" data-zone=\"TENDERLOIN\" data-ru=\"вырезка\"><polygon class=\"hit\" points=\"470,268 642,270 646,300 456,300\"/><g class=\"zl\"><text x=\"554\" y=\"300\" font-size=\"13\">TENDERLOIN</text></g></g><g class=\"cow-zone\" data-zone=\"HAM (LEG)\" data-ru=\"окорок\"><polygon class=\"hit\" points=\"700,208 808,216 808,360 700,410 660,360 664,216\"/><g class=\"zl\"><text x=\"758\" y=\"268\" font-size=\"30\">LEG</text><text x=\"758\" y=\"304\" font-size=\"30\">HAM</text></g></g><g class=\"cow-zone\" data-zone=\"SPARERIBS / BELLY\" data-ru=\"рёбра брюшной части\"><polygon class=\"hit\" points=\"356,302 664,352 660,386 364,394\"/><g class=\"zl\"><text x=\"518\" y=\"368\" font-size=\"20\">RIBS</text></g></g><g class=\"cow-zone\" data-zone=\"BELLY (SIDE)\" data-ru=\"грудинка\"><polygon class=\"hit\" points=\"364,396 660,386 700,410 446,412 364,396\"/><g class=\"zl\"><text x=\"596\" y=\"404\" font-size=\"17\">BACON</text></g></g><g class=\"cow-zone\" data-zone=\"HOCK\" data-ru=\"рулька\"><polygon class=\"hit\" points=\"657,404 700,410 700,470 663,470\"/><g class=\"zl\"><text x=\"696\" y=\"468\" font-size=\"13\">HOCK</text></g></g><g class=\"cow-zone\" data-zone=\"FEET\" data-ru=\"ножки\"><polygon class=\"hit\" points=\"331,452 364,452 364,522 331,522\"/><g class=\"zl\"><text x=\"346\" y=\"478\" font-size=\"12\">FEET</text></g></g><g class=\"cow-zone\" data-zone=\"TAIL\" data-ru=\"хвост\"><polygon class=\"hit\" points=\"792,160 838,164 836,204 796,210\"/><g class=\"zl\"><text x=\"806\" y=\"180\" font-size=\"10\">TAIL</text></g></g></svg>";
 }
 
 
@@ -4238,11 +4094,12 @@ function ctRenderQuestion(){
     ct.need = 1;
     ct.correctSet = new Set([ String(q.body_part) ]);
     const carcassSVG = (meatSet==='pork') ? ctPigSVG() : ctCowSVG();
+    const cowClass = (meatSet==='pork') ? 'ct-cow pig' : 'ct-cow';   // pig → подсветка текста, мясницкий стиль
     $('#ctBody').innerHTML =
         head +
         qblock +
         '<div class="gt-q" id="ctQ">Из какой части туши это сделано? Выберите зону на схеме</div>'+
-        '<div class="ct-cow" id="ctCow">'+carcassSVG+'</div>'+
+        '<div class="'+cowClass+'" id="ctCow">'+carcassSVG+'</div>'+
         '<button class="btn block ct-check" id="ctCheck" style="display:none">Проверить ответ</button>'+
         '<div class="gt-exp" id="ctExp"></div>';
     $('#ctCow').querySelectorAll('.cow-zone').forEach(g=>{
