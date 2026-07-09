@@ -778,8 +778,26 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .gt-icbtn .ic{width:20px;height:20px;color:var(--blue)}
 .gt-bar{height:8px;border-radius:6px;background:var(--card2);overflow:hidden;margin:10px 0 6px}
 .gt-bar>span{display:block;height:100%;width:0;background:var(--blue);border-radius:6px;transition:width .3s ease}
-.gt-meta{display:flex;justify-content:space-between;font-family:'Nunito';font-weight:800;
+.gt-meta{display:flex;justify-content:space-between;align-items:center;font-family:'Nunito';font-weight:800;
   font-size:calc(13px * var(--fs,1));color:var(--muted);margin-bottom:8px}
+.gt-meta-l{display:flex;align-items:center;gap:14px}
+/* --- переключатель языка подписей EN|RU --- */
+.lang-toggle{--w:76px;position:relative;width:var(--w);height:26px;border-radius:13px;
+  background:var(--line);border:1px solid var(--line);cursor:pointer;user-select:none;flex:0 0 auto;padding:0}
+.lang-toggle .lt-knob{position:absolute;top:2px;left:2px;width:calc(var(--w)/2 - 2px);height:22px;
+  border-radius:11px;background:#1c7fd6;transition:left .16s ease}
+.lang-toggle.ru .lt-knob{left:calc(var(--w)/2)}
+.lang-toggle .lt-track{position:absolute;inset:0;display:flex;align-items:center}
+.lang-toggle .lt-en,.lang-toggle .lt-ru{position:relative;z-index:1;flex:1 1 50%;text-align:center;
+  font-family:'Nunito';font-weight:800;font-size:12px;color:var(--muted);line-height:26px}
+.lang-toggle:not(.ru) .lt-en{color:#fff}
+.lang-toggle.ru .lt-ru{color:#fff}
+/* --- название отруба над фото (FIND) --- */
+.ct-findname{font-family:'Nunito';font-weight:800;font-size:calc(16px * var(--fs,1));
+  color:#fff;margin:2px 2px 10px;line-height:1.25}
+.ct-findname .fn-ru{color:var(--muted);font-weight:700}
+/* --- перевод зон на силуэте (RU-строка под английской подписью) --- */
+.ct-cow .cow-zone text.zru{fill:#cfe0ea;font-weight:700}
 #gtScore{color:var(--green)}
 .gt-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
 .gt-tag{font-family:'Nunito';font-weight:800;font-size:calc(11px * var(--fs,1));
@@ -1637,7 +1655,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 18</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 14</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -1994,7 +2012,13 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
       <button class="gt-icbtn" id="ctClose" title="Закрыть"><svg class="ic"><use href="#ic-x"/></svg></button>
     </div>
     <div class="gt-bar ct-bar"><span id="ctBarFill"></span></div>
-    <div class="gt-meta"><span id="ctCount">—</span><span id="ctScore">0&nbsp;✓</span></div>
+    <div class="gt-meta">
+      <span class="gt-meta-l"><span id="ctCount">—</span><span id="ctScore">0&nbsp;✓</span></span>
+      <button class="lang-toggle" id="ctLangToggle" type="button" title="Язык подписей: EN / RU" aria-label="Переключить язык подписей EN / RU">
+        <span class="lt-knob"></span>
+        <span class="lt-track"><span class="lt-en">EN</span><span class="lt-ru">RU</span></span>
+      </button>
+    </div>
     <div class="gt-body" id="ctBody"></div>
     <div class="gt-foot">
       <button class="btn block" id="ctNext" style="display:none">Дальше →</button>
@@ -2197,6 +2221,9 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
      перевод») и PIG_SILHOUETTE. Подключается как обычный скрипт (надёжно на
      file://, на сервере и сквозь service worker). -->
 <script src="dictionary/pig_silhouette.js"></script>
+<!-- EN→RU словарь названий отрубов для переключателя языка подписей (TEST/FIND).
+     Ключ — точная строка варианта из MEAT_QUIZ/PORK_QUIZ (с подчёркиваниями). -->
+<script src="dictionary/cut_names_ru.js"></script>
 
 
 
@@ -4218,6 +4245,68 @@ function ctPigSVG(){
 }
 
 
+// ── ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА ПОДПИСЕЙ (EN|RU) ─────────────────────────────────────
+// По умолчанию EN (левое положение) — всё как работало раньше. В RU-режиме к
+// названиям отрубов (варианты в TEST, подпись над фото в FIND) и к зонам туши на
+// силуэте добавляется русский перевод в скобках; английское никогда не исчезает.
+let ctLang = 'en';
+try{ const v=localStorage.getItem('wm2_ctlang'); if(v==='en'||v==='ru') ctLang=v; }catch(e){}
+
+function ctCutRu(name){ return (window.CUT_NAMES_RU && CUT_NAMES_RU[name]) || ''; }
+function ctOptLabel(o){                      // подпись варианта ответа в TEST
+  const ru = ctCutRu(o);
+  return (ctLang==='ru' && ru) ? (o + '  —  ' + ru) : o;   // EN всегда, RU — довеском
+}
+function ctFindNameParts(q){                 // название отруба над фото в FIND
+  const key = (q && q.correct && q.correct[0]) ? String(q.correct[0]) : '';
+  return { en: key ? key.replace(/_/g,' ') : '', ru: key ? ctCutRu(key) : '' };
+}
+// RU-строка под английской подписью каждой зоны силуэта (или её снятие)
+function ctZoneLang(container){
+  if(!container) return;
+  container.querySelectorAll('.cow-zone').forEach(g=>{
+    const zl = g.querySelector('.zl'); if(!zl) return;
+    zl.querySelectorAll('text.zru').forEach(n=>n.remove());     // снять прежний перевод
+    if(ctLang!=='ru') return;
+    const ru = g.getAttribute('data-ru'); if(!ru) return;
+    const texts = zl.querySelectorAll('text:not(.zru)');
+    if(!texts.length) return;
+    const last = texts[texts.length-1];
+    const y  = parseFloat(last.getAttribute('y'))||0;
+    const fs = parseFloat(last.getAttribute('font-size'))||14;
+    const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('class','zru');
+    t.setAttribute('x', last.getAttribute('x'));
+    t.setAttribute('y', String(y + fs*0.92));
+    t.setAttribute('font-size', String(Math.max(7, Math.round(fs*0.46))));
+    t.textContent = '('+ru+')';
+    last.parentNode.appendChild(t);
+  });
+}
+// Применить текущий язык к уже показанному вопросу (без пересборки/перемешивания)
+function ctApplyLang(){
+  document.querySelectorAll('#ctOpts .gt-opt').forEach(b=>{          // TEST: варианты
+    const o = b.dataset.val; if(o!=null) b.textContent = ctOptLabel(o);
+  });
+  const nm = $('#ctFindName');                                       // FIND: подпись над фото
+  if(nm){
+    const en = nm.dataset.en||'', ru = nm.dataset.ru||'';
+    nm.innerHTML = '<span class="fn-en">'+escHtml(en)+'</span>' +
+      ((ctLang==='ru' && ru) ? ' <span class="fn-ru">('+escHtml(ru)+')</span>' : '');
+  }
+  ctZoneLang($('#ctCow'));                                           // FIND: зоны на силуэте
+  document.querySelectorAll('.lang-toggle').forEach(t=>t.classList.toggle('ru', ctLang==='ru'));
+}
+function ctToggleLang(){
+  ctLang = (ctLang==='ru') ? 'en' : 'ru';
+  try{ localStorage.setItem('wm2_ctlang', ctLang); }catch(e){}
+  ctApplyLang();
+}
+(function initLangToggle(){
+  const t = document.getElementById('ctLangToggle');
+  if(t){ t.addEventListener('click', ctToggleLang); t.classList.toggle('ru', ctLang==='ru'); }
+})();
+
 function ctRenderQuestion(){
   if(!ct) return;
   if(ct.pos>=ct.order.length){ ctFinish(); return; }
@@ -4280,8 +4369,15 @@ function ctRenderQuestion(){
     // это залитый SVG, ему нужна тёмная схема .ct-cow (как у коровы), без .pig.
     const pigSelf = (meatSet==='pork') && !!window.PIG_SILHOUETTE_SVG;
     const cowClass = (meatSet==='pork' && !pigSelf) ? 'ct-cow pig' : 'ct-cow';
+    // Название отруба над фото: английское — всегда, русское в скобках — в RU-режиме.
+    const fn = ctFindNameParts(q);
+    const nameBar = '<div class="ct-findname" id="ctFindName" data-en="'+escHtml(fn.en)+'" data-ru="'+escHtml(fn.ru)+'">'+
+        '<span class="fn-en">'+escHtml(fn.en)+'</span>'+
+        ((ctLang==='ru' && fn.ru) ? ' <span class="fn-ru">('+escHtml(fn.ru)+')</span>' : '')+
+      '</div>';
     $('#ctBody').innerHTML =
         head +
+        nameBar +
         qblock +
         '<div class="gt-q" id="ctQ">Из какой части туши это сделано? Выберите зону на схеме</div>'+
         '<div class="'+cowClass+'" id="ctCow">'+carcassSVG+'</div>'+
@@ -4291,6 +4387,7 @@ function ctRenderQuestion(){
       $('#ctCow').querySelectorAll('.cow-zone').forEach(g=>{
         g.addEventListener('click', ()=>ctCowPick(g));
       });
+      ctZoneLang($('#ctCow'));                 // навесить перевод зон под текущий язык
     };
     bindCowZones();
     // Beef: если подключаемый силуэт ещё не успел загрузиться, дорисуем его,
@@ -4340,7 +4437,7 @@ function ctRenderQuestion(){
   const box=$('#ctOpts'); box.innerHTML='';
   ct.opts.forEach(o=>{
     const b=document.createElement('button');
-    b.className='gt-opt'; b.textContent=o;
+    b.className='gt-opt'; b.dataset.val=o; b.textContent=ctOptLabel(o);
     b.onclick=()=>ctPick(b,o);
     box.appendChild(b);
   });
