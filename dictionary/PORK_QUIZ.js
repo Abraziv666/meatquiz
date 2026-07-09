@@ -18,7 +18,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/BONELESS_SHOULDER_COUNTRY_RIBS",
-    "body_part": "SHOULDER (BOSTON BUTT)",
+    "body_part": "SHOULDER",
     "body_part_ru": "лопатка (верхняя часть, бостон-батт)",
     "correct": [
       "Boneless_Shoulder_Country_Ribs"
@@ -39,7 +39,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/SHOULDER_COUNTRY_RIBS",
-    "body_part": "SHOULDER (BOSTON BUTT)",
+    "body_part": "SHOULDER",
     "body_part_ru": "лопатка (верхняя часть, бостон-батт)",
     "correct": [
       "Shoulder_Country_Ribs"
@@ -123,7 +123,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/PORK_SPARERIBS",
-    "body_part": "SPARERIBS / BELLY",
+    "body_part": "RIBS",
     "body_part_ru": "рёбра брюшной части (грудинка)",
     "correct": [
       "Pork_Spareribs"
@@ -144,7 +144,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/ST_LOUIS_STYLE_PORK_SPARERIBS",
-    "body_part": "SPARERIBS / BELLY",
+    "body_part": "RIBS",
     "body_part_ru": "рёбра брюшной части (грудинка)",
     "correct": [
       "St_Louis_Style_Pork_Spareribs"
@@ -165,7 +165,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/SLICED_ST_LOUIS_STYLE_PORK_SPARERIBS",
-    "body_part": "SPARERIBS / BELLY",
+    "body_part": "RIBS",
     "body_part_ru": "рёбра брюшной части (грудинка)",
     "correct": [
       "Sliced_St_Louis_Style_Pork_Spareribs"
@@ -207,7 +207,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/PORK_FEET_SPLIT",
-    "body_part": "FEET",
+    "body_part": "HOCK",
     "body_part_ru": "ножки (нижняя часть ног)",
     "correct": [
       "Pork_Feet_Split"
@@ -312,7 +312,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/SLICED_PORK_SIDE_MEAT",
-    "body_part": "BELLY (SIDE)",
+    "body_part": "BACON",
     "body_part_ru": "грудинка (брюшная часть)",
     "correct": [
       "Sliced_Pork_Side_Meat"
@@ -333,7 +333,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/WHOLE_PORK_SIDE_MEAT",
-    "body_part": "BELLY (SIDE)",
+    "body_part": "BACON",
     "body_part_ru": "грудинка (брюшная часть)",
     "correct": [
       "Whole_Pork_Side_Meat"
@@ -354,7 +354,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/PORK_TAILS",
-    "body_part": "TAIL",
+    "body_part": "LEG / HAM",
     "body_part_ru": "хвост",
     "correct": [
       "Pork_Tails"
@@ -564,7 +564,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/BOSTON_BUTT_ROAST",
-    "body_part": "SHOULDER (BOSTON BUTT)",
+    "body_part": "SHOULDER",
     "body_part_ru": "лопатка (верхняя часть, бостон-батт)",
     "correct": [
       "Boston_Butt_Roast"
@@ -585,7 +585,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/PORK_STEAK",
-    "body_part": "SHOULDER (BOSTON BUTT)",
+    "body_part": "SHOULDER",
     "body_part_ru": "лопатка (верхняя часть, бостон-батт)",
     "correct": [
       "Pork_Steak"
@@ -606,7 +606,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/RUMP_PORTION_HAM",
-    "body_part": "HAM (LEG)",
+    "body_part": "LEG / HAM",
     "body_part_ru": "окорок (верхняя часть)",
     "correct": [
       "Rump_Portion_Ham"
@@ -627,7 +627,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/SHANK_PORTION_HAM",
-    "body_part": "HAM (LEG)",
+    "body_part": "LEG / HAM",
     "body_part_ru": "окорок (нижняя часть)",
     "correct": [
       "Shank_Portion_Ham"
@@ -648,7 +648,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/FRESH_HAM_CENTER_SLICE",
-    "body_part": "HAM (LEG)",
+    "body_part": "LEG / HAM",
     "body_part_ru": "окорок (центральная часть)",
     "correct": [
       "Fresh_Ham_Center_Slice"
@@ -669,7 +669,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/PICNIC_PORTION",
-    "body_part": "PICNIC SHOULDER",
+    "body_part": "PICNIC",
     "body_part_ru": "лопатка (нижняя часть, пикник)",
     "correct": [
       "Picnic_Portion"
@@ -690,7 +690,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/CENTER_SLICED_FRESH_PICNIC",
-    "body_part": "PICNIC SHOULDER",
+    "body_part": "PICNIC",
     "body_part_ru": "лопатка (нижняя часть, пикник)",
     "correct": [
       "Center_Sliced_Fresh_Picnic"
@@ -711,7 +711,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/SLICED_PICNIC_PORTION",
-    "body_part": "PICNIC SHOULDER",
+    "body_part": "PICNIC",
     "body_part_ru": "лопатка (нижняя часть, пикник)",
     "correct": [
       "Sliced_Picnic_Portion"
@@ -732,7 +732,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/WHOLE_SLICED_PICNIC",
-    "body_part": "PICNIC SHOULDER",
+    "body_part": "PICNIC",
     "body_part_ru": "лопатка (нижняя часть, пикник)",
     "correct": [
       "Whole_Sliced_Picnic"
@@ -753,7 +753,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/PICNIC_FOR_CURRY",
-    "body_part": "PICNIC SHOULDER",
+    "body_part": "PICNIC",
     "body_part_ru": "лопатка (нижняя часть, пикник)",
     "correct": [
       "Picnic_for_Curry"
@@ -921,7 +921,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/BONELESS_PORK_SIRLOIN_ROAST",
-    "body_part": "SIRLOIN",
+    "body_part": "LOIN",
     "body_part_ru": "тазовая часть поясницы (сирлойн)",
     "correct": [
       "Boneless_Pork_Sirloin_Roast"
@@ -942,7 +942,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/BONELESS_SIRLOIN_CUTLET",
-    "body_part": "SIRLOIN",
+    "body_part": "LOIN",
     "body_part_ru": "тазовая часть поясницы (сирлойн)",
     "correct": [
       "Boneless_Sirloin_Cutlet"
@@ -963,7 +963,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/PORK_CUBED_STEAK",
-    "body_part": "HAM (LEG)",
+    "body_part": "LEG / HAM",
     "body_part_ru": "окорок / тазовая часть",
     "correct": [
       "Pork_Cubed_Steak"
@@ -984,7 +984,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/PORK_KABOB_MEAT",
-    "body_part": "HAM (LEG)",
+    "body_part": "LEG / HAM",
     "body_part_ru": "окорок / тазовая часть",
     "correct": [
       "Pork_Kabob_Meat"
@@ -1026,7 +1026,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/BONELESS_PORK_STEAK",
-    "body_part": "SHOULDER (BOSTON BUTT)",
+    "body_part": "SHOULDER",
     "body_part_ru": "лопатка (верхняя часть, бостон-батт)",
     "correct": [
       "Boneless_Pork_Steak"
@@ -1047,7 +1047,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/PORK_STEW_MEAT",
-    "body_part": "SHOULDER (BOSTON BUTT)",
+    "body_part": "SHOULDER",
     "body_part_ru": "лопатка",
     "correct": [
       "Pork_Stew_Meat"
@@ -1068,7 +1068,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/BUTTERFLIED_PORK_TENDERLOIN",
-    "body_part": "TENDERLOIN",
+    "body_part": "LOIN",
     "body_part_ru": "вырезка",
     "correct": [
       "Butterflied_Pork_Tenderloin"
@@ -1089,7 +1089,7 @@ window.PORK_QUIZ = [
     "isStar": false,
     "question": "",
     "image": "pictures/pork/BONELESS_BOSTON_BUTT_ROAST",
-    "body_part": "SHOULDER (BOSTON BUTT)",
+    "body_part": "SHOULDER",
     "body_part_ru": "лопатка (верхняя часть, бостон-батт)",
     "correct": [
       "Boneless_Boston_Butt_Roast"

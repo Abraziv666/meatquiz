@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MeatQuiz · Силуэт свиньи (схема отрубов)</title>
+<!--
+  Standalone-просмотр схемы свиньи. Данные (силуэт + объект переводов) лежат
+  в pig_silhouette.js и подключаются через <script src>. Тот же файл .js
+  подключает и index.html — единый источник, дублирования разметки нет.
+-->
+<style>
+  :root{
+    --bg:#131f24; --card:#202f36; --line:#37464f;
+    --ink:#ffffff; --muted:#94a6af;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:24px 16px 40px;
+    background:var(--bg); color:var(--ink);
+    font-family:'Nunito', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-weight:800;
+  }
+  .wrap{max-width:760px; margin:0 auto}
+  h1{font-size:20px; margin:0 0 4px}
+  .sub{color:var(--muted); font-weight:700; font-size:14px; margin:0 0 18px}
+
+  /* --- стили из приложения (.ct-pig) --- */
+  .ct-pig{background:var(--card); border:2px solid var(--line);
+    border-radius:16px; padding:6px; margin-top:10px}
+  .ct-pig svg{display:block; width:100%; height:auto}
+  .ct-pig .pig-zone{cursor:pointer}
+  .ct-pig .pig-zone path{fill:#3f4a5e; stroke:none; transition:fill .12s}
+  .ct-pig .pig-zone .tailline{fill:none; stroke:#3f4a5e; stroke-width:8;
+    stroke-linecap:round; transition:stroke .12s}
+  .ct-pig .pig-zone text{fill:#fff; font-family:'Nunito', system-ui, sans-serif;
+    font-weight:800; text-anchor:middle; pointer-events:none}
+  .ct-pig .zpill{fill:transparent; stroke:none; transition:fill .12s; pointer-events:none}
+  @media (hover:hover){
+    .ct-pig .pig-zone:not(.bad):not(.ok):hover path{fill:#4d5a72}
+    .ct-pig .pig-zone:not(.bad):not(.ok):hover .zpill{fill:rgba(255,255,255,.16)}
+    .ct-pig .pig-zone:not(.bad):not(.ok):hover .tailline{stroke:#4d5a72}
+  }
+  .ct-pig .pig-zone.sel .zpill{fill:#1c7fd6}
+
+  /* --- легенда (слова) --- */
+  h2{font-size:16px; margin:26px 0 10px}
+  ul.legend{list-style:none; margin:0; padding:0;
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:8px}
+  ul.legend li{background:var(--card); border:1px solid var(--line);
+    border-radius:10px; padding:9px 12px; display:flex; flex-direction:column; gap:2px}
+  ul.legend .en{font-size:14px; letter-spacing:.3px}
+  ul.legend .ru{color:var(--muted); font-weight:700; font-size:13px}
+  .hint{color:var(--muted); font-weight:700; font-size:13px; margin:6px 2px 0}
+  .err{color:#ff5f74; font-weight:800; font-size:13px; margin:10px 2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Силуэт свиньи — схема отрубов (Pork)</h1>
+  <p class="sub">Из приложения MeatQuiz · режим Find. Наведи курсор на зону — подсветится плашка с названием.</p>
+
+  <div class="ct-pig" id="pig"><!-- силуэт вставляется из pig_silhouette.js --></div>
+  <p class="hint" id="hint"></p>
+
+  <h2>Слова (названия отрубов)</h2>
+  <ul class="legend" id="legend"><!-- строится из объекта PIG_ZONES_RU --></ul>
+  <div class="err" id="err" style="display:none">Не удалось загрузить pig_silhouette.js — положите его рядом с этим файлом.</div>
+</div>
+
+<!-- Единый источник данных: и здесь, и в index.html подключается один и тот же файл. -->
+<script src="pig_silhouette.js"></script>
+<script>
+  (function(){
+    if(!window.PIG_SILHOUETTE_SVG || !window.PIG_ZONES_RU){
+      document.getElementById('err').style.display='block'; return;
+    }
+    // Силуэт
+    document.getElementById('pig').innerHTML = window.PIG_SILHOUETTE_SVG;
+
+    // Легенда — из объекта переводов
+    var ul = document.getElementById('legend');
+    var keys = Object.keys(window.PIG_ZONES_RU);
+    keys.forEach(function(en){
+      var li=document.createElement('li');
+      var e=document.createElement('span'); e.className='en'; e.textContent=en;
+      var r=document.createElement('span'); r.className='ru'; r.textContent=window.PIG_ZONES_RU[en];
+      li.appendChild(e); li.appendChild(r); ul.appendChild(li);
+    });
+    document.getElementById('hint').textContent =
+      'Клик по зоне подсвечивает выбор синим (как в игре). Всего зон: '+keys.length+'.';
+
+    // Лёгкая интерактивность: клик = «выбор» (как в приложении)
+    document.querySelectorAll('#pig .pig-zone').forEach(function(g){
+      g.addEventListener('click', function(){
+        var was = g.classList.contains('sel');
+        document.querySelectorAll('#pig .pig-zone.sel').forEach(function(x){ x.classList.remove('sel'); });
+        if(!was) g.classList.add('sel');
+      });
+    });
+  })();
+</script>
+</body>
+</html>
