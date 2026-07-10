@@ -3416,6 +3416,7 @@ async function buildDiagReport(){
     L.push('   Без входа czCloudPush после теста молча выходит:');
     L.push('   ни статистика, ни рейтинг не выгружаются.');
     if(d.lastLbError){ L.push(''); L.push('последняя ошибка записи рейтинга: '+d.lastLbError); }
+    if(d.lastPushError){ L.push(''); L.push('⚠ последняя ошибка ВЫГРУЗКИ ('+d.lastPushError.table+', режим '+d.lastPushError.mode+'): '+d.lastPushError.message); }
     return L.join('\n');
   }
   L.push('сессия: ЕСТЬ');
@@ -3475,6 +3476,7 @@ async function buildDiagReport(){
   }
 
   if(d.lastLbError){ L.push(''); L.push('последняя ошибка записи рейтинга: '+d.lastLbError); }
+  if(d.lastPushError){ L.push(''); L.push('⚠ последняя ошибка ВЫГРУЗКИ ('+d.lastPushError.table+', режим '+d.lastPushError.mode+'): '+d.lastPushError.message); }
   return L.join('\n');
 }
 
@@ -4969,7 +4971,14 @@ function czBuildSync(mode){
     stats={ mode, games:s.games||0, answered:s.answered||0, correct:0,
             best_pct:0, last_pct:0, total_time:0, extra:{ last:s.last||0, best:s.best||0 } };
   } else if(mode==='find'){
-    const s=(typeof fdGetStats==='function')?fdGetStats():{games:0,answered:0,correct:0,bestPct:0,lastPct:0};
+    // fdStatsKey() зависит от активного набора (свинина → wm2_porkfdstats).
+    // Форсируем beef, как в ветке 'test': иначе при активной свинине в облако
+    // под mode='find' уезжала статистика PORK-Find → триггер sync_leaderboard
+    // засчитывал свинину в рейтинг, чего v100 сознательно избегает.
+    const _ms=meatSet; meatSet='beef';
+    let s;
+    try{ s=(typeof fdGetStats==='function')?fdGetStats():{games:0,answered:0,correct:0,bestPct:0,lastPct:0}; }
+    finally { meatSet=_ms; }
     stats={ mode:'find', games:s.games||0, answered:s.answered||0, correct:s.correct||0,
             best_pct:s.bestPct||0, last_pct:s.lastPct||0, total_time:0, extra:{} };
   } else if(mode==='pork' || mode==='pork_find'){
@@ -5002,17 +5011,70 @@ async function czCloudPush(mode){
   // рейтинга (sync_leaderboard читает civics_stats) не увидел свинину.
   const porkMode = (mode==='pork' || mode==='pork_find');
   try{
-    const { weights, stats } = czBuildSync(mode);
+    // ===== ЗАЩИТА ОТ ЗАДАВЛИВАНИЯ (два устройства / упавший pull) =====
+    // Push — это read-merge-write: сперва читаем серверные веса режима и
+    // сливаем в локальные (правило czCloudPull: серверная запись активнее по
+    // seen — берём её). Если сервер ПРОЧИТАТЬ НЕ УДАЛОСЬ — выгрузку ПРОПУСКАЕМ:
+    // слепой upsert затирал бы более свежие данные другого устройства
+    // (подтверждено стендом: pull упал → push давил games 7→4). Локальная
+    // копия цела, следующий успешный синк всё выгрузит.
+    const rw = await s.from('civics_weights')
+      .select('item_id,weight,seen,correct,wrong,last_seen').eq('user_id',uid).eq('mode',mode);
+    if(rw && rw.error){
+      window.__czLastPushError={ mode, table:'civics_weights',
+        message:'чтение перед выгрузкой не удалось ('+rw.error.message+') — выгрузка пропущена, чтобы не затереть данные другого устройства' };
+      console.warn('czCloudPush('+mode+'): pull-guard failed, push skipped:', rw.error.message);
+      return;
+    }
+    if(Array.isArray(rw && rw.data) && rw.data.length){
+      const local=czLoadW(mode);
+      rw.data.forEach(r=>{
+        const id=String(r.item_id); const e=local[id]||{w:0,seen:0,correct:0,wrong:0,ts:null};
+        if((r.seen||0) >= (e.seen||0)){
+          e.w=r.weight||0; e.seen=r.seen||0; e.correct=r.correct||0; e.wrong=r.wrong||0; e.ts=r.last_seen||e.ts;
+        }
+        local[id]=e;
+      });
+      czSaveW(mode, local);
+    }
+    const { weights, stats } = czBuildSync(mode);   // уже ПОСЛЕ слияния с сервером
     if(weights.length){
       const rows=weights.map(w=>({ user_id:uid, ...w }));
-      await s.from('civics_weights').upsert(rows, { onConflict:'user_id,mode,item_id' });
+      const r1 = await s.from('civics_weights').upsert(rows, { onConflict:'user_id,mode,item_id' });
+      // Supabase не бросает — ошибки (RLS, схема) лежат в .error. Раньше они
+      // глотались молча и отказ синка был невидим. Пишем в диагностику.
+      if(r1 && r1.error){ window.__czLastPushError={ mode, table:'civics_weights', message:r1.error.message }; console.warn('czCloudPush('+mode+') civics_weights:', r1.error.message); }
     }
     if(porkMode) return;   // веса выгружены, статистику свинины в облако не пишем
     // civics_stats режима Test питает рейтинг (через триггер). Если турнирный режим
     // выключен — статистику Test НЕ выгружаем, чтобы не попадать в таблицу.
     // Прогресс (веса выше) синхронизируется всегда. Для write/read — выгружаем всегда.
     if(mode!=='test' || (typeof isTournament!=='function') || isTournament()){
-      await s.from('civics_stats').upsert([{ user_id:uid, ...stats }], { onConflict:'user_id,mode' });
+      // Тот же guard для статистики: читаем серверную строку и НИКОГДА не
+      // понижаем счётчики (max-слияние; last_pct/extra — от стороны, где игр
+      // больше). Раньше after-game push без pull регрессировал сервер
+      // (стенд: B запушил 7, A следом 5 → сервер 5, рейтинг проседал до
+      // следующего синка B).
+      const rs = await s.from('civics_stats')
+        .select('games,answered,correct,best_pct,last_pct,total_time,extra')
+        .eq('user_id',uid).eq('mode',stats.mode).maybeSingle();
+      if(rs && rs.error){
+        window.__czLastPushError={ mode, table:'civics_stats',
+          message:'чтение перед выгрузкой не удалось ('+rs.error.message+') — выгрузка статистики пропущена (защита от затирания)' };
+        console.warn('czCloudPush('+mode+'): stats pull-guard failed, push skipped:', rs.error.message);
+        return;
+      }
+      const sv=(rs && rs.data)||{};
+      const mx=(a,b)=>Math.max(a||0,b||0);
+      const localAhead=(stats.games||0)>=(sv.games||0);
+      const merged={ ...stats,
+        games:mx(stats.games,sv.games), answered:mx(stats.answered,sv.answered),
+        correct:mx(stats.correct,sv.correct), best_pct:mx(stats.best_pct,sv.best_pct),
+        total_time:mx(stats.total_time,sv.total_time),
+        last_pct: localAhead ? (stats.last_pct||0) : (sv.last_pct||0),
+        extra:    localAhead ? (stats.extra||{})   : (sv.extra||stats.extra||{}) };
+      const r2 = await s.from('civics_stats').upsert([{ user_id:uid, ...merged }], { onConflict:'user_id,mode' });
+      if(r2 && r2.error){ window.__czLastPushError={ mode, table:'civics_stats', message:r2.error.message }; console.warn('czCloudPush('+mode+') civics_stats:', r2.error.message); }
     }
   }catch(e){ /* офлайн / нет таблиц — не критично, локальная копия сохранена */ }
 }
@@ -5060,10 +5122,16 @@ async function czCloudPullStats(){
         rdSetStats({ games:mx(l.games,r.games), answered:mx(l.answered,r.answered),
                      last: more?(ex.last||0):(l.last||0), best:mx(l.best,ex.best) });
       } else if(r.mode==='find' && typeof fdGetStats==='function'){
-        const l=fdGetStats(), more=(r.games||0)>=(l.games||0);
-        fdSetStats({ games:mx(l.games,r.games), answered:mx(l.answered,r.answered),
-                     correct:mx(l.correct,r.correct), bestPct:mx(l.bestPct,r.best_pct),
-                     lastPct: more?(r.last_pct||0):(l.lastPct||0) });
+        // Серверный 'find' — всегда говядина. Форсируем beef-контекст (как для
+        // 'test'), иначе при активной свинине облачная статистика Beef-Find
+        // сливалась в локальный pork-ключ wm2_porkfdstats.
+        const _ms=meatSet; meatSet='beef';
+        try{
+          const l=fdGetStats(), more=(r.games||0)>=(l.games||0);
+          fdSetStats({ games:mx(l.games,r.games), answered:mx(l.answered,r.answered),
+                       correct:mx(l.correct,r.correct), bestPct:mx(l.bestPct,r.best_pct),
+                       lastPct: more?(r.last_pct||0):(l.lastPct||0) });
+        } finally { meatSet=_ms; }
       } else if(r.mode==='test' && typeof ctGetStats==='function'){
         // Статистика test с сервера — всегда про говядину. Временно форсируем
         // beef-контекст, чтобы ctGetStats/ctSetStats не попали в pork-ключ,
@@ -5090,8 +5158,11 @@ async function czCloudPullAll(){
   ]); }catch(e){}
   try{ await czCloudPullStats(); }catch(e){}
 }
-// при загрузке — подтянуть прогресс теста из облака (если залогинен); не блокирует UI
-try{ czCloudPullAll(); }catch(e){}
+// ПРИМЕЧАНИЕ: раньше здесь был вызов czCloudPullAll() «при загрузке» — он был
+// МЁРТВЫМ кодом: исполнялся до создания клиента Supabase (библиотека грузится
+// асинхронно в initSupabaseAuth), czSupa() возвращал null → тихий no-op, и
+// авто-подтяжка прогресса при открытии НЕ работала никогда. Рабочий boot-pull
+// теперь внутри initSupabase, после восстановления сессии (getSession).
 
 $('#faqBtn').onclick=()=>navPush('faq');
 $('#faqBack').onclick=goBack;
@@ -5264,12 +5335,14 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                     }
                 } else {
                     // строки нет → создаём минимальную (нули ничего не перетирают: игр ещё
-                    // не было; wk_start — текущий понедельник UTC, как на сервере).
+                    // не было). wk_start НЕ шлём: у колонки есть default
+                    // date_trunc('week', now() UTC) на сервере — клиентские часы/пояс
+                    // на границе недели могли дать другую дату и сдвинуть зачёт.
                     const base = { user_id: uid, name, games: 0, correct: 0,
                                    wk_games_base: 0, wk_corr_base: 0,
-                                   wk_start: weekStartKey(), updated_at: now() };
+                                   updated_at: now() };
                     const insSets = [
-                        ['user_id','name','games','correct','wk_games_base','wk_corr_base','wk_start','updated_at'],
+                        ['user_id','name','games','correct','wk_games_base','wk_corr_base','updated_at'],
                         ['user_id','name','games','correct','updated_at'],
                         ['user_id','name']
                     ];
@@ -5412,6 +5485,9 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                 }
             } catch(e) { out.error = String(e); }
             out.lastLbError = window.__lbLastError ? (window.__lbLastError.message || String(window.__lbLastError)) : null;
+            // последняя ошибка ВЫГРУЗКИ (civics_weights/civics_stats) — RLS-отказы
+            // и пр., которые czCloudPush раньше глотал молча
+            out.lastPushError = window.__czLastPushError || null;
             return out;
         };
 
@@ -5609,6 +5685,14 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                 return null;
             }
             if (reg.data.session) return { user: reg.data.user, created: true };
+            // Анти-enumeration Supabase: при ЗАНЯТОМ логине и включённом подтверждении
+            // e-mail signUp возвращает «пустого» user БЕЗ error и с identities:[] —
+            // раньше это маскировалось под «Аккаунт создан…». Распознаём честно.
+            const ids = reg.data && reg.data.user && reg.data.user.identities;
+            if (Array.isArray(ids) && ids.length === 0) {
+                showMsg(msgEl, 'Такой логин уже занят — нажмите «Войти»', 'var(--red)');
+                return null;
+            }
             // сессии нет — если подтверждение e-mail выключено, повторный вход сработает
             const re = await supabase.auth.signInWithPassword(creds);
             if (re.data && re.data.session) return { user: re.data.user, created: true };
@@ -5798,14 +5882,30 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                  : src==='modal' ? readCreds($('#modal-username'),$('#modal-password'),$('#modal-auth-msg'))
                  :                 readCreds($('#auth-username'),$('#auth-password'),elErrorMsg);
         }
-        // полная очистка локального профиля БЕЗ перезагрузки (+ выход из облака и токенов)
+        // полная очистка локального профиля БЕЗ перезагрузки (+ выход из облака и токенов).
+        // ВАЖНО: чистим и ПРОГРЕСС (веса + статистику всех режимов), а не только имя.
+        // Раньше wm2_*weights / wm2_*stats оставались, и первый же push нового аккаунта
+        // выгружал ЧУЖОЙ прогресс в civics_stats → триггер поднимал рейтинг → дубль,
+        // ради предотвращения которого regGuard и существует. Настройки (звук, шрифт,
+        // выбранный набор) намеренно НЕ трогаем — это не данные игрока.
         async function wipeLocalForRegister(){
             try{ await supabase.auth.signOut(); }catch(e){}
             try{
                 for(let i=localStorage.length-1;i>=0;i--){ const k=localStorage.key(i);
-                    if(k && (k.indexOf('wm2_user_')===0 || k.indexOf('sb-')===0 || k.indexOf('supabase')!==-1)) localStorage.removeItem(k); }
+                    if(k && (k.indexOf('wm2_user_')===0 || k.indexOf('wm2_syncbase_')===0 ||
+                             k.indexOf('sb-')===0 || k.indexOf('supabase')!==-1)) localStorage.removeItem(k); }
             }catch(e){}
-            ['wm2_players','wm2_current','wm2_localid','wm2_linked','wm2_lastsync'].forEach(k=>{ try{ localStorage.removeItem(k); }catch(e){} });
+            [ // профиль/привязка
+              'wm2_players','wm2_current','wm2_localid','wm2_linked','wm2_lastsync',
+              // веса всех режимов (Beef/Pork · Test/Find, Write, Read, легаси-грамматика)
+              'wm2_ctweights','wm2_fdweights','wm2_porkweights','wm2_porkfdweights',
+              'wm2_cwweights','wm2_rdweights','wm2_gweights','wm2_gseen','wm2_overrides',
+              // статистика всех режимов
+              'wm2_ctstats','wm2_fdstats','wm2_porkstats','wm2_porkfdstats',
+              'wm2_cwstats','wm2_rdstats','wm2_gtstats',
+              // турнир/прочий прогресс
+              'wm2_cuprank','wm2_donedim'
+            ].forEach(k=>{ try{ localStorage.removeItem(k); }catch(e){} });
             try{ if(typeof user!=='undefined') user=null; }catch(e){}
             updateAuthUI(null); refreshEntry(null);
         }
@@ -5822,12 +5922,21 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
 
         let __pendingReg = null;
         function openRegGuard(localName, linked){
+            // Кнопка «Синхронизировать» имеет смысл ТОЛЬКО при живой сессии:
+            // cloudSyncNow без сессии всегда возвращает needAuth (тупик, в который
+            // раньше и упирались). Флаг wm2_linked тут не годится — updateAuthUI
+            // ставит его при ЛЮБОМ входе, даже под чужим аккаунтом, и после logout
+            // он продолжает врать «связан». Смотрим на реальную сессию.
+            const canSync = !!window.__hasCloudSession;
+            const sbtn=$('#regGuardSync'); if(sbtn) sbtn.style.display = canSync ? '' : 'none';
             const info=$('#regGuardInfo');
             if(info){
                 let h='<div class="lp-name">На устройстве есть профиль «'+escHtml(localName)+'»</div>';
-                h += linked
+                h += (linked && canSync)
                     ? '<div class="lp-status ok">✓ Профиль связан с учётной записью. Синхронизируйте его, чтобы прогресс сохранился, затем выйдите.</div>'
-                    : '<div class="lp-status warn">⚠ Профиль не связан с аккаунтом. Если данные нужны — сохраните их (синхронизация/файл) перед выходом, иначе они будут потеряны.</div>';
+                    : canSync
+                    ? '<div class="lp-status warn">⚠ Вы вошли в аккаунт, но профиль с ним не сверялся. Если данные нужны — синхронизируйте или сохраните в файл перед выходом.</div>'
+                    : '<div class="lp-status warn">⚠ Активной облачной сессии нет — синхронизация недоступна. Если данные нужны, сохраните прогресс в файл (Настройки → Сохранение прогресса) перед выходом, иначе они будут потеряны.</div>';
                 info.innerHTML=h;
             }
             setRegGuardMsg('');
@@ -5845,7 +5954,13 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                 return;
             }
             const btn=regBtnFor(src); busy(btn,true,'...');
-            try{ await finishRegister(creds, regMsgFor(src)); } finally{ busy(btn,false); }
+            // catch ОБЯЗАТЕЛЕН: requestRegister переопределил прежние обработчики
+            // (entryAuth/settingsAuth/modalAuth), у которых был свой catch. Без него
+            // сетевой сбой в signUp = unhandled rejection: кнопка мигала «...» и
+            // молчала — выглядело как «регистрация не работает вообще».
+            try{ await finishRegister(creds, regMsgFor(src)); }
+            catch(e){ showMsg(regMsgFor(src), 'Ошибка сети: '+((e&&e.message)||e), 'var(--red)'); }
+            finally{ busy(btn,false); }
         }
 
         if($('#regGuardCancel')) $('#regGuardCancel').onclick = ()=>{ __pendingReg=null; closeRegGuard(); };
@@ -5864,7 +5979,11 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             try{
                 await wipeLocalForRegister();
                 closeRegGuard();
-                if(__pendingReg){ const {creds,msgEl}=__pendingReg; __pendingReg=null; await finishRegister(creds, msgEl); }
+                if(__pendingReg){
+                    const {creds,msgEl}=__pendingReg; __pendingReg=null;
+                    try{ await finishRegister(creds, msgEl); }
+                    catch(e){ showMsg(msgEl, 'Ошибка сети: '+((e&&e.message)||e), 'var(--red)'); }
+                }
             } finally { busy(btn,false); }
         };
 
@@ -5903,6 +6022,16 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             // на старте медаль на аватаре не успевала обновиться (раньше она оживала лишь
             // при заходе в рейтинг). Обновляем её сразу, как только облако готово.
             if(typeof refreshMyCup==='function'){ try{ refreshMyCup(); }catch(e){} }
+            // BOOT-PULL: возвращающийся пользователь с локальным профилем минует
+            // entry-экран (сразу home) и раньше НЕ получал прогресс из облака при
+            // открытии (стартовый czCloudPullAll был мёртвым — клиента ещё не было).
+            // Теперь тянем здесь, когда клиент и сессия готовы; после — обновляем
+            // домашний экран, чтобы подтянутые очки было видно сразу.
+            if (session && localStorage.getItem('wm2_current')) {
+                czCloudPullAll().then(() => {
+                    if(typeof refreshHome==='function'){ try{ refreshHome(); }catch(e){} }
+                }).catch(()=>{});
+            }
         });
         supabase.auth.onAuthStateChange((_event, session) => {
             updateAuthUI(session ? session.user : null);
