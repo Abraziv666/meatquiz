@@ -1655,7 +1655,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 18</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 16</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -5945,12 +5945,55 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         function closeRegGuard(){ const m=$('#regGuardModal'); if(m) m.classList.add('hide'); }
         function setRegGuardMsg(t,c){ const m=$('#regGuardMsg'); if(m){ m.style.color=c||'var(--muted)'; m.textContent=t||''; } }
 
+        // ===== АВТО-УСЫНОВЛЕНИЕ ПРОФИЛЯ ПРИ РЕГИСТРАЦИИ =====
+        // Локальный профиль (не привязанный ни к какому аккаунту) при регистрации
+        // НЕ стирается: создаём аккаунт, привязываем к нему ЭТОТ профиль и сразу
+        // выгружаем весь локальный прогресс на сервер. Дубля не возникает: данные
+        // никогда не жили под другим user_id. Имя в рейтинге = имя профиля.
+        async function adoptRegister(creds, msgEl, src){
+            const localName = localStorage.getItem('wm2_current');
+            const res = await doRegister(creds, msgEl);
+            if(!res) return false;                      // сообщение уже показано
+            updateAuthUI(res.user);
+            const am=$('#authModal'); if(am) am.classList.add('hide');
+            // порядок: сперва ВЫГРУЗКА локального прогресса (облако нового аккаунта
+            // пусто — read-merge-write guard внутри czCloudPush ничего не потеряет),
+            // затем привязка local_id к аккаунту.
+            try{
+                const { data:{ session } } = await supabase.auth.getSession();
+                if(session && session.user) await pushAllToCloud(session.user.id, localName);
+            }catch(e){ console.warn('Выгрузка при регистрации не удалась (повторится при следующем синке):', e); }
+            try{ await linkCloudToLocal(ensureLocalId(), localName); }catch(e){}
+            if(src==='entry'){
+                // со стартового экрана — войти в приложение под ЭТИМ ЖЕ профилем
+                // каноничным путём (savePlayers + wm2_current + loadUser + home)
+                try{ enter(localName); }catch(e){}
+            }
+            showMsg(msgEl, 'Аккаунт создан, профиль «'+localName+'» привязан, прогресс в облаке ✓', 'var(--green)');
+            showMsg(elSyncMsg, 'Профиль «'+localName+'» привязан к новому аккаунту ✓', 'var(--green)');
+            return true;
+        }
+
         async function requestRegister(src){
             const creds = regCredsFor(src); if(!creds) return;
             const localName = localStorage.getItem('wm2_current');
             if(localName){
-                __pendingReg = { creds, msgEl: regMsgFor(src) };
-                openRegGuard(localName, localStorage.getItem('wm2_linked')==='1');
+                // Опасен ТОЛЬКО случай живой сессии другого аккаунта: его прогресс
+                // ушёл бы в рейтинг под новым user_id → дубль. Тогда — guard.
+                // Проверяем РЕАЛЬНУЮ сессию, а не флаг wm2_linked (он ставится при
+                // любом входе и после logout врёт).
+                let hasSession=false;
+                try{ const { data:{ session } } = await supabase.auth.getSession(); hasSession=!!(session&&session.user); }catch(e){}
+                if(hasSession){
+                    __pendingReg = { creds, msgEl: regMsgFor(src) };
+                    openRegGuard(localName, localStorage.getItem('wm2_linked')==='1');
+                    return;
+                }
+                // сессии нет → авто-усыновление профиля без потери прогресса
+                const btn=regBtnFor(src); busy(btn,true,'...');
+                try{ await adoptRegister(creds, regMsgFor(src), src); }
+                catch(e){ showMsg(regMsgFor(src), 'Ошибка сети: '+((e&&e.message)||e), 'var(--red)'); }
+                finally{ busy(btn,false); }
                 return;
             }
             const btn=regBtnFor(src); busy(btn,true,'...');
