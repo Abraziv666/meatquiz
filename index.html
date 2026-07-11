@@ -1655,7 +1655,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 16</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 17</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -5630,6 +5630,12 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                 window.__cloudLogin = login;
                 window.__cloudUid = user.id || '';
                 try{ localStorage.setItem('wm2_linked','1'); }catch(e){}  // аккаунт для этой записи существует
+                // ТРЕКИНГ ПРИВЯЗКИ: запоминаем uid аккаунта, под которым данные этого
+                // профиля живут/жили в облаке. Пока есть сессия — after-game push'и
+                // текут под этот uid. Флаг НЕ чистится при logout: он и есть память
+                // «прогресс уже засчитан под другим user_id» — по нему регистрация
+                // решает guard vs усыновление (иначе задвоение рейтинга).
+                try{ if(user.id) localStorage.setItem('wm2_bounduid', user.id); }catch(e){}
                 elAuthBlock.style.display = 'none';
                 elProfile.style.display = 'block';
             } else {
@@ -5896,7 +5902,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                              k.indexOf('sb-')===0 || k.indexOf('supabase')!==-1)) localStorage.removeItem(k); }
             }catch(e){}
             [ // профиль/привязка
-              'wm2_players','wm2_current','wm2_localid','wm2_linked','wm2_lastsync',
+              'wm2_players','wm2_current','wm2_localid','wm2_linked','wm2_lastsync','wm2_bounduid',
               // веса всех режимов (Beef/Pork · Test/Find, Write, Read, легаси-грамматика)
               'wm2_ctweights','wm2_fdweights','wm2_porkweights','wm2_porkfdweights',
               'wm2_cwweights','wm2_rdweights','wm2_gweights','wm2_gseen','wm2_overrides',
@@ -5936,6 +5942,8 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                     ? '<div class="lp-status ok">✓ Профиль связан с учётной записью. Синхронизируйте его, чтобы прогресс сохранился, затем выйдите.</div>'
                     : canSync
                     ? '<div class="lp-status warn">⚠ Вы вошли в аккаунт, но профиль с ним не сверялся. Если данные нужны — синхронизируйте или сохраните в файл перед выходом.</div>'
+                    : linked
+                    ? '<div class="lp-status warn">⚠ Этот профиль уже привязан к другому аккаунту — его прогресс засчитан там. Чтобы не задвоить данные: войдите в прежний аккаунт (кнопка «Вход») или сохраните прогресс в файл. «Выйти и продолжить» очистит устройство и создаст новую учётную запись с нуля.</div>'
                     : '<div class="lp-status warn">⚠ Активной облачной сессии нет — синхронизация недоступна. Если данные нужны, сохраните прогресс в файл (Настройки → Сохранение прогресса) перед выходом, иначе они будут потеряны.</div>';
                 info.innerHTML=h;
             }
@@ -5978,18 +5986,25 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             const creds = regCredsFor(src); if(!creds) return;
             const localName = localStorage.getItem('wm2_current');
             if(localName){
-                // Опасен ТОЛЬКО случай живой сессии другого аккаунта: его прогресс
-                // ушёл бы в рейтинг под новым user_id → дубль. Тогда — guard.
-                // Проверяем РЕАЛЬНУЮ сессию, а не флаг wm2_linked (он ставится при
-                // любом входе и после logout врёт).
+                // Усыновление безопасно ТОЛЬКО для профиля, который НИКОГДА не был
+                // привязан к аккаунту: его данные не жили ни под каким user_id.
+                // Признаки прежней привязки (любого из достаточно): живая сессия,
+                // wm2_bounduid (uid прежнего аккаунта), wm2_linked, wm2_lastsync.
+                // Кейс из продакшена: профиль играл под abraziv777 (игра в рейтинге),
+                // logout, регистрация abraziv666 → усыновление выгрузило тот же
+                // прогресс под новый uid → задвоение. Logout не стирает локальные
+                // данные, поэтому одной проверки сессии мало.
                 let hasSession=false;
                 try{ const { data:{ session } } = await supabase.auth.getSession(); hasSession=!!(session&&session.user); }catch(e){}
-                if(hasSession){
+                const wasBound = !!localStorage.getItem('wm2_bounduid') ||
+                                 localStorage.getItem('wm2_linked')==='1' ||
+                                 !!localStorage.getItem('wm2_lastsync');
+                if(hasSession || wasBound){
                     __pendingReg = { creds, msgEl: regMsgFor(src) };
-                    openRegGuard(localName, localStorage.getItem('wm2_linked')==='1');
+                    openRegGuard(localName, wasBound);
                     return;
                 }
-                // сессии нет → авто-усыновление профиля без потери прогресса
+                // профиль никогда не был привязан → авто-усыновление без потери прогресса
                 const btn=regBtnFor(src); busy(btn,true,'...');
                 try{ await adoptRegister(creds, regMsgFor(src), src); }
                 catch(e){ showMsg(regMsgFor(src), 'Ошибка сети: '+((e&&e.message)||e), 'var(--red)'); }
