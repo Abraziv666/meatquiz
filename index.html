@@ -2915,15 +2915,19 @@ function stripStats(u){
   ['phr','pairs','verbs','verbsTop','verbsIrr','verbsPair'].forEach(m=>{ if(c[m]) STAT_KEYS.forEach(k=>delete c[m][k]); });
   return c;
 }
+// Ключи ЛОКАЛЬНОЙ статистики всех режимов. Единый источник правды для
+// экспорта (не кладём в файл) и импорта (не принимаем из файла).
+const MQ_STATS_KEYS=['wm2_ctstats','wm2_fdstats','wm2_porkstats','wm2_porkfdstats',
+                     'wm2_cwstats','wm2_rdstats','wm2_gtstats'];
 function progressPayload(){
   const data={}; let wsum=0;
   for(let i=0;i<localStorage.length;i++){
     const k=localStorage.key(i);
     if(!k || k.indexOf('wm2_')!==0) continue;
-    // wm2_gtstats — статистика теста по грамматике. Как и статистика остальных
-    // режимов, она НЕ кладётся в файл (живёт только локально/в облаке), иначе
-    // старый файл при импорте затёр бы более свежие очки теста.
-    if(k==='wm2_gtstats') continue;
+    // СТАТИСТИКА В ФАЙЛ НЕ КЛАДЁТСЯ ВООБЩЕ (анти-чит): в файле только веса и
+    // настройки. Игры/время/проценты живут локально и в облаке; рейтинг
+    // питается только серверной civics_stats, файлом его не подделать.
+    if(MQ_STATS_KEYS.indexOf(k)!==-1) continue;
     if(k.indexOf('wm2_user_')===0){
       try{ data[k]=JSON.stringify(stripStats(JSON.parse(localStorage.getItem(k)))); }catch(e){}
     } else {
@@ -2981,11 +2985,12 @@ function importText(str){
           ['phr','pairs','verbs','verbsTop','verbsIrr','verbsPair'].forEach(m=>{ if(incoming[m] && existing[m]) STAT_KEYS.forEach(sk=>{ if(sk in existing[m]) incoming[m][sk]=existing[m][sk]; }); });
         }
         localStorage.setItem(k, JSON.stringify(incoming));
-      } else if(k!=='wm2_gtstats' && k!=='wm2_ctstats' && k!=='wm2_cwstats' && k!=='wm2_rdstats'){
-        // Статистику режимов НЕ перезаписываем файлом (диалог обещает, что она не
-        // изменится): wm2_gtstats (грамматика) и wm2_ctstats/cwstats/rdstats
-        // (Test/Write/Read). Веса civics (wm2_ctweights/cwweights/rdweights) и
-        // настройки восстанавливаются нормально этой веткой.
+      } else if(MQ_STATS_KEYS.indexOf(k)===-1){
+        // Статистику режимов НЕ перезаписываем файлом (диалог обещает, что она
+        // не изменится) — блок-лист MQ_STATS_KEYS покрывает ВСЕ режимы, включая
+        // Find и свинину (раньше wm2_fdstats/porkstats/porkfdstats затирались
+        // файлом — дыра для мухлежа и потери свежих очков). Веса и настройки
+        // восстанавливаются нормально этой веткой.
         localStorage.setItem(k, d[k]);
       }
     }catch(e){}
@@ -3374,9 +3379,10 @@ async function buildDiagReport(){
   // режиме свинины вернули бы свиные цифры под ярлыком говядины. Здесь нужны
   // сырые, независимые от текущего экрана данные всех шести режимов.
   const rawStats=key=>{ try{ return JSON.parse(localStorage.getItem(key))||{}; }catch(e){ return {}; } };
+  const fmtMs=ms=>{ ms=ms||0; const m=Math.floor(ms/60000), sec=Math.floor(ms/1000)%60; return m+':'+String(sec).padStart(2,'0'); };
   const line=(label,s,thirdLbl,thirdVal,fourthLbl,fourthVal)=>
     '  '+pad(label,11)+'игр='+pad(s.games||0,4)+' отвечено='+pad(s.answered||0,5)+
-    ' '+thirdLbl+'='+pad(thirdVal,5)+' '+fourthLbl+'='+fourthVal;
+    ' '+thirdLbl+'='+pad(thirdVal,5)+' '+fourthLbl+'='+fourthVal+' время='+fmtMs(s.timeMs);
   const ct  = rawStats('wm2_ctstats');       // Beef · Test
   const fd  = rawStats('wm2_fdstats');       // Beef · Find
   const pk  = rawStats('wm2_porkstats');     // Pork · Test
@@ -3452,7 +3458,11 @@ async function buildDiagReport(){
   else if(!st.length) L.push('civics_stats: пусто (0 строк) — в облако ещё ничего не ушло');
   else{
     L.push('civics_stats (в облаке):');
-    st.forEach(r=> L.push('  '+pad(r.mode||'?',10)+' игр='+pad(num(r.games),4)+' верно='+pad(num(r.correct),5)+' upd='+(r.updated_at||'')));
+    st.forEach(r=>{
+      const tt=r.total_time||0, m=Math.floor(tt/60000), sec=Math.floor(tt/1000)%60;
+      L.push('  '+pad(r.mode||'?',10)+' игр='+pad(num(r.games),4)+' верно='+pad(num(r.correct),5)+
+             ' время='+m+':'+String(sec).padStart(2,'0')+' upd='+(r.updated_at||''));
+    });
   }
   // Веса по режимам (включая свинину). Показываем разбивку, а не одно число.
   const wbm=d.weightsByMode;
@@ -3462,16 +3472,18 @@ async function buildDiagReport(){
   } else {
     L.push('civics_weights (весов в облаке): '+num(d.weightsCount));
   }
-  // Явная проверка защиты рейтинга: свинина синхронизирует ТОЛЬКО веса,
-  // civics_stats под pork/pork_find быть НЕ должно.
+  // Свинина теперь полноправна: и веса, и статистика уходят в облако, рейтинг
+  // считает серверный триггер по всем 4 игровым режимам. Проверяем ПОЛНОТУ:
+  // если свиные веса есть, а stats нет — синк статистики не доехал (например,
+  // старый чек-констрейнт mode на сервере).
   {
     const porkStats = Array.isArray(st) ? st.filter(r=>r.mode==='pork'||r.mode==='pork_find') : [];
     const porkWeights = wbm && !wbm.error && ((wbm.pork||0)+(wbm.pork_find||0))>0;
     if(porkStats.length){
-      L.push('⚠ ВНИМАНИЕ: у свинины есть строки в civics_stats ('+porkStats.map(r=>r.mode).join(', ')+
-             ') — этого быть не должно, свинина может попасть в рейтинг.');
+      L.push('свинина: веса и статистика синхронизируются, идёт в рейтинг ✓');
     } else if(porkWeights){
-      L.push('свинина: веса синхронизируются, civics_stats пуст → в рейтинг НЕ идёт ✓');
+      L.push('⚠ свинина: веса в облаке есть, а civics_stats нет — статистика не доезжает. '+
+             'Проверь чек-констрейнты mode на сервере и «Сохранить в облако».');
     }
   }
 
@@ -3819,7 +3831,7 @@ const CT_WRONG_MAX = 4;   // максимум дистракторов в воп
 function ctStatsKey(){ return meatSet==='pork' ? 'wm2_porkstats' : 'wm2_ctstats'; }
 function ctGetStats(){
   let s={}; try{ s=JSON.parse(localStorage.getItem(ctStatsKey()))||{}; }catch(e){ s={}; }
-  return { games:s.games||0, answered:s.answered||0, correct:s.correct||0, bestPct:s.bestPct||0, lastPct:s.lastPct||0 };
+  return { games:s.games||0, answered:s.answered||0, correct:s.correct||0, bestPct:s.bestPct||0, lastPct:s.lastPct||0, timeMs:s.timeMs||0 };
 }
 function ctSetStats(s){ try{ localStorage.setItem(ctStatsKey(), JSON.stringify(s)); }catch(e){} }
 /* ---- локальная статистика режима FIND (отдельная от Test) ---- */
@@ -3828,19 +3840,24 @@ function ctSetStats(s){ try{ localStorage.setItem(ctStatsKey(), JSON.stringify(s
 function fdStatsKey(){ return meatSet==='pork' ? 'wm2_porkfdstats' : 'wm2_fdstats'; }
 function fdGetStats(){
   let s={}; try{ s=JSON.parse(localStorage.getItem(fdStatsKey()))||{}; }catch(e){ s={}; }
-  return { games:s.games||0, answered:s.answered||0, correct:s.correct||0, bestPct:s.bestPct||0, lastPct:s.lastPct||0 };
+  return { games:s.games||0, answered:s.answered||0, correct:s.correct||0, bestPct:s.bestPct||0, lastPct:s.lastPct||0, timeMs:s.timeMs||0 };
 }
 function fdSetStats(s){ try{ localStorage.setItem(fdStatsKey(), JSON.stringify(s)); }catch(e){} }
-function fdRecordStats(correct, total, pct){
+// ms — длительность партии; копится в timeMs и уходит на сервер в total_time.
+// Время считается ТОЛЬКО здесь (конец игры), в файл прогресса не попадает —
+// статистика живёт локально и в облаке, файлом её не подделать.
+function fdRecordStats(correct, total, pct, ms){
   const s=fdGetStats();
   s.games=(s.games||0)+1; s.answered=(s.answered||0)+total; s.correct=(s.correct||0)+correct;
   s.lastPct=pct; s.bestPct=Math.max(s.bestPct||0, pct);
+  s.timeMs=(s.timeMs||0)+Math.max(0, ms||0);
   fdSetStats(s);
 }
-function ctRecordStats(correct, total, pct){
+function ctRecordStats(correct, total, pct, ms){
   const s=ctGetStats();
   s.games=(s.games||0)+1; s.answered=(s.answered||0)+total; s.correct=(s.correct||0)+correct;
   s.lastPct=pct; s.bestPct=Math.max(s.bestPct||0, pct);
+  s.timeMs=(s.timeMs||0)+Math.max(0, ms||0);
   ctSetStats(s);
 }
 
@@ -3905,7 +3922,7 @@ function ctOpen(mode){
     const fname = (meatSet==='pork') ? 'PORK_QUIZ.js' : 'MEAT_QUIZ.js';
     alert('Файл вопросов не найден. Положите '+fname+' в папку dictionary/.'); return;
   }
-  ct={ order:[], pos:0, score:0, total:0, results:[], mode:(mode==='find'?'find':'test') };
+  ct={ order:[], pos:0, score:0, total:0, results:[], mode:(mode==='find'?'find':'test'), startedAt:Date.now() };
   ctBuildPool();
   if(!ct.order.length){
     if(ct.mode==='find'){
@@ -3936,7 +3953,7 @@ function ctOpen(mode){
 // перезапуск, когда мы уже на экране ctest (кнопка «Ещё раз») — историю не трогаем
 function ctRestart(){
   if(!CIVICS.length) return;
-  ct={ order:[], pos:0, score:0, total:0, results:[] };
+  ct={ order:[], pos:0, score:0, total:0, results:[], mode:ct.mode, startedAt:Date.now() };
   ctBuildPool();
   if(!ct.order.length){ alert('Нет вопросов для теста.'); return; }
   ctRenderQuestion();
@@ -4556,15 +4573,16 @@ function ctProceed(){
 }
 function ctFinish(){
   const total=ct.total||1, pct=Math.round(ct.score/total*100);
-  if(ct.mode==='find') fdRecordStats(ct.score, total, pct);
-  else ctRecordStats(ct.score, total, pct);          // ctRecordStats сам разводит beef/pork по meatSet
-  // Облачная синхронизация. Для говядины — как раньше (веса + при турнире stats).
-  // Для свинины выгружаем в облако ТОЛЬКО веса (mode 'pork'/'pork_find'), а
-  // civics_stats НЕ пишем: серверный триггер sync_leaderboard питается из
-  // civics_stats, и запись туда завела бы свинину в рейтинг. Так прогресс
-  // (веса/seen/повторяемость) синхронизируется между устройствами, а рейтинг
-  // не затрагивается и серверную схему трогать не нужно. ctStoreMode() даёт
-  // правильное имя режима: pork / pork_find.
+  // длительность партии: от ctOpen/ctRestart до финиша; кап 6ч на случай
+  // «заснувшей» вкладки, чтобы не накрутить абсурдное время
+  const elapsed=Math.min(Math.max(0, Date.now()-(ct.startedAt||Date.now())), 6*3600*1000);
+  if(ct.mode==='find') fdRecordStats(ct.score, total, pct, elapsed);
+  else ctRecordStats(ct.score, total, pct, elapsed); // ctRecordStats сам разводит beef/pork по meatSet
+  // Облачная синхронизация после партии: веса + статистика (включая время)
+  // режима, который только что играли — и говядина, и свинина. Рейтинг
+  // питается ТОЛЬКО серверной civics_stats; какие режимы считать — решает
+  // серверный триггер sync_leaderboard. ctStoreMode() даёт правильное имя:
+  // test / find / pork / pork_find.
   if(typeof czCloudPush==='function') czCloudPush(ctStoreMode(ct.mode||'test'));
   $('#ctCount').textContent='Итог';
   $('#ctScore').innerHTML=ct.score+'&nbsp;✓';
@@ -4971,28 +4989,34 @@ function czBuildSync(mode){
     stats={ mode, games:s.games||0, answered:s.answered||0, correct:0,
             best_pct:0, last_pct:0, total_time:0, extra:{ last:s.last||0, best:s.best||0 } };
   } else if(mode==='find'){
-    // fdStatsKey() зависит от активного набора (свинина → wm2_porkfdstats).
-    // Форсируем beef, как в ветке 'test': иначе при активной свинине в облако
-    // под mode='find' уезжала статистика PORK-Find → триггер sync_leaderboard
-    // засчитывал свинину в рейтинг, чего v100 сознательно избегает.
+    // fdStatsKey() зависит от активного набора — форсируем beef, как в 'test'
     const _ms=meatSet; meatSet='beef';
     let s;
-    try{ s=(typeof fdGetStats==='function')?fdGetStats():{games:0,answered:0,correct:0,bestPct:0,lastPct:0}; }
+    try{ s=(typeof fdGetStats==='function')?fdGetStats():{games:0,answered:0,correct:0,bestPct:0,lastPct:0,timeMs:0}; }
     finally { meatSet=_ms; }
     stats={ mode:'find', games:s.games||0, answered:s.answered||0, correct:s.correct||0,
-            best_pct:s.bestPct||0, last_pct:s.lastPct||0, total_time:0, extra:{} };
+            best_pct:s.bestPct||0, last_pct:s.lastPct||0, total_time:s.timeMs||0, extra:{} };
   } else if(mode==='pork' || mode==='pork_find'){
-    // Свинина: в облако уходят только веса (см. czCloudPush), stats не пишется.
-    // Возвращаем заглушку статистики с правильным mode на случай будущего
-    // использования, но czCloudPush её игнорирует для pork-режимов.
-    stats={ mode, games:0, answered:0, correct:0, best_pct:0, last_pct:0, total_time:0, extra:{} };
+    // Свинина: теперь И статистика уходит на сервер (рейтинг питается ТОЛЬКО
+    // серверной civics_stats — анти-чит; серверный триггер сам решает, какие
+    // режимы считать). Форсируем pork-контекст, чтобы ct/fd-геттеры прочитали
+    // именно wm2_porkstats / wm2_porkfdstats независимо от активного набора.
+    const _ms=meatSet; meatSet='pork';
+    let s;
+    try{
+      s=(mode==='pork_find')
+        ? ((typeof fdGetStats==='function')?fdGetStats():{games:0,answered:0,correct:0,bestPct:0,lastPct:0,timeMs:0})
+        : ((typeof ctGetStats==='function')?ctGetStats():{games:0,answered:0,correct:0,bestPct:0,lastPct:0,timeMs:0});
+    } finally { meatSet=_ms; }
+    stats={ mode, games:s.games||0, answered:s.answered||0, correct:s.correct||0,
+            best_pct:s.bestPct||0, last_pct:s.lastPct||0, total_time:s.timeMs||0, extra:{} };
   } else {
     const _ms=meatSet; meatSet='beef';
     let s;
-    try{ s=(typeof ctGetStats==='function')?ctGetStats():{games:0,answered:0,correct:0,bestPct:0,lastPct:0}; }
+    try{ s=(typeof ctGetStats==='function')?ctGetStats():{games:0,answered:0,correct:0,bestPct:0,lastPct:0,timeMs:0}; }
     finally { meatSet=_ms; }
     stats={ mode:'test', games:s.games||0, answered:s.answered||0, correct:s.correct||0,
-            best_pct:s.bestPct||0, last_pct:s.lastPct||0, total_time:0, extra:{} };
+            best_pct:s.bestPct||0, last_pct:s.lastPct||0, total_time:s.timeMs||0, extra:{} };
   }
   return { weights, stats };
 }
@@ -5007,9 +5031,12 @@ async function czCloudPush(mode){
   const s=czSupa(); if(!s) return;
   const ses=await czSession(); if(!ses) return;     // не залогинен — синк не нужен
   const uid=ses.user.id;
-  // Свинина: синхронизируем ТОЛЬКО веса. civics_stats не трогаем, чтобы триггер
-  // рейтинга (sync_leaderboard читает civics_stats) не увидел свинину.
-  const porkMode = (mode==='pork' || mode==='pork_find');
+  // Статистика ВСЕХ режимов (включая свинину) уходит на сервер: рейтинг
+  // питается только серверной civics_stats (анти-чит), а какие режимы считать —
+  // решает серверный триггер sync_leaderboard. Гейт «турнир выкл» применяется
+  // ко всем 4 игровым режимам (test/find/pork/pork_find): без участия в
+  // рейтинге их статистика не выгружается, веса — всегда.
+  const ratingMode = (mode==='test'||mode==='find'||mode==='pork'||mode==='pork_find');
   try{
     // ===== ЗАЩИТА ОТ ЗАДАВЛИВАНИЯ (два устройства / упавший pull) =====
     // Push — это read-merge-write: сперва читаем серверные веса режима и
@@ -5045,11 +5072,7 @@ async function czCloudPush(mode){
       // глотались молча и отказ синка был невидим. Пишем в диагностику.
       if(r1 && r1.error){ window.__czLastPushError={ mode, table:'civics_weights', message:r1.error.message }; console.warn('czCloudPush('+mode+') civics_weights:', r1.error.message); }
     }
-    if(porkMode) return;   // веса выгружены, статистику свинины в облако не пишем
-    // civics_stats режима Test питает рейтинг (через триггер). Если турнирный режим
-    // выключен — статистику Test НЕ выгружаем, чтобы не попадать в таблицу.
-    // Прогресс (веса выше) синхронизируется всегда. Для write/read — выгружаем всегда.
-    if(mode!=='test' || (typeof isTournament!=='function') || isTournament()){
+    if(!ratingMode || (typeof isTournament!=='function') || isTournament()){
       // Тот же guard для статистики: читаем серверную строку и НИКОГДА не
       // понижаем счётчики (max-слияние; last_pct/extra — от стороны, где игр
       // больше). Раньше after-game push без pull регрессировал сервер
@@ -5108,9 +5131,22 @@ async function czCloudPullStats(){
   const uid=ses.user.id;
   try{
     const { data:rows } = await s.from('civics_stats')
-      .select('mode,games,answered,correct,best_pct,last_pct,extra').eq('user_id',uid);
+      .select('mode,games,answered,correct,best_pct,last_pct,total_time,extra').eq('user_id',uid);
     if(!Array.isArray(rows)) return;
     const mx=(a,b)=>Math.max(a||0,b||0);
+    // единый мерж для 4 игровых режимов: сервер → локальные ct/fd-ключи,
+    // с форсом правильного набора мяса (иначе строки попадают в чужой ключ)
+    const mergeMeat=(r, set, isFind)=>{
+      const _ms=meatSet; meatSet=set;
+      try{
+        const get=isFind?fdGetStats:ctGetStats, put=isFind?fdSetStats:ctSetStats;
+        const l=get(), more=(r.games||0)>=(l.games||0);
+        put({ games:mx(l.games,r.games), answered:mx(l.answered,r.answered),
+              correct:mx(l.correct,r.correct), bestPct:mx(l.bestPct,r.best_pct),
+              lastPct: more?(r.last_pct||0):(l.lastPct||0),
+              timeMs: mx(l.timeMs, r.total_time) });
+      } finally { meatSet=_ms; }
+    };
     rows.forEach(r=>{
       if(r.mode==='write' && typeof cwGetStats==='function'){
         const l=cwGetStats(), more=(r.games||0)>=(l.games||0);
@@ -5121,36 +5157,16 @@ async function czCloudPullStats(){
         const l=rdGetStats(), ex=r.extra||{}, more=(r.games||0)>=(l.games||0);
         rdSetStats({ games:mx(l.games,r.games), answered:mx(l.answered,r.answered),
                      last: more?(ex.last||0):(l.last||0), best:mx(l.best,ex.best) });
-      } else if(r.mode==='find' && typeof fdGetStats==='function'){
-        // Серверный 'find' — всегда говядина. Форсируем beef-контекст (как для
-        // 'test'), иначе при активной свинине облачная статистика Beef-Find
-        // сливалась в локальный pork-ключ wm2_porkfdstats.
-        const _ms=meatSet; meatSet='beef';
-        try{
-          const l=fdGetStats(), more=(r.games||0)>=(l.games||0);
-          fdSetStats({ games:mx(l.games,r.games), answered:mx(l.answered,r.answered),
-                       correct:mx(l.correct,r.correct), bestPct:mx(l.bestPct,r.best_pct),
-                       lastPct: more?(r.last_pct||0):(l.lastPct||0) });
-        } finally { meatSet=_ms; }
-      } else if(r.mode==='test' && typeof ctGetStats==='function'){
-        // Статистика test с сервера — всегда про говядину. Временно форсируем
-        // beef-контекст, чтобы ctGetStats/ctSetStats не попали в pork-ключ,
-        // если сейчас на экране активна свинина.
-        const _ms=meatSet; meatSet='beef';
-        try{
-          const l=ctGetStats(), more=(r.games||0)>=(l.games||0);
-          ctSetStats({ games:mx(l.games,r.games), answered:mx(l.answered,r.answered),
-                       correct:mx(l.correct,r.correct), bestPct:mx(l.bestPct,r.best_pct),
-                       lastPct: more?(r.last_pct||0):(l.lastPct||0) });
-        } finally { meatSet=_ms; }
+      } else if(r.mode==='find'      && typeof fdGetStats==='function'){ mergeMeat(r,'beef',true);
+      } else if(r.mode==='test'      && typeof ctGetStats==='function'){ mergeMeat(r,'beef',false);
+      } else if(r.mode==='pork_find' && typeof fdGetStats==='function'){ mergeMeat(r,'pork',true);
+      } else if(r.mode==='pork'      && typeof ctGetStats==='function'){ mergeMeat(r,'pork',false);
       }
     });
   }catch(e){}
 }
 // полный pull прогресса из облака: веса всех режимов (включая свинину) + личная
-// статистика. Веса свинины (pork/pork_find) тянутся как у говядины — сливаются
-// по «активнее (seen)». Статистика свинины в облаке не хранится (см. czCloudPush),
-// поэтому czCloudPullStats её не касается.
+// статистика ВСЕХ 6 режимов (test/find/pork/pork_find/write/read), с временем.
 async function czCloudPullAll(){
   try{ await Promise.all([
     czCloudPull('test'), czCloudPull('find'), czCloudPull('write'), czCloudPull('read'),
@@ -5630,11 +5646,10 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                 window.__cloudLogin = login;
                 window.__cloudUid = user.id || '';
                 try{ localStorage.setItem('wm2_linked','1'); }catch(e){}  // аккаунт для этой записи существует
-                // ТРЕКИНГ ПРИВЯЗКИ: запоминаем uid аккаунта, под которым данные этого
-                // профиля живут/жили в облаке. Пока есть сессия — after-game push'и
-                // текут под этот uid. Флаг НЕ чистится при logout: он и есть память
-                // «прогресс уже засчитан под другим user_id» — по нему регистрация
-                // решает guard vs усыновление (иначе задвоение рейтинга).
+                // ТРЕКИНГ ПРИВЯЗКИ: uid аккаунта, под которым данные профиля живут
+                // в облаке. НЕ чистится при logout — это память «прогресс уже
+                // засчитан под другим user_id», по ней регистрация решает
+                // guard vs усыновление (иначе задвоение рейтинга).
                 try{ if(user.id) localStorage.setItem('wm2_bounduid', user.id); }catch(e){}
                 elAuthBlock.style.display = 'none';
                 elProfile.style.display = 'block';
@@ -5987,13 +6002,11 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             const localName = localStorage.getItem('wm2_current');
             if(localName){
                 // Усыновление безопасно ТОЛЬКО для профиля, который НИКОГДА не был
-                // привязан к аккаунту: его данные не жили ни под каким user_id.
-                // Признаки прежней привязки (любого из достаточно): живая сессия,
-                // wm2_bounduid (uid прежнего аккаунта), wm2_linked, wm2_lastsync.
-                // Кейс из продакшена: профиль играл под abraziv777 (игра в рейтинге),
-                // logout, регистрация abraziv666 → усыновление выгрузило тот же
-                // прогресс под новый uid → задвоение. Logout не стирает локальные
-                // данные, поэтому одной проверки сессии мало.
+                // привязан к аккаунту. Признаки прежней привязки (достаточно любого):
+                // живая сессия, wm2_bounduid, wm2_linked, wm2_lastsync. Продакшен-кейс:
+                // играл под abraziv777 (игра в рейтинге), logout, регистрация
+                // abraziv666 → усыновление выгрузило тот же прогресс под новый uid →
+                // задвоение. Logout не стирает локальные данные — сессии мало.
                 let hasSession=false;
                 try{ const { data:{ session } } = await supabase.auth.getSession(); hasSession=!!(session&&session.user); }catch(e){}
                 const wasBound = !!localStorage.getItem('wm2_bounduid') ||
