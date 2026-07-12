@@ -5288,8 +5288,11 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
     }
 
     const initSupabase = () => {
-        const SUPABASE_URL = 'https://ojqpwwlwtdodwlvllbhy.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_l7gMTWSAAhcK4J5_T6cVmQ_WLCtxPs6';
+        // v115: выделенный проект MeatQuiz (meatquiz-db). Старый общий проект
+        // ojqpwwlwtdodwlvllbhy остаётся у других приложений; данные туда больше
+        // не пишутся. Схема нового проекта — meatquiz_schema_full.sql.
+        const SUPABASE_URL = 'https://emqfaezqmoyhvzfgzrso.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_p9nFLFINi2sWmtU0GOO02w_F200EoGK';
 
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
             auth: { persistSession: true, autoRefreshToken: true }
