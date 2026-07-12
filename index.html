@@ -1655,7 +1655,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 17</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 18</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -5098,6 +5098,10 @@ async function czCloudPush(mode){
         extra:    localAhead ? (stats.extra||{})   : (sv.extra||stats.extra||{}) };
       const r2 = await s.from('civics_stats').upsert([{ user_id:uid, ...merged }], { onConflict:'user_id,mode' });
       if(r2 && r2.error){ window.__czLastPushError={ mode, table:'civics_stats', message:r2.error.message }; console.warn('czCloudPush('+mode+') civics_stats:', r2.error.message); }
+      else if(window.__czLastPushError && window.__czLastPushError.mode===mode){
+        // режим прошёл целиком — устаревшая ошибка этого режима больше не пугает
+        window.__czLastPushError=null;
+      }
     }
   }catch(e){ /* офлайн / нет таблиц — не критично, локальная копия сохранена */ }
 }
@@ -5438,8 +5442,11 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                 const name = localStorage.getItem('wm2_current');
                 if(!name) return { ok:false };
                 try{ await czCloudPullAll(); }catch(e){}   // сперва подтянуть облако (max-слияние)
-                await pushAllToCloud(session.user.id, name);
+                const pr = await pushAllToCloud(session.user.id, name);
                 await linkCloudToLocal(ensureLocalId(), name);  // обновит флаг связки и время
+                if(pr && pr.ok===false && pr.errors && pr.errors.length){
+                    return { ok:false, pushErrors: pr.errors };
+                }
                 return { ok:true, time: Date.now() };
             }catch(e){ console.warn('Синхронизация не удалась:', e); return { ok:false, error:e }; }
         };
@@ -5574,16 +5581,21 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         // Полная выгрузка локального игрока в облако (веса + статистика + рейтинг).
         // Веса и статистика независимы: ошибка одной таблицы не мешает другой.
         async function pushAllToCloud(uid, name){
-            // MeatQuiz: выгружаем прогресс во всех режимах. Веса — для всех
-            // (test/find/write/read + свинина pork/pork_find). Статистику
-            // свинины czCloudPush намеренно не пишет (защита рейтинга).
-            try{ await czCloudPush('test');      }catch(e){}
-            try{ await czCloudPush('find');      }catch(e){}
-            try{ await czCloudPush('write');     }catch(e){}
-            try{ await czCloudPush('read');      }catch(e){}
-            try{ await czCloudPush('pork');      }catch(e){}
-            try{ await czCloudPush('pork_find'); }catch(e){}
+            // Выгрузка всех 6 режимов: веса + статистика (включая свинину и время).
+            // ЧЕСТНЫЙ РЕЗУЛЬТАТ: ошибки push'а (RLS, чек-констрейнты) не глотаются
+            // молча — собираются и возвращаются вызывающему. Раньше кнопка
+            // «Сохранить в облако» рапортовала успех, даже когда сервер отбросил
+            // строки (продакшен: constraint резал pork, кнопка говорила «☁️!»).
+            window.__czLastPushError = null;   // чистим след прошлых попыток
+            const errs=[];
+            for(const m of ['test','find','write','read','pork','pork_find']){
+                try{ await czCloudPush(m); }catch(e){}
+                if(window.__czLastPushError && window.__czLastPushError.mode===m){
+                    errs.push(window.__czLastPushError);
+                }
+            }
             try{ await window.cloudPushLeaderboard(name); }catch(e){}   // имя в строке рейтинга
+            return { ok: errs.length===0, errors: errs };
         }
         // Полностью удалить данные пользователя в облаке (для «заменить новыми»)
         function localHasProgress(name){
@@ -5782,11 +5794,17 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             if (!name) { showMsg(elSyncMsg, 'Локальный игрок не выбран', 'var(--muted)'); return; }
             const btn = $('#btn-sync'); busy(btn, true, 'Сохранение...');
             try {
-                // MeatQuiz: синхронизация прогресса теста (веса + статистика) — pull(max)→push.
+                // MeatQuiz: синхронизация прогресса (веса + статистика + время) — pull(max)→push.
                 await czCloudPullAll();
-                await pushAllToCloud(session.user.id, name);
+                const pr = await pushAllToCloud(session.user.id, name);
                 try { await linkCloudToLocal(ensureLocalId(), name); } catch (e) {}
-                showMsg(elSyncMsg, 'Прогресс и статистика в облаке! ☁️', 'var(--green)');
+                if(pr && pr.ok===false && pr.errors && pr.errors.length){
+                    const e0=pr.errors[0];
+                    showMsg(elSyncMsg, '⚠ Часть данных НЕ сохранилась ('+e0.mode+', '+e0.table+'): '+e0.message+' — см. Диагностику', 'var(--red)');
+                } else {
+                    try{ localStorage.setItem('wm2_lastsync', String(Date.now())); }catch(e){}
+                    showMsg(elSyncMsg, 'Прогресс и статистика в облаке! ☁️', 'var(--green)');
+                }
             } catch (e) {
                 showMsg(elSyncMsg, 'Ошибка синхронизации: ' + ((e && e.message) || e), 'var(--red)');
             } finally {
