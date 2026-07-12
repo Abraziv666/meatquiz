@@ -1655,7 +1655,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 19</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 20</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -4584,6 +4584,9 @@ function ctFinish(){
   // серверный триггер sync_leaderboard. ctStoreMode() даёт правильное имя:
   // test / find / pork / pork_find.
   if(typeof czCloudPush==='function') czCloudPush(ctStoreMode(ct.mode||'test'));
+  // имя в строке рейтинга: триггер рождает строку с именем из метаданных,
+  // но локальное имя профиля — источник правды; дописываем fire-and-forget
+  if(window.cloudPushLeaderboard){ try{ window.cloudPushLeaderboard(localStorage.getItem('wm2_current')); }catch(e){} }
   $('#ctCount').textContent='Итог';
   $('#ctScore').innerHTML=ct.score+'&nbsp;✓';
   $('#ctBarFill').style.width='100%';
@@ -5877,6 +5880,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                     // MeatQuiz: восстановить прогресс теста (веса + статистику) из облака.
                     await czCloudPullAll();
                     await linkCloudToLocal(lid, name); // аккаунт привязан к этой локальной записи
+                    try{ await window.cloudPushLeaderboard(name); }catch(e){} // имя в рейтинге сразу, не дожидаясь полного синка
                 }
             } catch (e) { console.warn('Не удалось подтянуть данные из облака:', e); }
 
