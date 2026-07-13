@@ -62,55 +62,16 @@ body::before{
 }
 .wrap{width:100%;max-width:600px}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.ctrlbar{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-.stepwrap{display:flex;flex-direction:column;align-items:center;gap:3px}
-.steplbl{font-size:calc(9px * var(--fs,1));font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
-.colmode{color:var(--ink)}
-.presettoggle{color:var(--gold)}
-.preset-ic{font-family:'Nunito';font-weight:800;font-size:calc(15px * var(--fs,1));line-height:1;color:inherit}
-.preset-ic sup{font-size:calc(9px * var(--fs,1));font-weight:800}
-.presettoggle.on{border-color:var(--gold);background:var(--goldbg);color:var(--gold)}
-.preset2toggle{color:var(--violet)}
-.preset2toggle.on{border-color:var(--violet);background:rgba(123,108,255,.18);color:#a89dff}
-#genBtn.on{background:var(--green);color:#0c2105}
-#genBtn{background:var(--card2);color:var(--muted);box-shadow:none;border:1px solid var(--line)}
-.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-.lvchip{font:inherit;font-family:'Nunito';font-weight:800;border:2px solid var(--line);background:var(--card2);border-radius:14px;padding:11px 4px;cursor:pointer;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:3px;transition:transform .06s}
-.lvchip:active{transform:translateY(1px)}
-.lvchip .nm{font-size:calc(16px * var(--fs,1))}
-.lvchip .pc{font-size:calc(11px * var(--fs,1));font-weight:800;color:var(--muted)}
-.lvchip.off{opacity:.42}
-.lvchip.on{border-color:var(--teal);background:var(--tealbg)}
-.lvchip.on .pc{color:var(--teal)}
-.lvchip.done{border-color:var(--gold);background:var(--goldbg);color:var(--gold);box-shadow:0 0 16px rgba(255,194,77,.4);opacity:1}
-.lvchip.done .pc{color:var(--gold)}
-.lvchip .cnt{font-size:calc(10px * var(--fs,1));font-weight:700;color:var(--muted)}
-.lvchip.on .cnt,.lvchip.done .cnt{color:inherit;opacity:.8}
-.lvl-cap{font-size:calc(11px * var(--fs,1));font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin:12px 2px 6px}
-.level-grid.g5{grid-template-columns:repeat(5,1fr)}
-.level-grid.g3{grid-template-columns:repeat(3,1fr)}
-.cov-title{font-family:'Nunito';font-weight:800;font-size:calc(15px * var(--fs,1));color:var(--ink);margin-bottom:4px}
-.cov-line{font-size:calc(13px * var(--fs,1));font-weight:600;color:var(--muted);line-height:1.5}
-.cov-line b{color:var(--ink)}
-.cov hr,.card.pad hr{border:0;border-top:1px solid var(--line);margin:12px 0}
+.card.pad hr{border:0;border-top:1px solid var(--line);margin:12px 0}
 .zones{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .zones .z{font-size:calc(13px * var(--fs,1));font-weight:800;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:5px 9px}
 .zones .z b{font-weight:800}
-.zones .z.green{color:var(--green)} .zones .z.red{color:var(--coral)} .zones .z.zero{color:var(--muted)} .zones .z.gold{color:var(--gold)}
+.zones .z.green{color:var(--green)}
+.zones .z.red{color:var(--coral)}
+.zones .z.gold{color:var(--gold)}
 .faq-q{font-family:'Nunito';font-weight:800;font-size:calc(15px * var(--fs,1));color:var(--ink);margin:14px 0 5px}
 .faq-q:first-child{margin-top:0}
 .faq-a{font-size:calc(14px * var(--fs,1));font-weight:600;color:var(--muted);line-height:1.55}
-.daychart{display:flex;align-items:flex-end;gap:4px;height:120px;width:100%;overflow:hidden}
-.daybar{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:2px}
-.daybar .dv{font-size:calc(9px * var(--fs,1));font-weight:800;color:var(--muted);height:11px;line-height:1}
-.daybar .db{width:100%;max-width:20px;background:linear-gradient(180deg,var(--teal),var(--teal-d));border-radius:4px 4px 2px 2px;min-height:2px}
-.daybar .dl{font-size:calc(8px * var(--fs,1));font-weight:700;color:var(--muted);white-space:nowrap}
-.col-ic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);gap:2px;width:20px;height:20px}
-.col-ic i{display:block;border-radius:2px;background:var(--muted)}
-.col-ic.split i:nth-child(odd){background:var(--teal)}
-.col-ic.split i:nth-child(even){background:var(--coral)}
-.col-ic.mix i:nth-child(1),.col-ic.mix i:nth-child(4),.col-ic.mix i:nth-child(5){background:var(--teal)}
-.col-ic.mix i:nth-child(2),.col-ic.mix i:nth-child(3),.col-ic.mix i:nth-child(6){background:var(--coral)}
 .topright-row{display:flex;align-items:center;gap:8px}
 .setrow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
 .setrow:last-child{border-bottom:0}
@@ -123,26 +84,12 @@ body::before{
 .logo .txt{display:flex;flex-direction:column;line-height:1}
 .logo .by{font-size:calc(11px * var(--fs,1));font-weight:600;color:var(--muted);letter-spacing:.3px;margin-top:2px}
 .logo .dot{display:inline-flex;width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--teal),var(--violet) 70%,var(--coral));align-items:center;justify-content:center;color:#08121a;font-size:calc(18px * var(--fs,1));box-shadow:0 6px 18px rgba(46,230,210,.35),0 2px 0 rgba(0,0,0,.4);transform:rotate(-6deg);flex:none}
-.pill{font-family:'Nunito';font-weight:700;background:var(--card2);border:2px solid var(--line);border-radius:30px;padding:6px 14px;font-size:calc(14px * var(--fs,1));color:var(--ink);cursor:pointer}
 .topright{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
 .soundtoggle{position:relative;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--card2);cursor:pointer;font-size:calc(19px * var(--fs,1));line-height:1;display:flex;align-items:center;justify-content:center;color:var(--teal);transition:transform .06s,background .15s}
 .soundtoggle:active{transform:scale(.92)}
 .soundtoggle.on{border-color:var(--teal);background:var(--tealbg)}
 .soundtoggle.off{opacity:.6}
 .soundtoggle.off::after{content:"";position:absolute;left:50%;top:50%;width:30px;height:3px;background:var(--coral);border-radius:2px;transform:translate(-50%,-50%) rotate(-45deg);box-shadow:0 0 0 1.5px var(--card2)}
-.ipatoggle{color:var(--ink)}
-.ipa-tri{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:.82;font-family:'Nunito',serif;font-weight:700;font-size:calc(11px * var(--fs,1))}
-.ipa-tri .t{display:block}
-.ipa-tri .b{display:flex;gap:5px}
-.ipatoggle.on{border-color:var(--gold);background:var(--goldbg);color:var(--gold)}
-.ratetoggle{color:var(--ink)}
-.rate-ic{display:grid;grid-template-columns:1fr 1fr;gap:1px 4px;font-family:'Nunito';font-weight:800;font-size:calc(9px * var(--fs,1));line-height:1.05;color:inherit}
-.ratetoggle.on{border-color:var(--coral);background:var(--coralbg);color:var(--coral)}
-.tile .w{display:block}
-.tile .ipa{display:none;font-family:'Nunito';font-weight:600;font-size:.74em;color:var(--teal);margin-top:4px;opacity:.95}
-.board.show-ipa .tile.en .ipa{display:block}
-.ctrl-row{display:flex;align-items:stretch;gap:8px}
-.icon-col{display:flex;flex-direction:column;gap:8px}
 .rounds-stepper{display:flex;flex-direction:column;align-items:center;justify-content:space-between;width:54px;height:64px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:3px 0;overflow:hidden}
 .rounds-stepper button{font:inherit;border:0;background:transparent;cursor:pointer;font-size:calc(15px * var(--fs,1));line-height:1;color:var(--teal);width:100%;height:23px;display:flex;align-items:center;justify-content:center;transition:background .1s}
 .rounds-stepper button:active{background:var(--tealbg)}
@@ -164,9 +111,6 @@ input.namefield{width:100%;border:2px solid var(--line);border-radius:14px;paddi
 input.namefield:focus{outline:none;border-color:var(--teal)}
 input.namefield::placeholder{color:var(--muted)}
 .players{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.pchip{font:inherit;font-family:'Nunito';font-weight:700;background:var(--card2);border:2px solid var(--line);border-bottom-width:4px;border-radius:14px;padding:10px 16px;cursor:pointer;font-size:calc(15px * var(--fs,1));color:var(--ink)}
-.pchip:active{transform:translateY(2px);border-bottom-width:2px}
-.pchip .x{color:var(--coral);margin-left:8px;font-weight:800}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px}
 .scard{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:16px;text-align:center}
 .scard.teal{border-color:var(--teal);background:var(--tealbg)}
@@ -174,95 +118,17 @@ input.namefield::placeholder{color:var(--muted)}
 .scard.coral{border-color:var(--coral);background:var(--coralbg)}
 .scard .v{font-family:'Nunito';font-weight:800;font-size:calc(26px * var(--fs,1));color:var(--ink)}
 .scard .l{font-size:calc(12px * var(--fs,1));font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
-.barwrap{height:12px;background:var(--track);border-radius:30px;overflow:hidden;margin-top:6px}
-.barwrap span{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--violet));border-radius:30px}
 .gamehead{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .icon-btn{font:inherit;width:42px;height:42px;border-radius:12px;border:2px solid var(--line);background:var(--card2);cursor:pointer;font-size:calc(18px * var(--fs,1));color:var(--ink);flex:none}
 .progress{flex:1;height:16px;background:var(--track);border-radius:30px;overflow:hidden}
 .progress span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--teal),var(--green));border-radius:30px;transition:width .3s;box-shadow:0 0 12px rgba(46,230,210,.4)}
-.timer{font-family:'Nunito';font-weight:800;font-size:calc(18px * var(--fs,1));min-width:58px;text-align:right;color:var(--teal)}
-.roundline{text-align:center;font-weight:800;color:var(--muted);font-size:calc(14px * var(--fs,1));margin-bottom:14px}
-.roundline b{color:var(--ink)}
-.board{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 10px;touch-action:pan-y}
-.board.split{grid-auto-flow:column}
-.tile{position:relative;font:inherit;font-family:'Nunito';font-weight:700;font-size:calc(clamp(13px,3.6vw,16px) * var(--fs,1));background:var(--card2);border:1px solid var(--line);border-bottom:3px solid #11141c;border-radius:14px;padding:13px 6px;cursor:pointer;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:transform .07s,background .15s,border-color .15s,opacity .25s;color:var(--ink);word-break:break-word;line-height:1.12;-webkit-user-select:none;user-select:none;touch-action:pan-y}
-.tile.ru{color:#cdd2dc}
-.tile:active{transform:translateY(2px);border-bottom-width:1px}
-.tile.sel{border-color:var(--teal);background:var(--sel);color:var(--teal)}
-.tile.right{border-color:var(--green);background:var(--ok);color:var(--green);animation:pop .3s}
-.tile.wrong{border-color:var(--red);background:var(--bad);color:var(--red);animation:shake .3s}
-.tile.gone{opacity:0;pointer-events:none;transform:scale(.7)}
-.tile .fb{position:absolute;top:-8px;right:-4px;font-family:'Nunito';font-weight:800;font-size:calc(15px * var(--fs,1));padding:2px 7px;border-radius:9px;pointer-events:none;z-index:4;animation:fbpop .75s ease forwards}
-.tile .fb.plus{color:#10210a;background:var(--green)}
-.tile .fb.minus{color:#2a1010;background:var(--coral)}
-@keyframes fbpop{0%{opacity:0;transform:translateY(8px) scale(.7)}25%{opacity:1;transform:translateY(0) scale(1.12)}100%{opacity:0;transform:translateY(-20px) scale(1)}}
 @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.07)}100%{transform:scale(1)}}
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
 .result{text-align:center;padding:10px 4px}
 .result .big{font-size:calc(60px * var(--fs,1));line-height:1;margin-bottom:6px;animation:pop .4s}
 .result h2{font-family:'Nunito';font-weight:800;font-size:calc(28px * var(--fs,1));margin-bottom:4px}
 .result .sub{color:var(--muted);font-weight:700;margin-bottom:18px}
-/* страница результатов теперь модалка-оверлей поверх главной */
-.wlist{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.wrow{display:flex;align-items:center;gap:10px;background:var(--card2);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
-.wrow .en{font-family:'Nunito';font-weight:700;font-size:calc(15px * var(--fs,1));color:var(--ink)}
-.wrow .ru{color:var(--muted);font-weight:600;font-size:calc(14px * var(--fs,1));flex:1}
-.wrow .wt{font-family:'Nunito';font-weight:800;font-size:calc(15px * var(--fs,1));min-width:34px;text-align:right}
-.wt.pos{color:var(--green)}.wt.neg{color:var(--coral)}.wt.zero{color:var(--muted)}
-.tabs{display:flex;background:#161922;border:2px solid var(--line);border-radius:30px;padding:4px;gap:4px;margin-bottom:12px}
-.tabs button{font:inherit;font-family:'Nunito';font-weight:700;border:0;background:transparent;color:var(--muted);padding:9px 12px;border-radius:30px;cursor:pointer;font-size:calc(14px * var(--fs,1));flex:1}
-.tabs button.on{background:var(--card2);color:var(--ink)}
 .hint{font-size:calc(13px * var(--fs,1));color:var(--muted);font-weight:600;margin-top:10px;line-height:1.45;text-align:center}
-.dbpager{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.dbrow{display:flex;align-items:center;gap:8px;background:var(--card2);border:2px solid var(--line);border-radius:12px;padding:8px 10px;margin-bottom:7px}
-.dbrow .num{font-family:'Nunito';font-weight:700;font-size:calc(12px * var(--fs,1));color:var(--muted);min-width:38px}
-.dbrow .en{font-family:'Nunito';font-weight:700;font-size:calc(15px * var(--fs,1));min-width:90px;max-width:120px;word-break:break-word;color:var(--ink)}
-.dbrow .tin{flex:1;border:2px solid var(--line);border-radius:9px;padding:7px 9px;font-family:'Nunito';font-weight:600;font-size:calc(14px * var(--fs,1));background:var(--bg);color:var(--ink);min-width:60px}
-.dbrow .tin:focus{outline:none;border-color:var(--teal)}
-.dbrow .tin.edited{border-color:var(--gold);background:var(--goldbg)}
-/* --- грамматический словарь (Мои задания / Все задания) --- */
-.grow{background:var(--card2);border:2px solid var(--line);border-radius:14px;padding:11px 12px;margin-bottom:9px}
-.grow.edited{border-color:var(--gold)}
-.grow-head{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.grow-id{font-family:'Nunito';font-weight:800;font-size:calc(12px * var(--fs,1));color:var(--muted);white-space:nowrap}
-.grow-lv{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:30px;background:var(--card);border:1px solid var(--line);font-size:calc(11px * var(--fs,1));color:var(--ink)}
-.grow-edit{font:inherit;font-family:'Nunito';font-weight:800;width:30px;height:30px;border:2px solid var(--line);background:var(--card);border-radius:8px;cursor:pointer;color:var(--teal);line-height:1;flex:none;display:flex;align-items:center;justify-content:center}
-.grow-edit:active{transform:translateY(1px)}
-.grow-edit .ic{width:15px;height:15px}
-.grow-sent{font-family:'Nunito';font-weight:700;font-size:calc(15px * var(--fs,1));color:var(--ink);line-height:1.4}
-.grow-sent .gd-gap{background:rgba(46,230,210,.16);border-bottom:2px solid var(--teal);border-radius:4px;padding:0 4px;font-weight:800}
-.grow-meta{font-size:calc(12px * var(--fs,1));font-weight:700;color:var(--muted);margin-top:6px;line-height:1.45}
-.grow-meta .gd-tense{color:var(--teal)}
-.grow-meta .gd-tag{display:inline-block;margin:2px 4px 0 0;padding:1px 7px;border-radius:30px;background:var(--card);border:1px solid var(--line);font-size:calc(11px * var(--fs,1));color:var(--ink)}
-.grow-meta .gd-tag.neg{border-color:var(--coral);color:var(--coral)}
-.gd-seen{color:var(--green);font-weight:800}
-/* редактор задания */
-.ge-field{margin-bottom:12px}
-.ge-field label{display:block;font-family:'Nunito';font-weight:800;font-size:calc(12px * var(--fs,1));color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
-.ge-field input,.ge-field textarea{width:100%;border:2px solid var(--line);border-radius:11px;padding:10px 12px;font-family:'Nunito';font-weight:600;font-size:calc(14px * var(--fs,1));background:var(--card2);color:var(--ink);resize:vertical}
-.ge-field input:focus,.ge-field textarea:focus{outline:none;border-color:var(--teal)}
-.ge-block{border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:12px;background:var(--card)}
-.ge-block .ge-block-t{font-family:'Nunito';font-weight:800;font-size:calc(13px * var(--fs,1));color:var(--ink);margin-bottom:8px}
-.ge-modal-body{max-height:62vh;overflow:auto;margin:4px 0 12px;text-align:left}
-.wstep{display:flex;align-items:center;gap:2px;flex:none}
-.wstep button{font:inherit;font-family:'Nunito';font-weight:800;width:28px;height:30px;border:2px solid var(--line);background:var(--card);border-radius:8px;cursor:pointer;font-size:calc(16px * var(--fs,1));color:var(--teal);line-height:1}
-.wstep button:active{transform:translateY(1px)}
-.wstep .wv{font-family:'Nunito';font-weight:800;min-width:30px;text-align:center;font-size:calc(14px * var(--fs,1))}
-.kblock{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
-.kblock .khead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-.kblock .ktitle{font-family:'Nunito';font-weight:800;font-size:calc(16px * var(--fs,1));color:var(--ink)}
-.kblock .kcount{font-size:calc(12px * var(--fs,1));font-weight:700;color:var(--muted)}
-.kmaster{font:inherit;font-family:'Nunito';font-weight:800;border:0;border-radius:12px;padding:9px 14px;font-size:calc(13px * var(--fs,1));cursor:pointer;color:#10210a;text-transform:uppercase;letter-spacing:.4px}
-.kmaster.on{background:var(--coral);color:#2a1010;box-shadow:0 3px 0 var(--coral-d)}
-.kmaster.off{background:var(--green);box-shadow:0 3px 0 var(--green-d)}
-.kmaster:active{transform:translateY(2px);box-shadow:none}
-.hcheck-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
-.hcheck{display:flex;align-items:center;gap:8px;background:#161922;border:2px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;font-size:calc(13px * var(--fs,1));user-select:none}
-.hcheck.on{border-color:var(--teal);background:var(--tealbg)}
-.hcheck .box{width:20px;height:20px;border-radius:6px;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;font-size:calc(13px * var(--fs,1));color:#10210a;background:transparent}
-.hcheck.on .box{background:var(--teal);border-color:var(--teal)}
-.hcheck .lbl{color:var(--muted)}
-.hcheck.on .lbl{color:var(--ink)}
 .hide{display:none!important}
 .fade{animation:fadein .35s}
 @keyframes fadein{from{opacity:0}to{opacity:1}}
@@ -281,9 +147,6 @@ input.namefield::placeholder{color:var(--muted)}
 .area.phr{border-color:var(--violet)}
 .area.data{border-color:#7a8190}
 .card.pad{padding:16px 18px}
-.prog-head{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
-.prog-pct{font-family:'Nunito';font-weight:800;font-size:calc(28px * var(--fs,1));color:var(--ink)}
-.prog-sub{font-size:calc(13px * var(--fs,1));font-weight:600;color:var(--muted)}
 .btn.danger{background:#b3382f;color:#fff;box-shadow:none}
 .btn.danger:active{transform:translateY(2px)}
 #bkPaste{width:100%;min-height:90px;border:2px solid var(--line);border-radius:14px;padding:12px;font-family:'Nunito';font-weight:600;font-size:calc(13px * var(--fs,1));background:var(--card2);color:var(--ink);resize:vertical;margin:10px 0}
@@ -301,7 +164,6 @@ input.namefield::placeholder{color:var(--muted)}
 .topbar .logo .txt{min-width:0;overflow:hidden}
 .topbar .logo .txt>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .topright-row{flex:none}
-.pill{max-width:42vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* зоны: цветные области, внутри только количество */
 .zones{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .zones .z{flex:1 1 64px;min-width:64px;display:flex;align-items:center;justify-content:center;gap:5px;padding:11px 6px;border-radius:11px;font-weight:800;font-size:calc(14px * var(--fs,1))}
@@ -313,16 +175,7 @@ input.namefield::placeholder{color:var(--muted)}
 #settings .rounds-stepper button{font-size:calc(14px * var(--fs,1))}
 #settings .rounds-val{font-size:calc(20px * var(--fs,1))}
 #settings .setrow{padding:16px 0}
-/* иконка скорости озвучки: нота + множитель */
-.speed-ic{display:flex;align-items:center;justify-content:center;gap:1px;font-family:'Nunito';font-weight:800;font-size:calc(13px * var(--fs,1));line-height:1}
-.speed-ic .ic{width:16px;height:16px}
-.speed-ic .mult{margin-left:1px}
 #settings .speedtoggle{width:52px;height:52px}
-/* иконка жестов: раскладка 2+2 */
-.rate-ic{font-size:calc(10px * var(--fs,1));gap:2px 6px;font-weight:800}
-/* транскрипция: крупнее буквы */
-.ipa-tri{flex-direction:column;line-height:.8;font-size:calc(15px * var(--fs,1));font-weight:800;font-family:'Nunito',serif}
-.ipa-tri>span{display:block}
 /* ================= DUOLINGO THEME (final) ================= */
 :root{
   --bg:#131f24; --bg2:#0f181c; --card:#202f36; --card2:#1b272e; --line:#37464f;
@@ -350,8 +203,8 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 /* headings / text */
 .hero h1{color:#fff;font-weight:900}
 .section-title{color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:800;font-size:calc(13px * var(--fs,1));margin-top:20px}
-.hero p,.cov-line,.bk-text,.desc,.faq-a,.hint,.lvl-cap{color:var(--muted)}
-.cov-title,.prog-pct,.area .t{color:#fff}
+.hero p,.bk-text,.desc,.faq-a,.hint{color:var(--muted)}
+.area .t{color:#fff}
 .area .t{font-weight:900}
 /* buttons (chunky Duolingo) */
 .btn{font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#fff;
@@ -375,19 +228,13 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .topbar .logo .dot .ic{color:#fff;filter:none}
 .logo .txt>span:first-child{color:#fff;font-weight:900}
 .logo .by{color:var(--muted)}
-.pill{background:var(--card);border:2px solid var(--line);color:#fff;border-radius:14px;font-weight:800}
 .icon-btn{color:#fff}
-/* toggles */
-/* главный экран: шестерёнка без фона и внешнего круга */
+/* toggles *//* главный экран: шестерёнка без фона и внешнего круга */
 #settingsBtn,#settingsBtn.on{background:transparent!important;border:none!important;box-shadow:none!important}
 #settingsBtn .ic{width:32px!important;height:32px!important}
 .soundtoggle{background:var(--card2);border:2px solid var(--line);color:#cfd8dd;border-radius:14px;box-shadow:none}
 .soundtoggle.on{background:var(--green);border-color:var(--green);color:#fff;box-shadow:0 2px 0 var(--green-d)}
 .masterytoggle.on{background:var(--green);border-color:var(--green);color:#fff}
-.soundtoggle.on .rate-ic .p,.soundtoggle.on .rate-ic .n,.soundtoggle.on .col-ic i{color:#fff}
-.soundtoggle.on .col-ic i{background:#fff}
-#genBtn,#pairGenBtn,#phrGenBtn{background:transparent;border:2px solid var(--line);color:#cfd8dd;box-shadow:0 2px 0 var(--line)}
-#genBtn.on,#pairGenBtn.on,#phrGenBtn.on{background:var(--green);border-color:var(--green);color:#fff;box-shadow:0 2px 0 var(--green-d)}
 /* steppers */
 .rounds-stepper{background:var(--card2);border:2px solid var(--line);border-radius:14px}
 .rounds-stepper button{color:var(--blue)}
@@ -396,45 +243,21 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .scard{background:var(--card);border:2px solid var(--line);border-radius:16px}
 .scard .v{color:#fff;font-weight:900}
 .scard .l{color:var(--muted)}
-.scard.teal .v{color:var(--blue)} .scard.gold .v{color:var(--gold)} .scard.coral .v{color:var(--red)}
-/* level chips */
-.lvchip{background:var(--card2);border:2px solid var(--line);color:#fff;border-radius:14px}
-.lvchip .cnt,.lvchip .pc{color:var(--muted)}
-.lvchip.on{background:rgba(28,176,246,.15);border-color:var(--blue)}
-.lvchip.on .pc{color:var(--blue)}
-.lvchip.done{background:rgba(255,200,0,.15);border-color:var(--gold);color:var(--gold);box-shadow:none}
-.lvchip.done .pc,.lvchip.done .cnt{color:var(--gold)}
+.scard.teal .v{color:var(--blue)}
+.scard.gold .v{color:var(--gold)}
+.scard.coral .v{color:var(--red)}
 /* zones */
 .zones .z.green{background:rgba(88,204,2,.16);border:2px solid rgba(88,204,2,.55);color:#86e23a}
 .zones .z.red{background:rgba(255,75,75,.16);border:2px solid rgba(255,75,75,.55);color:#ff8f8f}
-.zones .z.zero{background:var(--card2);border:2px solid var(--line);color:var(--muted)}
 .zones .z.gold{background:rgba(255,200,0,.16);border:2px solid rgba(255,200,0,.55);color:var(--gold)}
 .zones .z.gold .ic{color:var(--gold)}
-/* progress bars */
-.barwrap{background:var(--line);border-radius:20px;height:16px;overflow:hidden}
-.barwrap>span,#ovBar,#curBar{background:var(--green)!important;border-radius:20px}
-.daybar .db{background:var(--green)!important;border-radius:6px 6px 3px 3px}
-/* game tiles */
-.tile{background:var(--card);border:2px solid var(--line);border-bottom:4px solid var(--line);color:#fff;border-radius:16px;box-shadow:none}
-.tile.ru{color:#fff}
-.tile:active{transform:translateY(2px);border-bottom-width:2px}
-.tile.sel{border-color:var(--blue);background:rgba(28,176,246,.16);color:#fff;box-shadow:none}
-.tile.right{border-color:var(--green);background:rgba(88,204,2,.16);color:#86e23a;box-shadow:none}
-.tile.wrong{border-color:var(--red);background:rgba(255,75,75,.16);color:#ff8f8f}
-/* tabs */
-.tabs button{color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.3px}
-.tabs button.on{background:var(--card);border:2px solid var(--blue);color:#fff}
 /* settings area dividers */
 .area{border-left:4px solid var(--green)}
-.area.words{border-color:var(--blue)} .area.phr{border-color:var(--purple)} .area.data{border-color:var(--muted)} .area.common{border-color:var(--green)} .area.gram{border-color:var(--blue)}
-/* gesture/transcription accents */
-.rate-ic .p{color:var(--green)} .rate-ic .n{color:var(--red)}
-.ipatoggle.on{background:var(--green);border-color:var(--green);color:#fff}
-/* word/db rows */
-.wrow{border-bottom:1px solid var(--line)}
-.wt.pos{color:var(--green)} .wt.neg{color:var(--red)} .wt.zero{color:var(--muted)}
-/* ---- доп. правки v13 ---- */
-/* логотип: две плитки A/B */
+.area.words{border-color:var(--blue)}
+.area.phr{border-color:var(--purple)}
+.area.data{border-color:var(--muted)}
+.area.common{border-color:var(--green)}
+/* ---- доп. правки v13 ---- *//* логотип: две плитки A/B */
 .topbar .logo .dot{background:none;border:none;box-shadow:none;padding:0;width:auto;height:auto}
 .logoic{width:40px;height:40px;display:block}
 /* профиль: аватар сверху, имя снизу, шестерёнка под профилем */
@@ -455,8 +278,8 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .profile .av .medal.b{background:radial-gradient(circle at 35% 28%,#f0b27a,#d9822b 55%,#a85f17);color:#3c2000}
 /* узкие/HD-экраны: медаль ещё меньше, цифра не помещается → показываем только кружок */
 @media (max-width:400px){
-  .profile .av .medal{width:14px;height:14px;border-width:1.4px}
-  .profile .av .medal .mn{display:none}
+.profile .av .medal{width:14px;height:14px;border-width:1.4px}
+.profile .av .medal .mn{display:none}
 }
 .profile .nm{font-family:'Nunito';font-weight:800;color:#fff;font-size:calc(12px * var(--fs,1));line-height:1;max-width:32vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gear{width:44px;height:44px}
@@ -470,18 +293,8 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .rounds-stepper button{display:flex;align-items:center;justify-content:center;background:none;border:none}
 .chev{width:18px;height:18px;fill:none;stroke:var(--blue);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
 .rounds-stepper button:disabled .chev{stroke:#4b5b64}
-/* раскладка колонок: обычный фон, цветные значки */
-.soundtoggle.colmode,.soundtoggle.colmode.on{background:var(--card2);border-color:var(--line);box-shadow:none;color:inherit}
-.col-ic i{background:var(--blue)}
-.col-ic.mix i:nth-child(2),.col-ic.mix i:nth-child(3),.col-ic.mix i:nth-child(6){background:var(--red)}
-.soundtoggle.colmode.on .col-ic i{background:var(--blue)}
-.soundtoggle.colmode.on .col-ic.mix i:nth-child(2),.soundtoggle.colmode.on .col-ic.mix i:nth-child(3),.soundtoggle.colmode.on .col-ic.mix i:nth-child(6){background:var(--red)}
-/* звук/транскрипция/жесты — выкл. со цветным значком, вкл. зелёный */
-#ipaBtn:not(.on){color:var(--blue)}
 #soundBtn:not(.on){color:var(--gold)}
-.ratetoggle .rate-ic .p{color:var(--green)} .ratetoggle .rate-ic .n{color:var(--red)}
-/* ================= правки v15 ================= */
-/* профиль: аватар = «неполный круг», имя в рамке наложено снизу */
+/* ================= правки v15 ================= *//* профиль: аватар = «неполный круг», имя в рамке наложено снизу */
 .profile{background:none;border:none;box-shadow:none;padding:0;gap:0;min-width:0;max-width:40vw}
 .profile .av{width:42px;height:42px;border-radius:50%;border:3px solid var(--blue);background:var(--card2);position:relative;z-index:1}
 .profile .av .ic{width:22px;height:22px;color:var(--blue)}
@@ -489,84 +302,29 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 /* шестерёнка круглая */
 .gear{border-radius:50%}
 /* убрать выученные / озвучка / транскрипция / жесты — нейтральный фон как у раскладки, цветные значки */
-#masteryBtn,#masteryBtn.on,#soundBtn,#soundBtn.on,#ipaBtn,#ipaBtn.on,#rateBtn,#rateBtn.on{background:var(--card2);border:2px solid var(--line);box-shadow:none;color:inherit}
-#dedupBtn,#dedupBtn.on,#reviewWeakBtn,#reviewWeakBtn.on,#firstPassBtn,#firstPassBtn.on,#reworkBtn,#reworkBtn.on{background:var(--card2);border:2px solid var(--line);box-shadow:none;color:inherit}
+#soundBtn,#soundBtn.on{background:var(--card2);border:2px solid var(--line);box-shadow:none;color:inherit}
 #tourBtn,#tourBtn.on{background:var(--card2);border:2px solid var(--line);box-shadow:none}
 #tourBtn .mastery-ic{filter:grayscale(1);opacity:.45;font-size:calc(18px * var(--fs,1))}
 #tourBtn .mastery-ic .tro{width:22px;height:22px;color:#ffc800;stroke-width:2;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
-#tourBtn.on{border-color:var(--gold);background:var(--goldbg)} #tourBtn.on .mastery-ic{filter:none;opacity:1}
-#rTrain{margin:2px 0 10px;font-weight:800;font-size:calc(13px * var(--fs,1));color:var(--gold);background:var(--goldbg);border:1px solid var(--gold-d);border-radius:10px;padding:6px 10px;display:inline-block}
-#dedupBtn .mastery-ic{color:#46555d}
-#dedupBtn.on{border-color:var(--green)} #dedupBtn.on .mastery-ic{color:var(--green)}
-#reviewWeakBtn .mastery-ic{color:#46555d}
-#reviewWeakBtn.on{border-color:var(--green)} #reviewWeakBtn.on .mastery-ic{color:var(--green)}
-#masteryBtn .mastery-ic{color:#46555d}
-#masteryBtn.on{border-color:var(--green)} #masteryBtn.on .mastery-ic{color:var(--green)}
-#firstPassBtn .mastery-ic{color:#46555d}
-#firstPassBtn.on{border-color:var(--green)} #firstPassBtn.on .mastery-ic{color:var(--green)}
-#reworkBtn .mastery-ic{color:#46555d}
-#reworkBtn.on{border-color:var(--green)} #reworkBtn.on .mastery-ic{color:var(--green)}
+#tourBtn.on{border-color:var(--gold);background:var(--goldbg)}
+#tourBtn.on .mastery-ic{filter:none;opacity:1}
 #soundBtn,#soundBtn .ic{color:#5f7079}
-#soundBtn.on{border-color:var(--blue)} #soundBtn.on .ic{color:var(--blue)}
-#ipaBtn .ipa-tri{color:#5f7079}
-#ipaBtn.on{border-color:var(--blue)} #ipaBtn.on .ipa-tri{color:var(--blue)}
-#rateBtn .rate-ic .p{color:var(--green)} #rateBtn .rate-ic .n{color:var(--red)}
-#rateBtn.on{border-color:var(--blue)}
-#gestManualBtn .mastery-ic{color:#46555d}
-#gestManualBtn,#gestManualBtn.on{background:var(--card2);border:2px solid var(--line);box-shadow:none}
-#gestManualBtn.on{border-color:var(--green)} #gestManualBtn.on .mastery-ic{color:var(--green)}
+#soundBtn.on{border-color:var(--blue)}
+#soundBtn.on .ic{color:var(--blue)}
 /* сетка ручной настройки жестов: 2 ряда (+/−) × 3 колонки (A/B/C) */
 .gest-grid{display:none;padding:6px 0 2px}
-/* подрежимы «Тушить при неправильном сопоставлении»: статичный блок, всегда виден,
-   но неактивен (приглушён и некликабелен), пока не включён сам тумблер «Тушить» */
-.dimwrong-opts{display:block;margin:0 0 0 14px;padding-left:12px;border-left:2px solid var(--line);transition:opacity .18s ease}
-.dimwrong-opts.inactive{opacity:.4;pointer-events:none}
-.dimwrong-opts .setrow{padding:11px 0}
-.dimwrong-opts .lbl{font-size:calc(14px * var(--fs,1))}
-.dw-ic{font-family:'Nunito';font-weight:800;font-size:calc(12px * var(--fs,1));line-height:1;letter-spacing:.2px}
-.dw-flame{display:flex;align-items:center;justify-content:center}
 .gest-grid.show{display:block;animation:gestIn .18s ease}
 @keyframes gestIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-.gest-head,.gest-row{display:grid;grid-template-columns:1fr 62px 62px 62px;align-items:center;gap:8px}
-.gest-row{padding:7px 0}
-.gest-head{padding:2px 0 6px}
-.gest-head .gh{font-family:'Nunito';font-weight:800;font-size:calc(15px * var(--fs,1));text-align:center;color:var(--ink)}
-.gest-head .gh.a{color:var(--green)} .gest-head .gh.b{color:var(--blue)} .gest-head .gh.c{color:var(--gold)}
-.gest-row .grl{font-family:'Nunito';font-weight:700;font-size:calc(14px * var(--fs,1));color:var(--ink);line-height:1.2}
-.gest-row .grl b{font-size:calc(18px * var(--fs,1));vertical-align:-1px}
-.gest-row .grl.plus b{color:var(--green)} .gest-row .grl.minus b{color:var(--red)}
-.gest-grid .rounds-stepper.gst{width:60px;height:70px;justify-self:center}
-.gest-grid .rounds-stepper.gst[data-g="plus"] .gv{color:var(--green)}
-.gest-grid .rounds-stepper.gst[data-g="minus"] .gv{color:var(--red)}
 /* --- режимы «весов»: три взаимоисключающих тумблера + ручной грид --- */
 .wmode,.wmode.on{background:var(--card2);border:2px solid var(--line);box-shadow:none;color:inherit}
 #wmLinearBtn .mastery-ic{color:#46555d}
-#wmLinearBtn.on{border-color:var(--green)} #wmLinearBtn.on .mastery-ic{color:var(--green)}
-#wmProgBtn .rate-ic .p,#wmProgBtn .rate-ic .n{color:#46555d}
+#wmLinearBtn.on{border-color:var(--green)}
+#wmLinearBtn.on .mastery-ic{color:var(--green)}
 #wmProgBtn.on{border-color:var(--blue)}
-#wmProgBtn.on .rate-ic .p{color:var(--green)} #wmProgBtn.on .rate-ic .n{color:var(--gold)}
 #wmManualBtn .mastery-ic{color:#46555d}
-#wmManualBtn.on{border-color:var(--gold)} #wmManualBtn.on .mastery-ic{color:var(--gold)}
-/* --- «вес за клик» в списках «Мои слова»: те же три тумблера в модалке --- */
-#lwLinearBtn .mastery-ic{color:#46555d}
-#lwLinearBtn.on{border-color:var(--green)} #lwLinearBtn.on .mastery-ic{color:var(--green)}
-#lwProgBtn .rate-ic .p,#lwProgBtn .rate-ic .n{color:#46555d}
-#lwProgBtn.on{border-color:var(--blue)}
-#lwProgBtn.on .rate-ic .p{color:var(--green)} #lwProgBtn.on .rate-ic .n{color:var(--gold)}
-#lwManualBtn .mastery-ic{color:#46555d}
-#lwManualBtn.on{border-color:var(--gold)} #lwManualBtn.on .mastery-ic{color:var(--gold)}
-/* кнопка-открывашка настройки веса на экране «Мои слова» / «База слов» */
-#wWeightSetBtn,#dbWeightSetBtn{margin:0 0 10px;justify-content:flex-start}
-#wWeightSetBtn .wwm,#dbWeightSetBtn .wwm{font-weight:800;color:var(--teal)}
-/* экран результатов: трофей крупный, золотой (позиционирование — в правиле #results выше, модалка) */
-#rEmoji{line-height:0}
-.ic-rtrophy{width:64px;height:64px;color:var(--gold)}
-/* салют (конфетти) */
-#confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10000;display:none}
-.confetti-pc{position:absolute;top:-16px;width:9px;height:14px;border-radius:2px;opacity:.95;will-change:transform;animation:confdrop linear forwards}
-@keyframes confdrop{0%{transform:translate3d(0,-20px,0) rotate(0);opacity:1}100%{transform:translate3d(var(--dx,0),var(--dy,110vh),0) rotate(900deg);opacity:.9}}
-/* ================= правки v16 ================= */
-/* шапка крупнее: иконка A/B, название, by Abraziv */
+#wmManualBtn.on{border-color:var(--gold)}
+#wmManualBtn.on .mastery-ic{color:var(--gold)}
+/* ================= правки v16 ================= *//* шапка крупнее: иконка A/B, название, by Abraziv */
 .logoic{width:54px;height:54px}
 .topbar .logo{font-size:calc(27px * var(--fs,1));letter-spacing:-.5px;gap:11px}
 .topbar .logo .txt>span:first-child{font-size:calc(27px * var(--fs,1));line-height:1}
@@ -574,10 +332,6 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 /* карточка «Знаю хорошо» — отчётливый зелёный оттенок */
 .scard.kgreen{border-color:var(--green);background:rgba(88,204,2,.12)}
 .scard.kgreen .v{color:var(--green)}
-/* раскладка колонок: оба варианта — синие и красные плитки (ровно / вразброс) */
-#colBtn .col-ic i{background:var(--blue)}
-#colBtn .col-ic.split i:nth-child(even){background:var(--red)}
-#colBtn .col-ic.mix i:nth-child(2),#colBtn .col-ic.mix i:nth-child(3),#colBtn .col-ic.mix i:nth-child(6){background:var(--red)}
 /* заголовки разделов настроек — иконки в стиле Duolingo */
 .area .t{display:flex;align-items:center;gap:8px}
 .area .t .ic{width:21px;height:21px;flex:none;stroke-width:2.3}
@@ -588,8 +342,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 /* FAQ — иконки в стиле Duolingo */
 .faq-q{display:flex;align-items:flex-start;gap:9px}
 .faq-q .fic{width:19px;height:19px;flex:none;margin-top:1px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;color:var(--green)}
-/* ================= правки v17 ================= */
-/* шапка: крупнее иконка и название, профиль в уровень с шапкой */
+/* ================= правки v17 ================= *//* шапка: крупнее иконка и название, профиль в уровень с шапкой */
 .topbar{align-items:center}
 .logoic{width:62px;height:62px}
 .topbar .logo{font-size:calc(31px * var(--fs,1));gap:12px}
@@ -604,12 +357,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .modebar .modeswitch{flex:1;margin-bottom:0}
 .modebar .gear{flex:none;width:52px;height:52px;padding:0;border-radius:50%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
 .modebar .gear .ic{width:24px;height:24px}
-/* транскрипция: «+» над [ðə] */
-#ipaBtn .ipa-tri{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1}
-#ipaBtn .ipa-plus{font-size:calc(12px * var(--fs,1));font-weight:900;line-height:1}
-#ipaBtn .ipa-word{font-family:'Nunito',sans-serif;font-size:calc(13px * var(--fs,1));font-weight:800;letter-spacing:.2px;line-height:1.05}
-/* ================= правки v18 ================= */
-/* переключатель режимов: убрать лишние линии, активная — как зелёная кнопка */
+/* ================= правки v18 ================= *//* переключатель режимов: убрать лишние линии, активная — как зелёная кнопка */
 .modeswitch{border:none;background:var(--card2);border-radius:16px;padding:5px}
 .modeswitch button{border:none;border-radius:12px;box-shadow:none;gap:7px}
 .modeswitch button.on{background:var(--green);color:#fff;box-shadow:0 3px 0 var(--green-d)}
@@ -619,36 +367,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 /* шестерёнка — строго круглая, без сплющивания */
 .modebar .gear{flex:0 0 52px!important;width:52px!important;height:52px!important;min-width:52px;min-height:52px;max-width:52px;border-radius:50%!important;border:none!important;background:transparent!important;box-shadow:none!important;padding:0!important;aspect-ratio:auto;display:flex;align-items:center;justify-content:center}
 .modebar .gear .ic{width:24px;height:24px}
-/* иконки заголовков статистики */
-.section-title .sic{display:inline-block;width:18px;height:18px;vertical-align:-3px;margin-right:7px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.section-title .sic-x{color:var(--red)}
-.section-title .sic-ok{color:var(--green)}
-/* кружки зон в FAQ (инлайн) */
-.zdot{width:13px;height:13px;vertical-align:-2px;display:inline-block;margin-right:1px}
-/* ================= правки v20 ================= */
-/* угаданные плитки: остаются видимыми, но блёклые; жесты весов работают */
-.tile.done{border-color:var(--line)!important;background:rgba(120,140,150,.06)!important;color:#5b6770!important;box-shadow:none!important;border-bottom-color:var(--line)!important;cursor:default;transform:none!important;opacity:var(--done-op,1)}
-.tile.done .w{color:inherit!important}
-.tile.done .ipa{color:#46555d!important}
-/* «потушенная» из-за ошибки плитка — отличается от обычной угаданной красноватым оттенком */
-.tile.done.burnt{border-color:rgba(120,70,70,.55)!important;background:rgba(120,60,60,.10)!important;color:#8a6a6a!important;opacity:calc(var(--done-op,1) * .8)}
-.tile.done.burnt .w{color:inherit!important}
-.tile.done.burnt .burn-x{position:absolute;top:0;right:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:rgba(220,90,90,.85);cursor:pointer;pointer-events:auto;z-index:5;border-radius:0 14px 0 12px}
-.tile.done.burnt .burn-x:active{transform:scale(.82)}
-.tile.done.burnt .burn-x:hover{color:rgba(255,75,75,1)}
-/* «работа над ошибками»: оживлённые для пересборки плитки — янтарная рамка-подсказка */
-.tile.rework{border-color:rgba(255,200,0,.7)!important;box-shadow:0 0 0 2px rgba(255,200,0,.16) inset!important}
-/* баннер фазы пересборки над доской */
-.rework-banner{display:none;align-items:center;gap:8px;margin:0 0 10px;padding:9px 12px;
-  background:rgba(255,200,0,.12);border:2px solid rgba(255,200,0,.5);border-radius:12px;
-  color:var(--gold);font-family:'Nunito',sans-serif;font-weight:800;
-  font-size:calc(12.5px * var(--fs,1));line-height:1.3}
-.rework-banner.show{display:flex}
-.rework-banner .ic{width:18px;height:18px;flex:none;color:var(--gold)}
-/* индикатор +/- крупнее и поверх всего */
-.tile .fb{font-size:calc(16px * var(--fs,1));z-index:6;opacity:1}
-/* ================= правки v21 ================= */
-/* четыре плитки дашборда — компактно, в один ряд, мелким шрифтом как у заголовков */
+/* ================= правки v21 ================= *//* четыре плитки дашборда — компактно, в один ряд, мелким шрифтом как у заголовков */
 #home .stat-grid{grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:6px}
 #home .stat-grid .scard{padding:9px 5px;border-radius:12px;border-width:2px}
 #home .stat-grid .scard .v{font-size:calc(18px * var(--fs,1));font-weight:900;line-height:1.02}
@@ -671,8 +390,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 /* Запас места внизу списка: доскроллив до конца, кнопки встают ВЫШЕ полосы тумана,
    поэтому в покое они полностью непрозрачны (туман гасит только пустоту под ними). */
 #home #homeTail{height:84px}
-/* ================= правки v22 ================= */
-/* шапка: только логотип, название всегда полностью видно (без обрезки) */
+/* ================= правки v22 ================= *//* шапка: только логотип, название всегда полностью видно (без обрезки) */
 .topbar{align-items:center}
 .topbar .logo{flex:1 1 auto;min-width:0}
 .topbar .logo .txt{overflow:visible}
@@ -682,53 +400,15 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .modebar .modeswitch{min-width:0}
 .modebar .profile{flex:none;align-self:center;margin-top:0}
 .modebar .profile .av{width:44px;height:44px}
-/* кнопки режимов — свои цвета: Слова синяя, Фразы красная, Пары зелёная */
-#modeWords.on{background:var(--blue)!important;color:#fff!important;box-shadow:0 4px 0 var(--blue-d)!important}
-#modePhr.on{background:var(--red)!important;color:#fff!important;box-shadow:0 4px 0 var(--red-d)!important}
-#modePairs.on{background:var(--green)!important;color:#fff!important;box-shadow:0 4px 0 var(--green-d)!important}
-#modeWords.on:active,#modePhr.on:active,#modePairs.on:active{transform:translateY(4px)}
-#modeWords.on:active{box-shadow:0 0 0 var(--blue-d)!important}
-#modePhr.on:active{box-shadow:0 0 0 var(--red-d)!important}
-#modePairs.on:active{box-shadow:0 0 0 var(--green-d)!important}
 /* все большие зелёные кнопки — единый стиль/тень */
-#startBtn,#againBtn,.btn.big,#genBtn.on,#pairGenBtn.on,#phrGenBtn.on{box-shadow:0 4px 0 var(--green-d)!important;border-radius:16px}
-#startBtn:active,#againBtn:active,.btn.big:active,#genBtn.on:active,#pairGenBtn.on:active,#phrGenBtn.on:active{box-shadow:0 0 0 var(--green-d)!important;transform:translateY(4px)}
+#startBtn,.btn.big{box-shadow:0 4px 0 var(--green-d)!important;border-radius:16px}
+#startBtn:active,.btn.big:active{box-shadow:0 0 0 var(--green-d)!important;transform:translateY(4px)}
 /* красные кнопки — тот же стиль тени */
 .btn.danger{box-shadow:0 4px 0 var(--red-d)!important;border-radius:16px}
 .btn.danger:active{box-shadow:0 0 0 var(--red-d)!important;transform:translateY(4px)}
-/* General не меняет высоту */
-#genBtn,#pairGenBtn,#phrGenBtn{min-height:56px;height:56px;line-height:1.15;white-space:normal}
 /* зоны дашборда: постоянная высота + усечение длинного текста */
 .zones .z{height:50px;min-height:50px;overflow:hidden;min-width:0}
 .zones .z b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;max-width:100%}
-/* ================= правки v23 ================= */
-/* переключатель режимов на экране результатов */
-.resbar{margin:0 0 16px}
-#modeWordsR.on{background:var(--blue)!important;color:#fff!important;box-shadow:0 4px 0 var(--blue-d)!important}
-#modePhrR.on{background:var(--red)!important;color:#fff!important;box-shadow:0 4px 0 var(--red-d)!important}
-#modePairsR.on{background:var(--green)!important;color:#fff!important;box-shadow:0 4px 0 var(--green-d)!important}
-#modeWordsR.on:active,#modePhrR.on:active,#modePairsR.on:active{transform:translateY(4px)}
-#modeWordsR.on:active{box-shadow:0 0 0 var(--blue-d)!important}
-#modePhrR.on:active{box-shadow:0 0 0 var(--red-d)!important}
-#modePairsR.on:active{box-shadow:0 0 0 var(--green-d)!important}
-/* ================= правки v24 (ГЛАГОЛЫ) ================= */
-.verbrow{margin-top:8px}
-.verbrow .vsub{font-size:calc(12px * var(--fs,1));font-weight:800}
-#modeVerbs.on,.verbrow .vsub.on{background:#8a5cf6!important;color:#fff!important;box-shadow:0 4px 0 #6f3fd6!important}
-#modeVerbsR.on{background:#8a5cf6!important;color:#fff!important;box-shadow:0 4px 0 #6f3fd6!important}
-#modeVerbsR.on:active{box-shadow:0 0 0 #6f3fd6!important;transform:translateY(4px)}
-.resverbrow{margin:-8px 0 16px}
-#modeVerbs.on:active,.verbrow .vsub.on:active{box-shadow:0 0 0 #6f3fd6!important;transform:translateY(4px)}
-.verbrow.subsoff .vsub{opacity:.42}
-/* ===== строка ГРАММАТИКА (Грамматика/Времена/Тест): стиль строки глаголов, цвет синий ===== */
-.gramrow{margin-top:8px}
-.gramrow .gsub{font-size:calc(12px * var(--fs,1));font-weight:800}
-#modeGram.on,.gramrow .gsub.on{background:var(--blue)!important;color:#fff!important;box-shadow:0 4px 0 var(--blue-d)!important}
-#modeGram.on:active,.gramrow .gsub.on:active{box-shadow:0 0 0 var(--blue-d)!important;transform:translateY(4px)}
-/* под-кнопки остаются непрозрачными (как у глаголов) — чтобы контент не просвечивал при скролле */
-.gramrow.subsoff .gsub{opacity:1;background:var(--card2);color:var(--muted)}
-.gramrow #modeGram{background:var(--card2)}
-
 /* ===== строка CITIZEN (MeatQuiz/Test/Write/Read): как строка глаголов, акцент фиолетовый ===== */
 .citrow{margin-top:8px}
 .citrow .csub{font-size:calc(12px * var(--fs,1));font-weight:800}
@@ -745,31 +425,29 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 #modePork.on:active,.porkrow .psub.on:active{box-shadow:0 0 0 #a83e59!important;transform:translateY(4px)}
 .porkrow.subsoff .psub{opacity:1;background:var(--card2);color:var(--muted)}
 .porkrow #modePork{background:var(--card2)}
-/* Write/Read пока не активны: видно, что «скоро» — приглушены, но кликабельны */
-.citrow .csub.csoon{opacity:.5}
-.citrow .csub.csoon.on{opacity:1}
 /* Адаптив: обычно — подписи; если не помещаются — JS вешает .icononly и показываем иконки */
 .citrow button{display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;overflow:hidden}
 .citrow button .ic{flex:none}
 .citrow .clbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.citrow .csub .ic{display:none}                     /* в обычном виде у Test/Write/Read только подпись */
-.citrow.icononly .clbl{display:none}                /* тесно — прячем подписи… */
-.citrow.icononly .csub .ic{display:inline-flex}     /* …и показываем иконки у Test/Write/Read */
+.citrow .csub .ic{display:none}
+/* в обычном виде у Test/Write/Read только подпись */
+.citrow.icononly .clbl{display:none}
+/* тесно — прячем подписи… */
+.citrow.icononly .csub .ic{display:inline-flex}
+/* …и показываем иконки у Test/Write/Read */
 .citrow.icononly button{gap:0}
 /* запасной вариант на очень узких экранах, даже если JS не успел измерить */
 @media (max-width:340px){
-  #home .citrow .clbl{display:none}
-  #home .citrow .csub .ic{display:inline-flex}
-  #home .citrow button{gap:0}
+#home .citrow .clbl{display:none}
+#home .citrow .csub .ic{display:inline-flex}
+#home .citrow button{gap:0}
 }
-
 /* ===== MeatQuiz: на главном экране оставлены ТОЛЬКО кнопки основного режима =====
    Ряды Слова/Фразы/Пары, Глаголы и Грамматика скрыты, но остаются в DOM, чтобы
    внутренняя логика (переключатели, подсветка) не падала. Шестерёнка настроек
    остаётся доступной (верхний правый угол). Основной режим включён по умолчанию. */
-#home .citrow{margin-top:0}   /* ряд режимов (Test / Write / Read) + шестерёнка */
-
-/* ===================== ГРАММАТИКА · ТЕСТ (#gtest) ===================== */
+#home .citrow{margin-top:0}
+/* ряд режимов (Test / Write / Read) + шестерёнка *//* ===================== ГРАММАТИКА · ТЕСТ (#gtest) ===================== */
 .gt-head{display:flex;align-items:center;gap:10px;padding:6px 2px 2px}
 .gt-htitle{flex:1;text-align:center;font-family:'Nunito';font-weight:900;font-size:calc(17px * var(--fs,1));color:#fff}
 .gt-icbtn{width:42px;height:42px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
@@ -798,24 +476,6 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .ct-findname .fn-ru{color:var(--muted);font-weight:700}
 /* --- перевод зон на силуэте (RU-строка под английской подписью) --- */
 .ct-cow .cow-zone text.zru{fill:#cfe0ea;font-weight:700}
-#gtScore{color:var(--green)}
-.gt-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.gt-tag{font-family:'Nunito';font-weight:800;font-size:calc(11px * var(--fs,1));
-  padding:4px 10px;border-radius:999px;background:rgba(28,176,246,.16);color:var(--blue);letter-spacing:.2px}
-.gt-tag.neg{background:rgba(255,75,75,.16);color:var(--red)}
-.gt-sentence{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:18px 16px;
-  font-family:'Nunito';font-weight:800;font-size:calc(19px * var(--fs,1));line-height:1.7;color:#fff;
-  transition:border-color .2s ease,box-shadow .2s ease}
-.gt-sentence.gt-focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(28,176,246,.22)}
-.gt-gap{display:inline-block;min-width:46px;text-align:center;padding:1px 8px;margin:0 1px;border-radius:8px;
-  border-bottom:3px solid var(--muted);color:var(--muted);font-weight:900}
-.gt-gap.on{border-bottom-color:var(--blue);background:rgba(28,176,246,.16);color:var(--blue);
-  animation:gtPulse 1.1s ease-in-out infinite}
-.gt-gap.ok{border-bottom-color:var(--green);background:rgba(88,204,2,.16);color:var(--green);animation:none}
-@keyframes gtPulse{0%,100%{box-shadow:0 0 0 0 rgba(28,176,246,.0)}50%{box-shadow:0 0 0 4px rgba(28,176,246,.18)}}
-.gt-hint{display:flex;gap:7px;align-items:flex-start;margin:12px 2px 0;color:var(--muted);
-  font-size:calc(13px * var(--fs,1));font-weight:700;line-height:1.4}
-.gt-hint .ic{width:16px;height:16px;flex:0 0 auto;color:var(--gold);margin-top:2px}
 .gt-q{margin:18px 2px 10px;font-family:'Nunito';font-weight:800;font-size:calc(15px * var(--fs,1));color:#fff}
 .gt-opts{display:flex;flex-direction:column;gap:9px}
 .gt-opt{font-family:'Nunito';font-weight:800;font-size:calc(16px * var(--fs,1));text-align:center;
@@ -834,9 +494,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .gt-final{text-align:center;padding:26px 10px}
 .gt-final .gt-big{font-family:'Nunito';font-weight:900;font-size:calc(40px * var(--fs,1));color:var(--blue)}
 .gt-final .gt-sub{color:var(--muted);font-weight:800;margin:6px 0 22px;font-size:calc(15px * var(--fs,1))}
-
-/* ===================== CITIZEN · ТЕСТ (#ctest) ===================== */
-/* Базовая разметка повторяет grammar-тест (классы gt-*), здесь только
+/* ===================== CITIZEN · ТЕСТ (#ctest) ===================== *//* Базовая разметка повторяет grammar-тест (классы gt-*), здесь только
    перекрашиваем акцент в фиолетовый и добавляем стили для вопросов
    с несколькими ответами (multi-select). */
 #ctest{max-width:560px;margin:0 auto;padding:8px 0 24px}
@@ -886,12 +544,14 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .ct-cow .cow-zone{cursor:pointer}
 .ct-cow .cow-zone path{fill:#3f4a5e;stroke:none;transition:fill .12s}
 .ct-cow .cow-zone .tailline{fill:none;stroke:#3f4a5e;stroke-width:8;stroke-linecap:round;transition:stroke .12s}
-@media (hover:hover){ .ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover .tailline{stroke:#4d5a72} }
+@media (hover:hover){
+.ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover .tailline{stroke:#4d5a72}
+}
 .ct-cow .cow-zone text{fill:#fff;font-family:'Nunito';font-weight:800;text-anchor:middle;pointer-events:none}
 .ct-cow .zpill{fill:transparent;stroke:none;transition:fill .12s;pointer-events:none}
 @media (hover:hover){
-  .ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover path{fill:#4d5a72}
-  .ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover .zpill{fill:rgba(255,255,255,.16)}
+.ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover path{fill:#4d5a72}
+.ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover .zpill{fill:rgba(255,255,255,.16)}
 }
 .ct-cow .cow-zone.sel .zpill{fill:#1c7fd6}
 .ct-cow .cow-zone.ok .zpill{fill:#2f9e57}
@@ -899,6 +559,20 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .ct-cow .cow-zone.bad text{opacity:.85}
 .ct-cow .cow-zone.bad,.ct-cow.off .cow-zone{cursor:default;pointer-events:none}
 .ct-cow .cow-zone.shake{animation:shake .4s}
+/* ── УДОБСТВО ТАПА (Find) ─────────────────────────────────────────────
+   1) Плашка с названием зоны КЛИКАБЕЛЬНА: у узких зон (NECK, TENDERLOIN,
+      HOCK, OX TAIL…) плашка заметно крупнее самой полосы мяса — попасть
+      по подписи проще, чем по контуру. Раньше подпись была «прозрачна»
+      для тапов (pointer-events:none) и работала только как украшение.
+   2) Для погасшей зоны (.bad/.ok) и заблокированной схемы (.off)
+      кликабельность подписи явно выключаем: pointer-events наследуется,
+      и auto на детях «пробивал» бы none, выставленный на самой зоне.
+   3) touch-action:manipulation убирает задержку двойного тапа на схеме. */
+.ct-cow{touch-action:manipulation}
+.ct-cow .cow-zone .zpill,.ct-cow .cow-zone text{pointer-events:auto;cursor:pointer}
+.ct-cow .cow-zone.bad .zpill,.ct-cow .cow-zone.bad text,
+.ct-cow .cow-zone.ok .zpill,.ct-cow .cow-zone.ok text,
+.ct-cow.off .cow-zone .zpill,.ct-cow.off .cow-zone text{pointer-events:none;cursor:default}
 /* ── СХЕМЫ ТУШИ (Beef/Pork · Find) ── силуэт грузится из внешнего файла
    (dictionary/cow_diagram.svg или pig_diagram.svg). Поверх — слой с ТЕКСТОВЫМИ
    подписами (Nunito) и прозрачными кликабельными зонами. Подсветка ТОЛЬКО
@@ -910,11 +584,14 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
   text-anchor:middle;dominant-baseline:middle;paint-order:stroke;
   stroke:rgba(0,0,0,.55);stroke-width:3px;transition:fill .12s}
 @media (hover:hover){
-  .pig-hits .cow-zone:not(.bad):not(.ok):hover .zlab{fill:#4fb8ff}
+.pig-hits .cow-zone:not(.bad):not(.ok):hover .zlab{fill:#4fb8ff}
 }
-.pig-hits .cow-zone.sel .zlab{fill:#3b9dff}          /* выбор — синий */
-.pig-hits .cow-zone.ok  .zlab{fill:#4ee38a}          /* верно — зелёный */
-.pig-hits .cow-zone.bad .zlab{fill:#ff5f74}          /* неверно — красный */
+.pig-hits .cow-zone.sel .zlab{fill:#3b9dff}
+/* выбор — синий */
+.pig-hits .cow-zone.ok  .zlab{fill:#4ee38a}
+/* верно — зелёный */
+.pig-hits .cow-zone.bad .zlab{fill:#ff5f74}
+/* неверно — красный */
 .pig-hits .cow-zone.shake .zlab{animation:shake .4s}
 /* инструкция для вопросов с несколькими ответами */
 .ct-pickneed{margin:14px 2px 8px;font-family:'Nunito';font-weight:800;
@@ -925,7 +602,8 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
   padding:9px 14px;border-radius:12px;background:var(--card2);border:2px solid var(--line);color:var(--gold)}
 .ct-hintbtn .ic{width:16px;height:16px;color:var(--gold)}
 .ct-hintbtn:active{transform:translateY(2px)}
-body.no-hints .ct-hintbtn{display:none!important}   /* подсказки выключены в настройках */
+body.no-hints .ct-hintbtn{display:none!important}
+/* подсказки выключены в настройках */
 .ct-hint{display:none;margin:12px 2px 0;color:var(--muted);
   font-size:calc(13px * var(--fs,1));font-weight:700;line-height:1.5}
 .ct-hint.show{display:block}
@@ -935,79 +613,6 @@ body.no-hints .ct-hintbtn{display:none!important}   /* подсказки вык
 #ctest .gt-exp{line-height:1.5}
 /* финальный экран */
 #ctest .gt-final .gt-big{color:var(--purple)}
-
-/* ===================== ГРАММАТИКА · ОТЧЁТ (#gtReport) ===================== */
-.gtr-overlay{position:fixed;inset:0;z-index:9998;display:flex;
-  background:rgba(8,10,14,.72);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
-.gtr-overlay.hide{display:none}
-.gtr-panel{display:flex;flex-direction:column;width:100%;max-width:600px;margin:auto;max-height:100%;
-  background:var(--bg);border:1px solid var(--line);overflow:hidden}
-@media(min-width:560px){.gtr-panel{max-height:92vh;border-radius:22px;box-shadow:0 24px 70px rgba(0,0,0,.5)}}
-.gtr-head{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:13px 15px;
-  border-bottom:1px solid var(--line);background:var(--card);
-  padding-top:calc(env(safe-area-inset-top,0px) + 13px)}
-.gtr-title{flex:1;font-family:'Nunito';font-weight:900;font-size:calc(19px * var(--fs,1));color:#fff}
-.gtr-x{width:40px;height:40px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
-  background:var(--card2);border:2px solid var(--line);border-radius:12px;color:var(--muted);cursor:pointer}
-.gtr-x:active{transform:translateY(2px)}
-.gtr-x .ic{width:20px;height:20px;color:var(--muted)}
-.gtr-body{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 14px 8px}
-.gtr-foot{flex:0 0 auto;display:flex;gap:10px;padding:12px 14px;
-  padding-bottom:calc(env(safe-area-inset-bottom,0px) + 12px);
-  border-top:1px solid var(--line);background:var(--card)}
-.gtr-foot .btn{flex:1 1 0;width:auto;margin:0}
-.gtr-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  background:var(--card);border:2px solid var(--line);border-radius:16px;padding:13px 16px;margin-bottom:14px}
-.gtr-sum-big{font-family:'Nunito';font-weight:900;font-size:calc(26px * var(--fs,1));color:var(--blue);line-height:1.05}
-.gtr-sum-sub{font-size:calc(11px * var(--fs,1));font-weight:800;color:var(--muted);
-  text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
-.gtr-sum-pct{font-family:'Nunito';font-weight:900;font-size:calc(22px * var(--fs,1));color:var(--green)}
-.gtr-rank{display:flex;align-items:center;gap:8px;font-family:'Nunito';font-weight:800;font-size:calc(13px * var(--fs,1));border-radius:14px;padding:10px 14px;margin:-6px 0 14px}
-.gtr-rank .ic{width:17px;height:17px;flex:none}
-.gtr-rank.ok{background:var(--kgreenbg,rgba(88,204,2,.12));border:2px solid var(--green);color:var(--green)}
-.gtr-rank.train{background:var(--card);border:2px solid var(--line);color:var(--muted)}
-.gtr-task{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px 14px 8px;margin-bottom:14px}
-.gtr-tnum{font-family:'Nunito';font-weight:900;font-size:calc(14px * var(--fs,1));color:#fff;
-  display:flex;align-items:center;gap:9px;margin-bottom:9px}
-.gtr-lvl{font-size:calc(11px * var(--fs,1));font-weight:800;color:var(--blue);
-  background:rgba(28,176,246,.16);padding:2px 10px;border-radius:999px}
-.gtr-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.gtr-tag{font-family:'Nunito';font-weight:800;font-size:calc(10px * var(--fs,1));padding:3px 10px;border-radius:999px;
-  background:rgba(28,176,246,.14);color:var(--blue);letter-spacing:.2px}
-.gtr-tag.neg{background:rgba(255,75,75,.16);color:var(--red)}
-.gtr-sentence{font-family:'Nunito';font-weight:800;font-size:calc(17px * var(--fs,1));line-height:1.75;color:#fff;
-  background:var(--card2);border:1.5px solid var(--line);border-radius:13px;padding:12px 13px}
-.gtr-blank{display:inline-block;min-width:40px;text-align:center;color:var(--muted);
-  border-bottom:2px solid var(--muted);font-weight:900;padding:0 6px}
-.gtr-fill{display:inline-block;padding:1px 8px;border-radius:7px;font-weight:900}
-.gtr-fill.ok{background:rgba(88,204,2,.18);color:var(--green);border-bottom:2px solid var(--green)}
-.gtr-fill.bad{background:rgba(255,75,75,.18);color:var(--red);border-bottom:2px solid var(--red)}
-.gtr-step{border-top:1px solid var(--line);padding:12px 0 4px;margin-top:12px}
-.gtr-srow{display:flex;align-items:center;gap:8px;margin-bottom:9px}
-.gtr-slbl{font-family:'Nunito';font-weight:800;font-size:calc(13px * var(--fs,1));color:#fff}
-.gtr-badge{display:inline-flex;align-items:center;gap:5px;margin-left:auto;
-  font-family:'Nunito';font-weight:800;font-size:calc(11px * var(--fs,1));padding:4px 11px;border-radius:999px}
-.gtr-badge .ic{width:13px;height:13px}
-.gtr-badge.ok{background:rgba(88,204,2,.16);color:var(--green)}
-.gtr-badge.ok .ic{color:var(--green)}
-.gtr-badge.bad{background:rgba(255,75,75,.16);color:var(--red)}
-.gtr-badge.bad .ic{color:var(--red)}
-.gtr-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:8px}
-.gtr-chip{font-family:'Nunito';font-weight:800;font-size:calc(13px * var(--fs,1));padding:7px 13px;border-radius:11px;
-  background:var(--card2);border:2px solid var(--line);color:var(--muted)}
-.gtr-chip.ok{background:rgba(88,204,2,.16);border-color:var(--green);color:var(--green)}
-.gtr-chip.bad{background:rgba(255,75,75,.16);border-color:var(--red);color:var(--red)}
-.gtr-mini{font-family:'Nunito';font-weight:700;font-size:calc(14px * var(--fs,1));line-height:1.65;color:#d7dbe6;
-  background:var(--card2);border:1.5px solid var(--line);border-radius:11px;padding:9px 11px;margin-bottom:7px}
-.gtr-mini.bad{border-color:rgba(255,75,75,.42)}
-.gtr-mini.ok{border-color:rgba(88,204,2,.42)}
-.gtr-mini .gtr-blank{min-width:34px}
-.gtr-corlbl{font-family:'Nunito';font-weight:800;font-size:calc(11px * var(--fs,1));color:var(--green);
-  text-transform:uppercase;letter-spacing:.4px;margin:1px 0 5px}
-.gtr-exp{font-size:calc(12.5px * var(--fs,1));font-weight:600;line-height:1.5;color:#aab2c2;
-  background:rgba(255,255,255,.03);border-left:3px solid var(--blue);border-radius:0 9px 9px 0;
-  padding:8px 12px;margin-top:6px}
-
 /* Закрепляем строки режимов (Слова/Фразы/Пары/Глаголы) при скролле — на главном и на экране результатов */
 .modesticky{
   position:sticky;top:0;z-index:50;
@@ -1017,8 +622,7 @@ body.no-hints .ct-hintbtn{display:none!important}   /* подсказки вык
 /* «Прилипнув», панель НЕ заливается фоном: прозрачны и сама панель, и промежутки
    между кнопками — видно, как контент прокручивается за кнопками. Непрозрачны
    только сами кнопки (Слова/Фразы/Пары/Глаголы); добавляем им мягкую тень,
-   чтобы они читались как «плавающие» над прокручиваемым контентом. */
-/* ИСПРАВЛЕНИЕ «отскока» скролла наверх при быстром флике.
+   чтобы они читались как «плавающие» над прокручиваемым контентом. *//* ИСПРАВЛЕНИЕ «отскока» скролла наверх при быстром флике.
    Причина (остаточная): backdrop-filter:blur() на ЗАЛИПАЮЩЕМ (position:sticky)
    элементе. На части Android-браузеров (Chrome, Samsung Internet, WebView)
    композитор обязан пересэмплировать размытый фон КАЖДЫЙ кадр, пока контент
@@ -1030,8 +634,7 @@ body.no-hints .ct-hintbtn{display:none!important}   /* подсказки вык
    градиентная «шторка» из цвета фона (никакого пересэмплинга, композитор на
    скролле ничего не пересобирает). Контент мягко уходит под кнопки сверху и
    проступает к нижнему краю; кнопки читаются как «плавающие» за счёт своих
-   теней. Снапбэка больше нет. */
-/* «Шторка» за кнопками: градиент из цвета фона (--bg), который СКРЫВАЕТ
+   теней. Снапбэка больше нет. *//* «Шторка» за кнопками: градиент из цвета фона (--bg), который СКРЫВАЕТ
    прокручиваемый контент в верхней части панели и МЯГКО растворяется к
    нижнему краю. Итог: текст не «просвечивает» сразу за всеми кнопками —
    он плавно проступает только у нижней кромки панели (по «красной линии»),
@@ -1085,12 +688,7 @@ body.no-hints .ct-hintbtn{display:none!important}   /* подсказки вык
    ОДИН раз, уже после анимаций появления, и шторка сразу выравнивается. */
 html:not(.bg-ready) .modesticky::before{ display:none; }
 .modesticky .modebar{margin-bottom:0}
-.modesticky .verbrow{margin-top:6px;margin-bottom:6px}
-.modesticky .gramrow{margin-top:6px}
-.modesticky .resbar{margin:0}
-.modesticky .resverbrow{margin:8px 0 0}
-/* ================= правки v25 (адаптивная шапка) ================= */
-/* Название слева, профиль (аватар+имя) справа. Название имеет приоритет
+/* ================= правки v25 (адаптивная шапка) ================= *//* Название слева, профиль (аватар+имя) справа. Название имеет приоритет
    по ширине; профиль ужимается и НЕ перекрывает название. */
 .topbar{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:space-between!important;gap:clamp(6px,2vw,12px)!important}
 .topbar .logo{flex:1 1 auto!important;min-width:0!important;overflow:hidden!important;font-size:calc(clamp(18px,7vw,31px) * var(--fs,1))!important;gap:clamp(4px,1.6vw,12px)!important}
@@ -1106,16 +704,15 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 /* на узких экранах оставляем только аватар — имя сворачиваем,
    чтобы профиль не «съедал» название приложения */
 @media (max-width:430px){
-  .topbar .profile{max-width:none!important;flex:0 0 auto!important}
-  .topbar .profile .nm{display:none!important}
+.topbar .profile{max-width:none!important;flex:0 0 auto!important}
+.topbar .profile .nm{display:none!important}
 }
 /* строка режимов: 3 кнопки + шестерёнка всегда в конце, адаптивно, без наложений */
 #home .modebar{display:flex!important;align-items:center!important;gap:8px!important;flex-wrap:nowrap!important}
 #home .modebar .modeswitch{flex:1 1 auto!important;min-width:0!important}
 #home .modebar .modeswitch button{min-width:0!important;padding-left:4px!important;padding-right:4px!important}
 #home .modebar .soundtoggle.gear{flex:0 0 auto!important}
-/* ================= правки v42: профиль (имя + рамка) поверх названия ================= */
-/* Раньше профиль участвовал в сжатии шапки по флексу (название имело приоритет),
+/* ================= правки v42: профиль (имя + рамка) поверх названия ================= *//* Раньше профиль участвовал в сжатии шапки по флексу (название имело приоритет),
    из-за чего при длинном имени рамка имени начинала обрезаться. Теперь профиль
    выводим абсолютно у правого края шапки: он больше НЕ сжимается и не клиппится,
    поэтому имя и его рамка всегда видны целиком — при длинном имени профиль просто
@@ -1138,8 +735,8 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 }
 /* на узких экранах имя НЕ прячем — наоборот, оно перекрывает название */
 @media (max-width:430px){
-  .topbar .profile{max-width:none!important;flex:none!important}
-  .topbar .profile .nm{display:block!important;max-width:62vw!important}
+.topbar .profile{max-width:none!important;flex:none!important}
+.topbar .profile .nm{display:block!important;max-width:62vw!important}
 }
 /* ================= v50: бренд LingoFlip — колонка RU-EN / Cards справа от названия ================= */
 .topbar .logo .ttl-row{display:flex!important;align-items:center!important;gap:clamp(5px,1.7vw,9px)!important;min-width:0!important}
@@ -1151,35 +748,9 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 .topbar .logo .tagcol .ru{color:var(--green)!important}
 .topbar .logo .tagcol .en{color:var(--blue)!important}
 .topbar .logo .tagcol .dash{color:var(--muted)!important}
-/* ================= Прослушивание (listen) ================= */
-.listenrow{display:flex;gap:10px;margin-bottom:10px}
-.lbtn{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:14px 10px;border-radius:16px;border:1px solid var(--line);background:var(--card);
-  color:var(--fg);cursor:pointer;text-align:center;transition:transform .08s ease,border-color .15s}
-.lbtn:active{transform:scale(.97)}
-.lbtn:hover{border-color:var(--teal)}
-.lbtn .lic{width:30px;height:30px;color:var(--teal)}
-.lbtn-t{font-family:'Nunito';font-weight:800;font-size:calc(15px * var(--fs,1))}
-.lbtn-s{font-size:calc(11px * var(--fs,1));color:var(--muted);line-height:1.15}
-.ls-meta{text-align:center;color:var(--muted);font-size:calc(14px * var(--fs,1));margin:2px 0 14px}
-.ls-card{width:100%;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-  min-height:200px;padding:28px 18px;border-radius:24px;background:var(--card);box-shadow:0 8px 28px rgba(0,0,0,.10)}
-.ls-card:active{transform:scale(.995)}
-.ls-main{font-family:'Nunito';font-weight:800;font-size:calc(clamp(26px,8vw,40px) * var(--fs,1));line-height:1.1;color:var(--fg);word-break:break-word}
-.ls-ipa{font-size:calc(16px * var(--fs,1));color:var(--teal);min-height:18px}
-.ls-sub{font-size:calc(18px * var(--fs,1));color:var(--muted);min-height:20px}
-.ls-prog{text-align:center;color:var(--muted);font-size:calc(15px * var(--fs,1));margin:14px 0}
-.ls-prog b{color:var(--fg)}
-.ls-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:14px}
-.ls-controls .icon-btn{font-size:calc(26px * var(--fs,1));width:52px;height:52px}
-.lsplay{width:74px;height:74px;border-radius:50%;font-size:calc(28px * var(--fs,1));display:flex;align-items:center;justify-content:center;padding:0}
-.ls-opts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.ls-opts .soundtoggle{font-size:calc(13px * var(--fs,1));padding:8px 12px;border-radius:12px;width:auto}
-.ls-opts .soundtoggle.on{border-color:var(--teal);color:var(--teal)}
 /* ================= Рейтинг (leaderboard) ================= */
 .rk-sub{text-align:center;color:var(--muted);font-size:calc(13px * var(--fs,1));margin:2px 0 12px}
-/* кнопка-летопись на странице рейтинга: синяя окантовка + синяя книжка-иконка */
-/* квадратная кнопка-летопись в шапке рейтинга (только иконка, слева от «Обновить») */
+/* кнопка-летопись на странице рейтинга: синяя окантовка + синяя книжка-иконка *//* квадратная кнопка-летопись в шапке рейтинга (только иконка, слева от «Обновить») */
 .rk-histbtn{color:var(--blue);border-color:var(--blue)}
 .rk-histbtn .ic{width:20px;height:20px;color:var(--blue);stroke-width:1.9;filter:none}
 .rk-histbtn:active{transform:translateY(2px)}
@@ -1215,7 +786,9 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 .rk-rank-n{display:flex;align-items:center;justify-content:center;gap:2px}
 .rk-rank .rk-medal{width:21px;height:21px;flex:none;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
 .rk-rank .rk-pos{font-family:'Nunito';font-weight:900;font-size:calc(15px * var(--fs,1));line-height:1}
-.rk-rank .rk-pos.g{color:#ffc800}.rk-rank .rk-pos.s{color:#c5cfd6}.rk-rank .rk-pos.b{color:#d9822b}
+.rk-rank .rk-pos.g{color:#ffc800}
+.rk-rank .rk-pos.s{color:#c5cfd6}
+.rk-rank .rk-pos.b{color:#d9822b}
 .rk-av{flex:0 0 auto;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   background:var(--card2);border:3px solid var(--blue);font-family:'Nunito';font-weight:900;font-size:calc(18px * var(--fs,1));color:#fff;text-transform:uppercase;position:relative}
 .rk-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -1236,58 +809,16 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 .rk-row.top1{border-color:#ffc800;background:linear-gradient(100deg,rgba(255,200,0,.18),var(--card) 62%)}
 .rk-row.top2{border-color:#c5cfd6;background:linear-gradient(100deg,rgba(197,207,214,.16),var(--card) 62%)}
 .rk-row.top3{border-color:#d9822b;background:linear-gradient(100deg,rgba(217,130,43,.16),var(--card) 62%)}
-.rk-row.top1 .rk-av{border-color:#ffc800}.rk-row.top2 .rk-av{border-color:#c5cfd6}.rk-row.top3 .rk-av{border-color:#d9822b}
+.rk-row.top1 .rk-av{border-color:#ffc800}
+.rk-row.top2 .rk-av{border-color:#c5cfd6}
+.rk-row.top3 .rk-av{border-color:#d9822b}
 /* текущий пользователь больше НЕ выделяется рамкой — подпись «ВЫ» в колонке места, под номером */
 .rk-you{align-self:center;margin-top:1px;padding:2px 6px;border-radius:7px;
   background:var(--green);color:#06280a;font-family:'Nunito';font-weight:900;
   font-size:calc(10px * var(--fs,1));letter-spacing:.5px;line-height:1}
-.rk-medal.g{color:#ffc800}.rk-medal.s{color:#c5cfd6}.rk-medal.b{color:#d9822b}
-/* на узких экранах прячем оранжевый показатель «изучено», чтобы основной счётчик
-   игр и остальные статы помещались без наложения */
-@media (max-width:520px){
-  .rk-stat-learned{display:none}
-}
-/* ================= Прослушивание (аудио-сопоставление) ================= */
-.audbox{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
-.audsw{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;
-  border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;font-family:'Nunito';font-weight:800;font-size:calc(13px * var(--fs,1))}
-.audsw-k{width:38px;height:22px;border-radius:999px;background:var(--line);position:relative;transition:background .15s}
-.audsw-k::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .15s}
-.audsw.on{color:var(--teal);border-color:var(--teal)}
-.audsw.on .audsw-k{background:var(--teal)}
-.audsw.on .audsw-k::after{transform:translateX(16px)}
-.audbtn{flex:1 1 auto;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:11px 8px;border-radius:14px;border:1px solid var(--line);
-  background:var(--card);color:var(--fg);cursor:pointer;font-family:'Nunito';font-weight:800;font-size:calc(13px * var(--fs,1));transition:opacity .15s,border-color .15s,background .15s}
-/* svg-иконки внутри аудио-кнопок рисуются линией (наследуют цвет кнопки) */
-.audbtn .aud-ic,.repeatbtn .lic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-/* Полный режим (есть место): [наушники] ПРОСЛУШИВАНИЕ RU/EN.
-   Компактный (узкий экран / не хватает места): [наушники] RU/EN — слово прячем,
-   значок наушников остаётся всегда. */
-.audbtn .aud-ic{display:inline-flex;width:18px;height:18px;flex:none}
-.audbox.compact .aud-full{display:none}
-.audbox.compact .audbtn{min-width:0}
-/* кнопка «ПОВТОР»: в компакте остаётся только значок круговых стрелок */
-.audbox.compact .repeatbtn .rep-t{display:none}
-.audbtn:disabled{opacity:.4;cursor:default}
-.audbtn.on{border-color:var(--teal);background:var(--sel);color:var(--teal)}
-/* независимая кнопка «ПОВТОР» — в одном ряду с прослушиванием, но самостоятельная */
-.repeatbtn{flex:0 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  border-color:var(--teal);color:var(--teal);background:var(--card);letter-spacing:.3px}
-.repeatbtn .lic{width:18px;height:18px;flex:none}
-.repeatbtn:active{transform:scale(.97)}
-.audhint{font-size:calc(12px * var(--fs,1));color:var(--muted);margin:6px 2px 0}
-/* аудио-плитка на игровом поле: звуковая дорожка (тонкие столбики разной высоты,
-   центрированные по вертикали — как waveform). Высоты задаются инлайн из JS. */
-.tile.aud .audic{display:flex;align-items:center;justify-content:center;gap:2px;height:36px}
-.tile.aud .audic i{display:block;width:3px;border-radius:3px;background:var(--teal);transform-origin:center;will-change:transform;opacity:.92}
-.tile.aud.sel .audic i{background:var(--teal)}
-/* при воспроизведении — «живая» бегущая волна: столбики пульсируют со сдвигом фазы */
-.tile.aud.playing .audic i{animation:wavebar .9s ease-in-out infinite}
-@keyframes wavebar{0%,100%{transform:scaleY(.42);opacity:.6}50%{transform:scaleY(1.15);opacity:1}}
-/* уважение к настройке «уменьшить движение» */
-@media (prefers-reduced-motion:reduce){
-  .tile.aud.playing .audic i{animation:none}
-}
+.rk-medal.g{color:#ffc800}
+.rk-medal.s{color:#c5cfd6}
+.rk-medal.b{color:#d9822b}
 /* модалка подтверждения выхода из игры */
 .qm-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
   background:rgba(0,0,0,.55);padding:24px;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
@@ -1335,8 +866,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 .syncbtn.busy{pointer-events:none;opacity:.8}
 @keyframes sbshake{0%,100%{transform:translateX(0)}15%,55%{transform:translateX(-7px)}35%,75%{transform:translateX(7px)}}
 .syncbtn.shake{animation:sbshake .45s cubic-bezier(.36,.07,.19,.97)}
-/* ================= кнопки режимов: единый стиль с «Поехали» ================= */
-/* Раньше .modeswitch был серой панелью-обёрткой (background:var(--card2) + отступы),
+/* ================= кнопки режимов: единый стиль с «Поехали» ================= *//* Раньше .modeswitch был серой панелью-обёрткой (background:var(--card2) + отступы),
    из-за чего вокруг кнопок (особенно активной цветной) виднелся серый ободок —
    «странный бордер». Делаем кнопки самостоятельными, без рамки-обёртки. */
 .modeswitch{background:transparent!important;border:none!important;padding:0!important;gap:8px!important;border-radius:0!important}
@@ -1345,141 +875,75 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
    #modeWords/#modePhr/#modePairs/#modeVerbs ниже по каскаду через !important).
    Снимаем доставшуюся от темы тёмную рамку (border:1px solid #4f3a12). */
 .modeswitch button.on{border:none!important;border-radius:14px}
-/* бейдж раунда «Закрепление» и затемнение связанной сетки примеров */
-.rkind{display:inline-block;margin-left:6px;padding:2px 10px;border-radius:999px;font-weight:800;font-size:calc(12px * var(--fs,1));
-  background:var(--violet,#8a5cf6);color:#fff;vertical-align:middle}
-#phrExGrid.linked-dim{opacity:.75}
-#phrCtxBtn.on{background:var(--green);border-color:var(--green);color:#fff;box-shadow:0 4px 0 var(--green-d)!important;border-radius:16px}
-/* ================= правки v26 (итоговая модалка) ================= */
-/* плитки результата — компактные, в один ряд (как на главной), без огромных карточек */
+/* ================= правки v26 (итоговая модалка) ================= *//* плитки результата — компактные, в один ряд (как на главной), без огромных карточек */
 #results .result .scard{padding:8px 5px;border-radius:12px;border-width:2px;min-height:54px;
   display:flex;flex-direction:column;align-items:center;justify-content:center}
 /* кнопка «Ещё игра» в итоговой модалке — такой же размер, как у главной кнопки
    «Поехали» на главном экране (.btn.big = 19px). Перебиваем #results .result .big
-   {font-size:calc(52px * var(--fs,1))}: у кнопки тот же класс big, поэтому нужна бОльшая специфичность. */
-/* кнопки скорости озвучки: в ряд, в стиле кнопки «Озвучка», но синий контур и синий текст.
+   {font-size:calc(52px * var(--fs,1))}: у кнопки тот же класс big, поэтому нужна бОльшая специфичность. *//* кнопки скорости озвучки: в ряд, в стиле кнопки «Озвучка», но синий контур и синий текст.
    Просто ×1 / ×2; выбранная скорость — синяя заливка с белым текстом. */
 #speedRow{flex-direction:row;align-items:center;gap:8px}
 #settings #speedSlowBtn,#settings #speedNormBtn{width:52px;height:52px;font-family:'Nunito';font-weight:800;font-size:calc(18px * var(--fs,1));letter-spacing:.3px;
   background:var(--card2);border:2px solid var(--blue);color:var(--blue);box-shadow:none}
 #settings #speedSlowBtn.on,#settings #speedNormBtn.on{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 2px 0 var(--blue-d)}
-/* строка глаголов (Глаголы/Все/Топ-100/Неправ.): даже в неактивном «приглушённом»
-   состоянии кнопки остаются НЕпрозрачными — иначе при скролле прокручиваемый контент
-   просвечивает сквозь них. Приглушаем не прозрачностью, а цветом. */
-.verbrow.subsoff .vsub,.resverbrow.subsoff .vsub{opacity:1;background:var(--card2);color:var(--muted)}
-.verbrow #modeVerbs,.resverbrow #modeVerbsR{background:var(--card2)}
-
 /* ====================================================================
    АДАПТИВ ДЛЯ HD-ЭКРАНОВ (узкие телефоны, не только FHD)
    Принцип: в интерфейсе можно жертвовать длиной подписей и усекать текст.
    В ИГРЕ (#game .tile / .board) транкейт НЕ применяется — там перенос целиком.
-   ==================================================================== */
-
-/* короткие подписи плиток статистики прячем по умолчанию (показываем на узких) */
+   ==================================================================== *//* короткие подписи плиток статистики прячем по умолчанию (показываем на узких) */
 .scard .l{min-width:0}
 .scard .l .lf,.scard .l .ls{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
 .scard .l .lf{display:block}
 .scard .l .ls{display:none}
-
 /* кнопки интерфейса: разрешаем перенос на 2-ю строку (НО не игровые плитки) */
-.btn.block,.btn.big,.syncbtn .sb-title,.lvchip,.vsub{overflow-wrap:anywhere;word-break:break-word}
+.btn.block,.btn.big,.syncbtn .sb-title{overflow-wrap:anywhere;word-break:break-word}
 .btn.block,.btn.big{white-space:normal;line-height:1.15}
-
-/* усечение служебных подписей интерфейса (вне игры) */
-.lvchip,.lvchip .nm,.lvchip .pc,.lvchip .cnt{min-width:0;max-width:100%}
-.lvchip .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cov-line{overflow-wrap:anywhere}
-/* сегментные переключатели (tabs) и тогглы прослушивания: длинные подписи
-   («Последняя игра», «Перемешать: выкл») переносятся/сжимаются, а не распирают строку */
-.tabs button{min-width:0;overflow-wrap:anywhere;word-break:break-word;line-height:1.15}
-.ls-opts .soundtoggle{min-width:0;overflow-wrap:anywhere}
-
 /* --- телефоны (≤440px): короткие подписи статистики, компактнее шапка --- */
 @media (max-width:440px){
-  .scard .l .lf{display:none}
-  .scard .l .ls{display:block}
-  #home .stat-grid .scard,#results .result .stat-grid .scard{padding:8px 4px}
-  .topbar .logoic{width:clamp(28px,8.5vw,44px)!important;height:clamp(28px,8.5vw,44px)!important}
-  .topbar .profile .av{width:clamp(32px,9vw,42px)!important;height:clamp(32px,9vw,42px)!important}
-  .cov-line{font-size:calc(12px * var(--fs,1));line-height:1.5}
-  .cov-note{display:none}                 /* прячем «(вес ≥ N)» — экономим место */
-  .area .s{font-size:calc(11px * var(--fs,1))}
+.scard .l .lf{display:none}
+.scard .l .ls{display:block}
+#home .stat-grid .scard,#results .result .stat-grid .scard{padding:8px 4px}
+.topbar .logoic{width:clamp(28px,8.5vw,44px)!important;height:clamp(28px,8.5vw,44px)!important}
+.topbar .profile .av{width:clamp(32px,9vw,42px)!important;height:clamp(32px,9vw,42px)!important}
+/* прячем «(вес ≥ N)» — экономим место */
+.area .s{font-size:calc(11px * var(--fs,1))}
 }
-
 /* --- узкие HD-экраны (≤380px): значки вместо слов на кнопках режимов --- */
 @media (max-width:380px){
-  #home .modeswitch button .mlbl,#results .modeswitch button .mlbl{display:none}
-  #home .modeswitch button,#results .modeswitch button{padding-left:6px!important;padding-right:6px!important;gap:0!important}
-  /* глагольные суб-кнопки: мельче + усечение (это интерфейс, не игра) */
-  .vsub,.gsub{font-size:calc(11px * var(--fs,1))!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-  /* статистика ещё компактнее */
-  #home .stat-grid .scard .v,#results .result .stat-grid .scard .v{font-size:calc(16px * var(--fs,1))}
-  #home .stat-grid .scard .l,#results .result .stat-grid .scard .l{font-size:calc(9px * var(--fs,1))}
-  /* убираем необязательные описания интерфейса */
-  #homeSub{display:none}
-  #audHint,.audhint{display:none}
-  /* настройки: подпись не должна распирать строку */
-  .setlbl{flex:1 1 auto;min-width:0}
-  .setlbl .lbl{overflow-wrap:anywhere}
-  .setlbl .desc{max-width:none}
-  /* сегментные переключатели мельче, чтобы длинные подписи влезали в одну строку */
-  .tabs button{font-size:calc(12px * var(--fs,1))!important;padding:8px 7px}
-  .ls-opts .soundtoggle{font-size:calc(12px * var(--fs,1))}
-  /* немного уменьшаем игровые плитки ПО РАЗМЕРУ (без усечения текста) */
-  .board{gap:7px 8px}
-  .tile{min-height:52px;padding:10px 5px}
+#home .modeswitch button,#results .modeswitch button{padding-left:6px!important;padding-right:6px!important;gap:0!important}
+/* статистика ещё компактнее */
+#home .stat-grid .scard .v,#results .result .stat-grid .scard .v{font-size:calc(16px * var(--fs,1))}
+#home .stat-grid .scard .l,#results .result .stat-grid .scard .l{font-size:calc(9px * var(--fs,1))}
+/* убираем необязательные описания интерфейса */
+#homeSub{display:none}
+/* настройки: подпись не должна распирать строку */
+.setlbl{flex:1 1 auto;min-width:0}
+.setlbl .lbl{overflow-wrap:anywhere}
+.setlbl .desc{max-width:none}
 }
-
 /* --- совсем маленькие экраны (≤340px): максимальная компактность --- */
 @media (max-width:340px){
-  .topbar .logo .by{display:none}         /* «by Abraziv · версия» */
-  .topbar .logo .tagcol{display:none!important} /* колонка RU-EN / Cards — на узких прячем */
-  .area .s{display:none}                   /* подзаголовки разделов настроек */
-  .setlbl .desc{display:none}              /* описания настроек */
-  #home .stat-grid{gap:6px}
-  #home .stat-grid .scard{padding:7px 3px}
-  /* сжать сетку ручной настройки жестов под узкий экран */
-  .gest-head,.gest-row{grid-template-columns:1fr 50px 50px 50px;gap:5px}
-  .gest-grid .rounds-stepper.gst{width:48px;height:60px}
-  .gest-row .grl{font-size:calc(12px * var(--fs,1))}
-  .tile{min-height:48px;padding:8px 4px}
+.topbar .logo .by{display:none}
+/* «by Abraziv · версия» */
+.topbar .logo .tagcol{display:none!important}
+/* колонка RU-EN / Cards — на узких прячем */
+.area .s{display:none}
+/* подзаголовки разделов настроек */
+.setlbl .desc{display:none}
+/* описания настроек */
+#home .stat-grid{gap:6px}
+#home .stat-grid .scard{padding:7px 3px}
 }
-
 /* === адаптивные подписи кнопок: полная / короткая === */
-.thou-short,.reg-short{display:none}
-@media (max-width:440px){
-  .thou-full{display:none}
-  .thou-short{display:inline}
-}
+.reg-short{display:none}
 @media (max-width:360px){
-  .reg-full{display:none}
-  .reg-short{display:inline}
+.reg-full{display:none}
+.reg-short{display:inline}
 }
-
-/* === режим ПОВТОР: единый стиль кнопок управления === */
-.ls-controls{gap:12px}
-.ls-controls .icon-btn,.ls-controls .lsplay{
-  width:58px;height:58px;border-radius:16px;padding:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:calc(24px * var(--fs,1));line-height:1;flex:none;font-weight:800;
-  transition:transform .08s ease,border-color .15s,background .15s;
-}
-.ls-controls .icon-btn{border:2px solid var(--line);background:var(--card2);color:var(--ink);box-shadow:none}
-.ls-controls .icon-btn:hover{border-color:var(--teal)}
-.ls-controls .icon-btn:active{transform:scale(.94)}
-/* «Играть/Пауза» — акцентная, но того же размера и формы, что и остальные */
-.ls-controls .lsplay{background:var(--green);border:2px solid var(--green);color:#fff;box-shadow:0 4px 0 var(--green-d)}
-.ls-controls .lsplay:active{transform:translateY(4px);box-shadow:0 0 0 var(--green-d)}
-/* опции ПОВТОР — ровный ряд одинаковых кнопок */
-.ls-opts{gap:8px}
-.ls-opts .soundtoggle{border-radius:14px;padding:10px 12px;font-size:calc(13px * var(--fs,1));white-space:nowrap}
-
 /* размер шрифта (--fs): значение внутри степперов не масштабируем, чтобы цифры
    не обрезались фиксированным боксом степпера при больших масштабах */
 .rounds-stepper .rounds-val{font-size:20px}
 #settings .rounds-stepper .rounds-val{font-size:20px}
-.gest-grid .rounds-stepper.gst .rounds-val{font-size:18px}
-
 /* системное всплывающее сообщение (тост) — короткая подсказка снизу по тапу
    на некликабельные карточки/график. Шрифт дуолинго (Nunito), мелкий. */
 .toast{
@@ -1511,8 +975,6 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
   color:#fff; background:#7c5cff; border:none; box-shadow:0 3px 0 #5a3fd6; }
 .ct-speak:active{ transform:translateY(3px); box-shadow:0 0 0 #5a3fd6; }
 .ct-speak .ic{ width:18px; height:18px; }
-.ct-speak.speaking{ animation:ctSpeakPulse .9s ease-in-out infinite; }
-@keyframes ctSpeakPulse{ 0%,100%{ filter:brightness(1); } 50%{ filter:brightness(1.35); } }
 /* CITIZEN · WRITE — диктант */
 .cw-task{ padding:4px 2px; }
 .cw-instr{ display:flex; align-items:center; gap:10px; font-size:calc(16px * var(--fs,1)); font-weight:700; color:var(--ink); margin-bottom:12px; }
@@ -1655,7 +1117,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 20</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 21</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -1673,82 +1135,12 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
         <div class="rounds-stepper" id="fontStep"><button id="fontUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val" id="fontVal">100%</div><button id="fontDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
       </div>
       <div class="setrow">
-        <div class="setlbl"><div class="lbl">Яркость угаданных плиток</div><div class="desc">насколько видна «потухшая» плитка после верного ответа: 20–100%. Ниже — сильнее гасит (полезно на AMOLED, где она кажется слишком яркой)</div></div>
-        <div class="rounds-stepper" id="dimStep"><button id="dimUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val" id="dimVal">100%</div><button id="dimDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-      </div>
-      <div class="setrow">
         <div class="setlbl"><div class="lbl">Раундов в игре</div><div class="desc">от 1 до 10</div></div>
         <div class="rounds-stepper"><button id="roundsUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val" id="roundsVal">10</div><button id="roundsDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
       </div>
       <div class="setrow">
-        <div class="setlbl"><div class="lbl">Строк в колонке</div><div class="desc">пар в одном раунде, 3–12</div></div>
-        <div class="rounds-stepper"><button id="rowsUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val" id="rowsVal">10</div><button id="rowsDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-      </div>
-      <div class="setrow">
         <div class="setlbl"><div class="lbl">Турнирный режим</div><div class="desc" id="tourDesc">—</div></div>
         <button class="soundtoggle masterytoggle" id="tourBtn"><span class="mastery-ic"><svg class="ic tro"><use href="#ic-trophy"/></svg></span></button>
-      </div>
-      <div class="setrow">
-        <div class="setlbl"><div class="lbl">Тушить при неправильном сопоставлении</div><div class="desc" id="dimWrongDesc">—</div></div>
-        <button class="soundtoggle masterytoggle" id="dimWrongBtn"><span class="mastery-ic dw-flame" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.7 2.2c.3 3-1.2 4.4-2.7 5.8C8.3 9.6 6.7 11.3 6.7 14a5.3 5.3 0 0 0 10.6.3c0-2-.9-3.4-1.8-4.6-.5 1-1.2 1.6-2 1.9.7-2.4-.2-5-1.1-6.5-.5 1.3-1.4 2-2.3 2.7.9-1.7 1-3.6.6-5.6Z"/></svg>
-        </span></button>
-      </div>
-      <div class="dimwrong-opts" id="dimWrongOpts">
-        <div class="setrow">
-          <div class="setlbl"><div class="lbl">Тушить только EN слово</div><div class="desc">гаснет только английская плитка ошибочной пары</div></div>
-          <button class="soundtoggle masterytoggle dwmode" id="dwEnBtn"><span class="mastery-ic dw-ic">EN</span></button>
-        </div>
-        <div class="setrow">
-          <div class="setlbl"><div class="lbl">Тушить EN + его перевод</div><div class="desc">гаснет английская плитка и её <b>правильный</b> перевод, а не ошибочно выбранный — пара EN уходит из раунда</div></div>
-          <button class="soundtoggle masterytoggle dwmode" id="dwEnPairBtn"><span class="mastery-ic dw-ic">EN+</span></button>
-        </div>
-        <div class="setrow">
-          <div class="setlbl"><div class="lbl">Тушить оба неправильных слова</div><div class="desc">гаснут обе ошибочно выбранные плитки — и EN, и RU</div></div>
-          <button class="soundtoggle masterytoggle dwmode" id="dwBothBtn"><span class="mastery-ic dw-ic">оба</span></button>
-        </div>
-        <div class="setrow">
-          <div class="setlbl"><div class="lbl">Тушить оба + их пары</div><div class="desc">гаснут обе ошибочные плитки и их правильные пары — два слова уходят из раунда целиком</div></div>
-          <button class="soundtoggle masterytoggle dwmode" id="dwPairsBtn"><span class="mastery-ic dw-ic">+пары</span></button>
-        </div>
-        <div class="setrow">
-          <div class="setlbl"><div class="lbl">Работа над ошибками</div><div class="desc">в конце раунда потухшие (ошибочные) пары снова активируются — пересоберите их. Баллы за пересборку <b>не начисляются</b>, но жесты весов работают (если включён режим жестов)</div></div>
-          <button class="soundtoggle masterytoggle" id="reworkBtn"><span class="mastery-ic"><svg class="ic"><use href="#ic-loop"/></svg></span></button>
-        </div>
-      </div>
-      <div class="setrow">
-
-        <div class="setlbl"><div class="lbl">Раскладка колонок</div><div class="desc">Ру слева / En справа или вперемешку</div></div>
-        <button class="soundtoggle colmode" id="colBtn"><span class="col-ic" id="colIc"><i></i><i></i><i></i><i></i><i></i><i></i></span></button>
-      </div>
-      <div class="setrow">
-        <div class="setlbl"><div class="lbl">Без повторов в раунде</div><div class="desc">в одном раунде не будет двух одинаковых слов или одинаковых переводов (напр. study/learn)</div></div>
-        <button class="soundtoggle masterytoggle" id="dedupBtn"><span class="mastery-ic">✓</span></button>
-      </div>
-      <div class="setrow">
-        <div class="setlbl"><div class="lbl">Повтор слабых слов</div><div class="desc">по умолчанию сначала идут все новые слова (вес 0) по порядку, затем повтор по весам от меньшего к большему. Включи — и в каждую игру будет добавляться ~30% самых слабых слов на повтор, даже пока есть новые</div></div>
-        <button class="soundtoggle masterytoggle" id="reviewWeakBtn"><span class="mastery-ic"><svg class="ic"><use href="#ic-review"/></svg></span></button>
-      </div>
-      <div class="setrow">
-        <div class="setlbl"><div class="lbl">Сначала пройти все новые</div><div class="desc">показанное слово/фраза не вернётся (даже при весе 0), пока не будут показаны все остальные в наборе. Когда весь набор пройден — повтор по весам</div></div>
-        <button class="soundtoggle masterytoggle" id="firstPassBtn"><span class="mastery-ic">✓</span></button>
-      </div>
-      <div class="setrow">
-        <div class="setlbl"><div class="lbl">Убирать выученные</div><div class="desc">карточка с весом ≥ порога не выпадает</div></div>
-        <button class="soundtoggle masterytoggle" id="masteryBtn"><span class="mastery-ic">✓</span></button>
-      </div>
-      <div class="setrow">
-        <div class="setlbl"><div class="lbl">Порог «выучено» (вес)</div><div class="desc">по умолчанию 10</div></div>
-        <div class="rounds-stepper" id="masteryStep"><button id="masteryUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val" id="masteryVal">10</div><button id="masteryDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-      </div>
-      <div id="masteryWarn" class="hint" style="display:none;text-align:left;margin:-6px 2px 8px;color:var(--coral);font-weight:800"></div>
-      <div class="setrow">
-        <div class="setlbl"><div class="lbl">Порог для «веса» — верх</div><div class="desc">максимум: вес слова не поднимется выше этого значения. По умолчанию +10</div></div>
-        <div class="rounds-stepper" id="wcapHiStep"><button id="wcapHiUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val" id="wcapHiVal">+10</div><button id="wcapHiDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-      </div>
-      <div class="setrow">
-        <div class="setlbl"><div class="lbl">Порог для «веса» — низ</div><div class="desc">минимум: вес слова не опустится ниже этого значения. По умолчанию −10</div></div>
-        <div class="rounds-stepper" id="wcapLoStep"><button id="wcapLoUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val" id="wcapLoVal">−10</div><button id="wcapLoDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
       </div>
     </div>
     <div class="card" style="margin-top:12px">
@@ -1771,33 +1163,6 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
       <div class="setrow">
         <div class="setlbl"><div class="lbl">Подсказки</div><div class="desc">показывать кнопку «Подсказка» в режимах Test, Write и Read</div></div>
         <button class="soundtoggle" id="hintsBtn"><svg class="ic"><use href="#ic-mark"/></svg></button>
-      </div>
-      <div class="setrow">
-        <div class="setlbl"><div class="lbl">Транскрипция</div><div class="desc">[ipa] под словом (где есть транскрипция)</div></div>
-        <button class="soundtoggle ipatoggle" id="ipaBtn"><span class="ipa-tri"><span class="ipa-plus">+</span><span class="ipa-word">[ðə]</span></span></button>
-      </div>
-      <div class="setrow">
-        <div class="setlbl"><div class="lbl">Жесты веса</div><div class="desc">двойной тап +, удержание − (по категориям A / B / C)</div></div>
-        <button class="soundtoggle ratetoggle" id="rateBtn"><span class="rate-ic"><span class="p">+4</span><span class="p">+2</span><span class="n">−2</span><span class="n">−4</span></span></button>
-      </div>
-      <div class="setrow">
-        <div class="setlbl"><div class="lbl">Ручная настройка</div><div class="desc">свои веса жестов для категорий A / B / C (от 1 до 10)</div></div>
-        <button class="soundtoggle masterytoggle" id="gestManualBtn"><span class="mastery-ic">✓</span></button>
-      </div>
-      <div class="gest-grid" id="gestGrid">
-        <div class="gest-head"><span></span><span class="gh a">A</span><span class="gh b">B</span><span class="gh c">C</span></div>
-        <div class="gest-row">
-          <span class="grl plus">Двойной&nbsp;тап&nbsp;<b>+</b></span>
-          <div class="rounds-stepper gst" data-g="plus" data-band="0"><button class="gUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv">+4</div><button class="gDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-          <div class="rounds-stepper gst" data-g="plus" data-band="1"><button class="gUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv">+3</div><button class="gDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-          <div class="rounds-stepper gst" data-g="plus" data-band="2"><button class="gUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv">+2</div><button class="gDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-        </div>
-        <div class="gest-row">
-          <span class="grl minus">Удержание&nbsp;<b>−</b></span>
-          <div class="rounds-stepper gst" data-g="minus" data-band="0"><button class="gUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv">−4</div><button class="gDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-          <div class="rounds-stepper gst" data-g="minus" data-band="1"><button class="gUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv">−3</div><button class="gDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-          <div class="rounds-stepper gst" data-g="minus" data-band="2"><button class="gUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv">−2</div><button class="gDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-        </div>
       </div>
     </div>
 
@@ -1851,7 +1216,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
     <button class="icon-btn hide" id="nameBack" style="margin-bottom:14px">←</button>
     <div class="hero">
       <h1>Создай профиль</h1>
-      <p>Введи имя — на устройстве хранится <b>один</b> локальный профиль. Приложение запомнит, какие слова ты знаешь, а какие нет. Уже есть прогресс в облаке? Войди в аккаунт ниже и скачай его.</p>
+      <p>Введи имя — на устройстве хранится <b>один</b> локальный профиль. Приложение запомнит, какие отрубы ты знаешь, а какие нет. Уже есть прогресс в облаке? Войди в аккаунт ниже и скачай его.</p>
     </div>
     <div class="card">
       <div id="playersWrap" class="hide">
@@ -1884,7 +1249,6 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 
   <!-- HOME -->
   <div id="home" class="hide">
-    <div id="modeStickyTop" style="height:1px;margin:0;padding:0"></div>
     <div class="modesticky">
     <div class="modebar">
       <div class="modeswitch citrow" id="citRow">
@@ -1910,14 +1274,14 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 
     <div class="hero">
       <h1 id="greet">Привет!</h1>
-      <p id="homeSub">Соединяй английские слова с переводом на скорость. Число раундов настраивается сверху.</p>
+      <p id="homeSub">Угадай отруб по фотографии. Число вопросов настраивается в «Раундах» (Настройки).</p>
     </div>
 
     <div class="stat-grid">
-      <div class="scard teal" data-info="Сколько игр вы сыграли в этом режиме."><div class="v" id="hGames">0</div><div class="l"><span class="lf">Игр сыграно</span><span class="ls">Игр</span></div></div>
-      <div class="scard" data-info="Сколько разных карточек этого режима вам уже встречалось."><div class="v" id="hSeen">0</div><div class="l"><span class="lf">слов пройдено</span><span class="ls">Слов</span></div></div>
-      <div class="scard kgreen" data-info="Карточки с положительным весом — отвечаете на них уверенно."><div class="v" id="hKnown">0</div><div class="l"><span class="lf">Знаю хорошо</span><span class="ls">Хор</span></div></div>
-      <div class="scard coral" data-info="Карточки с отрицательным весом — чаще ошибаетесь, идут на повторение."><div class="v" id="hWeak">0</div><div class="l"><span class="lf">Знаю плохо</span><span class="ls">Плох</span></div></div>
+      <div class="scard teal" data-info="Сколько тестов вы прошли в этом режиме."><div class="v" id="hGames">0</div><div class="l"><span class="lf">Тестов пройдено</span><span class="ls">Тесты</span></div></div>
+      <div class="scard" data-info="Сколько вопросов вам было задано в этом режиме."><div class="v" id="hSeen">0</div><div class="l"><span class="lf">вопросов задано</span><span class="ls">Вопр</span></div></div>
+      <div class="scard kgreen" data-info="Сколько раз вы ответили верно с первой попытки."><div class="v" id="hKnown">0</div><div class="l"><span class="lf">верных ответов</span><span class="ls">Верно</span></div></div>
+      <div class="scard coral" data-info="Ответы с ошибкой — эти отрубы вернутся на повтор чаще."><div class="v" id="hWeak">0</div><div class="l"><span class="lf">ошибок</span><span class="ls">Ошиб</span></div></div>
     </div>
 
     <button class="syncbtn" id="syncBtnHome" type="button">
@@ -2160,43 +1524,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
   </div>
 </div>
 
-<div id="listWeightModal" class="qm-overlay hide">
-  <div class="qm-card" style="max-width:380px;max-height:90vh;overflow:auto">
-    <div class="qm-title">Вес за клик в списках</div>
-    <div class="qm-text">Сколько прибавляется или вычитается за одно нажатие <b>+</b>/<b>−</b> на степпере в списках «Мои слова». Это отдельная настройка — на игру она не влияет, работает только при ручной правке весов в словаре. Активен ровно один режим.</div>
-    <div class="setrow">
-      <div class="setlbl"><div class="lbl">Линейная</div><div class="desc">+1 за клик «плюс», −1 за «минус» — одинаково для всех уровней</div></div>
-      <button class="soundtoggle masterytoggle wmode" id="lwLinearBtn"><span class="mastery-ic">±1</span></button>
-    </div>
-    <div class="setrow">
-      <div class="setlbl"><div class="lbl">Прогрессивная</div><div class="desc">A / A+ / A++ → ±10, &nbsp;B / B+ / B++ → ±4, &nbsp;C / C+ / C++ → ±2</div></div>
-      <button class="soundtoggle masterytoggle wmode" id="lwProgBtn"><span class="rate-ic"><span class="p">10</span><span class="p">4</span><span class="n">2</span><span class="n">↕</span></span></button>
-    </div>
-    <div class="setrow">
-      <div class="setlbl"><div class="lbl">Ручная настройка</div><div class="desc">свой вес для категорий A / B / C (от 1 до 10), для + и −</div></div>
-      <button class="soundtoggle masterytoggle wmode" id="lwManualBtn"><span class="mastery-ic">✎</span></button>
-    </div>
-    <div class="gest-grid" id="lwGrid">
-      <div class="gest-head"><span></span><span class="gh a">A</span><span class="gh b">B</span><span class="gh c">C</span></div>
-      <div class="gest-row">
-        <span class="grl plus">Клик&nbsp;<b>+</b></span>
-        <div class="rounds-stepper gst lwst" data-g="plus" data-band="0"><button class="lwUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv lwv">+10</div><button class="lwDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-        <div class="rounds-stepper gst lwst" data-g="plus" data-band="1"><button class="lwUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv lwv">+4</div><button class="lwDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-        <div class="rounds-stepper gst lwst" data-g="plus" data-band="2"><button class="lwUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv lwv">+2</div><button class="lwDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-      </div>
-      <div class="gest-row">
-        <span class="grl minus">Клик&nbsp;<b>−</b></span>
-        <div class="rounds-stepper gst lwst" data-g="minus" data-band="0"><button class="lwUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv lwv">−10</div><button class="lwDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-        <div class="rounds-stepper gst lwst" data-g="minus" data-band="1"><button class="lwUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv lwv">−4</div><button class="lwDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-        <div class="rounds-stepper gst lwst" data-g="minus" data-band="2"><button class="lwUp"><svg class="chev"><use href="#ic-chevu"/></svg></button><div class="rounds-val gv lwv">−2</div><button class="lwDown"><svg class="chev"><use href="#ic-chevd"/></svg></button></div>
-      </div>
-    </div>
-    <button class="btn block" id="lwDone" style="margin-top:16px"><svg class="ic"><use href="#ic-check"/></svg>Готово</button>
-  </div>
-</div>
 
-
-<div id="confetti"></div>
 
 <!-- Единственный словарь MeatQuiz подключается ниже. -->
 
@@ -2229,47 +1557,16 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 
 <script>
 // ---------- constants ----------
-const PAIRS_PER_ROUND=10, MIN_ROUNDS=1, MAX_ROUNDS=10;
-const MIN_ROWS=3, MAX_ROWS=12;
-// Турнирный режим: игра попадает в зачёт рейтинга только если в ней
-// минимум RANK_MIN_ROUNDS раундов и минимум RANK_MIN_ROWS слов/фраз в раунде.
-const RANK_MIN_ROUNDS=5, RANK_MIN_ROWS=5;
+const MIN_ROUNDS=1, MAX_ROUNDS=10;
+// Единая версия приложения: подставляется в шапку (init) и оттуда же читается
+// диагностикой — при выпуске меняется ровно в одном месте.
+const APP_VERSION='16';
 // Турнирный режим в MeatQuiz — простой переключатель «участвовать в рейтинге».
 // По умолчанию ВКЛЮЧЁН. Выключение убирает игрока из турнирной таблицы (рейтинга);
 // прогресс (веса) всё равно синхронизируется.
 let tourOn = localStorage.getItem('wm2_tour')!=='0';
 function isTournament(){ return tourOn; }
-// ---- режим «Тушить при неправильном сопоставлении» ----
-// При ошибке плитки гаснут и больше не приносят положительных очков.
-// По умолчанию выключен. При включении отключается турнирный (рейтинговый) зачёт.
-// Подрежимы: 'en' — гасить только английскую плитку; 'both' — обе ошибочные плитки;
-// 'pairs' — обе ошибочные плитки + их правильные пары.
-let dimWrongOn = localStorage.getItem('wm2_dimwrong_on')==='1';
-let dimWrongMode = localStorage.getItem('wm2_dimwrong_mode') || 'en';
-// «Работа над ошибками»: в конце раунда потухшие пары снова активируются для
-// пересборки; баллы (веса) за это автоматически не начисляются, но жесты работают.
-let reworkOn = localStorage.getItem('wm2_rework')==='1';
-if(['en','enpair','both','pairs'].indexOf(dimWrongMode)<0) dimWrongMode='en';
-const MIN_MASTERY=1, MAX_MASTERY=50;
 let roundsSetting = Math.min(MAX_ROUNDS, Math.max(MIN_ROUNDS, parseInt(localStorage.getItem('wm2_rounds')||'10',10)||10));
-let rowsSetting = Math.min(MAX_ROWS, Math.max(MIN_ROWS, parseInt(localStorage.getItem('wm2_rows')||'10',10)||10));
-let colMode = (localStorage.getItem('wm2_col')==='mix') ? 'mix' : 'split';
-let masteryOn = (localStorage.getItem('wm2_mastery_on') ?? '1') !== '0'; // по умолчанию включено
-let dedupRounds = (localStorage.getItem('wm2_dedup') ?? '1') !== '0';     // не допускать повторов в раунде (по умолчанию вкл)
-let reviewWeak  = localStorage.getItem('wm2_review_weak') === '1';        // подмешивать ~30% слабых слов на повтор в каждой игре (по умолчанию выкл)
-let firstPassOnly = (localStorage.getItem('wm2_firstpass') ?? '1') !== '0'; // показанное не повторять, пока не пройден весь набор (по умолчанию вкл)
-let masterySetting = Math.min(MAX_MASTERY, Math.max(MIN_MASTERY, parseInt(localStorage.getItem('wm2_mastery')||'10',10)||10));
-// ---- предел веса слова: отдельно верхний (+) и нижний (−) пороги ----
-const MIN_WCAP=5, MAX_WCAP=100, WCAP_STEP=5;
-let weightCapHi = Math.min(MAX_WCAP, Math.max(MIN_WCAP, parseInt(localStorage.getItem('wm2_weightcap_hi')||'10',10)||10));
-let weightCapLo = Math.min(MAX_WCAP, Math.max(MIN_WCAP, parseInt(localStorage.getItem('wm2_weightcap_lo')||'10',10)||10));
-// Эффективный порог «выучено»: слово физически не может превысить потолок веса
-// (weightCapHi), поэтому порог удаления ограничиваем потолком. Иначе при пороге
-// ВЫШЕ потолка слово навсегда застревает на потолке и никогда не считается
-// выученным → «Убирать выученные» его не убирает и оно бесконечно выпадает.
-function masteryEff(){ return Math.min(masterySetting, weightCapHi); }
-// ограничить вес: не выше +weightCapHi и не ниже −weightCapLo
-function clampW(w){ return w>weightCapHi ? weightCapHi : (w<-weightCapLo ? -weightCapLo : w); }
 // ---- размер шрифта: масштаб всего текста через CSS-переменную --fs ----
 const MIN_FONT=10, MAX_FONT=300, FONT_STEP=10;
 let fontPct = Math.min(MAX_FONT, Math.max(MIN_FONT, parseInt(localStorage.getItem('wm2_fontscale')||'100',10)||100));
@@ -2287,76 +1584,14 @@ function setFont(n){
   try{ localStorage.setItem('wm2_fontscale', String(fontPct)); }catch(e){}
   renderFont();
 }
-// ---- яркость «потухшей» (угаданной) плитки: непрозрачность через CSS-переменную --done-op ----
-// 100% = как раньше (полностью видно); меньше — сильнее гасит (для AMOLED, где слишком ярко)
-const MIN_DIM=20, MAX_DIM=100, DIM_STEP=10;
-let dimPct = Math.min(MAX_DIM, Math.max(MIN_DIM, parseInt(localStorage.getItem('wm2_donedim')||'100',10)||100));
-function applyDim(){ try{ document.documentElement.style.setProperty('--done-op', (dimPct/100).toString()); }catch(e){} }
-applyDim();   // применяем сразу при загрузке
-function renderDim(){
-  applyDim();
-  const v=$('#dimVal'); if(v) v.textContent=dimPct+'%';
-  const up=$('#dimUp'), dn=$('#dimDown');
-  if(up) up.disabled = dimPct>=MAX_DIM;
-  if(dn) dn.disabled = dimPct<=MIN_DIM;
-}
-function setDim(n){
-  dimPct=Math.min(MAX_DIM,Math.max(MIN_DIM, Math.round(n/DIM_STEP)*DIM_STEP));
-  try{ localStorage.setItem('wm2_donedim', String(dimPct)); }catch(e){}
-  renderDim();
-}
-const KNOWN_THRESHOLD=3;   // вес >= 3 → знаю хорошо
-const WEAK_THRESHOLD=-1;   // вес <= -1 → знаю плохо
-// величина штрафа/жеста по тысяче: 1-1000 и 1001-2000 → 4, 2001-3000 → 3, далее → 2
-const TIER=[4,4,3,2,2];
-// ---- жесты веса по категориям A/B/C (заменяют расчёт «по тысячам») ----
-const GEST_DEFAULT_PLUS=[4,3,2];   // A / B / C — двойной тап (+)
-const GEST_DEFAULT_MINUS=[4,3,2];  // A / B / C — удержание (−, берётся как магнитуда)
-const MIN_GEST=1, MAX_GEST=10;
-let gestManual = localStorage.getItem('wm2_gest_manual')==='1';
-let gestPlus=GEST_DEFAULT_PLUS.slice(), gestMinus=GEST_DEFAULT_MINUS.slice();
-(function loadGest(){
-  const clamp=v=>Math.min(MAX_GEST,Math.max(MIN_GEST,(parseInt(v,10)||0)));
-  try{ const p=JSON.parse(localStorage.getItem('wm2_gest_plus')); if(Array.isArray(p)&&p.length===3) gestPlus=p.map(clamp); }catch(e){}
-  try{ const m=JSON.parse(localStorage.getItem('wm2_gest_minus')); if(Array.isArray(m)&&m.length===3) gestMinus=m.map(clamp); }catch(e){}
-})();
-// величина «плюса» жеста для слова (двойной тап)
-// величина «минуса» жеста/штрафа для слова (удержание и ошибка в раунде)
 // ---- режим изменения «весов» при сопоставлении пары: Линейная / Прогрессивная / Ручная ----
 // один активный режим за раз; задаёт величину + (за верно) и − (за ошибку) при матче
-const WMODE_PROG=[10,4,2];            // прогрессивная: A / B / C
-const WMODE_MANUAL_DEFAULT=[10,4,2];  // стартовые значения ручного режима (отдельно + и −)
 let weightMode = localStorage.getItem('wm2_weight_mode') || 'linear';
 if(['linear','progressive','manual'].indexOf(weightMode)<0) weightMode='linear';
-let weightManualPlus = WMODE_MANUAL_DEFAULT.slice();
-let weightManualMinus = WMODE_MANUAL_DEFAULT.slice();
 // Ручной режим для MeatQuiz — ДВЕ величины: +N за верно и −M за ошибку (1..10)
 let czManualPlus  = (function(){ const v=parseInt(localStorage.getItem('wm2_weight_manual_plus_n'),10);  return (v>=1&&v<=10)?v:2; })();
 let czManualMinus = (function(){ const v=parseInt(localStorage.getItem('wm2_weight_manual_minus_n'),10); return (v>=1&&v<=10)?v:2; })();
-(function loadWeightManual(){
-  const clamp=v=>Math.min(MAX_GEST,Math.max(MIN_GEST,(parseInt(v,10)||0)));
-  try{ const p=JSON.parse(localStorage.getItem('wm2_weight_manual_plus')); if(Array.isArray(p)&&p.length===3) weightManualPlus=p.map(clamp); }catch(e){}
-  try{ const m=JSON.parse(localStorage.getItem('wm2_weight_manual_minus')); if(Array.isArray(m)&&m.length===3) weightManualMinus=m.map(clamp); }catch(e){}
-})();
 // величина изменения веса при сопоставлении пары; plus=true → за верно (+), false → за ошибку (−, магнитуда)
-// ---- «вес за клик» в списках «Мои слова»: ОТДЕЛЬНАЯ настройка, на игру не влияет ----
-// задаёт, на сколько меняется вес при нажатии +/− на степпере в словарном списке
-let listWeightMode = localStorage.getItem('wm2_list_weight_mode') || 'linear';
-if(['linear','progressive','manual'].indexOf(listWeightMode)<0) listWeightMode='linear';
-let listManualPlus = WMODE_MANUAL_DEFAULT.slice();
-let listManualMinus = WMODE_MANUAL_DEFAULT.slice();
-(function loadListManual(){
-  const clamp=v=>Math.min(MAX_GEST,Math.max(MIN_GEST,(parseInt(v,10)||0)));
-  try{ const p=JSON.parse(localStorage.getItem('wm2_list_weight_manual_plus')); if(Array.isArray(p)&&p.length===3) listManualPlus=p.map(clamp); }catch(e){}
-  try{ const m=JSON.parse(localStorage.getItem('wm2_list_weight_manual_minus')); if(Array.isArray(m)&&m.length===3) listManualMinus=m.map(clamp); }catch(e){}
-})();
-// величина изменения веса за один клик степпера в списке; plus=true → «+», false → «−» (магнитуда)
-function listWeightModeLabel(){
-  return listWeightMode==='progressive' ? 'прогрессивный ±10/4/2'
-       : listWeightMode==='manual'      ? 'ручной'
-       :                                  'линейный ±1';
-}
-const PRESET_BONUS=10; // авторский набор: +10 к весу лёгких слов
 
 // ---------- storage ----------
 const $=s=>document.querySelector(s);
@@ -2370,49 +1605,20 @@ function genLocalId(){
 }
 function getLocalId(){ return localStorage.getItem('wm2_localid') || ''; }
 function ensureLocalId(){ let id=getLocalId(); if(!id){ id=genLocalId(); try{ localStorage.setItem('wm2_localid', id); }catch(e){} } return id; }
-function escHtml(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function escHtml(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function userKey(n){ return 'wm2_user_'+n; }
-// ===== Прослушивание (аудио-сопоставление): состояние =====
-// 'off' — обычная игра; 'ru' — озвучка вместо англ. (видишь перевод);
-// 'en' — озвучка вместо перевода (видишь англ.). Работает во всех наборах.
-let audMode = (function(){ const v=localStorage.getItem('wm2_aud'); return (v==='ru'||v==='en')?v:'off'; })();
-let audLast = (audMode==='en') ? 'en' : 'ru';
 function loadUser(n){
-  try{ const u=JSON.parse(localStorage.getItem(userKey(n))); if(u){u.weights=u.weights||{};u.seen=u.seen||[];u.games=u.games||0;u.offHundreds=u.offHundreds||[];u.stats=u.stats||{};u.last=u.last||null;u.presetOn=!!u.presetOn;u.preset2On=!!u.preset2On;u.levelsGeneral=(u.levelsGeneral!==false);u.levelsOff=u.levelsOff||[];u.daily=u.daily||{};u.phr=u.phr||{weights:{},seen:[],stats:{},daily:{},last:null,games:0};u.pairs=u.pairs||{weights:{},seen:[],stats:{},daily:{},last:null,games:0};u.pairsGeneral=(u.pairsGeneral!==false);u.pairsOff=u.pairsOff||[];u.phrGeneral=(u.phrGeneral!==false);u.phrOff=u.phrOff||[];u.phrContext=(u.phrContext!==false);u.phrVerbSel=u.phrVerbSel||[0];u.phrExSel=u.phrExSel||[0];u.verbs=u.verbs||{weights:{},seen:[],stats:{},daily:{},last:null,games:0};u.verbsTop=u.verbsTop||{weights:{},seen:[],stats:{},daily:{},last:null,games:0};u.verbsIrr=u.verbsIrr||{weights:{},seen:[],stats:{},daily:{},last:null,games:0};u.verbsPair=u.verbsPair||{weights:{},seen:[],stats:{},daily:{},last:null,games:0};u.verbsGeneral=(u.verbsGeneral!==false);u.verbsOff=u.verbsOff||[];
-    // Уровни глаголов: новая модель — явный список выбранных уровней (пусто = все).
-    // Миграция со старой модели (verbsGeneral + verbsOff): если был выбор по уровням,
-    // переносим как «выбранные = все уровни, кроме выключенных»; иначе пусто (= все).
-    if(!Array.isArray(u.verbsSel)){
-      u.verbsSel = (u.verbsGeneral===false)
-        ? [0,1,2].filter(li=>!(u.verbsOff||[]).includes(li))
-        : [];
-    }
-    return u;} }catch(e){}
-  return {name:n, weights:{}, seen:[], games:0, offHundreds:[], stats:{}, last:null, presetOn:false, preset2On:false, levelsGeneral:true, levelsOff:[], daily:{}, phr:{weights:{},seen:[],stats:{},daily:{},last:null,games:0}, pairs:{weights:{},seen:[],stats:{},daily:{},last:null,games:0}, pairsGeneral:true, pairsOff:[], phrGeneral:true, phrOff:[], phrContext:true, phrVerbSel:[0], phrExSel:[0], verbs:{weights:{},seen:[],stats:{},daily:{},last:null,games:0}, verbsTop:{weights:{},seen:[],stats:{},daily:{},last:null,games:0}, verbsIrr:{weights:{},seen:[],stats:{},daily:{},last:null,games:0}, verbsPair:{weights:{},seen:[],stats:{},daily:{},last:null,games:0}, verbsGeneral:true, verbsOff:[], verbsSel:[]};
+  // MeatQuiz: профиль — это имя и счётчики agames/arounds (см. applyMode).
+  // Огромную словарную структуру LingoFlip (phr/pairs/verbs…) больше не
+  // создаём; поля СТАРЫХ профилей не трогаем — stripStats/импорт совместимы.
+  try{ const u=JSON.parse(localStorage.getItem(userKey(n))); if(u){ u.name=u.name||n; return u; } }catch(e){}
+  return { name:n };
 }
 function saveUser(u){ localStorage.setItem(userKey(u.name),JSON.stringify(u)); }
 
 let user=null;
 
 
-// ── Якорь недели/дня ────────────────────────────────────────────────────────
-// WEEK_TZ_OFFSET_MIN — сдвиг (в минутах) часового пояса, по которому считаются
-// «день» и «неделя». 0 = UTC (как было). Если захотите сброс по МЕСТНОМУ
-// понедельнику (например, US Eastern = -300), поставьте здесь смещение —
-// И ОБЯЗАТЕЛЬНО согласуйте его с серверным ensure_week/pg_cron, иначе клиент и
-// сервер разойдутся в границе недели. Все ключи дней (dailyTime/dailyGames/...)
-// и weekStartKey используют ОДИН источник — dayKey(), поэтому модель остаётся
-// согласованной при любом смещении.
-const WEEK_TZ_OFFSET_MIN = 0;
-function dayKey(d){ const t=(d?d.getTime():Date.now())+WEEK_TZ_OFFSET_MIN*60000; return new Date(t).toISOString().slice(0,10); }
-function emptyProg(){ return {weights:{},seen:[],stats:{},daily:{},dailyTime:{},dailyGames:{},dailyGreen:{},dailyRed:{},last:null,games:0,rounds:0,totalTime:0,agames:0,arounds:0}; }
-// Начало текущей недели (понедельник) как ключ 'YYYY-MM-DD' в выбранном поясе —
-// согласовано с ключами dailyTime/daily/dailyGames (тот же dayKey).
-function weekStartKey(){
-  const t=Date.now()+WEEK_TZ_OFFSET_MIN*60000; const d=new Date(t);
-  const day=d.getUTCDay(); const diff=(day===0?6:day-1); // дней с понедельника
-  return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()-diff)).toISOString().slice(0,10);
-}
 function applyMode(){
   // MeatQuiz: активен только тест на гражданство (Test/Write/Read).
   // Старые режимы (Слова/Фразы/Пары/Глаголы) удалены — здесь осталась лишь
@@ -2424,8 +1630,6 @@ function applyMode(){
   }
 }
 
-// global translation overrides (правки перевода применяются для всех игроков в этом браузере)
-let overrides={}; try{ overrides=JSON.parse(localStorage.getItem('wm2_overrides')||'{}'); }catch(e){ overrides={}; }
 
 // ---------- озвучка (Web Speech API, системный синтезатор) ----------
 let soundOn = (localStorage.getItem('wm2_sound') ?? '1') !== '0';
@@ -2499,12 +1703,6 @@ function renderSpeed(){
   if(bn) bn.classList.toggle('on', !slow);
 }
 
-// ---------- режим транскрипции ----------
-let ipaOn = localStorage.getItem('wm2_ipa') === '1';
-function renderIpa(){
-  const b=$('#ipaBtn'); if(b){ b.classList.toggle('on', ipaOn); b.title = ipaOn?'Транскрипция включена':'Транскрипция выключена'; }
-  const board=$('#board'); if(board) board.classList.toggle('show-ipa', ipaOn);
-}
 
 // ---------- настройка числа раундов ----------
 function renderRounds(){
@@ -2517,19 +1715,6 @@ function setRounds(n){
   roundsSetting=Math.min(MAX_ROUNDS,Math.max(MIN_ROUNDS,n));
   localStorage.setItem('wm2_rounds', String(roundsSetting));
   renderRounds();
-  renderTournament();   // степпер ниже 5 → тумблер гаснет; оба ≥5 → загорается
-}
-function renderRows(){
-  const v=$('#rowsVal'); if(v) v.textContent=rowsSetting;
-  const up=$('#rowsUp'), dn=$('#rowsDown');
-  if(up) up.disabled = rowsSetting>=MAX_ROWS;
-  if(dn) dn.disabled = rowsSetting<=MIN_ROWS;
-}
-function setRows(n){
-  rowsSetting=Math.min(MAX_ROWS,Math.max(MIN_ROWS,n));
-  localStorage.setItem('wm2_rows', String(rowsSetting));
-  renderRows();
-  renderTournament();
 }
 // ---------- Турнирный режим (зачёт в рейтинг) ----------
 function renderTournament(){
@@ -2571,170 +1756,6 @@ function toggleHints(){
   localStorage.setItem('wm2_hints', hintsOn?'1':'0');
   applyHints();
 }
-// ---------- Режим «Тушить при неправильном сопоставлении» ----------
-function renderDimWrong(){
-  const b=$('#dimWrongBtn'); if(b){
-    b.classList.toggle('on', dimWrongOn);
-    b.title = dimWrongOn ? 'Включено: при ошибке плитки гаснут и не приносят положительных очков'
-                         : 'Выключено';
-  }
-  const d=$('#dimWrongDesc'); if(d) d.textContent = dimWrongOn
-    ? 'При первой ошибке плитки гаснут и больше не приносят положительных очков. Турнирный (рейтинговый) зачёт при этом отключён.'
-    : 'При ошибке плитка гаснет — нельзя добрать по ней положительные очки. Включение отключает турнирный режим.';
-  const opts=$('#dimWrongOpts'); if(opts) opts.classList.toggle('inactive', !dimWrongOn);
-  const en=$('#dwEnBtn'), ep=$('#dwEnPairBtn'), bo=$('#dwBothBtn'), pa=$('#dwPairsBtn');
-  if(en) en.classList.toggle('on', dimWrongMode==='en');
-  if(ep) ep.classList.toggle('on', dimWrongMode==='enpair');
-  if(bo) bo.classList.toggle('on', dimWrongMode==='both');
-  if(pa) pa.classList.toggle('on', dimWrongMode==='pairs');
-  const rw=$('#reworkBtn'); if(rw){
-    rw.classList.toggle('on', reworkOn);
-    rw.title = reworkOn ? 'Включено: в конце раунда ошибочные пары активируются для пересборки (без баллов)'
-                        : 'Выключено';
-  }
-}
-function toggleRework(){
-  reworkOn=!reworkOn;
-  localStorage.setItem('wm2_rework', reworkOn?'1':'0');
-  renderDimWrong();
-}
-function toggleDimWrong(){
-  dimWrongOn=!dimWrongOn;
-  localStorage.setItem('wm2_dimwrong_on', dimWrongOn?'1':'0');
-  renderDimWrong();
-  renderTournament();   // турнирный режим зависит от этого тумблера
-}
-function setDimWrongMode(m){
-  if(['en','enpair','both','pairs'].indexOf(m)<0) m='en';
-  dimWrongMode=m;                                  // активен ровно один подрежим
-  localStorage.setItem('wm2_dimwrong_mode', dimWrongMode);
-  renderDimWrong();
-}
-function renderCol(){
-  const ic=$('#colIc'); if(ic){ ic.classList.toggle('split',colMode==='split'); ic.classList.toggle('mix',colMode==='mix'); }
-  const b=$('#colBtn'); if(b){ b.classList.toggle('on',colMode==='split'); b.title = colMode==='split' ? 'Колонки: слева Ру, справа En (нажми — вперемешку)' : 'Колонки: вперемешку (нажми — Ру|En)'; }
-}
-function toggleCol(){
-  colMode = colMode==='split' ? 'mix' : 'split';
-  localStorage.setItem('wm2_col', colMode);
-  renderCol();
-}
-// порог «выучено»: слова с весом >= порога не участвуют в раундах (если включено)
-function renderMastery(){
-  const v=$('#masteryVal'); if(v) v.textContent=masterySetting;
-  const up=$('#masteryUp'), dn=$('#masteryDown');
-  if(up) up.disabled = !masteryOn || masterySetting>=MAX_MASTERY;
-  if(dn) dn.disabled = !masteryOn || masterySetting<=MIN_MASTERY;
-  const b=$('#masteryBtn'); if(b){ b.classList.toggle('on', masteryOn); b.title = masteryOn?'Выученные слова убираются из игры':'Выученные слова не убираются'; }
-  const st=$('#masteryStep'); if(st) st.style.opacity = masteryOn?'1':'.45';
-  const warn=$('#masteryWarn');
-  if(warn){
-    if(masterySetting>weightCapHi){
-      warn.style.display=''; warn.textContent='Порог '+masterySetting+' выше потолка веса +'+weightCapHi+': слова не дорастут до порога. Фактически «выучено» при весе +'+weightCapHi+'. Снизь порог или подними потолок веса ниже.';
-    } else warn.style.display='none';
-  }
-}
-function setMastery(n){
-  masterySetting=Math.min(MAX_MASTERY,Math.max(MIN_MASTERY,n));
-  localStorage.setItem('wm2_mastery', String(masterySetting));
-  renderMastery();
-  renderLevels(); // прогресс уровней зависит от порога — пересчитываем
-}
-// предел веса слова: отдельно верхний (+) и нижний (−) пороги
-function renderWeightCap(){
-  const vh=$('#wcapHiVal'); if(vh) vh.textContent='+'+weightCapHi;
-  const vl=$('#wcapLoVal'); if(vl) vl.textContent='−'+weightCapLo;
-  const hu=$('#wcapHiUp'), hd=$('#wcapHiDown');
-  if(hu) hu.disabled = weightCapHi>=MAX_WCAP;   // выше некуда
-  if(hd) hd.disabled = weightCapHi<=MIN_WCAP;   // ниже некуда
-  const lu=$('#wcapLoUp'), ld=$('#wcapLoDown');
-  if(lu) lu.disabled = weightCapLo<=MIN_WCAP;   // ↑ ближе к нулю — упёрлись в минимум
-  if(ld) ld.disabled = weightCapLo>=MAX_WCAP;   // ↓ дальше в минус — упёрлись в максимум
-}
-// подрезать уже накопленные веса во всех режимах под текущие пороги
-function applyWeightCapAll(){
-  if(!user) return;
-  [user.weights, user.phr&&user.phr.weights, user.pairs&&user.pairs.weights, user.verbs&&user.verbs.weights,
-   user.verbsTop&&user.verbsTop.weights, user.verbsIrr&&user.verbsIrr.weights, user.verbsPair&&user.verbsPair.weights]
-    .forEach(W=>{ if(!W) return; for(const k in W){ const w=clampW(W[k]); if(w===0) delete W[k]; else W[k]=w; } });
-  saveUser(user);
-}
-function setWeightCapHi(n){
-  weightCapHi=Math.min(MAX_WCAP,Math.max(MIN_WCAP, Math.round(n/WCAP_STEP)*WCAP_STEP));
-  localStorage.setItem('wm2_weightcap_hi', String(weightCapHi));
-  applyWeightCapAll(); renderWeightCap(); renderLevels(); renderMastery();
-}
-function setWeightCapLo(n){
-  weightCapLo=Math.min(MAX_WCAP,Math.max(MIN_WCAP, Math.round(n/WCAP_STEP)*WCAP_STEP));
-  localStorage.setItem('wm2_weightcap_lo', String(weightCapLo));
-  applyWeightCapAll(); renderWeightCap(); renderLevels();
-}
-function renderDedup(){
-  const b=$('#dedupBtn'); if(b){ b.classList.toggle('on', dedupRounds); b.title = dedupRounds?'Повторы в раунде не допускаются':'Повторы в раунде разрешены'; }
-}
-function renderReviewWeak(){
-  const b=$('#reviewWeakBtn'); if(b){ b.classList.toggle('on', reviewWeak); b.title = reviewWeak?'В игру подмешивается ~30% самых слабых слов на повтор':'Сначала все новые слова по порядку, потом повтор по весам'; }
-}
-function toggleReviewWeak(){
-  reviewWeak=!reviewWeak;
-  localStorage.setItem('wm2_review_weak', reviewWeak?'1':'0');
-  renderReviewWeak();
-}
-function renderFirstPass(){
-  const b=$('#firstPassBtn'); if(b){ b.classList.toggle('on', firstPassOnly); b.title = firstPassOnly?'Показанное не повторяется, пока не пройден весь набор':'Повтор возможен по весу, даже если набор не пройден'; }
-}
-function toggleFirstPass(){
-  firstPassOnly=!firstPassOnly;
-  localStorage.setItem('wm2_firstpass', firstPassOnly?'1':'0');
-  renderFirstPass();
-}
-function toggleDedup(){
-  dedupRounds=!dedupRounds;
-  localStorage.setItem('wm2_dedup', dedupRounds?'1':'0');
-  renderDedup();
-}
-function toggleMastery(){
-  masteryOn=!masteryOn;
-  localStorage.setItem('wm2_mastery_on', masteryOn?'1':'0');
-  renderMastery();
-}
-// ---------- уровни сложности (Levels) ----------
-function renderLevels(){ /* старый выбор уровней/тысяч удалён из MeatQuiz — DOM-узлов нет */ }
-// ---- уровни ПАР ----
-// ---- уровни ФРАЗ ----
-
-// ---------- режим жестов веса ----------
-let rateMode = localStorage.getItem('wm2_rate')==='1';
-function renderRate(){
-  const b=$('#rateBtn'); if(!b) return;
-  b.classList.toggle('on', rateMode);
-  b.title = rateMode ? 'Жесты веса включены: двойной тап +, удержание −' : 'Жесты веса выключены';
-}
-// ручная настройка весов жестов по категориям A/B/C
-function renderGest(){
-  const b=$('#gestManualBtn');
-  if(b){ b.classList.toggle('on', gestManual); b.title = gestManual?'Используются свои веса жестов (A/B/C)':'Используются стандартные веса жестов'; }
-  const grid=$('#gestGrid'); if(grid) grid.classList.toggle('show', gestManual);
-  document.querySelectorAll('#gestGrid .rounds-stepper.gst').forEach(st=>{
-    const kind=st.dataset.g, band=+st.dataset.band;
-    const mag=(kind==='plus'?gestPlus:gestMinus)[band];
-    const v=st.querySelector('.gv'); if(v) v.textContent=(kind==='plus'?'+':'−')+mag;
-    const up=st.querySelector('.gUp'), dn=st.querySelector('.gDown');
-    if(up) up.disabled = mag>=MAX_GEST;
-    if(dn) dn.disabled = mag<=MIN_GEST;
-  });
-}
-function toggleGestManual(){
-  gestManual=!gestManual;
-  localStorage.setItem('wm2_gest_manual', gestManual?'1':'0');
-  renderGest();
-}
-function setGest(kind, band, val){
-  val=Math.min(MAX_GEST,Math.max(MIN_GEST,val));
-  if(kind==='plus'){ gestPlus[band]=val; localStorage.setItem('wm2_gest_plus', JSON.stringify(gestPlus)); }
-  else{ gestMinus[band]=val; localStorage.setItem('wm2_gest_minus', JSON.stringify(gestMinus)); }
-  renderGest();
-}
 // ---- режим «весов» при сопоставлении (Линейная / Прогрессивная / Ручная) ----
 function renderWeightMode(){
   const lin=$('#wmLinearBtn'), prg=$('#wmProgBtn'), man=$('#wmManualBtn');
@@ -2763,39 +1784,6 @@ function setCzManual(kind, val){
   else { czManualMinus=val; try{ localStorage.setItem('wm2_weight_manual_minus_n', String(val)); }catch(e){} }
   renderWeightMode();
 }
-// ---- модалка «вес за клик» в списках «Мои слова» ----
-function renderListWeightMode(){
-  const lin=$('#lwLinearBtn'), prg=$('#lwProgBtn'), man=$('#lwManualBtn');
-  if(lin) lin.classList.toggle('on', listWeightMode==='linear');
-  if(prg) prg.classList.toggle('on', listWeightMode==='progressive');
-  if(man) man.classList.toggle('on', listWeightMode==='manual');
-  const grid=$('#lwGrid'); if(grid) grid.classList.toggle('show', listWeightMode==='manual');
-  document.querySelectorAll('#lwGrid .rounds-stepper.lwst').forEach(st=>{
-    const kind=st.dataset.g, band=+st.dataset.band;
-    const mag=(kind==='plus'?listManualPlus:listManualMinus)[band];
-    const v=st.querySelector('.lwv'); if(v) v.textContent=(kind==='plus'?'+':'−')+mag;
-    const up=st.querySelector('.lwUp'), dn=st.querySelector('.lwDown');
-    if(up) up.disabled = mag>=MAX_GEST;
-    if(dn) dn.disabled = mag<=MIN_GEST;
-  });
-  const lbl=$('#wWeightModeLbl'); if(lbl) lbl.textContent=listWeightModeLabel();
-  const lbl2=$('#dbWeightModeLbl'); if(lbl2) lbl2.textContent=listWeightModeLabel();
-  const lbl3=$('#gdWeightModeLbl'); if(lbl3) lbl3.textContent=listWeightModeLabel();
-}
-function setListWeightMode(m){
-  if(['linear','progressive','manual'].indexOf(m)<0) m='linear';
-  listWeightMode=m;
-  localStorage.setItem('wm2_list_weight_mode', listWeightMode);
-  renderListWeightMode();
-}
-function setListWeightManual(kind, band, val){
-  val=Math.min(MAX_GEST,Math.max(MIN_GEST,val));
-  if(kind==='plus'){ listManualPlus[band]=val; localStorage.setItem('wm2_list_weight_manual_plus', JSON.stringify(listManualPlus)); }
-  else{ listManualMinus[band]=val; localStorage.setItem('wm2_list_weight_manual_minus', JSON.stringify(listManualMinus)); }
-  renderListWeightMode();
-}
-function openListWeightModal(){ renderListWeightMode(); const m=$('#listWeightModal'); if(m) m.classList.remove('hide'); }
-function closeListWeightModal(){ const m=$('#listWeightModal'); if(m) m.classList.add('hide'); }
 
 // ---------- helpers ----------
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
@@ -2806,19 +1794,22 @@ function navPush(id){ try{ history.pushState({s:id},''); }catch(e){} show(id); i
 function navReplace(id){ try{ history.replaceState({s:id},''); }catch(e){} show(id); if(id==='home') refreshHome(); }
 function goBack(){ try{ history.back(); }catch(e){ navReplace(user?'home':'name'); } }
 window.addEventListener('popstate', e=>{
-  const s=(e.state&&e.state.s) || (user?'home':'name');
-  if(g&&g.timerId) clearInterval(g.timerId);
+  let s=(e.state&&e.state.s) || (user?'home':'name');
+  // ЗАЩИТА: экран игры без живого состояния. Случаи: (1) перезагрузка посреди
+  // партии — в истории остались записи {s:'ctest'}, а ct=null; (2) «Назад» на
+  // главную → смена набора мяса → «Вперёд»: ct жив, но CIVICS уже отдаёт
+  // ДРУГОЙ набор, и ctRenderQuestion упал бы на undefined-вопросе. В обоих
+  // случаях честно возвращаемся на главную.
+  if( (s==='ctest'  && (!ct || ct.meat!==meatSet)) ||
+      (s==='cwtest' && !cw) ||
+      (s==='rdtest' && !rd) ) s = user ? 'home' : 'name';
   show(s);
   if(s==='home') refreshHome();
 });
-
-// ---------- game state ----------
-let g=null;
 // ---------- home / stats ----------
 function refreshHome(){
   $('#greet').textContent='Привет, '+user.name+'!';
   $('#userName').textContent=user.name;
-  try{ if(typeof updateResetLabel==='function') updateResetLabel(); }catch(e){}
   try{ if(typeof renderSyncButtons==='function') renderSyncButtons(); }catch(e){}
   try{ if(typeof renderMyCup==='function') renderMyCup(); }catch(e){}
   try{ if(typeof refreshMyCup==='function') refreshMyCup(); }catch(e){}
@@ -2837,9 +1828,7 @@ function gtStatLabels(g_lf,g_ls,s_lf,s_ls,k_lf,k_ls,w_lf,w_ls){
 // «выключенную» ветку обрабатывать не нужно — её сделал applyGrammarHome).
 function applyQuizHome(on){
   if(!on) return;
-  const cov=$('#covCard'), covT=$('#covTitle'), sb=$('#startBtn');
-  if(cov)  cov.style.display='none';
-  if(covT) covT.style.display='none';
+  const sb=$('#startBtn');
 
   // Ряд свинины активен (porkSel !== null): показываем статистику и описание
   // свинины. meatSet уже === 'pork', поэтому ctGetStats()/fdGetStats() и CIVICS
@@ -2897,15 +1886,15 @@ function applyQuizHome(on){
   }
   gtStatLabels('Тестов пройдено','Тесты','вопросов задано','Вопр','верных ответов','Верно','ошибок','Ошиб');
   const total=(typeof CIVICS!=='undefined' && CIVICS)?CIVICS.length:0;
-  $('#homeSub').textContent='MeatQuiz · Test: угадайте отруб говядины по фотографии — выберите правильное название из вариантов. Вопросов в базе: '+total+'. За тест берётся '+( (typeof roundsSetting==='number'&&roundsSetting>0)?roundsSetting:total )+' вопросов (как «Раунды» в настройках).';
+  $('#homeSub').textContent='MeatQuiz · Test: угадайте отруб говядины по фотографии — выберите правильное название из вариантов. Вопросов в базе: '+total+'. За тест берётся '+( (typeof roundsSetting==='number'&&roundsSetting>0)?Math.min(roundsSetting,total||roundsSetting):total )+' вопросов (как «Раунды» в настройках).';
   if(sb) sb.innerHTML='<svg class="ic"><use href="#ic-rocket"/></svg>Начать тест';
 }
 
 
 // ---------- сохранение / восстановление прогресса ----------
-// Веса MeatQuiz (wm2_ctweights/cwweights/rdweights) переносятся обычным свипом
-// ключей wm2_*, поэтому отдельная привязка «по слову» не нужна (заглушка).
-function buildByWord(u){ return {}; }
+// Веса MeatQuiz (wm2_ctweights/fdweights/porkweights/…) переносятся общим
+// свипом ключей wm2_*. Идентификационные ключи устройства (IDENTITY_KEYS ниже)
+// в файл не кладутся и из файла не принимаются.
 // Поля статистики НИКОГДА не попадают в файл (время, раунды, игры, слова, дни,
 // списки верно/ошибся). Они живут только в облаке и не редактируются вручную.
 const STAT_KEYS=['games','rounds','totalTime','daily','dailyTime','dailyGames','dailyGreen','dailyRed','stats','last','seen','agames','arounds'];
@@ -2919,8 +1908,14 @@ function stripStats(u){
 // экспорта (не кладём в файл) и импорта (не принимаем из файла).
 const MQ_STATS_KEYS=['wm2_ctstats','wm2_fdstats','wm2_porkstats','wm2_porkfdstats',
                      'wm2_cwstats','wm2_rdstats','wm2_gtstats'];
+// ИДЕНТИЧНОСТЬ УСТРОЙСТВА/привязки к облаку. В файл прогресса не попадает и из
+// файла не принимается: перенос wm2_localid/wm2_bounduid на другое устройство
+// клонировал бы локальную запись (сервер перестал бы отличать ЛОК1 от ЛОК2 —
+// именно от этого защищает local_id), а wm2_linked/wm2_lastsync заставили бы
+// кнопку синка врать «Синхронизировано» без реальной сессии.
+const IDENTITY_KEYS=['wm2_localid','wm2_linked','wm2_lastsync','wm2_bounduid','wm2_cuprank'];
 function progressPayload(){
-  const data={}; let wsum=0;
+  const data={};
   for(let i=0;i<localStorage.length;i++){
     const k=localStorage.key(i);
     if(!k || k.indexOf('wm2_')!==0) continue;
@@ -2928,27 +1923,29 @@ function progressPayload(){
     // настройки. Игры/время/проценты живут локально и в облаке; рейтинг
     // питается только серверной civics_stats, файлом его не подделать.
     if(MQ_STATS_KEYS.indexOf(k)!==-1) continue;
+    if(IDENTITY_KEYS.indexOf(k)!==-1) continue;   // идентичность устройства — не переносим
     if(k.indexOf('wm2_user_')===0){
       try{ data[k]=JSON.stringify(stripStats(JSON.parse(localStorage.getItem(k)))); }catch(e){}
     } else {
       data[k]=localStorage.getItem(k); // настройки/предпочтения — не статистика
     }
   }
-  const byWord={}, meta={players:{}};
-  listPlayers().forEach(n=>{ try{ const u=JSON.parse(localStorage.getItem(userKey(n))); if(u){ byWord[n]=buildByWord(u); const c=Object.keys(u.weights||{}).length; wsum+=c; meta.players[n]={weights:c}; } }catch(e){} });
-  meta.totalWeights=wsum;
-  // грамматика хранится отдельными ключами wm2_gweights/wm2_gseen — они уже попадают
-  // в data выше (общий свип wm2_*); здесь только показываем их объём в meta.
-  try{ const gw=JSON.parse(localStorage.getItem('wm2_gweights'))||{}; const gs=JSON.parse(localStorage.getItem('wm2_gseen'))||[];
-       meta.grammar={ weights:Object.keys(gw).length, seen:Array.isArray(gs)?gs.length:0 }; }catch(e){}
-  return JSON.stringify({app:'naidipary5000', version:3, kind:'progress-only', exportedAt:new Date().toISOString(), course:0, meta, data, byWord}, null, 2);
+  // сводка по весам всех режимов MeatQuiz — видно человеку, открывшему файл
+  const wc=k=>{ try{ return Object.keys(JSON.parse(localStorage.getItem(k))||{}).length; }catch(e){ return 0; } };
+  const meta={ weights:{
+    beefTest:wc('wm2_ctweights'),   beefFind:wc('wm2_fdweights'),
+    porkTest:wc('wm2_porkweights'), porkFind:wc('wm2_porkfdweights'),
+    write:wc('wm2_cwweights'),      read:wc('wm2_rdweights')
+  } };
+  meta.totalWeights=Object.keys(meta.weights).reduce((a,k)=>a+meta.weights[k],0);
+  return JSON.stringify({app:'meatquiz', version:4, kind:'progress-only', exportedAt:new Date().toISOString(), meta, data}, null, 2);
 }
 function exportProgress(){
   try{
     const blob=new Blob([progressPayload()],{type:'application/json'});
     const url=URL.createObjectURL(blob);
     const a=document.createElement('a');
-    a.href=url; a.download='naidipary-progress-'+new Date().toISOString().slice(0,10)+'.json';
+    a.href=url; a.download='meatquiz-progress-'+new Date().toISOString().slice(0,10)+'.json';
     document.body.appendChild(a); a.click();
     setTimeout(()=>{ a.remove(); URL.revokeObjectURL(url); }, 800);
     $('#bkExportMsg').textContent='Файл сохранён в загрузки устройства.';
@@ -2973,6 +1970,7 @@ function importText(str){
   // 1) переносим веса/настройки, статистику из файла игнорируем, локальную — сохраняем
   keys.forEach(k=>{
     try{
+      if(IDENTITY_KEYS.indexOf(k)!==-1) return;   // идентичность ЧУЖОГО устройства не принимаем
       if(k.indexOf('wm2_user_')===0){
         const incoming=JSON.parse(d[k]);
         // выкидываем любую статистику, которая могла оказаться в файле
@@ -2995,18 +1993,14 @@ function importText(str){
       }
     }catch(e){}
   });
-  let applied=0;
-  // 3) проверка
-  let players=0, wsum=0;
-  listPlayers().forEach(n=>{ try{ const u=JSON.parse(localStorage.getItem(userKey(n))); if(u){ players++; wsum+=Object.keys(u.weights||{}).length; } }catch(e){} });
-  alert('Готово ✅\nИгроков: '+players+'\nВесов слов перенесено: '+wsum+(applied?(' (сверено по словам: '+applied+')'):'')+'\nСтатистика не тронута — она меняется только через облако.\n\nПриложение перезапустится.');
+  // Проверка: считаем перенесённые веса по РЕАЛЬНЫМ ключам MeatQuiz — раньше
+  // сумма бралась из легаси user.weights и всегда показывала «0», хотя импорт
+  // проходил успешно (пользователь решал, что восстановление не сработало).
+  const wc=k=>{ try{ return Object.keys(JSON.parse(localStorage.getItem(k))||{}).length; }catch(e){ return 0; } };
+  const wsum=['wm2_ctweights','wm2_fdweights','wm2_porkweights','wm2_porkfdweights','wm2_cwweights','wm2_rdweights'].reduce((a,k)=>a+wc(k),0);
+  alert('Готово ✅\nВесов перенесено (все режимы): '+wsum+'\nСтатистика не тронута — она меняется только через облако.\n\nПриложение перезапустится.');
   location.reload();
 }
-// сброс прогресса у текущего игрока
-function updateResetLabel(){ /* старого ярлыка сброса (#resetWtLbl) нет в DOM MeatQuiz */ }
-// Сброс прогресса КОНКРЕТНОГО режима — независимо от того, какой режим сейчас активен.
-// У каждого режима в настройках своя кнопка. Для «Глаголы» сбрасываются ВСЕ подрежимы
-// (все / топ-100 / неправильные / пары). Статистика и история по дням сохраняются.
 
 // ---------- name screen ----------
 function renderPlayers(){
@@ -3116,7 +2110,7 @@ async function renderRating(){
     html += '</div>';
     body.innerHTML = html;
   }catch(e){
-    body.innerHTML = '<div class="rk-msg">Не удалось загрузить рейтинг.<br>Проверьте, создана ли на сервере таблица <b>leaderboard</b>, и нажмите ↻.</div>';
+    body.innerHTML = '<div class="rk-msg">Не удалось загрузить рейтинг.<br>Проверьте, что на сервере есть витрина <b>weekly_leaderboard</b> (и таблица leaderboard), и нажмите ↻.</div>';
   }
 }
 $('#ratingBtn').onclick=()=>{ navPush('rating'); renderRating(); };
@@ -3317,7 +2311,7 @@ function renderSyncButtons(){
     : sessionLost
       ? 'Сессия истекла — войдите снова, иначе игры не идут в рейтинг.'
       : (last ? ('Синхронизировано: '+fmtSyncTime(last)) : 'Учётная запись связана — нажмите для синхронизации');
-  [['#syncBtnHome','#syncStatusHome'],['#syncBtnRes','#syncStatusRes']].forEach(([b,s])=>{
+  [['#syncBtnHome','#syncStatusHome']].forEach(([b,s])=>{
     const btn=$(b), st=$(s); if(!btn) return;
     if(st) st.textContent=status;
     btn.classList.toggle('off', !linked || sessionLost);
@@ -3336,7 +2330,7 @@ async function onSyncClick(btn){
     return;
   }
   btn.classList.add('busy');
-  const st=$(btn.id==='syncBtnHome'?'#syncStatusHome':'#syncStatusRes');
+  const st=$('#syncStatusHome');
   if(st) st.textContent='Синхронизация…';
   try{
     const r = await window.cloudSyncNow();
@@ -3347,7 +2341,6 @@ async function onSyncClick(btn){
   finally{ btn.classList.remove('busy'); setTimeout(()=>{ if(typeof renderSyncButtons==='function') renderSyncButtons(); }, 600); }
 }
 if($('#syncBtnHome')) $('#syncBtnHome').onclick=()=>onSyncClick($('#syncBtnHome'));
-if($('#syncBtnRes'))  $('#syncBtnRes').onclick =()=>onSyncClick($('#syncBtnRes'));
 
 // ---------- ДИАГНОСТИКА данных (Настройки → Профиль и данные) ----------
 // Собирает локальное состояние + реальное состояние облака в один текстовый отчёт,
@@ -3538,21 +2531,8 @@ $('#speedNormBtn').onclick=()=>{
   renderSpeed();
   if(soundOn) speak('OK');
 };
-$('#ipaBtn').onclick=()=>{
-  ipaOn=!ipaOn;
-  localStorage.setItem('wm2_ipa', ipaOn?'1':'0');
-  renderIpa();
-};
-$('#rateBtn').onclick=()=>{
-  rateMode=!rateMode;
-  localStorage.setItem('wm2_rate', rateMode?'1':'0');
-  renderRate();
-};
 $('#roundsUp').onclick=()=>setRounds(roundsSetting+1);
 $('#roundsDown').onclick=()=>setRounds(roundsSetting-1);
-$('#rowsUp').onclick=()=>setRows(rowsSetting+1);
-$('#rowsDown').onclick=()=>setRows(rowsSetting-1);
-$('#colBtn').onclick=toggleCol;
 
 /* ── Информационные тосты по тапу на некликабельные карточки/график ──
    Короткое системное сообщение всплывает снизу и исчезает. Срабатывает на
@@ -3574,36 +2554,11 @@ document.addEventListener('click', e=>{
   const t=e.target.closest && e.target.closest('[data-info]');
   if(t){ showInfoToast(t.getAttribute('data-info')); }
 });
-$('#masteryBtn').onclick=toggleMastery;
-if($('#dedupBtn')) $('#dedupBtn').onclick=toggleDedup;
-if($('#reviewWeakBtn')) $('#reviewWeakBtn').onclick=toggleReviewWeak;
-if($('#firstPassBtn')) $('#firstPassBtn').onclick=toggleFirstPass;
 if($('#tourBtn')) $('#tourBtn').onclick=toggleTournament;
 if($('#hintsBtn')) $('#hintsBtn').onclick=toggleHints;
 applyHints();
-if($('#dimWrongBtn')) $('#dimWrongBtn').onclick=toggleDimWrong;
-if($('#dwEnBtn')) $('#dwEnBtn').onclick=()=>setDimWrongMode('en');
-if($('#dwEnPairBtn')) $('#dwEnPairBtn').onclick=()=>setDimWrongMode('enpair');
-if($('#dwBothBtn')) $('#dwBothBtn').onclick=()=>setDimWrongMode('both');
-if($('#dwPairsBtn')) $('#dwPairsBtn').onclick=()=>setDimWrongMode('pairs');
-if($('#reworkBtn')) $('#reworkBtn').onclick=toggleRework;
-$('#masteryUp').onclick=()=>setMastery(masterySetting+1);
-$('#masteryDown').onclick=()=>setMastery(masterySetting-1);
-if($('#wcapHiUp')) $('#wcapHiUp').onclick=()=>setWeightCapHi(weightCapHi+WCAP_STEP);
-if($('#wcapHiDown')) $('#wcapHiDown').onclick=()=>setWeightCapHi(weightCapHi-WCAP_STEP);
-if($('#wcapLoUp')) $('#wcapLoUp').onclick=()=>setWeightCapLo(weightCapLo-WCAP_STEP);   // −10 → −5 (ближе к нулю)
-if($('#wcapLoDown')) $('#wcapLoDown').onclick=()=>setWeightCapLo(weightCapLo+WCAP_STEP); // −10 → −15 (глубже в минус)
 if($('#fontUp')) $('#fontUp').onclick=()=>setFont(fontPct+FONT_STEP);
 if($('#fontDown')) $('#fontDown').onclick=()=>setFont(fontPct-FONT_STEP);
-if($('#dimUp')) $('#dimUp').onclick=()=>setDim(dimPct+DIM_STEP);
-if($('#dimDown')) $('#dimDown').onclick=()=>setDim(dimPct-DIM_STEP);
-if($('#gestManualBtn')) $('#gestManualBtn').onclick=toggleGestManual;
-document.querySelectorAll('#gestGrid .rounds-stepper.gst').forEach(st=>{
-  const kind=st.dataset.g, band=+st.dataset.band;
-  const cur=()=>(kind==='plus'?gestPlus:gestMinus)[band];
-  st.querySelector('.gUp').onclick=()=>setGest(kind,band,cur()+1);
-  st.querySelector('.gDown').onclick=()=>setGest(kind,band,cur()-1);
-});
 if($('#wmLinearBtn')) $('#wmLinearBtn').onclick=()=>setWeightMode('linear');
 if($('#wmProgBtn')) $('#wmProgBtn').onclick=()=>setWeightMode('progressive');
 if($('#wmManualBtn')) $('#wmManualBtn').onclick=()=>setWeightMode('manual');
@@ -3617,47 +2572,7 @@ if($('#wmManMinus')){
   if(up) up.onclick=()=>setCzManual('minus', czManualMinus+1);
   if(dn) dn.onclick=()=>setCzManual('minus', czManualMinus-1);
 }
-// Скрыть настройки старых режимов (Слова/Фразы/Пары/Глаголы/Грамматика и игровая
-// механика сопоставления) — в MeatQuiz они не используются.
-function hideLegacySettings(){
-  try{
-    const set=$('#settings'); if(!set) return;
-    const hide=el=>{ if(el) el.style.display='none'; };
-    const hideRow=id=>{ const e=$('#'+id); if(e) hide(e.closest('.setrow')||e); };
-    const hideCard=id=>{ const e=$('#'+id); if(e) hide(e.closest('.card')); };
-    // секции старых режимов: заголовок .area + все карточки до следующего .area
-    set.querySelectorAll('.area.words, .area.phr, .area.verb, .area.gram').forEach(area=>{
-      let el=area;
-      while(el){ const nx=el.nextElementSibling; hide(el);
-        if(!nx || nx.classList.contains('area')) break; el=nx; }
-    });
-    // В карточке «Игра» оставляем общие настройки (Размер шрифта, Раундов в игре,
-    // Турнирный режим), а прячем только строки старой игры в пары.
-    ['dimStep','rowsUp','dimWrongBtn','colBtn','dedupBtn','reviewWeakBtn',
-     'firstPassBtn','masteryBtn','masteryStep','wcapHiStep','wcapLoStep'].forEach(hideRow);
-    hide($('#dimWrongOpts'));                    // подрежимы «тушения» (EN/EN+/оба/…)
-    hide($('#masteryWarn'));
-    ['ipaBtn','rateBtn','gestManualBtn'].forEach(hideRow);  // транскрипция-плитки и жесты
-    hide($('#gestGrid'));
-    const sub=set.querySelector('.area.common .s'); if(sub) sub.textContent='Действуют во всех режимах: Test, Write, Read';
-  }catch(e){}
-}
-hideLegacySettings();
-// «вес за клик» в списках «Мои слова»
-if($('#wWeightSetBtn')) $('#wWeightSetBtn').onclick=openListWeightModal;
-if($('#dbWeightSetBtn')) $('#dbWeightSetBtn').onclick=openListWeightModal;
-if($('#lwDone')) $('#lwDone').onclick=closeListWeightModal;
-if($('#listWeightModal')) $('#listWeightModal').addEventListener('click', e=>{ if(e.target.id==='listWeightModal') closeListWeightModal(); });
-if($('#lwLinearBtn')) $('#lwLinearBtn').onclick=()=>setListWeightMode('linear');
-if($('#lwProgBtn')) $('#lwProgBtn').onclick=()=>setListWeightMode('progressive');
-if($('#lwManualBtn')) $('#lwManualBtn').onclick=()=>setListWeightMode('manual');
-document.querySelectorAll('#lwGrid .rounds-stepper.lwst').forEach(st=>{
-  const kind=st.dataset.g, band=+st.dataset.band;
-  const cur=()=>(kind==='plus'?listManualPlus:listManualMinus)[band];
-  st.querySelector('.lwUp').onclick=()=>setListWeightManual(kind, band, cur()+1);
-  st.querySelector('.lwDown').onclick=()=>setListWeightManual(kind, band, cur()-1);
-});
-$('#settingsBtn').onclick=()=>{ try{ if(typeof updateResetLabel==='function') updateResetLabel(); }catch(e){} navPush('settings'); };
+$('#settingsBtn').onclick=()=>navPush('settings');
 $('#setBack').onclick=goBack;
 $('#nameBack').onclick=goBack;
 
@@ -3680,10 +2595,18 @@ let porkSel = null;
 let meatSet = 'beef';
 try{
   const sv=localStorage.getItem('wm2_meatrow');   // 'beef' | 'pork'
-  if(sv==='pork'){ porkSel='test'; citSel=null; }
+  if(sv==='pork'){
+    // восстанавливаем и под-режим свинины (Test/Find) — раньше он терялся
+    const ps=localStorage.getItem('wm2_porksel');
+    porkSel=(ps==='find')?'find':'test'; citSel=null;
+  } else {
+    // под-режим говядины: раньше wm2_citsel только писался и никогда не читался,
+    // поэтому выбор Find сбрасывался на Test при каждой перезагрузке
+    const cs=localStorage.getItem('wm2_citsel');
+    if(cs==='test'||cs==='find'||cs==='write'||cs==='read') citSel=cs;
+  }
 }catch(e){}
 try{ const ms=localStorage.getItem('wm2_meatset'); if(ms==='pork'||ms==='beef') meatSet=ms; }catch(e){}
-try{ localStorage.setItem('wm2_citsel', citSel||''); }catch(e){}
 function syncQuizRow(){
   // ряд говядины
   if($('#citRow')){
@@ -3730,6 +2653,7 @@ function applyMeatRow(){
     localStorage.setItem('wm2_meatset', meatSet);
     localStorage.setItem('wm2_meatrow', meatSet);
     localStorage.setItem('wm2_citsel', citSel||'');
+    localStorage.setItem('wm2_porksel', porkSel||'');
   }catch(e){}
   syncQuizRow();
   if(user && typeof refreshHome==='function') refreshHome();
@@ -3753,10 +2677,9 @@ if($('#cbRead'))   $('#cbRead').onclick  =()=>{ setCitSel('read'); };
 if($('#modePork')) $('#modePork').onclick=()=>{ if(porkSel===null) setPorkSel('test'); };
 if($('#pbTest'))   $('#pbTest').onclick  =()=>{ setPorkSel('test'); };
 if($('#pbFind'))   $('#pbFind').onclick  =()=>{ setPorkSel('find'); };
-// При загрузке синхронизируем набор мяса с восстановленным выбором ряда.
-meatSet = (porkSel!==null) ? 'pork' : 'beef';
-try{ localStorage.setItem('wm2_meatset', meatSet); }catch(e){}
-syncQuizRow();
+// При загрузке синхронизируем набор мяса с восстановленным выбором ряда
+// (раньше эти же действия дублировались тремя строками мимо applyMeatRow).
+applyMeatRow();
 
 
 
@@ -3922,7 +2845,7 @@ function ctOpen(mode){
     const fname = (meatSet==='pork') ? 'PORK_QUIZ.js' : 'MEAT_QUIZ.js';
     alert('Файл вопросов не найден. Положите '+fname+' в папку dictionary/.'); return;
   }
-  ct={ order:[], pos:0, score:0, total:0, results:[], mode:(mode==='find'?'find':'test'), startedAt:Date.now() };
+  ct={ order:[], pos:0, score:0, total:0, results:[], meat:meatSet, mode:(mode==='find'?'find':'test'), startedAt:Date.now() };
   ctBuildPool();
   if(!ct.order.length){
     if(ct.mode==='find'){
@@ -3953,7 +2876,7 @@ function ctOpen(mode){
 // перезапуск, когда мы уже на экране ctest (кнопка «Ещё раз») — историю не трогаем
 function ctRestart(){
   if(!CIVICS.length) return;
-  ct={ order:[], pos:0, score:0, total:0, results:[], mode:ct.mode, startedAt:Date.now() };
+  ct={ order:[], pos:0, score:0, total:0, results:[], meat:meatSet, mode:ct.mode, startedAt:Date.now() };
   ctBuildPool();
   if(!ct.order.length){ alert('Нет вопросов для теста.'); return; }
   ctRenderQuestion();
@@ -4030,7 +2953,7 @@ function ctInitGallery(base){
     // браузер тихо докачивает следующие — свайп показывает их мгновенно
     order.slice(1).forEach(u=>{ try{ const im=new Image(); im.src=u; }catch(e){} });
     box.innerHTML =
-      '<img class="ct-gal-img" id="ctGalImg" src="'+escHtml(order[0])+'" alt="Фото отруба говядины" draggable="false">'+
+      '<img class="ct-gal-img" id="ctGalImg" src="'+escHtml(order[0])+'" alt="Фото отруба ('+((MEAT_SETS[meatSet]||MEAT_SETS.beef).label)+')" draggable="false">'+
       (order.length>1
         ? '<button class="ct-gal-nav prev" id="ctGalPrev" type="button" aria-label="Предыдущее фото">‹</button>'+
           '<button class="ct-gal-nav next" id="ctGalNext" type="button" aria-label="Следующее фото">›</button>'+
@@ -4422,10 +3345,19 @@ function ctRenderQuestion(){
         '<button class="btn block ct-check" id="ctCheck" style="display:none">Проверить ответ</button>'+
         '<div class="gt-exp" id="ctExp"></div>';
     const bindCowZones = ()=>{
-      $('#ctCow').querySelectorAll('.cow-zone').forEach(g=>{
-        g.addEventListener('click', ()=>ctCowPick(g));
-      });
-      ctZoneLang($('#ctCow'));                 // навесить перевод зон под текущий язык
+      const cow=$('#ctCow'); if(!cow) return;
+      // ОДИН обработчик на контейнер (присваивание onclick — без дублей при
+      // повторной привязке после подгрузки внешнего силуэта). Клик мимо зоны
+      // не пропадает: ctZoneNear «дотягивает» тап до ближайшей зоны в радиусе
+      // ~20px, поэтому по узким полосам (TENDERLOIN, NECK, OX TAIL, хвост)
+      // попадать стало заметно проще. Дотяжка безопасна: выбор двухшаговый
+      // («Проверить ответ»), подсветку всегда можно переставить.
+      cow.onclick=(e)=>{
+        let g=(e.target && e.target.closest) ? e.target.closest('.cow-zone') : null;
+        if(!g) g=ctZoneNear(e.clientX, e.clientY);
+        if(g) ctCowPick(g);
+      };
+      ctZoneLang(cow);                 // навесить перевод зон под текущий язык
     };
     bindCowZones();
     // Beef: если подключаемый силуэт ещё не успел загрузиться, дорисуем его,
@@ -4504,6 +3436,25 @@ function ctPick(btn, val){
 // происходит по кнопке «Проверить ответ»: неверная зона гаснет красным и
 // минусует вес (очко за вопрос — только с первой попытки), верная загорается
 // зелёным и завершает вопрос.
+// ── ДОПУСК ТАПА (Find) ──────────────────────────────────────────────────────
+// Если палец промахнулся мимо зоны (щель между кусками или узкая полоса),
+// ищем ближайшую зону по расширяющимся кольцам вокруг точки тапа. Радиусы —
+// в ЭКРАННЫХ пикселях, поэтому допуск одинаково удобен на любом масштабе
+// схемы и любой плотности экрана. elementFromPoint игнорирует элементы с
+// pointer-events:none, поэтому погасшие (.bad) зоны и заблокированная схема
+// (.off) дотяжкой не подхватываются — промах после проверки ничего не выберет.
+function ctZoneNear(x, y){
+  if(!document.elementFromPoint) return null;
+  const R=[7,13,20];                       // кольца допуска, px экрана
+  for(const r of R){
+    for(let a=0;a<8;a++){                  // 8 направлений на кольце
+      const el=document.elementFromPoint(x+r*Math.cos(a*Math.PI/4), y+r*Math.sin(a*Math.PI/4));
+      const g=(el && el.closest) ? el.closest('.cow-zone') : null;
+      if(g) return g;
+    }
+  }
+  return null;
+}
 function ctCowPick(g){
   if(!ct || ct.locked) return;
   if(g.classList.contains('ok') || g.classList.contains('bad')) return;
@@ -4897,8 +3848,8 @@ if($('#rdNext'))  $('#rdNext').onclick =()=>rdProceed();
    ----------------------------------------------------------------------------
    На каждый показ пункта обновляем локальный вес (spaced repetition):
      WRITE — верно: +шаг, неверно: −шаг; считаем seen/correct/wrong.
-     READ  — проверки нет, копим только seen / last_seen (для «показать давно
-             не виденное»). вес держим 0.
+     READ  — на показ копим только seen/last_seen; голосовая проверка
+             (czGrade) меняет вес и correct/wrong, как в остальных режимах.
    Локально:  wm2_cwweights / wm2_rdweights = { item_id: {w,seen,correct,wrong,ts} }.
    Подготовка к БД (czBuildSync) даёт строки ровно под схему:
      civics_weights(user_id,mode,item_id,weight,seen,correct,wrong,last_seen)
@@ -5190,9 +4141,6 @@ async function czCloudPullAll(){
 $('#faqBtn').onclick=()=>navPush('faq');
 $('#faqBack').onclick=goBack;
 
-
-// активные наборы
-$('#rgBack') && ($('#rgBack').onclick=goBack);
 
 // сохранение прогресса
 $('#backupBtn').onclick=()=>{ $('#bkExportMsg').textContent=''; $('#bkPaste').value=''; navPush('backup'); };
@@ -5573,17 +4521,6 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             if(typeof renderSyncButtons==='function'){ try{ renderSyncButtons(); }catch(e){} }
             return ok;
         }
-        // ===== item 4: дельта-база (syncBase) =====
-        // Снимок all-time счётчиков по режимам на момент последней УСПЕШНОЙ синхронизации.
-        // При повторной привязке ТОГО ЖЕ аккаунта позволяет добавить только офлайн-дельту
-        // поверх облака: cloud + max(0, local-base). Это точнее, чем грубый max (он терял
-        // бы офлайн-игры, если облако опередило с другого устройства) и не удваивает, как
-        // сумма. Если базы ещё нет (старый клиент / первая привязка) — откатываемся к max.
-        const SB_KEY = nm => 'wm2_syncbase_'+nm;
-        const SB_MODES = [['words',null],['phr','phr'],['pairs','pairs'],['verbs','verbs'],['verbsTop','verbsTop'],['verbsIrr','verbsIrr'],['verbsPair','verbsPair']];
-        // all-time счётчики ld := cloud + max(0, localPre - base) по каждому режиму.
-        // daily-бакеты/веса/seen уже объединены max-ом до вызова (см. czCloudPull).
-        // Есть ли у аккаунта вообще данные в облаке (веса или статистика)?
         // Полная выгрузка локального игрока в облако (веса + статистика + рейтинг).
         // Веса и статистика независимы: ошибка одной таблицы не мешает другой.
         async function pushAllToCloud(uid, name){
@@ -5603,35 +4540,6 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             try{ await window.cloudPushLeaderboard(name); }catch(e){}   // имя в строке рейтинга
             return { ok: errs.length===0, errors: errs };
         }
-        // Полностью удалить данные пользователя в облаке (для «заменить новыми»)
-        function localHasProgress(name){
-            try{
-                // MeatQuiz: прогресс теста (Test/Write/Read) — статистика игр или веса.
-                const gstat=o=>!!o && ((o.games||0)>0 || (o.answered||0)>0);
-                if( (typeof ctGetStats==='function' && gstat(ctGetStats())) ||
-                    (typeof cwGetStats==='function' && gstat(cwGetStats())) ||
-                    (typeof rdGetStats==='function' && gstat(rdGetStats())) ) return true;
-                try{ if(['test','write','read'].some(md=>Object.keys(czLoadW(md)).length>0)) return true; }catch(_){}
-                // старые словарные режимы (в MeatQuiz обычно пусты) — на всякий случай
-                const raw=localStorage.getItem('wm2_user_'+name);
-                if(raw){
-                    const u=JSON.parse(raw);
-                    const has=(o)=>!!o && ((o.games||0)>0||(o.rounds||0)>0||(Array.isArray(o.seen)&&o.seen.length>0)||(o.totalTime||0)>0||(o.weights&&Object.keys(o.weights).length>0));
-                    if(has(u)||has(u.phr)||has(u.pairs)||has(u.verbs)||has(u.verbsTop)||has(u.verbsIrr)||has(u.verbsPair)) return true;
-                }
-                return false;
-            }catch(e){ return false; }
-        }
-        // Слияние одного режима.
-        //   mode='sum' (по умолчанию) — счётчики/время/посуточные складываются.
-        //     Используется для ЯВНОГО «Дополнить» двух РАЗНЫХ записей (разные local_id).
-        //   mode='max' — счётчики/время/посуточные берутся как max, статистика по
-        //     словам — поэлементный max. Используется при ПОВТОРНОЙ привязке ТОГО ЖЕ
-        //     аккаунта (когда локальная и облачная копии перекрываются): сложение тут
-        //     задвоило бы игры/время и протекло бы в недельный рейтинг.
-        // Веса и seen всегда объединяются (union) независимо от режима.
-        function clearMode(o){ if(!o)return; o.weights={}; o.seen=[]; o.stats={}; o.daily={}; o.dailyTime={}; o.dailyGames={}; o.dailyGreen={}; o.dailyRed={}; o.games=0; o.rounds=0; o.totalTime=0; o.agames=0; o.arounds=0; }
-        function clearProgress(ld){ clearMode(ld); clearMode(ld.phr); clearMode(ld.pairs); clearMode(ld.verbs); clearMode(ld.verbsTop); clearMode(ld.verbsIrr); clearMode(ld.verbsPair); }
 
         // Главная логика: вызывается после успешного входа/регистрации, когда на
         // устройстве уже есть локальный профиль. Реализует три сценария из ТЗ.
@@ -5950,7 +4858,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
               'wm2_ctstats','wm2_fdstats','wm2_porkstats','wm2_porkfdstats',
               'wm2_cwstats','wm2_rdstats','wm2_gtstats',
               // турнир/прочий прогресс
-              'wm2_cuprank','wm2_donedim'
+              'wm2_cuprank'
             ].forEach(k=>{ try{ localStorage.removeItem(k); }catch(e){} });
             try{ if(typeof user!=='undefined') user=null; }catch(e){}
             updateAuthUI(null); refreshEntry(null);
@@ -6157,24 +5065,14 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
   renderSound();
   populateVoiceSelect();
   renderSpeed();
-  renderIpa();
-  renderRate();
   renderRounds();
-  renderRows();
-  renderDimWrong();
   renderTournament();
-  renderCol();
-  renderMastery();
-  renderWeightCap();
-  renderDedup();
-  renderReviewWeak();
-  if(typeof renderFirstPass==='function') renderFirstPass();
-  renderGest();
   renderWeightMode();
-  renderListWeightMode();
   renderFont();
-  renderDim();
   renderPlayers();
+  // версия приложения — одно место правды (APP_VERSION); диагностика читает
+  // эту же строку из шапки, поэтому номер в отчётах всегда актуален
+  try{ const by=document.querySelector('.topbar .logo .by'); if(by) by.innerHTML='<b>by Abraziv</b> · версия '+APP_VERSION; }catch(e){}
   const cur=localStorage.getItem('wm2_current');
   if(cur && listPlayers().includes(cur)){ ensureLocalId(); user=loadUser(cur); applyMode(); navReplace('home'); }
   else navReplace('name');
@@ -6184,8 +5082,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
 // IntersectionObserver, переключавший класс .stuck во время скролла, удалён:
 // именно изменение стилей внутри backdrop-filter на первом скролле и вызывало
 // «отскок» страницы наверх на части Android. Тени кнопок теперь постоянны (CSS),
-// поэтому при прокрутке ничего не пересобирается. Заглушки-сентинелы
-// #modeStickyTop / #modeStickyTopR больше не используются (безвредны).
+// поэтому при прокрутке ничего не пересобирается.
 
 // Адаптив блока прослушивания: держим кнопки в одну строку. Если контент не
 // помещается — включаем компактный режим: у RU/EN остаются только буквы RU/EN,

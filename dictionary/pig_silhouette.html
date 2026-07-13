@@ -42,6 +42,9 @@
     .ct-pig .pig-zone:not(.bad):not(.ok):hover .tailline{stroke:#4d5a72}
   }
   .ct-pig .pig-zone.sel .zpill{fill:#1c7fd6}
+  /* удобство тапа: подпись зоны кликабельна, промах «дотягивается» (см. скрипт) */
+  .ct-pig{touch-action:manipulation}
+  .ct-pig .pig-zone .zpill,.ct-pig .pig-zone text{pointer-events:auto;cursor:pointer}
 
   /* --- легенда (слова) --- */
   h2{font-size:16px; margin:26px 0 10px}
@@ -90,14 +93,29 @@
     document.getElementById('hint').textContent =
       'Клик по зоне подсвечивает выбор синим (как в игре). Всего зон: '+keys.length+'.';
 
-    // Лёгкая интерактивность: клик = «выбор» (как в приложении)
-    document.querySelectorAll('#pig .pig-zone').forEach(function(g){
-      g.addEventListener('click', function(){
-        var was = g.classList.contains('sel');
-        document.querySelectorAll('#pig .pig-zone.sel').forEach(function(x){ x.classList.remove('sel'); });
-        if(!was) g.classList.add('sel');
-      });
-    });
+    // Лёгкая интерактивность: клик = «выбор» (как в приложении).
+    // Тап по подписи тоже работает; промах «дотягивается» до ближайшей
+    // зоны в радиусе ~20px — тот же допуск, что в игре (режим Find).
+    function zoneNear(x, y){
+      if(!document.elementFromPoint) return null;
+      var R=[7,13,20];
+      for(var i=0;i<R.length;i++){
+        for(var a=0;a<8;a++){
+          var el=document.elementFromPoint(x+R[i]*Math.cos(a*Math.PI/4), y+R[i]*Math.sin(a*Math.PI/4));
+          var g=(el && el.closest) ? el.closest('.pig-zone') : null;
+          if(g) return g;
+        }
+      }
+      return null;
+    }
+    document.getElementById('pig').onclick=function(e){
+      var g=(e.target && e.target.closest) ? e.target.closest('.pig-zone') : null;
+      if(!g) g=zoneNear(e.clientX, e.clientY);
+      if(!g) return;
+      var was=g.classList.contains('sel');
+      document.querySelectorAll('#pig .pig-zone.sel').forEach(function(x){ x.classList.remove('sel'); });
+      if(!was) g.classList.add('sel');
+    };
   })();
 </script>
 </body>
