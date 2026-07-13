@@ -43,7 +43,6 @@
   --line:#272c39;
   --sel:rgba(46,230,210,.18);--ok:rgba(88,204,2,.18);--bad:rgba(255,75,75,.18);
   --tealbg:rgba(46,230,210,.14);--goldbg:rgba(255,194,77,.14);--coralbg:rgba(255,122,122,.16);
-  --track:#222734;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow-anchor:none}
@@ -63,12 +62,6 @@ body::before{
 .wrap{width:100%;max-width:600px}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
 .card.pad hr{border:0;border-top:1px solid var(--line);margin:12px 0}
-.zones{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.zones .z{font-size:calc(13px * var(--fs,1));font-weight:800;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:5px 9px}
-.zones .z b{font-weight:800}
-.zones .z.green{color:var(--green)}
-.zones .z.red{color:var(--coral)}
-.zones .z.gold{color:var(--gold)}
 .faq-q{font-family:'Nunito';font-weight:800;font-size:calc(15px * var(--fs,1));color:var(--ink);margin:14px 0 5px}
 .faq-q:first-child{margin-top:0}
 .faq-a{font-size:calc(14px * var(--fs,1));font-weight:600;color:var(--muted);line-height:1.55}
@@ -84,7 +77,6 @@ body::before{
 .logo .txt{display:flex;flex-direction:column;line-height:1}
 .logo .by{font-size:calc(11px * var(--fs,1));font-weight:600;color:var(--muted);letter-spacing:.3px;margin-top:2px}
 .logo .dot{display:inline-flex;width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--teal),var(--violet) 70%,var(--coral));align-items:center;justify-content:center;color:#08121a;font-size:calc(18px * var(--fs,1));box-shadow:0 6px 18px rgba(46,230,210,.35),0 2px 0 rgba(0,0,0,.4);transform:rotate(-6deg);flex:none}
-.topright{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
 .soundtoggle{position:relative;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--card2);cursor:pointer;font-size:calc(19px * var(--fs,1));line-height:1;display:flex;align-items:center;justify-content:center;color:var(--teal);transition:transform .06s,background .15s}
 .soundtoggle:active{transform:scale(.92)}
 .soundtoggle.on{border-color:var(--teal);background:var(--tealbg)}
@@ -114,20 +106,12 @@ input.namefield::placeholder{color:var(--muted)}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px}
 .scard{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:16px;text-align:center}
 .scard.teal{border-color:var(--teal);background:var(--tealbg)}
-.scard.gold{border-color:var(--gold);background:var(--goldbg)}
 .scard.coral{border-color:var(--coral);background:var(--coralbg)}
 .scard .v{font-family:'Nunito';font-weight:800;font-size:calc(26px * var(--fs,1));color:var(--ink)}
 .scard .l{font-size:calc(12px * var(--fs,1));font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
 .gamehead{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .icon-btn{font:inherit;width:42px;height:42px;border-radius:12px;border:2px solid var(--line);background:var(--card2);cursor:pointer;font-size:calc(18px * var(--fs,1));color:var(--ink);flex:none}
-.progress{flex:1;height:16px;background:var(--track);border-radius:30px;overflow:hidden}
-.progress span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--teal),var(--green));border-radius:30px;transition:width .3s;box-shadow:0 0 12px rgba(46,230,210,.4)}
-@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.07)}100%{transform:scale(1)}}
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
-.result{text-align:center;padding:10px 4px}
-.result .big{font-size:calc(60px * var(--fs,1));line-height:1;margin-bottom:6px;animation:pop .4s}
-.result h2{font-family:'Nunito';font-weight:800;font-size:calc(28px * var(--fs,1));margin-bottom:4px}
-.result .sub{color:var(--muted);font-weight:700;margin-bottom:18px}
 .hint{font-size:calc(13px * var(--fs,1));color:var(--muted);font-weight:600;margin-top:10px;line-height:1.45;text-align:center}
 .hide{display:none!important}
 .fade{animation:fadein .35s}
@@ -143,8 +127,6 @@ input.namefield::placeholder{color:var(--muted)}
 .area .t{font-family:'Nunito';font-weight:800;font-size:calc(16px * var(--fs,1));color:var(--ink)}
 .area .s{font-size:calc(12px * var(--fs,1));font-weight:700;color:var(--muted);margin-top:3px}
 .area.common{border-color:var(--green)}
-.area.words{border-color:var(--teal)}
-.area.phr{border-color:var(--violet)}
 .area.data{border-color:#7a8190}
 .card.pad{padding:16px 18px}
 .btn.danger{background:#b3382f;color:#fff;box-shadow:none}
@@ -152,9 +134,7 @@ input.namefield::placeholder{color:var(--muted)}
 #bkPaste{width:100%;min-height:90px;border:2px solid var(--line);border-radius:14px;padding:12px;font-family:'Nunito';font-weight:600;font-size:calc(13px * var(--fs,1));background:var(--card2);color:var(--ink);resize:vertical;margin:10px 0}
 #bkPaste:focus{outline:none;border-color:var(--teal)}
 /* ===== Базовые размеры и раскладка (палитра/тема задаётся ниже, в DUOLINGO THEME) =====
-   Здесь только геометрия и вёрстка, которые НЕ зависят от темы. Раньше эти правила
-   соседствовали с давно неиспользуемой «золотой» темой — сама тема удалена,
-   а живые базовые правила сохранены. */
+   Здесь только геометрия и вёрстка, которые НЕ зависят от темы. */
 .ic{width:1.2em;height:1.2em;flex:none;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
 .card{position:relative}
 .modeswitch button{gap:7px}
@@ -164,10 +144,6 @@ input.namefield::placeholder{color:var(--muted)}
 .topbar .logo .txt{min-width:0;overflow:hidden}
 .topbar .logo .txt>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .topright-row{flex:none}
-/* зоны: цветные области, внутри только количество */
-.zones{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.zones .z{flex:1 1 64px;min-width:64px;display:flex;align-items:center;justify-content:center;gap:5px;padding:11px 6px;border-radius:11px;font-weight:800;font-size:calc(14px * var(--fs,1))}
-.zones .z.gold .ic{width:1.2em;height:1.2em;stroke-width:1.7}
 /* крупные элементы управления в настройках для удобного тапа */
 #settings .btn{padding:18px 20px;font-size:calc(17px * var(--fs,1));min-height:56px}
 #settings .soundtoggle{width:52px;height:52px;font-size:calc(21px * var(--fs,1))}
@@ -244,20 +220,12 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .scard .v{color:#fff;font-weight:900}
 .scard .l{color:var(--muted)}
 .scard.teal .v{color:var(--blue)}
-.scard.gold .v{color:var(--gold)}
 .scard.coral .v{color:var(--red)}
-/* zones */
-.zones .z.green{background:rgba(88,204,2,.16);border:2px solid rgba(88,204,2,.55);color:#86e23a}
-.zones .z.red{background:rgba(255,75,75,.16);border:2px solid rgba(255,75,75,.55);color:#ff8f8f}
-.zones .z.gold{background:rgba(255,200,0,.16);border:2px solid rgba(255,200,0,.55);color:var(--gold)}
-.zones .z.gold .ic{color:var(--gold)}
 /* settings area dividers */
 .area{border-left:4px solid var(--green)}
-.area.words{border-color:var(--blue)}
-.area.phr{border-color:var(--purple)}
 .area.data{border-color:var(--muted)}
 .area.common{border-color:var(--green)}
-/* ---- доп. правки v13 ---- *//* логотип: две плитки A/B */
+/* логотип: две плитки A/B */
 .topbar .logo .dot{background:none;border:none;box-shadow:none;padding:0;width:auto;height:auto}
 .logoic{width:40px;height:40px;display:block}
 /* профиль: аватар сверху, имя снизу, шестерёнка под профилем */
@@ -294,7 +262,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .chev{width:18px;height:18px;fill:none;stroke:var(--blue);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
 .rounds-stepper button:disabled .chev{stroke:#4b5b64}
 #soundBtn:not(.on){color:var(--gold)}
-/* ================= правки v15 ================= *//* профиль: аватар = «неполный круг», имя в рамке наложено снизу */
+/* ================= профиль: аватар = «неполный круг», имя в рамке наложено снизу ================= */
 .profile{background:none;border:none;box-shadow:none;padding:0;gap:0;min-width:0;max-width:40vw}
 .profile .av{width:42px;height:42px;border-radius:50%;border:3px solid var(--blue);background:var(--card2);position:relative;z-index:1}
 .profile .av .ic{width:22px;height:22px;color:var(--blue)}
@@ -324,7 +292,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 #wmManualBtn .mastery-ic{color:#46555d}
 #wmManualBtn.on{border-color:var(--gold)}
 #wmManualBtn.on .mastery-ic{color:var(--gold)}
-/* ================= правки v16 ================= *//* шапка крупнее: иконка A/B, название, by Abraziv */
+/* ================= шапка: иконка A/B, название, подпись by ================= */
 .logoic{width:54px;height:54px}
 .topbar .logo{font-size:calc(27px * var(--fs,1));letter-spacing:-.5px;gap:11px}
 .topbar .logo .txt>span:first-child{font-size:calc(27px * var(--fs,1));line-height:1}
@@ -336,13 +304,11 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .area .t{display:flex;align-items:center;gap:8px}
 .area .t .ic{width:21px;height:21px;flex:none;stroke-width:2.3}
 .area.common .t .ic{color:var(--green)}
-.area.words .t .ic{color:var(--blue)}
-.area.phr .t .ic{color:var(--purple)}
 .area.data .t .ic{color:var(--muted)}
 /* FAQ — иконки в стиле Duolingo */
 .faq-q{display:flex;align-items:flex-start;gap:9px}
 .faq-q .fic{width:19px;height:19px;flex:none;margin-top:1px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;color:var(--green)}
-/* ================= правки v17 ================= *//* шапка: крупнее иконка и название, профиль в уровень с шапкой */
+/* ================= шапка: профиль в один уровень с заголовком ================= */
 .topbar{align-items:center}
 .logoic{width:62px;height:62px}
 .topbar .logo{font-size:calc(31px * var(--fs,1));gap:12px}
@@ -357,7 +323,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .modebar .modeswitch{flex:1;margin-bottom:0}
 .modebar .gear{flex:none;width:52px;height:52px;padding:0;border-radius:50%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
 .modebar .gear .ic{width:24px;height:24px}
-/* ================= правки v18 ================= *//* переключатель режимов: убрать лишние линии, активная — как зелёная кнопка */
+/* ================= переключатель режимов: активная кнопка — как зелёная «Поехали» ================= */
 .modeswitch{border:none;background:var(--card2);border-radius:16px;padding:5px}
 .modeswitch button{border:none;border-radius:12px;box-shadow:none;gap:7px}
 .modeswitch button.on{background:var(--green);color:#fff;box-shadow:0 3px 0 var(--green-d)}
@@ -367,7 +333,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 /* шестерёнка — строго круглая, без сплющивания */
 .modebar .gear{flex:0 0 52px!important;width:52px!important;height:52px!important;min-width:52px;min-height:52px;max-width:52px;border-radius:50%!important;border:none!important;background:transparent!important;box-shadow:none!important;padding:0!important;aspect-ratio:auto;display:flex;align-items:center;justify-content:center}
 .modebar .gear .ic{width:24px;height:24px}
-/* ================= правки v21 ================= *//* четыре плитки дашборда — компактно, в один ряд, мелким шрифтом как у заголовков */
+/* ================= четыре плитки статистики — компактно, в один ряд ================= */
 #home .stat-grid{grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:6px}
 #home .stat-grid .scard{padding:9px 5px;border-radius:12px;border-width:2px}
 #home .stat-grid .scard .v{font-size:calc(18px * var(--fs,1));font-weight:900;line-height:1.02}
@@ -390,7 +356,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 /* Запас места внизу списка: доскроллив до конца, кнопки встают ВЫШЕ полосы тумана,
    поэтому в покое они полностью непрозрачны (туман гасит только пустоту под ними). */
 #home #homeTail{height:84px}
-/* ================= правки v22 ================= *//* шапка: только логотип, название всегда полностью видно (без обрезки) */
+/* ================= шапка: название всегда видно полностью (без обрезки) ================= */
 .topbar{align-items:center}
 .topbar .logo{flex:1 1 auto;min-width:0}
 .topbar .logo .txt{overflow:visible}
@@ -406,10 +372,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 /* красные кнопки — тот же стиль тени */
 .btn.danger{box-shadow:0 4px 0 var(--red-d)!important;border-radius:16px}
 .btn.danger:active{box-shadow:0 0 0 var(--red-d)!important;transform:translateY(4px)}
-/* зоны дашборда: постоянная высота + усечение длинного текста */
-.zones .z{height:50px;min-height:50px;overflow:hidden;min-width:0}
-.zones .z b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;max-width:100%}
-/* ===== строка CITIZEN (MeatQuiz/Test/Write/Read): как строка глаголов, акцент фиолетовый ===== */
+/* ===== строка BEEF (Test/Write/Read): сегментный ряд, акцент фиолетовый ===== */
 .citrow{margin-top:8px}
 .citrow .csub{font-size:calc(12px * var(--fs,1));font-weight:800}
 #modeCit.on,.citrow .csub.on{background:var(--purple)!important;color:#3a1a4d!important;box-shadow:0 4px 0 #9a5fc4!important}
@@ -447,7 +410,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
    внутренняя логика (переключатели, подсветка) не падала. Шестерёнка настроек
    остаётся доступной (верхний правый угол). Основной режим включён по умолчанию. */
 #home .citrow{margin-top:0}
-/* ряд режимов (Test / Write / Read) + шестерёнка *//* ===================== ГРАММАТИКА · ТЕСТ (#gtest) ===================== */
+/* ряд режимов + шестерёнка *//* ========= БАЗОВЫЕ КЛАССЫ ТЕСТА (gt-*): шапка, прогресс-бар, варианты, финал — разметка экрана #ctest ========= */
 .gt-head{display:flex;align-items:center;gap:10px;padding:6px 2px 2px}
 .gt-htitle{flex:1;text-align:center;font-family:'Nunito';font-weight:900;font-size:calc(17px * var(--fs,1));color:#fff}
 .gt-icbtn{width:42px;height:42px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
@@ -494,7 +457,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .gt-final{text-align:center;padding:26px 10px}
 .gt-final .gt-big{font-family:'Nunito';font-weight:900;font-size:calc(40px * var(--fs,1));color:var(--blue)}
 .gt-final .gt-sub{color:var(--muted);font-weight:800;margin:6px 0 22px;font-size:calc(15px * var(--fs,1))}
-/* ===================== CITIZEN · ТЕСТ (#ctest) ===================== *//* Базовая разметка повторяет grammar-тест (классы gt-*), здесь только
+/* ===================== MEATQUIZ · ТЕСТ (#ctest) ===================== *//* Базовая разметка — классы gt-* (см. выше), здесь только
    перекрашиваем акцент в фиолетовый и добавляем стили для вопросов
    с несколькими ответами (multi-select). */
 #ctest{max-width:560px;margin:0 auto;padding:8px 0 24px}
@@ -523,8 +486,8 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 @keyframes ctGalFade{from{opacity:.25}to{opacity:1}}
 .ct-gal-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;
   border-radius:50%;border:2px solid var(--line);background:rgba(22,25,34,.78);color:#fff;
-  font-size:22px;line-height:1;font-weight:900;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;padding:0 0 3px}
+  cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.ct-gal-nav .ic{width:20px;height:20px}
 .ct-gal-nav.prev{left:10px}
 .ct-gal-nav.next{right:10px}
 .ct-gal-nav:active{transform:translateY(-50%) scale(.9)}
@@ -562,8 +525,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 /* ── УДОБСТВО ТАПА (Find) ─────────────────────────────────────────────
    1) Плашка с названием зоны КЛИКАБЕЛЬНА: у узких зон (NECK, TENDERLOIN,
       HOCK, OX TAIL…) плашка заметно крупнее самой полосы мяса — попасть
-      по подписи проще, чем по контуру. Раньше подпись была «прозрачна»
-      для тапов (pointer-events:none) и работала только как украшение.
+      по подписи проще, чем по контуру.
    2) Для погасшей зоны (.bad/.ok) и заблокированной схемы (.off)
       кликабельность подписи явно выключаем: pointer-events наследуется,
       и auto на детях «пробивал» бы none, выставленный на самой зоне.
@@ -627,14 +589,13 @@ body.no-hints .ct-hintbtn{display:none!important}
    элементе. На части Android-браузеров (Chrome, Samsung Internet, WebView)
    композитор обязан пересэмплировать размытый фон КАЖДЫЙ кадр, пока контент
    прокручивается за панелью. На резком быстром скролле он не успевает и
-   сбрасывает scrollTop в 0 — страницу перекидывает к заголовку. Раньше думали,
-   что виновата только смена стилей (.stuck) — её убрали, но сам статичный блюр
-   на sticky-слое продолжал вызывать тот же сброс.
+   сбрасывает scrollTop в 0 — страницу перекидывает к заголовку. Сбой вызывает
+   и смена стилей под размытием, и сам статичный блюр на sticky-слое.
    Решение: НЕ используем backdrop-filter вовсе. Вместо размытия — обычная
    градиентная «шторка» из цвета фона (никакого пересэмплинга, композитор на
    скролле ничего не пересобирает). Контент мягко уходит под кнопки сверху и
    проступает к нижнему краю; кнопки читаются как «плавающие» за счёт своих
-   теней. Снапбэка больше нет. *//* «Шторка» за кнопками: градиент из цвета фона (--bg), который СКРЫВАЕТ
+   теней. *//* «Шторка» за кнопками: градиент из цвета фона (--bg), который СКРЫВАЕТ
    прокручиваемый контент в верхней части панели и МЯГКО растворяется к
    нижнему краю. Итог: текст не «просвечивает» сразу за всеми кнопками —
    он плавно проступает только у нижней кромки панели (по «красной линии»),
@@ -642,8 +603,8 @@ body.no-hints .ct-hintbtn{display:none!important}
 
    Реализация: фон шторки рисуется обычными градиентами с
    background-attachment:fixed (НЕ backdrop-filter!). На скролле композитор
-   лишь заново растеризует дешёвый градиент (без дорогого пересэмплинга
-   размытия, который раньше и вызывал «снапбэк» наверх).
+   лишь заново растеризует дешёвый градиент — без дорогого пересэмплинга
+   размытия.
 
    z-index:-1 удерживает шторку ВНУТРИ stacking-context самой панели (z:50):
    она оказывается НАД прокручиваемым контентом, но ПОД кнопками (у них свой
@@ -688,7 +649,7 @@ body.no-hints .ct-hintbtn{display:none!important}
    ОДИН раз, уже после анимаций появления, и шторка сразу выравнивается. */
 html:not(.bg-ready) .modesticky::before{ display:none; }
 .modesticky .modebar{margin-bottom:0}
-/* ================= правки v25 (адаптивная шапка) ================= *//* Название слева, профиль (аватар+имя) справа. Название имеет приоритет
+/* ================= адаптивная шапка ================= *//* Название слева, профиль (аватар+имя) справа. Название имеет приоритет
    по ширине; профиль ужимается и НЕ перекрывает название. */
 .topbar{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:space-between!important;gap:clamp(6px,2vw,12px)!important}
 .topbar .logo{flex:1 1 auto!important;min-width:0!important;overflow:hidden!important;font-size:calc(clamp(18px,7vw,31px) * var(--fs,1))!important;gap:clamp(4px,1.6vw,12px)!important}
@@ -712,11 +673,9 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 #home .modebar .modeswitch{flex:1 1 auto!important;min-width:0!important}
 #home .modebar .modeswitch button{min-width:0!important;padding-left:4px!important;padding-right:4px!important}
 #home .modebar .soundtoggle.gear{flex:0 0 auto!important}
-/* ================= правки v42: профиль (имя + рамка) поверх названия ================= *//* Раньше профиль участвовал в сжатии шапки по флексу (название имело приоритет),
-   из-за чего при длинном имени рамка имени начинала обрезаться. Теперь профиль
-   выводим абсолютно у правого края шапки: он больше НЕ сжимается и не клиппится,
-   поэтому имя и его рамка всегда видны целиком — при длинном имени профиль просто
-   перекрывает название приложения. */
+/* ================= профиль (имя + рамка) поверх названия ================= *//* Профиль позиционируется абсолютно у правого края шапки: он не участвует в
+   сжатии по флексу и не клиппится, поэтому имя и рамка всегда видны целиком —
+   при очень длинном имени профиль просто перекрывает название приложения. */
 .topbar{position:relative!important}
 /* резервируем справа место под аватар, чтобы при коротком имени название
    не заезжало под профиль */
@@ -738,7 +697,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 .topbar .profile{max-width:none!important;flex:none!important}
 .topbar .profile .nm{display:block!important;max-width:62vw!important}
 }
-/* ================= v50: бренд LingoFlip — колонка RU-EN / Cards справа от названия ================= */
+/* ================= колонка-бейдж RU-EN / Beef справа от названия ================= */
 .topbar .logo .ttl-row{display:flex!important;align-items:center!important;gap:clamp(5px,1.7vw,9px)!important;min-width:0!important}
 .topbar .logo .appname{font-weight:900!important;line-height:1!important;white-space:nowrap!important;color:#fff!important}
 /* колонка высотой в логотип: RU-EN сверху, Cards снизу, по центру по вертикали */
@@ -756,8 +715,8 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 .rk-histbtn:active{transform:translateY(2px)}
 .wn-list{display:flex;flex-direction:column;gap:10px;padding:8px 0}
 /* строка = прошедшая неделя. .wn-card — это <button>, а кнопки НЕ наследуют
-   цвет текста, поэтому раньше текст брал системный (тёмный) цвет и был не виден
-   на тёмной карточке. Задаём цвет явно + читаемый фон и шеврон-стрелку справа. */
+   цвет текста (взяли бы системный тёмный, невидимый на тёмной карточке) —
+   задаём цвет явно + читаемый фон и шеврон-стрелку справа. */
 .wn-card{
   position:relative;display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;
   padding:14px 38px 14px 16px;border-radius:16px;
@@ -802,8 +761,6 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 .rk-meta svg{width:13px;height:13px;opacity:.85}
 .rk-dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:0 0 auto}
 .rk-dot.g{background:var(--green)}
-.rk-dot.o{background:#ff9600}
-.rk-dot.r{background:var(--coral,#ff6b6b)}
 .rk-games{flex:0 0 auto;text-align:right;font-family:'Nunito';font-weight:900;font-size:calc(20px * var(--fs,1));color:var(--teal);line-height:1}
 .rk-games small{display:block;font-family:inherit;font-weight:700;color:var(--muted);font-size:calc(11px * var(--fs,1));margin-top:2px;letter-spacing:.02em}
 .rk-row.top1{border-color:#ffc800;background:linear-gradient(100deg,rgba(255,200,0,.18),var(--card) 62%)}
@@ -866,21 +823,15 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 .syncbtn.busy{pointer-events:none;opacity:.8}
 @keyframes sbshake{0%,100%{transform:translateX(0)}15%,55%{transform:translateX(-7px)}35%,75%{transform:translateX(7px)}}
 .syncbtn.shake{animation:sbshake .45s cubic-bezier(.36,.07,.19,.97)}
-/* ================= кнопки режимов: единый стиль с «Поехали» ================= *//* Раньше .modeswitch был серой панелью-обёрткой (background:var(--card2) + отступы),
-   из-за чего вокруг кнопок (особенно активной цветной) виднелся серый ободок —
-   «странный бордер». Делаем кнопки самостоятельными, без рамки-обёртки. */
+/* ================= кнопки режимов: единый стиль с «Поехали» ================= *//* Кнопки самостоятельные, .modeswitch — прозрачный контейнер без панели-обёртки:
+   иначе вокруг активной цветной кнопки виден серый ободок. */
 .modeswitch{background:transparent!important;border:none!important;padding:0!important;gap:8px!important;border-radius:0!important}
 .modeswitch button{background:var(--card2);color:var(--muted);border:none;border-radius:14px;box-shadow:none}
 /* активная — цветная заливка и такая же 3D-тень, как у «Поехали» (цвета заданы для
    #modeWords/#modePhr/#modePairs/#modeVerbs ниже по каскаду через !important).
    Снимаем доставшуюся от темы тёмную рамку (border:1px solid #4f3a12). */
 .modeswitch button.on{border:none!important;border-radius:14px}
-/* ================= правки v26 (итоговая модалка) ================= *//* плитки результата — компактные, в один ряд (как на главной), без огромных карточек */
-#results .result .scard{padding:8px 5px;border-radius:12px;border-width:2px;min-height:54px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center}
-/* кнопка «Ещё игра» в итоговой модалке — такой же размер, как у главной кнопки
-   «Поехали» на главном экране (.btn.big = 19px). Перебиваем #results .result .big
-   {font-size:calc(52px * var(--fs,1))}: у кнопки тот же класс big, поэтому нужна бОльшая специфичность. *//* кнопки скорости озвучки: в ряд, в стиле кнопки «Озвучка», но синий контур и синий текст.
+/* кнопки скорости озвучки: в ряд, в стиле кнопки «Озвучка», но синий контур и синий текст.
    Просто ×1 / ×2; выбранная скорость — синяя заливка с белым текстом. */
 #speedRow{flex-direction:row;align-items:center;gap:8px}
 #settings #speedSlowBtn,#settings #speedNormBtn{width:52px;height:52px;font-family:'Nunito';font-weight:800;font-size:calc(18px * var(--fs,1));letter-spacing:.3px;
@@ -889,7 +840,6 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 /* ====================================================================
    АДАПТИВ ДЛЯ HD-ЭКРАНОВ (узкие телефоны, не только FHD)
    Принцип: в интерфейсе можно жертвовать длиной подписей и усекать текст.
-   В ИГРЕ (#game .tile / .board) транкейт НЕ применяется — там перенос целиком.
    ==================================================================== *//* короткие подписи плиток статистики прячем по умолчанию (показываем на узких) */
 .scard .l{min-width:0}
 .scard .l .lf,.scard .l .ls{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
@@ -902,7 +852,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 @media (max-width:440px){
 .scard .l .lf{display:none}
 .scard .l .ls{display:block}
-#home .stat-grid .scard,#results .result .stat-grid .scard{padding:8px 4px}
+#home .stat-grid .scard{padding:8px 4px}
 .topbar .logoic{width:clamp(28px,8.5vw,44px)!important;height:clamp(28px,8.5vw,44px)!important}
 .topbar .profile .av{width:clamp(32px,9vw,42px)!important;height:clamp(32px,9vw,42px)!important}
 /* прячем «(вес ≥ N)» — экономим место */
@@ -910,10 +860,10 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 }
 /* --- узкие HD-экраны (≤380px): значки вместо слов на кнопках режимов --- */
 @media (max-width:380px){
-#home .modeswitch button,#results .modeswitch button{padding-left:6px!important;padding-right:6px!important;gap:0!important}
+#home .modeswitch button{padding-left:6px!important;padding-right:6px!important;gap:0!important}
 /* статистика ещё компактнее */
-#home .stat-grid .scard .v,#results .result .stat-grid .scard .v{font-size:calc(16px * var(--fs,1))}
-#home .stat-grid .scard .l,#results .result .stat-grid .scard .l{font-size:calc(9px * var(--fs,1))}
+#home .stat-grid .scard .v{font-size:calc(16px * var(--fs,1))}
+#home .stat-grid .scard .l{font-size:calc(9px * var(--fs,1))}
 /* убираем необязательные описания интерфейса */
 #homeSub{display:none}
 /* настройки: подпись не должна распирать строку */
@@ -960,8 +910,8 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 }
 .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
 /* карточки/график с подсказкой по тапу: лёгкий сигнал кликабельности */
-[data-info],.zones .z[title]{ cursor:pointer; -webkit-tap-highlight-color:transparent; }
-[data-info]:active,.zones .z[title]:active{ filter:brightness(1.08); }
+[data-info]{ cursor:pointer; -webkit-tap-highlight-color:transparent; }
+[data-info]:active{ filter:brightness(1.08); }
 /* выпадающий список выбора голоса озвучки в настройках */
 .voicesel{ max-width:58%; font-family:inherit; font-size:calc(13px * var(--fs,1)); font-weight:600;
   color:var(--ink); background:var(--card2); border:2px solid var(--line); border-radius:12px;
@@ -975,7 +925,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
   color:#fff; background:#7c5cff; border:none; box-shadow:0 3px 0 #5a3fd6; }
 .ct-speak:active{ transform:translateY(3px); box-shadow:0 0 0 #5a3fd6; }
 .ct-speak .ic{ width:18px; height:18px; }
-/* CITIZEN · WRITE — диктант */
+/* MEATQUIZ · WRITE — диктант (режим скрыт: данных пока нет) */
 .cw-task{ padding:4px 2px; }
 .cw-instr{ display:flex; align-items:center; gap:10px; font-size:calc(16px * var(--fs,1)); font-weight:700; color:var(--ink); margin-bottom:12px; }
 .cw-instr span{ line-height:1.3; }
@@ -1022,7 +972,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 .ct-rep-ans{ color:var(--ink); font-weight:600; line-height:1.4; }
 .ct-rep-row.good .ct-rep-ans{ color:#3a9d54; }
 .ct-rep-sub{white-space:pre-line; color:var(--muted); margin-top:4px; line-height:1.4; font-size:calc(13px * var(--fs,1)); }
-/* CITIZEN · READ — крупное предложение для чтения вслух */
+/* MEATQUIZ · READ — чтение вслух (режим скрыт: данных пока нет) */
 .rd-sentence{ font-size:calc(24px * var(--fs,1)); font-weight:800; line-height:1.3; color:var(--ink);
   background:var(--card2); border:2px solid var(--line); border-radius:16px; padding:18px 16px;
   margin:6px 0 4px; text-align:center; }
@@ -1051,22 +1001,11 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="ic-mark" viewBox="0 0 24 24"><path d="M12 2l2.6 5.6 6.1.9-4.4 4.3 1 6.1-5.3-2.8-5.3 2.8 1-6.1L3 8.5l6.1-.9L12 2z"/></symbol>
  <symbol id="ic-book" viewBox="0 0 24 24"><path d="M6 4h9a2 2 0 0 1 2 2v14H8a2 2 0 0 0-2 2V4z"/><path d="M6 4v16a2 2 0 0 0 2 2h9"/><path d="M9.5 8.5h5M9.5 11.5h5"/></symbol>
- <symbol id="ic-scroll" viewBox="0 0 24 24"><path d="M7 5h9a1.8 1.8 0 0 1 1.8 1.8V16a2.2 2.2 0 0 0 2.2 2.2H9.2A2.2 2.2 0 0 1 7 16V5z"/><path d="M7 5a2 2 0 0 0-2 2v1.4h2.6"/><path d="M10 9h5M10 12h5"/></symbol>
  <symbol id="ic-chain" viewBox="0 0 24 24"><rect x="2.5" y="8" width="10" height="8" rx="4"/><rect x="11.5" y="8" width="10" height="8" rx="4"/></symbol>
- <symbol id="ic-sword" viewBox="0 0 24 24"><path d="M20.5 3.5L11 13"/><path d="M4 20l3-1 8.5-8.5-2-2L5 17l-1 3z"/><path d="M13.5 5.5l5 5"/><path d="M3 17.5l3.5 3.5"/></symbol>
  <symbol id="ic-banner" viewBox="0 0 24 24"><path d="M5 3h14v12l-7 6-7-6V3z"/><path d="M9 12.5v3M12 9.5v6M15 11.5v4"/></symbol>
- <symbol id="ic-tomes" viewBox="0 0 24 24"><rect x="4" y="4" width="15" height="4.7" rx="1"/><rect x="4" y="9.6" width="15" height="4.7" rx="1"/><rect x="4" y="15.2" width="15" height="4.7" rx="1"/><path d="M7 6.3h0M7 11.9h0M7 17.5h0"/></symbol>
  <symbol id="ic-rune" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.6 2.3c-.9.5-1.4 1-1.4 2"/><path d="M11.8 16.4h.02"/></symbol>
  <!-- летопись: открытая книга-хроника с ленточкой-закладкой (рисуется линией, наследует currentColor) -->
  <symbol id="ic-chronicle" viewBox="0 0 24 24"><path d="M12 7.1C9.7 5.5 6.7 5.3 4.3 6.3a1 1 0 0 0-.6.9V18a1 1 0 0 0 1.4.9C7.2 17.9 9.9 18 12 19.4"/><path d="M12 7.1c2.3-1.6 5.3-1.8 7.7-.8a1 1 0 0 1 .6.9V18a1 1 0 0 1-1.4.9C16.8 17.9 13.9 18 12 19.4"/><path d="M12 7.1V19.4"/><path d="M15.4 4.4v4.3l1.6-1.1 1.6 1.1V4.4"/><path d="M6.4 9.9c1.2-.3 2.4-.2 3.4.2M6.4 12.5c1.2-.3 2.4-.2 3.4.2"/></symbol>
- <!-- цикл/повтор: две стрелки кругом -->
- <symbol id="ic-loop" viewBox="0 0 24 24"><polyline points="20.5 5 20.5 10 15.5 10"/><polyline points="3.5 19 3.5 14 8.5 14"/><path d="M5.6 9a7 7 0 0 1 11.3-2.3L20.5 10"/><path d="M3.5 14l3.6 3.3A7 7 0 0 0 18.4 15"/></symbol>
- <!-- «повтор слабых слов»: круговая стрелка-повтор вокруг одного слова (точка в центре) -->
- <symbol id="ic-review" viewBox="0 0 24 24"><path d="M19 12a7 7 0 1 1-2-4.9"/><polyline points="19 4 19 7.5 15.5 7.5"/><circle cx="12" cy="12" r="2.3" fill="currentColor" stroke="none"/></symbol>
- <!-- динамик со звуковыми волнами -->
- <symbol id="ic-speaker" viewBox="0 0 24 24"><path d="M4 9.5v5h3.3L13 18.5v-13L7.3 9.5H4z"/><path d="M16.4 8.6a4.5 4.5 0 0 1 0 6.8"/><path d="M19 6a8 8 0 0 1 0 12"/></symbol>
- <!-- наушники (для кнопок прослушивания RU/EN) -->
- <symbol id="ic-headphones" viewBox="0 0 24 24"><path d="M5 13v-1a7 7 0 0 1 14 0v1"/><rect x="3" y="13" width="4.4" height="7" rx="2"/><rect x="16.6" y="13" width="4.4" height="7" rx="2"/></symbol>
  <!-- шеврон влево (назад) -->
  <symbol id="ic-chevl" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
  <symbol id="ic-chevr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
@@ -1077,10 +1016,8 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 </symbol>
  
  
- <symbol id="ic-coin" viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v11c0 1.7 3.1 3 7 3s7-1.3 7-3v-11"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></symbol>
  <symbol id="ic-swap" viewBox="0 0 24 24"><path d="M4 8.5h13M14 5.5l3 3-3 3"/><path d="M20 15.5H7M10 12.5l-3 3 3 3"/></symbol>
  <symbol id="ic-reset" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 3.5v4h-4"/></symbol>
- <symbol id="ic-list" viewBox="0 0 24 24"><path d="M8.5 7h10.5M8.5 12h10.5M8.5 17h10.5"/><circle cx="4.7" cy="7" r="1.1"/><circle cx="4.7" cy="12" r="1.1"/><circle cx="4.7" cy="17" r="1.1"/></symbol>
  <symbol id="ic-open" viewBox="0 0 24 24"><path d="M12 6.5C10 5 6.8 5 4.5 6.2V18c2.3-1.2 5.5-1.2 7.5.3 2-1.5 5.2-1.5 7.5-.3V6.2C17.2 5 14 5 12 6.5z"/><path d="M12 6.5V18.3"/></symbol>
  <symbol id="ic-trophy" viewBox="0 0 24 24"><path d="M7 4h10v4.5a5 5 0 0 1-10 0V4z"/><path d="M7 5.5H4.4a2.6 2.6 0 0 0 2.6 2.6"/><path d="M17 5.5h2.6a2.6 2.6 0 0 1-2.6 2.6"/><path d="M12 13.5v2.8M9 20h6M10.2 20l.4-3.7h2.8l.4 3.7"/></symbol>
  <symbol id="ic-rocket" viewBox="0 0 24 24"><path d="M12 2.5c2.9 1.7 4.7 4.8 4.7 8.6 0 1.9-.5 3.5-1.3 4.9H8.6c-.8-1.4-1.3-3-1.3-4.9 0-3.8 1.8-6.9 4.7-8.6z"/><circle cx="12" cy="9.3" r="1.7"/><path d="M8.6 16l-2 1.5M15.4 16l2 1.5"/><path d="M9.5 16.5c-2.4-.2-3.7 1.7-3.8 4 2 .2 3.6-.7 4.2-2M14.5 16.5c2.4-.2 3.7 1.7 3.8 4-2 .2-3.6-.7-4.2-2"/><path d="M10.5 20.5h3"/></symbol>
@@ -1098,26 +1035,18 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="3.4"/></symbol>
 <symbol id="ic-meat" viewBox="0 0 24 24"><path d="M15.5 5.2a6.3 6.3 0 1 0-6.9 10.2l-3.1 3.1a1.7 1.7 0 0 0 2.4 2.4l3.1-3.1a6.3 6.3 0 0 0 4.5-12.6z"/><circle cx="12.2" cy="10.5" r="2.6"/></symbol>
  <symbol id="ic-scale" viewBox="0 0 24 24"><path d="M12 4.5v15"/><path d="M6.5 19.5h11"/><path d="M4 8h16l-1.5-2.2"/><path d="M5.5 5.8 4 8"/><circle cx="12" cy="4.2" r="1.3"/><path d="M4 8l-2.3 4.6a2.6 2.6 0 0 0 4.6 0L4 8z"/><path d="M20 8l-2.3 4.6a2.6 2.6 0 0 0 4.6 0L20 8z"/></symbol>
- <symbol id="ic-levels" viewBox="0 0 24 24"><path d="M4 7h9"/><path d="M19 7h1"/><circle cx="16" cy="7" r="2.1"/><path d="M4 17h1"/><path d="M11 17h9"/><circle cx="8" cy="17" r="2.1"/></symbol>
  <symbol id="ic-hash" viewBox="0 0 24 24"><path d="M10 4 8 20"/><path d="M17 4l-2 16"/><path d="M5 9h15"/><path d="M4 15h15"/></symbol>
- <symbol id="ic-gesture" viewBox="0 0 24 24"><path d="M11 10.5V5.6a1.5 1.5 0 0 1 3 0V12"/><path d="M14 12v-1.4a1.5 1.5 0 0 1 3 0V16a4 4 0 0 1-4 4h-1.4a4 4 0 0 1-3.4-1.9l-1.9-3.1c-.5-.8-.1-1.8.8-2.1.6-.2 1.3 0 1.7.5l.9 1.1"/></symbol>
  <symbol id="ic-save" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v5h7V4"/><rect x="8" y="13" width="8" height="5" rx="1"/></symbol>
  <symbol id="ic-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
- <symbol id="ic-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
- <symbol id="ic-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
  <symbol id="ic-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol>
- <symbol id="ic-m-words" viewBox="0 0 24 24"><path d="M12 6.4C9.8 4.9 6.6 4.9 4.3 6.1V19c2.3-1.2 5.5-1.2 7.7.3 2.2-1.5 5.4-1.5 7.7-.3V6.1C17.4 4.9 14.2 4.9 12 6.4z"/><path d="M12 6.4V19.3"/></symbol>
- <symbol id="ic-m-phrase" viewBox="0 0 24 24"><path d="M4 5.5h16a1.6 1.6 0 0 1 1.6 1.6v7.6a1.6 1.6 0 0 1-1.6 1.6H10l-4.3 3.4V16.3H4a1.6 1.6 0 0 1-1.6-1.6V7.1A1.6 1.6 0 0 1 4 5.5z"/><path d="M7 9.4h10M7 12.4h6.5"/></symbol>
- <symbol id="ic-m-pair" viewBox="0 0 24 24"><rect x="2.6" y="7" width="8.6" height="10" rx="2.2"/><rect x="12.8" y="7" width="8.6" height="10" rx="2.2"/><path d="M11.2 12h1.6"/></symbol>
  <symbol id="ic-download" viewBox="0 0 24 24"><path d="M12 4v9"/><path d="M8.4 9.6 12 13.2l3.6-3.6"/><path d="M5 15.5v2.5A1.7 1.7 0 0 0 6.7 19.7h10.6A1.7 1.7 0 0 0 19 18v-2.5"/></symbol>
  <symbol id="ic-upload" viewBox="0 0 24 24"><path d="M12 20v-9"/><path d="M8.4 14.4 12 10.8l3.6 3.6"/><path d="M5 8.5V6A1.7 1.7 0 0 1 6.7 4.3h10.6A1.7 1.7 0 0 1 19 6v2.5"/></symbol>
  <symbol id="ic-clipboard" viewBox="0 0 24 24"><rect x="6" y="4.5" width="12" height="16" rx="2.2"/><rect x="9" y="2.8" width="6" height="3.6" rx="1.2"/><path d="M9 11h6M9 14.5h6M9 18h4"/></symbol>
- <symbol id="ic-m-verb" viewBox="0 0 24 24"><path d="M13 2.5 5.5 13.2H11l-1 8.3 8-11.2h-5.2z"/></symbol>
  </svg>
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 21</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef</span></span></span><span class="by"><b>by Abraziv</b> · версия 17</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -1127,7 +1056,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
       <button class="icon-btn" id="setBack">←</button>
       <div style="font-family:'Nunito';font-weight:800;font-size:calc(20px * var(--fs,1))">Настройки</div>
     </div>
-    <div class="area common"><div class="t"><svg class="ic"><use href="#ic-cog"/></svg>Общие настройки</div><div class="s">Действуют во всех режимах: Test, Write, Read</div></div>
+    <div class="area common"><div class="t"><svg class="ic"><use href="#ic-cog"/></svg>Общие настройки</div><div class="s">Действуют во всех режимах: Test и Find</div></div>
     <div class="card">
       <div class="section-title" style="margin-top:0">Игра</div>
       <div class="setrow">
@@ -1161,14 +1090,14 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
         </div>
       </div>
       <div class="setrow">
-        <div class="setlbl"><div class="lbl">Подсказки</div><div class="desc">показывать кнопку «Подсказка» в режимах Test, Write и Read</div></div>
+        <div class="setlbl"><div class="lbl">Подсказки</div><div class="desc">показывать кнопку «Подсказка» в режиме Test (в Find подсказки нет — она называла бы ответ)</div></div>
         <button class="soundtoggle" id="hintsBtn"><svg class="ic"><use href="#ic-mark"/></svg></button>
       </div>
     </div>
 
     <div class="card" style="margin-top:12px">
       <div class="section-title" style="margin-top:0">Настройка «весов»</div>
-      <p class="bk-text">На сколько меняется вес пункта за верный ответ (+) и за ошибку (−). Применяется к режимам Test, Write и Read. Активен ровно один режим.</p>
+      <p class="bk-text">На сколько меняется вес пункта за верный ответ (+) и за ошибку (−). Применяется к режимам Test и Find. Активен ровно один режим.</p>
       <div class="setrow">
         <div class="setlbl"><div class="lbl">Линейная</div><div class="desc">+1 за верно, −1 за ошибку</div></div>
         <button class="soundtoggle masterytoggle wmode" id="wmLinearBtn"><span class="mastery-ic">±1</span></button>
@@ -1311,9 +1240,9 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
       <div class="faq-q"><svg class="fic"><use href="#ic-banner"/></svg>Beef и Pork — два набора</div>
       <div class="faq-a">Верхний ряд (фиолетовый) — <b>Beef</b>, говядина. Второй ряд (розовый) — <b>Pork</b>, свинина. Наборы независимы: у каждого своя база отрубов, свои фотографии и своя схема разделки. Выбор набора в одном ряду выключает другой. Прогресс и статистика по говядине и свинине считаются <b>раздельно</b> и не смешиваются.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-clipboard"/></svg>Режим Test</div>
-      <div class="faq-a">Показывается фотография отруба и четыре варианта названия — выбери правильный. Если фотографий несколько — листай их <b>свайпом влево/вправо</b> (или стрелками ‹ ›). Ошибочный вариант гаснет — можно выбрать другой, но очко за вопрос засчитывается только при верном ответе <b>с первой попытки</b>. Кнопка «Подсказка» даёт намёк без прямого названия. В конце — отчёт по всем вопросам: фото, правильный ответ, подсказка и комментарий о том, как готовится этот отруб и чем он отличается от похожих. Работает и для говядины, и для свинины.</div>
+      <div class="faq-a">Показывается фотография отруба и четыре варианта названия — выбери правильный. Если фотографий несколько — листай их <b>свайпом влево/вправо</b> (или кнопками-стрелками). Ошибочный вариант гаснет — можно выбрать другой, но очко за вопрос засчитывается только при верном ответе <b>с первой попытки</b>. Кнопка «Подсказка» (если включена в настройках) даёт намёк без прямого названия, а кнопка-динамик читает вопрос вслух — голос и скорость озвучки настраиваются. В конце — отчёт по всем вопросам: фото, правильный ответ, подсказка и комментарий о том, как готовится этот отруб и чем он отличается от похожих. Работает и для говядины, и для свинины.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-target"/></svg>Режим Find</div>
-      <div class="faq-a">То же фото отруба, но вместо вариантов названия — <b>схема разделки туши</b> (для говядины — коровы, для свинины — свиньи). Нажми на ту часть, из которой сделан отруб, — она подсветится <b>синим</b> (выбор можно менять), затем жми «Проверить ответ». Неверная зона гаснет красным (и снижает вес вопроса), верная загорается зелёным; очко — только за попадание с первой попытки. Подсказка в этом режиме недоступна — она называла бы ответ. Отрубы без зоны на схеме (у говядины — сердце, почки, рубец; у свинины — желудок) в Find не участвуют. Прогресс Find считается отдельно от Test.</div>
+      <div class="faq-a">То же фото отруба, но вместо вариантов названия — <b>схема разделки туши</b> (для говядины — коровы, для свинины — свиньи). Нажми на ту часть, из которой сделан отруб, — она подсветится <b>синим</b> (выбор можно менять), затем жми «Проверить ответ». Неверная зона гаснет красным (и снижает вес вопроса), верная загорается зелёным; очко — только за попадание с первой попытки. Подсказка в этом режиме недоступна — она называла бы ответ. Отрубы без зоны на схеме (у говядины — сердце, почки, рубец; у свинины — желудок) в Find не участвуют. Прогресс Find считается отдельно от Test.<br>Попадать по зонам просто: тап работает и по плашке с названием зоны (у узких кусков она крупнее самой полосы), а лёгкий промах рядом с зоной засчитывается ближайшей — выбор всё равно подтверждается кнопкой. Переключатель <b>EN/RU</b> над схемой меняет язык подписей зон.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-target"/></svg>Какие вопросы выпадают?</div>
       <div class="faq-a">Сначала идут <b>новые</b> отрубы, которые ты ещё не проходил, и <b>слабые</b> — те, где чаще ошибаешься (с меньшим весом), с долей случайности для разнообразия. Так трудные отрубы попадаются чаще. Сколько вопросов за тест — задаёт настройка «Раунды». Отбор идёт внутри выбранного набора и режима.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-scale"/></svg>Что такое «вес»</div>
@@ -1325,15 +1254,15 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
       <div class="faq-q"><svg class="fic"><use href="#ic-cog"/></svg>Размер шрифта</div>
       <div class="faq-a">Масштабирует весь текст приложения (10–300%) — под маленькие или большие экраны.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-swap"/></svg>Локальный и облачный аккаунт</div>
-      <div class="faq-a"><b>Локальный профиль</b> живёт только на телефоне: имя, веса и статистика. Работает офлайн, регистрация не нужна. <b>Облачный аккаунт</b> — отдельный вход (логин + пароль): привязывает профиль к серверу, прогресс копируется в облако, его можно восстановить на другом телефоне и попасть в рейтинг. Логин для входа и имя профиля — разные вещи.</div>
+      <div class="faq-a"><b>Локальный профиль</b> живёт только на телефоне: имя, веса и статистика. Работает офлайн, регистрация не нужна. <b>Облачный аккаунт</b> — отдельный вход (логин + пароль): привязывает профиль к серверу, прогресс копируется в облако, его можно восстановить на другом телефоне и попасть в рейтинг. Логин для входа и имя профиля — разные вещи. Если сессия облака истекла, после партии появится предупреждение, что она не пошла в рейтинг, — просто войди снова.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-chain"/></svg>Как объединяются профили</div>
       <div class="faq-a">При входе в аккаунт приложение сверяет данные на телефоне и в облаке:<br>• <b>В облаке пусто</b> — предложит загрузить туда твой прогресс.<br>• <b>Тот же профиль</b> — просто обновит облако.<br>• <b>В облаке другой прогресс</b> — спросит: <b>Дополнить</b> (объединить), <b>Заменить в облаке</b> или <b>Скачать с сервера</b>.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-profile"/></svg>Приватность и данные</div>
       <div class="faq-a">Приложение <b>не собирает персональные данные</b>. Для регистрации <b>не нужен настоящий e-mail</b> — придумываешь логин и пароль, а приложение само превращает логин в технический адрес для сервера. В облаке хранятся только имя профиля, веса и статистика.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-save"/></svg>Перенос прогресса</div>
-      <div class="faq-a">Настройки → Профиль и данные → Сохранить/Загрузить. Скачай файл перед обновлением или переустановкой. Либо загрузи прогресс в облако: тогда восстановить его можно входом в аккаунт на любом телефоне.</div>
+      <div class="faq-a">Настройки → Профиль и данные → Сохранить/Загрузить. Скачай файл перед обновлением или переустановкой. Либо загрузи прогресс в облако: тогда восстановить его можно входом в аккаунт на любом телефоне. В файле только веса и настройки — статистика и привязка устройства в него не попадают, поэтому файлом нельзя ни накрутить рейтинг, ни перенести привязку на другой телефон.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-trophy"/></svg>Рейтинг</div>
-      <div class="faq-a">Рейтинг — таблица игроков <b>за текущую неделю</b>. Топ-3 получают медали. Каждую неделю счёт обнуляется. Чтобы попасть в список — войди в аккаунт и пройди тест по <b>говядине</b>; обновить — кнопкой ↻. <b>Свинина в рейтинг не входит</b>: её прогресс синхронизируется между устройствами, но на недельный зачёт не влияет.</div>
+      <div class="faq-a">Рейтинг — таблица игроков <b>за текущую неделю</b>; счёт обнуляется в понедельник. В зачёт идут партии <b>всех четырёх игровых режимов</b> — Beef и Pork, Test и Find. Чтобы попасть в список — войди в аккаунт и сыграй партию; обновить таблицу — кнопкой ↻. Топ-3 недели получают медали, своя медаль за прошлую неделю видна на аватаре. Участие включается переключателем <b>«Турнирный режим»</b> в настройках: при выключенном партии в зачёт не идут и твоя строка скрыта из таблицы, но прогресс сохраняется.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-chronicle"/></svg>История рейтинга — Летопись</div>
       <div class="faq-a">Кнопка-свиток на экране рейтинга открывает <b>Летопись победителей</b> — карточки прошедших недель. Нажми на неделю, чтобы увидеть её топ-3. Новая карточка появляется в понедельник.</div>
       <div class="faq-q"><svg class="fic"><use href="#ic-reset"/></svg>Сброс прогресса</div>
@@ -1368,7 +1297,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 
 
 
-  <!-- CITIZEN · ТЕСТ (Civics Test) -->
+  <!-- MEATQUIZ · TEST — вопросы по фотографии отруба -->
   <div id="ctest" class="hide">
     <div class="gt-head ct-head">
       <button class="gt-icbtn" id="ctBack" title="Назад"><svg class="ic"><use href="#ic-chevl"/></svg></button>
@@ -1389,7 +1318,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
     </div>
   </div>
 
-  <!-- CITIZEN · WRITE — письменная часть (диктант): слушаем предложение и записываем по-английски -->
+  <!-- MEATQUIZ · WRITE — диктант (скрыт): слушаем предложение и записываем по-английски -->
   <div id="cwtest" class="hide">
     <div class="gt-head ct-head">
       <button class="gt-icbtn" id="cwBack" title="Назад"><svg class="ic"><use href="#ic-chevl"/></svg></button>
@@ -1405,7 +1334,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
     </div>
   </div>
 
-  <!-- CITIZEN · READ — чтение вслух (Reading Test): показываем предложение, читаем вслух -->
+  <!-- MEATQUIZ · READ — чтение вслух (скрыт): читаем предложение в микрофон -->
   <div id="rdtest" class="hide">
     <div class="gt-head ct-head">
       <button class="gt-icbtn" id="rdBack" title="Назад"><svg class="ic"><use href="#ic-chevl"/></svg></button>
@@ -1435,14 +1364,14 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
     </div>
     <div class="card">
       <div class="section-title" style="margin-top:0">Сохранить</div>
-      <p class="bk-text">В файл сохраняются только веса слов (личный прогресс) и настройки. Статистика — игры, время, раунды, слова, дни — в файл <b>не попадает</b> и хранится только в облаке.</p>
+      <p class="bk-text">В файл сохраняются только веса отрубов (личный прогресс) и настройки. Статистика — игры, время, ответы — в файл <b>не попадает</b> и хранится только в облаке.</p>
       <button class="btn block" id="bkExport"><svg class="ic"><use href="#ic-download"/></svg>Скачать файл прогресса</button>
       <button class="btn ghost block" id="bkCopy"><svg class="ic"><use href="#ic-clipboard"/></svg>Скопировать в буфер</button>
       <div class="hint" id="bkExportMsg"></div>
     </div>
     <div class="card" style="margin-top:12px">
       <div class="section-title" style="margin-top:0">Восстановить</div>
-      <p class="bk-text">Загрузка из файла обновит только веса слов и настройки. Статистика не изменится — её можно менять только через облако.</p>
+      <p class="bk-text">Загрузка из файла обновит только веса отрубов и настройки. Статистика не изменится — её можно менять только через облако.</p>
       <input type="file" id="bkFile" accept="application/json,.json" style="display:none">
       <button class="btn block" id="bkImportFile"><svg class="ic"><use href="#ic-upload"/></svg>Загрузить из файла</button>
       <textarea id="bkPaste" placeholder="…или вставь сюда содержимое файла прогресса"></textarea>
@@ -1608,9 +1537,9 @@ function ensureLocalId(){ let id=getLocalId(); if(!id){ id=genLocalId(); try{ lo
 function escHtml(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function userKey(n){ return 'wm2_user_'+n; }
 function loadUser(n){
-  // MeatQuiz: профиль — это имя и счётчики agames/arounds (см. applyMode).
-  // Огромную словарную структуру LingoFlip (phr/pairs/verbs…) больше не
-  // создаём; поля СТАРЫХ профилей не трогаем — stripStats/импорт совместимы.
+  // Профиль хранит имя и счётчики agames/arounds (см. applyMode). Незнакомые
+  // поля существующих профилей сохраняются как есть — stripStats и импорт
+  // остаются совместимыми с любым содержимым wm2_user_*.
   try{ const u=JSON.parse(localStorage.getItem(userKey(n))); if(u){ u.name=u.name||n; return u; } }catch(e){}
   return { name:n };
 }
@@ -1620,10 +1549,9 @@ let user=null;
 
 
 function applyMode(){
-  // MeatQuiz: активен только тест на гражданство (Test/Write/Read).
-  // Старые режимы (Слова/Фразы/Пары/Глаголы) удалены — здесь осталась лишь
-  // лёгкая миграция профиля: agames/arounds (счётчики всех игр для личной
-  // статистики). У старых профилей их нет — заводим от зачётной базы.
+  // Профиль: agames/arounds — накопительные счётчики всех сыгранных партий
+  // для личной статистики. Если их в профиле ещё нет — заводим от текущей
+  // зачётной базы.
   if(user){
     if(user.agames===undefined)  user.agames  = user.games  || 0;
     if(user.arounds===undefined) user.arounds = user.rounds || 0;
@@ -1639,7 +1567,7 @@ let voiceURI = localStorage.getItem('wm2_voice') || '';   // выбранный 
 const RATE_NORM = 0.92, RATE_SLOW = 0.5;
 let speechRate = (localStorage.getItem('wm2_speechrate') === 'slow') ? RATE_SLOW : RATE_NORM;
 const ttsOk = typeof window!=='undefined' && 'speechSynthesis' in window;
-// Голоса для выпадающего списка: для теста на гражданство показываем АНГЛИЙСКИЕ
+// Голоса для выпадающего списка: названия отрубов английские, показываем АНГЛИЙСКИЕ
 // голоса (вместе с акцентами: US, GB, IN, AU, ZA …). Если английских нет — все.
 function ttsVoices(){
   if(!ttsOk) return [];
@@ -1687,7 +1615,7 @@ function populateVoiceSelect(){
   }).join('');
   sel.disabled = !soundOn;
 }
-// Озвучка для плиток прослушивания: играет независимо от тумблера звука игры.
+// Принудительная озвучка (по явному нажатию): играет независимо от тумблера звука.
 // Если передан el — на время воспроизведения подсвечиваем анимацию эквалайзера.
 // После угадывания: аудио-плитка раскрывается в английское слово (приглушённый done-стиль)
 function renderSound(){
@@ -1722,10 +1650,10 @@ function renderTournament(){
   const b=$('#tourBtn'); if(b){
     b.classList.remove('off'); b.disabled=false;
     b.classList.toggle('on', on);
-    b.title = on?'Игры режима Test идут в зачёт рейтинга':'Вы не участвуете в рейтинге';
+    b.title = on?'Партии идут в зачёт недельного рейтинга':'Вы не участвуете в рейтинге';
   }
   const d=$('#tourDesc'); if(d) d.textContent = on
-    ? 'Включён. Ваши результаты режима Test попадают в недельный рейтинг.'
+    ? 'Включён. Партии Beef и Pork, Test и Find попадают в недельный рейтинг.'
     : 'Выключен. Вы не отображаетесь в рейтинге, но прогресс всё равно сохраняется.';
 }
 function toggleTournament(){
@@ -1819,13 +1747,12 @@ function refreshHome(){
   // адаптив ряда режимов — после раскладки
   try{ if(typeof fitCitRow==='function'){ requestAnimationFrame(fitCitRow); setTimeout(fitCitRow, 60); } }catch(e){}
 }
-function gtStatLabels(g_lf,g_ls,s_lf,s_ls,k_lf,k_ls,w_lf,w_ls){
+function homeStatLabels(g_lf,g_ls,s_lf,s_ls,k_lf,k_ls,w_lf,w_ls){
   const lab=(id,lf,ls)=>{ const c=$('#'+id); if(!c||!c.parentElement)return; const l=c.parentElement.querySelector('.l'); if(!l)return; const a=l.querySelector('.lf'), b=l.querySelector('.ls'); if(a)a.textContent=lf; if(b)b.textContent=ls; };
   lab('hGames',g_lf,g_ls); lab('hSeen',s_lf,s_ls); lab('hKnown',k_lf,k_ls); lab('hWeak',w_lf,w_ls);
 }
-// Главная в режиме CITIZEN. Действует ТОЛЬКО когда on=true (вызывается после
-// applyGrammarHome(false), который уже сбросил экран к виду по умолчанию, поэтому
-// «выключенную» ветку обрабатывать не нужно — её сделал applyGrammarHome).
+// Главная в режиме викторины. Вызывается из refreshHome всегда с on=true —
+// других состояний главного экрана в MeatQuiz нет, ветка «выключено» не нужна.
 function applyQuizHome(on){
   if(!on) return;
   const sb=$('#startBtn');
@@ -1841,7 +1768,7 @@ function applyQuizHome(on){
     $('#hSeen').textContent=sp.answered||0;
     $('#hKnown').textContent=sp.correct||0;
     $('#hWeak').textContent=Math.max(0,(sp.answered||0)-(sp.correct||0));
-    gtStatLabels('Тестов пройдено','Тесты','вопросов задано','Вопр','верных ответов','Верно','ошибок','Ошиб');
+    homeStatLabels('Тестов пройдено','Тесты','вопросов задано','Вопр','верных ответов','Верно','ошибок','Ошиб');
     if(porkSel==='find'){
       const totalPF=(typeof CIVICS!=='undefined' && CIVICS)?CIVICS.filter(q=>q.body_part).length:0;
       $('#homeSub').textContent='MeatQuiz · Pork Find: посмотрите на фото отруба свинины и нажмите на схеме туши ту часть, из которой он сделан. Вопросов в базе: '+totalPF+'. За тест берётся '+( (typeof roundsSetting==='number'&&roundsSetting>0)?Math.min(roundsSetting,totalPF||roundsSetting):totalPF )+' вопросов (как «Раунды» в настройках).';
@@ -1862,14 +1789,14 @@ function applyQuizHome(on){
   $('#hKnown').textContent=s.correct||0;
   $('#hWeak').textContent=Math.max(0,(s.answered||0)-(s.correct||0));
   if(citSel==='write'){
-    gtStatLabels('Тренировок','Трен','предложений','Предл','верно записано','Верно','с ошибками','Ошиб');
+    homeStatLabels('Тренировок','Трен','предложений','Предл','верно записано','Верно','с ошибками','Ошиб');
     const totalW=(typeof CWRITING!=='undefined' && CWRITING)?CWRITING.length:0;
     $('#homeSub').textContent='MeatQuiz · Write (в разработке): диктант — вы слушаете предложение и записываете его по-английски. Предложений в базе: '+totalW+'. За тренировку берётся '+( (typeof roundsSetting==='number'&&roundsSetting>0)?Math.min(roundsSetting,totalW||roundsSetting):totalW )+' (как «Раунды» в настройках).';
     if(sb) sb.innerHTML='<svg class="ic"><use href="#ic-rocket"/></svg>Начать тест';
     return;
   }
   if(citSel==='find'){
-    gtStatLabels('Тестов пройдено','Тесты','вопросов задано','Вопр','верных ответов','Верно','ошибок','Ошиб');
+    homeStatLabels('Тестов пройдено','Тесты','вопросов задано','Вопр','верных ответов','Верно','ошибок','Ошиб');
     const totalF=(typeof CIVICS!=='undefined' && CIVICS)?CIVICS.filter(q=>q.body_part).length:0;
     $('#homeSub').textContent='MeatQuiz · Find: посмотрите на фото отруба и нажмите на схеме туши ту часть, из которой он сделан. Вопросов в базе: '+totalF+'. За тест берётся '+( (typeof roundsSetting==='number'&&roundsSetting>0)?Math.min(roundsSetting,totalF||roundsSetting):totalF )+' вопросов (как «Раунды» в настройках).';
     if(sb) sb.innerHTML='<svg class="ic"><use href="#ic-rocket"/></svg>Начать тест';
@@ -1878,13 +1805,13 @@ function applyQuizHome(on){
   if(citSel==='read'){
     $('#hKnown').textContent=s.best||0;
     $('#hWeak').textContent=s.last||0;
-    gtStatLabels('Тренировок','Трен','предложений прочитано','Прочит','рекорд за раз','Рекорд','за послед. раз','Послед');
+    homeStatLabels('Тренировок','Трен','предложений прочитано','Прочит','рекорд за раз','Рекорд','за послед. раз','Послед');
     const totalR=(typeof CREADING!=='undefined' && CREADING)?CREADING.length:0;
     $('#homeSub').textContent='MeatQuiz · Read (в разработке): чтение вслух. На экране — предложение по-английски, прочитайте его вслух; по «Подсказке» — перевод и транскрипция, по 🔊 — образец произношения. Предложений в базе: '+totalR+'. За тренировку берётся '+( (typeof roundsSetting==='number'&&roundsSetting>0)?Math.min(roundsSetting,totalR||roundsSetting):totalR )+' (как «Раунды» в настройках).';
     if(sb) sb.innerHTML='<svg class="ic"><use href="#ic-rocket"/></svg>Начать тест';
     return;
   }
-  gtStatLabels('Тестов пройдено','Тесты','вопросов задано','Вопр','верных ответов','Верно','ошибок','Ошиб');
+  homeStatLabels('Тестов пройдено','Тесты','вопросов задано','Вопр','верных ответов','Верно','ошибок','Ошиб');
   const total=(typeof CIVICS!=='undefined' && CIVICS)?CIVICS.length:0;
   $('#homeSub').textContent='MeatQuiz · Test: угадайте отруб говядины по фотографии — выберите правильное название из вариантов. Вопросов в базе: '+total+'. За тест берётся '+( (typeof roundsSetting==='number'&&roundsSetting>0)?Math.min(roundsSetting,total||roundsSetting):total )+' вопросов (как «Раунды» в настройках).';
   if(sb) sb.innerHTML='<svg class="ic"><use href="#ic-rocket"/></svg>Начать тест';
@@ -1914,6 +1841,16 @@ const MQ_STATS_KEYS=['wm2_ctstats','wm2_fdstats','wm2_porkstats','wm2_porkfdstat
 // именно от этого защищает local_id), а wm2_linked/wm2_lastsync заставили бы
 // кнопку синка врать «Синхронизировано» без реальной сессии.
 const IDENTITY_KEYS=['wm2_localid','wm2_linked','wm2_lastsync','wm2_bounduid','wm2_cuprank'];
+// Ключи настроек, которых в приложении больше нет. Вычищаются из localStorage
+// при старте и не пропускаются ни в экспорт, ни в импорт (файлы прогресса со
+// старых версий могут их содержать).
+const MQ_ORPHAN_KEYS=['wm2_rows','wm2_col','wm2_mastery','wm2_mastery_on','wm2_dedup',
+  'wm2_review_weak','wm2_firstpass','wm2_weightcap_hi','wm2_weightcap_lo','wm2_donedim',
+  'wm2_ipa','wm2_rate','wm2_gest_manual','wm2_gest_plus','wm2_gest_minus',
+  'wm2_weight_manual_plus','wm2_weight_manual_minus','wm2_list_weight_mode',
+  'wm2_list_weight_manual_plus','wm2_list_weight_manual_minus','wm2_dimwrong_on',
+  'wm2_dimwrong_mode','wm2_rework','wm2_aud','wm2_overrides','wm2_gweights','wm2_gseen'];
+try{ MQ_ORPHAN_KEYS.forEach(k=>localStorage.removeItem(k)); }catch(e){}
 function progressPayload(){
   const data={};
   for(let i=0;i<localStorage.length;i++){
@@ -1921,9 +1858,10 @@ function progressPayload(){
     if(!k || k.indexOf('wm2_')!==0) continue;
     // СТАТИСТИКА В ФАЙЛ НЕ КЛАДЁТСЯ ВООБЩЕ (анти-чит): в файле только веса и
     // настройки. Игры/время/проценты живут локально и в облаке; рейтинг
-    // питается только серверной civics_stats, файлом его не подделать.
+    // питается только серверной mq_stats, файлом его не подделать.
     if(MQ_STATS_KEYS.indexOf(k)!==-1) continue;
     if(IDENTITY_KEYS.indexOf(k)!==-1) continue;   // идентичность устройства — не переносим
+    if(MQ_ORPHAN_KEYS.indexOf(k)!==-1) continue;  // ключи несуществующих настроек
     if(k.indexOf('wm2_user_')===0){
       try{ data[k]=JSON.stringify(stripStats(JSON.parse(localStorage.getItem(k)))); }catch(e){}
     } else {
@@ -1966,11 +1904,12 @@ function importText(str){
   if(!d){ alert('В файле нет данных прогресса.'); return; }
   const keys=Object.keys(d).filter(k=>k.indexOf('wm2_')===0);
   if(!keys.length && !(p.byWord && typeof p.byWord==='object')){ alert('В файле не найдено сохранённого прогресса.'); return; }
-  if(!confirm('Загрузить прогресс по словам из файла?\n\nВеса слов и настройки заменятся. Статистика (игры, время, раунды, слова, дни) НЕ изменится — её можно обновлять только через облако.')) return;
+  if(!confirm('Загрузить прогресс из файла?\n\nВеса отрубов и настройки заменятся. Статистика (игры, время, раунды, слова, дни) НЕ изменится — её можно обновлять только через облако.')) return;
   // 1) переносим веса/настройки, статистику из файла игнорируем, локальную — сохраняем
   keys.forEach(k=>{
     try{
       if(IDENTITY_KEYS.indexOf(k)!==-1) return;   // идентичность ЧУЖОГО устройства не принимаем
+      if(MQ_ORPHAN_KEYS.indexOf(k)!==-1) return;  // ключи несуществующих настроек
       if(k.indexOf('wm2_user_')===0){
         const incoming=JSON.parse(d[k]);
         // выкидываем любую статистику, которая могла оказаться в файле
@@ -1986,16 +1925,13 @@ function importText(str){
       } else if(MQ_STATS_KEYS.indexOf(k)===-1){
         // Статистику режимов НЕ перезаписываем файлом (диалог обещает, что она
         // не изменится) — блок-лист MQ_STATS_KEYS покрывает ВСЕ режимы, включая
-        // Find и свинину (раньше wm2_fdstats/porkstats/porkfdstats затирались
-        // файлом — дыра для мухлежа и потери свежих очков). Веса и настройки
-        // восстанавливаются нормально этой веткой.
+        // Find и свинину. Веса и настройки восстанавливаются этой веткой.
         localStorage.setItem(k, d[k]);
       }
     }catch(e){}
   });
-  // Проверка: считаем перенесённые веса по РЕАЛЬНЫМ ключам MeatQuiz — раньше
-  // сумма бралась из легаси user.weights и всегда показывала «0», хотя импорт
-  // проходил успешно (пользователь решал, что восстановление не сработало).
+  // Итог для пользователя: считаем перенесённые веса по ключам всех шести
+  // режимов (Beef/Pork × Test/Find + Write + Read).
   const wc=k=>{ try{ return Object.keys(JSON.parse(localStorage.getItem(k))||{}).length; }catch(e){ return 0; } };
   const wsum=['wm2_ctweights','wm2_fdweights','wm2_porkweights','wm2_porkfdweights','wm2_cwweights','wm2_rdweights'].reduce((a,k)=>a+wc(k),0);
   alert('Готово ✅\nВесов перенесено (все режимы): '+wsum+'\nСтатистика не тронута — она меняется только через облако.\n\nПриложение перезапустится.');
@@ -2004,7 +1940,7 @@ function importText(str){
 
 // ---------- name screen ----------
 function renderPlayers(){
-  // Один локальный профиль на устройстве — список игроков больше не показываем.
+  // На устройстве один локальный профиль — селектор списка игроков скрыт.
   const wrap=$('#playersWrap'); if(wrap) wrap.classList.add('hide');
 }
 function enter(n){
@@ -2022,8 +1958,8 @@ $('#nameInput').addEventListener('keydown',e=>{ if(e.key==='Enter') enter(e.targ
 
 // ============ Рейтинг игроков (с сервера) ============
 // Компактный формат длительности для тесных мест (строки рейтинга).
-// ВАЖНО: раньше эта функция называлась fmtDur и из-за хойстинга молча
-// перетирала подробную fmtDur выше — стат. «Общее время» теряло секунды.
+// ВАЖНО: имя не должно совпадать с fmtDur — второе function-объявление с тем же
+// именем по хойстингу молча перекрыло бы подробное форматирование выше.
 // медаль (золото/серебро/бронза) в нижнем полукруге аватарки, если игрок в топ-3
 function renderMyCup(){
   const r=parseInt(localStorage.getItem('wm2_cuprank')||'0',10);
@@ -2080,7 +2016,6 @@ async function renderRating(){
     const uid = window.__cloudUid || '';
     const esc = s => String(s==null?'':s).replace(/[<>&]/g, c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
     const medal = cls => '<svg class="rk-medal ic '+cls+'" viewBox="0 0 24 24"><use href="#ic-trophy"/></svg>';
-    const clock = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>';
     let html = '<div class="rk-list">';
     rows.forEach((r,i)=>{
       const rank = i+1;
@@ -2281,9 +2216,8 @@ function fmtSyncTime(ts){
   const hh=String(d.getHours()).padStart(2,'0'), mn=String(d.getMinutes()).padStart(2,'0');
   return dd+'.'+mm+' '+hh+':'+mn;
 }
-// Глобальный кратковременный тост. Используется, например, чтобы сообщить, что
-// зачётная игра НЕ ушла в рейтинг из-за истёкшей сессии (раньше это происходило
-// молча). Не зависит от Supabase — только DOM.
+// Глобальный кратковременный тост — например, «партия не пошла в рейтинг из-за
+// истёкшей сессии». Не зависит от Supabase — только DOM.
 function flashToast(msg, kind){
   try{
     let t=document.getElementById('appToast');
@@ -2301,10 +2235,9 @@ window.flashToast = flashToast;
 function renderSyncButtons(){
   const linked = localStorage.getItem('wm2_linked')==='1';
   const last = parseInt(localStorage.getItem('wm2_lastsync')||'0',10);
-  // Живая сессия отслеживается отдельно от флага «связан». Если аккаунт привязан,
-  // но сессия истекла (refresh не прошёл / давно не заходили), игры МОЛЧА не идут
-  // в рейтинг. Раньше кнопка всё равно показывала «Синхронизировано» — поэтому
-  // пользователь неделю играл «вникуда». Теперь честно сообщаем о просроченной сессии.
+  // Живая сессия отслеживается отдельно от флага «связан»: если аккаунт привязан,
+  // но сессия истекла (refresh не прошёл / давно не заходили), партии не идут в
+  // рейтинг — статус кнопки честно сообщает о просроченной сессии.
   const sessionLost = linked && window.__hasCloudSession===false;
   const status = !linked
     ? 'Нет связанной учётной записи на сервере.'
@@ -2387,7 +2320,8 @@ async function buildDiagReport(){
   L.push(line('Beef·Find', fd,  'верно',(fd.correct||0),  'посл.',((fd.lastPct||0)+'%')));
   L.push(line('Pork·Test', pk,  'верно',(pk.correct||0),  'посл.',((pk.lastPct||0)+'%')));
   L.push(line('Pork·Find', pkf, 'верно',(pkf.correct||0), 'посл.',((pkf.lastPct||0)+'%')));
-  L.push(line('Write',     cw,  'верно',(cw.correct||0),  'посл.',((cw.lastPct||0)+'%')));
+  // Write без line(): у cwstats нет timeMs, и «время=0:00» вводило в заблуждение
+  L.push('  '+pad('Write',11)+'игр='+pad(cw.games||0,4)+' отвечено='+pad(cw.answered||0,5)+' верно='+pad(cw.correct||0,5)+' посл.='+((cw.lastPct||0)+'%'));
   L.push('  '+pad('Read',11)+'игр='+pad(rr.games||0,4)+' прочитано='+pad(rr.answered||0,5)+' рекорд='+pad(rr.best||0,5)+' послед.='+(rr.last||0));
   // Веса (прогресс) по режимам — сколько отрубов «в работе» в каждом наборе.
   const wCount=key=>{ try{ return Object.keys(JSON.parse(localStorage.getItem(key))||{}).length; }catch(e){ return 0; } };
@@ -2444,13 +2378,13 @@ async function buildDiagReport(){
   }
   L.push('');
 
-  // civics_stats по режимам (что реально ушло в облако)
+  // mq_stats по режимам (что реально ушло в облако)
   const st=d.stats;
-  if(!st) L.push('civics_stats: нет данных');
-  else if(st.error) L.push('civics_stats: ОШИБКА — '+st.error);
-  else if(!st.length) L.push('civics_stats: пусто (0 строк) — в облако ещё ничего не ушло');
+  if(!st) L.push(TBL_STATS+': нет данных');
+  else if(st.error) L.push(TBL_STATS+': ОШИБКА — '+st.error);
+  else if(!st.length) L.push(TBL_STATS+': пусто (0 строк) — в облако ещё ничего не ушло');
   else{
-    L.push('civics_stats (в облаке):');
+    L.push(TBL_STATS+' (в облаке):');
     st.forEach(r=>{
       const tt=r.total_time||0, m=Math.floor(tt/60000), sec=Math.floor(tt/1000)%60;
       L.push('  '+pad(r.mode||'?',10)+' игр='+pad(num(r.games),4)+' верно='+pad(num(r.correct),5)+
@@ -2461,9 +2395,9 @@ async function buildDiagReport(){
   const wbm=d.weightsByMode;
   if(wbm && !wbm.error){
     const parts=Object.keys(wbm).sort().map(m=>m+'='+wbm[m]);
-    L.push('civics_weights по режимам: '+(parts.length?parts.join('  '):'пусто'));
+    L.push(TBL_WEIGHTS+' по режимам: '+(parts.length?parts.join('  '):'пусто'));
   } else {
-    L.push('civics_weights (весов в облаке): '+num(d.weightsCount));
+    L.push(TBL_WEIGHTS+' (весов в облаке): '+num(d.weightsCount));
   }
   // Свинина теперь полноправна: и веса, и статистика уходят в облако, рейтинг
   // считает серверный триггер по всем 4 игровым режимам. Проверяем ПОЛНОТУ:
@@ -2475,7 +2409,7 @@ async function buildDiagReport(){
     if(porkStats.length){
       L.push('свинина: веса и статистика синхронизируются, идёт в рейтинг ✓');
     } else if(porkWeights){
-      L.push('⚠ свинина: веса в облаке есть, а civics_stats нет — статистика не доезжает. '+
+      L.push('⚠ свинина: веса в облаке есть, а '+TBL_STATS+' нет — статистика не доезжает. '+
              'Проверь чек-констрейнты mode на сервере и «Сохранить в облако».');
     }
   }
@@ -2517,7 +2451,7 @@ if($('#voiceSelect')) $('#voiceSelect').onchange=(e)=>{
   voiceURI = e.target.value || '';
   localStorage.setItem('wm2_voice', voiceURI);
   pickVoice();                      // применить выбранный голос
-  speak('We the People of the United States.', true);   // короткий пример, чтобы услышать акцент
+  speak('Ribeye steak, medium rare.', true);   // короткий «мясной» пример, чтобы услышать акцент
 };
 $('#speedSlowBtn').onclick=()=>{
   speechRate=RATE_SLOW;
@@ -2549,8 +2483,6 @@ function showInfoToast(msg){
   _infoToastT=setTimeout(()=>{ if(_infoToastEl) _infoToastEl.classList.remove('show'); }, 2700);
 }
 document.addEventListener('click', e=>{
-  const z=e.target.closest && e.target.closest('.zones .z[title]');
-  if(z){ showInfoToast(z.getAttribute('title')); return; }
   const t=e.target.closest && e.target.closest('[data-info]');
   if(t){ showInfoToast(t.getAttribute('data-info')); }
 });
@@ -2576,10 +2508,9 @@ $('#settingsBtn').onclick=()=>navPush('settings');
 $('#setBack').onclick=goBack;
 $('#nameBack').onclick=goBack;
 
-/* ===== CITIZEN (MeatQuiz / Test / Write / Read) — отдельная группа выбора (фиолетовая) =====
-   «Beef» включает верхний ряд и сразу выбирает «Test» (первую под-кнопку). «Test» можно
-   нажать и напрямую. «Write» и «Read» пока НЕ активны: они кликабельны, но ничего не
-   делают (раздел в разработке). Группа взаимоисключает обычные режимы и грамматику. */
+/* ===== BEEF / PORK — группы выбора режима =====
+   Верхний ряд — Beef (Test / Write / Read; Write и Read скрыты — данных пока нет),
+   ниже — Pork (Test / Find). «Beef» включает свой ряд и сразу выбирает «Test». */
 // MeatQuiz: приложение работает только в основном режиме — поэтому Test активен
 // по умолчанию (остальные ряды режимов скрыты).
 // Два взаимоисключающих ряда: citSel — говядина (test/find/write/read),
@@ -2587,21 +2518,20 @@ $('#nameBack').onclick=goBack;
 // другой. Активный набор мяса meatSet следует за тем, какой ряд выбран.
 let citSel = 'test';
 let porkSel = null;
-// meatSet ОБЪЯВЛЕНА ЗДЕСЬ, до первого использования (applyMeatRow и блок
-// инициализации ниже обращаются к ней немедленно при загрузке). Раньше её
-// объявление стояло ниже по файлу — из-за temporal dead zone скрипт падал на
-// старте с "Cannot access 'meatSet' before initialization", и все обработчики
-// кнопок не навешивались. Восстанавливаем сохранённый набор здесь же.
+// meatSet ОБЪЯВЛЕНА ЗДЕСЬ, до первого использования: applyMeatRow и блок
+// инициализации ниже обращаются к ней сразу при загрузке — объявление ниже по
+// файлу упало бы по temporal dead zone ("Cannot access 'meatSet' before
+// initialization") и обработчики кнопок не навесились бы. Здесь же
+// восстанавливаем сохранённый набор.
 let meatSet = 'beef';
 try{
   const sv=localStorage.getItem('wm2_meatrow');   // 'beef' | 'pork'
   if(sv==='pork'){
-    // восстанавливаем и под-режим свинины (Test/Find) — раньше он терялся
+    // восстанавливаем и под-режим свинины (Test/Find)
     const ps=localStorage.getItem('wm2_porksel');
     porkSel=(ps==='find')?'find':'test'; citSel=null;
   } else {
-    // под-режим говядины: раньше wm2_citsel только писался и никогда не читался,
-    // поэтому выбор Find сбрасывался на Test при каждой перезагрузке
+    // под-режим говядины восстанавливается из wm2_citsel
     const cs=localStorage.getItem('wm2_citsel');
     if(cs==='test'||cs==='find'||cs==='write'||cs==='read') citSel=cs;
   }
@@ -2677,27 +2607,31 @@ if($('#cbRead'))   $('#cbRead').onclick  =()=>{ setCitSel('read'); };
 if($('#modePork')) $('#modePork').onclick=()=>{ if(porkSel===null) setPorkSel('test'); };
 if($('#pbTest'))   $('#pbTest').onclick  =()=>{ setPorkSel('test'); };
 if($('#pbFind'))   $('#pbFind').onclick  =()=>{ setPorkSel('find'); };
-// При загрузке синхронизируем набор мяса с восстановленным выбором ряда
-// (раньше эти же действия дублировались тремя строками мимо applyMeatRow).
+// При загрузке синхронизируем набор мяса с восстановленным выбором ряда.
 applyMeatRow();
 
 
 
 /* ============================================================================
-   CITIZEN · ТЕСТ — движок (2025 Civics Test, 128 вопросов).
+   MEATQUIZ · ТЕСТ — движок вопросов.
    ----------------------------------------------------------------------------
-   Данные: dictionary/CIVICS_TEST_2025_128_QUESTIONS_AND_ANSWERS.js, повешены на
-   window под точным именем '2025_CIVICS_TEST_128_QUESTIONS_AND_ANSWERS' (имя
-   начинается с цифры). Каждый вопрос:
-     { id, number, section, isStar, question, correct, wrong, hint, comment }
-   Поле correct бывает двух видов:
-     • МАССИВ строк  — достаточно ОДНОГО ответа (любая строка — допустимая
-       формулировка). В тесте показываем ОДНУ из них как правильный вариант.
-     • ОБЪЕКТ { multiple:true, count:N, options:[...] } — нужно выбрать N
-       вариантов. Показываем N правильных + дистракторы из wrong; игрок отмечает
-       все N.
-   Прогресс простой и изолированный: локальная статистика wm2_ctstats (игры/
-   ответы/верные/лучший%/последний%). Без облака и весов — отдельный тренажёр.
+   СЛОВАРЬ ПРЕФИКСОВ:
+     ct*  — «cut test»: основной тест по фото;
+     fd*  — Find (схема туши);          cw* — Write (диктант, скрыт);
+     rd*  — Read (чтение вслух, скрыт); cz* — общее ядро прогресса
+            (веса + облачный синк) для всех режимов;
+     CIVICS — «живое представление» активного набора (MEAT_QUIZ или PORK_QUIZ);
+     cow-zone / #ctCow / ctCow* — «зона туши»: движок Find универсален и
+            обслуживает корову и свинью на одном классе.
+   ПРОТОКОЛ (менять только вместе с миграцией сервера и данных): таблицы облака
+   mq_stats / mq_weights (константы TBL_STATS / TBL_WEIGHTS), значения mode
+   (test/find/pork/pork_find/write/read),
+   префикс ключей wm2_ в localStorage, домен логинов @testcit.app.
+   ----------------------------------------------------------------------------
+   Формат вопроса: { id, number, question, image, correct, wrong, hint,
+   comment, body_part }. Поле correct бывает двух видов:
+     • МАССИВ строк — достаточно ОДНОГО ответа (показываем одну формулировку);
+     • ОБЪЕКТ { multiple:true, count:N, options:[...] } — выбрать N вариантов.
    ========================================================================== */
 // MeatQuiz: источник вопросов — dictionary/MEAT_QUIZ.js (window.MEAT_QUIZ).
 // Имя константы CIVICS сохранено, чтобы не трогать остальной код (статистика,
@@ -2726,7 +2660,7 @@ function ctStoreMode(m){
   return mode;
 }
 // CIVICS сделан живым «представлением» активного набора: обращения вида
-// CIVICS.length, CIVICS.map(...), CIVICS[i] работают как раньше, но всегда
+// CIVICS.length, CIVICS.map(...), CIVICS[i] работают как у обычного массива и всегда
 // отражают текущий meatSet. Набор не меняется во время игры (только на главном
 // экране до старта), поэтому индексация внутри партии стабильна.
 const CIVICS = new Proxy([], {
@@ -2769,20 +2703,17 @@ function fdSetStats(s){ try{ localStorage.setItem(fdStatsKey(), JSON.stringify(s
 // ms — длительность партии; копится в timeMs и уходит на сервер в total_time.
 // Время считается ТОЛЬКО здесь (конец игры), в файл прогресса не попадает —
 // статистика живёт локально и в облаке, файлом её не подделать.
-function fdRecordStats(correct, total, pct, ms){
-  const s=fdGetStats();
+// Единая запись локальной статистики партии: Test и Find различаются только
+// парой get/set.
+function mqRecordStats(get, put, correct, total, pct, ms){
+  const s=get();
   s.games=(s.games||0)+1; s.answered=(s.answered||0)+total; s.correct=(s.correct||0)+correct;
   s.lastPct=pct; s.bestPct=Math.max(s.bestPct||0, pct);
   s.timeMs=(s.timeMs||0)+Math.max(0, ms||0);
-  fdSetStats(s);
+  put(s);
 }
-function ctRecordStats(correct, total, pct, ms){
-  const s=ctGetStats();
-  s.games=(s.games||0)+1; s.answered=(s.answered||0)+total; s.correct=(s.correct||0)+correct;
-  s.lastPct=pct; s.bestPct=Math.max(s.bestPct||0, pct);
-  s.timeMs=(s.timeMs||0)+Math.max(0, ms||0);
-  ctSetStats(s);
-}
+function fdRecordStats(c,t,p,m){ mqRecordStats(fdGetStats, fdSetStats, c,t,p,m); }
+function ctRecordStats(c,t,p,m){ mqRecordStats(ctGetStats, ctSetStats, c,t,p,m); }
 
 /* ---- утилиты ---- */
 function ctIsMulti(q){ return !!(q && q.correct && q.correct.multiple); }
@@ -2942,21 +2873,37 @@ function ctFindImages(base){
 }
 function ctInitGallery(base){
   const myQ = ct && ct.q;
-  ctFindImages(base).then(urls=>{
+  // Если словарь знает состав фото — поле images у вопроса: ЧИСЛО кадров или
+  // МАССИВ имён файлов (+ imagesExt, по умолчанию .jpg) — строим список БЕЗ
+  // сетевых проб: перебор ctFindImages делает до ~42 HEAD-запросов на новый
+  // вопрос. Поля нет (старые словари) → прежний перебор как fallback.
+  const manifest=(q)=>{
+    if(!q) return null;
+    if(Array.isArray(q.images) && q.images.length)
+      return q.images.map(f=>(/^https?:|\//.test(f)?f:ctPicDir()+f));
+    const n=q.images|0;
+    if(n>0){ const ext=q.imagesExt||'.jpg', pad=v=>('00'+v).slice(-3);
+             return Array.from({length:n},(_,i)=>base+'_'+pad(i+1)+ext); }
+    return null;
+  };
+  const known=manifest(myQ);
+  (known ? Promise.resolve(known) : ctFindImages(base)).then(urls=>{
     if(!ct || ct.q!==myQ) return;                           // вопрос уже сменился — не трогаем DOM
     const box=$('#ctGal'); if(!box) return;
     if(!urls.length){ box.innerHTML='<div class="ct-qimg-miss">Изображение не найдено</div>'; return; }
     const order=shuffle(urls.slice());                      // случайный порядок → случайная первая
     ct.gal={urls:order, idx:0};
     ct.q._img=order[0];                                     // конкретный URL для миниатюры в отчёте
-    // фоновая предзагрузка остальных кадров: пока игрок думает над первым фото,
-    // браузер тихо докачивает следующие — свайп показывает их мгновенно
-    order.slice(1).forEach(u=>{ try{ const im=new Image(); im.src=u; }catch(e){} });
+    // фоновая предзагрузка ТОЛЬКО соседнего кадра (а не всей пачки): пока
+    // игрок думает над первым фото, тихо качается второй; каждый следующий
+    // сосед догружается при листании (см. ctGalShow) — телефону с медленной
+    // сетью не приходится тянуть все кадры разом
+    if(order[1]){ try{ const im=new Image(); im.src=order[1]; }catch(e){} }
     box.innerHTML =
       '<img class="ct-gal-img" id="ctGalImg" src="'+escHtml(order[0])+'" alt="Фото отруба ('+((MEAT_SETS[meatSet]||MEAT_SETS.beef).label)+')" draggable="false">'+
       (order.length>1
-        ? '<button class="ct-gal-nav prev" id="ctGalPrev" type="button" aria-label="Предыдущее фото">‹</button>'+
-          '<button class="ct-gal-nav next" id="ctGalNext" type="button" aria-label="Следующее фото">›</button>'+
+        ? '<button class="ct-gal-nav prev" id="ctGalPrev" type="button" aria-label="Предыдущее фото"><svg class="ic"><use href="#ic-chevl"/></svg></button>'+
+          '<button class="ct-gal-nav next" id="ctGalNext" type="button" aria-label="Следующее фото"><svg class="ic"><use href="#ic-chevr"/></svg></button>'+
           '<div class="ct-gal-count" id="ctGalCount">1 / '+order.length+'</div>'
         : '');
     if(order.length>1){
@@ -2982,6 +2929,8 @@ function ctGalShow(i){
   im.classList.add('swap');
   im.src=ct.gal.urls[ct.gal.idx];
   const c=$('#ctGalCount'); if(c) c.textContent=(ct.gal.idx+1)+' / '+n;
+  // догрузка следующего соседа по кругу — к моменту свайпа он уже в кэше
+  try{ const im=new Image(); im.src=ct.gal.urls[(ct.gal.idx+1)%n]; }catch(e){}
 }
 
 /* ---- FIND: интерактивная схема туши ---------------------------------------
@@ -3188,7 +3137,7 @@ function ctPigSVG(){
 
 
 // ── ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА ПОДПИСЕЙ (EN|RU) ─────────────────────────────────────
-// По умолчанию EN (левое положение) — всё как работало раньше. В RU-режиме к
+// По умолчанию EN (левое положение). В RU-режиме к
 // названиям отрубов (варианты в TEST, подпись над фото в FIND) и к зонам туши на
 // силуэте добавляется русский перевод в скобках; английское никогда не исчезает.
 let ctLang = 'en';
@@ -3527,14 +3476,26 @@ function ctFinish(){
   // длительность партии: от ctOpen/ctRestart до финиша; кап 6ч на случай
   // «заснувшей» вкладки, чтобы не накрутить абсурдное время
   const elapsed=Math.min(Math.max(0, Date.now()-(ct.startedAt||Date.now())), 6*3600*1000);
-  if(ct.mode==='find') fdRecordStats(ct.score, total, pct, elapsed);
-  else ctRecordStats(ct.score, total, pct, elapsed); // ctRecordStats сам разводит beef/pork по meatSet
-  // Облачная синхронизация после партии: веса + статистика (включая время)
-  // режима, который только что играли — и говядина, и свинина. Рейтинг
-  // питается ТОЛЬКО серверной civics_stats; какие режимы считать — решает
-  // серверный триггер sync_leaderboard. ctStoreMode() даёт правильное имя:
-  // test / find / pork / pork_find.
-  if(typeof czCloudPush==='function') czCloudPush(ctStoreMode(ct.mode||'test'));
+  // Статистика и синк пишутся по НАБОРУ ПАРТИИ (ct.meat), а не по глобальному
+  // meatSet: ctStatsKey/fdStatsKey/ctStoreMode читают глобаль, поэтому на время
+  // записи принудительно ставим набор партии (та же техника, что в czBuildSync).
+  const _ms=meatSet; if(ct.meat) meatSet=ct.meat;
+  try{
+    if(ct.mode==='find') fdRecordStats(ct.score, total, pct, elapsed);
+    else ctRecordStats(ct.score, total, pct, elapsed);
+    // Облачная синхронизация после партии: веса + статистика (включая время)
+    // режима, который только что играли — и говядина, и свинина. Рейтинг
+    // питается ТОЛЬКО серверной mq_stats; какие режимы считать — решает
+    // серверный триггер sync_leaderboard. ctStoreMode() даёт правильное имя:
+    // test / find / pork / pork_find.
+    if(typeof czCloudPush==='function'){
+      czCloudPush(ctStoreMode(ct.mode||'test'));
+      // Честный тост: аккаунт привязан, но сессия истекла → партия НЕ ушла
+      // в рейтинг — предупреждаем сразу после финиша.
+      if(localStorage.getItem('wm2_linked')==='1' && window.__hasCloudSession===false)
+        flashToast('Партия не пошла в рейтинг: сессия облака истекла — войдите снова.', 'warn');
+    }
+  } finally { meatSet=_ms; }
   // имя в строке рейтинга: триггер рождает строку с именем из метаданных,
   // но локальное имя профиля — источник правды; дописываем fire-and-forget
   if(window.cloudPushLeaderboard){ try{ window.cloudPushLeaderboard(localStorage.getItem('wm2_current')); }catch(e){} }
@@ -3549,7 +3510,7 @@ function ctFinish(){
         // MeatQuiz: ID в шапке не показываем — в этой викторине ID совпадает с ответом,
         // а сам отчёт и так печатает правильный ответ строкой ниже. Номер оставлен.
         '<span class="ct-rep-id">№&nbsp;'+escHtml(r.number!=null?r.number:'')+'</span></div>'+
-      (r.image?'<img class="ct-rep-img" src="'+escHtml(r.image)+'" alt="" onerror="this.style.display=\'none\'">':'')+
+      (r.image?'<img class="ct-rep-img" src="'+escHtml(r.image)+'" alt="" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">':'')+
       (r.question?'<div class="ct-rep-q">'+escHtml(r.question)+'</div>':'')+
       '<div class="ct-rep-ans"><span class="cw-lab">Правильный ответ:</span> '+escHtml(r.answer||'—')+'</div>'+
       (r.hint?'<div class="ct-rep-sub"><span class="cw-lab">Подсказка:</span> '+escHtml(r.hint)+'</div>':'')+
@@ -3573,7 +3534,7 @@ if($('#ctClose')) $('#ctClose').onclick=()=>goBack();
 if($('#ctNext'))  $('#ctNext').onclick =()=>ctProceed();
 
 /* ============================================================================
-   CITIZEN · WRITE — письменная часть (диктант).
+   MEATQUIZ · WRITE — письменная часть, диктант (режим скрыт: данных нет).
    ----------------------------------------------------------------------------
    Данные: dictionary/CIVICS_TEST_WRITING.js — глобальный CIVICS_TEST_WRITING:
    [{ id, sentence, hint, transcription }]. На реальном тесте офицер диктует —
@@ -3704,7 +3665,7 @@ if($('#cwDone'))  $('#cwDone').onclick =()=>cwCheck();
 if($('#cwNext'))  $('#cwNext').onclick =()=>cwProceed();
 
 /* ============================================================================
-   CITIZEN · READ — чтение вслух (Reading Test).
+   MEATQUIZ · READ — чтение вслух (режим скрыт: данных нет).
    ----------------------------------------------------------------------------
    Данные: dictionary/CIVICS_TEST_READING.js — глобальный CIVICS_TEST_READING:
    [{ id, en, ru, ipa }]. На реальном тесте кандидат читает предложение вслух
@@ -3844,7 +3805,7 @@ if($('#rdClose')) $('#rdClose').onclick=()=>{ if(typeof rdVoiceStop==='function'
 if($('#rdNext'))  $('#rdNext').onclick =()=>rdProceed();
 
 /* ============================================================================
-   CITIZEN · ПРОГРЕСС (веса + статистика) для WRITE и READ — подготовка и синк.
+   MEATQUIZ · ПРОГРЕСС (веса + статистика) для WRITE и READ — подготовка и синк.
    ----------------------------------------------------------------------------
    На каждый показ пункта обновляем локальный вес (spaced repetition):
      WRITE — верно: +шаг, неверно: −шаг; считаем seen/correct/wrong.
@@ -3852,11 +3813,15 @@ if($('#rdNext'))  $('#rdNext').onclick =()=>rdProceed();
              (czGrade) меняет вес и correct/wrong, как в остальных режимах.
    Локально:  wm2_cwweights / wm2_rdweights = { item_id: {w,seen,correct,wrong,ts} }.
    Подготовка к БД (czBuildSync) даёт строки ровно под схему:
-     civics_weights(user_id,mode,item_id,weight,seen,correct,wrong,last_seen)
-     civics_stats  (user_id,mode,games,answered,correct,best_pct,last_pct,total_time,extra)
+     mq_weights(user_id,mode,item_id,weight,seen,correct,wrong,last_seen)
+     mq_stats  (user_id,mode,games,answered,correct,best_pct,last_pct,total_time,extra)
    Выгрузка czCloudPush — upsert с onConflict под ключи схемы; не залогинен/нет
    сети — тихо выходим (источник истины — localStorage).
    ============================================================================ */
+/* Имена таблиц облака. Все обращения идут через эти константы: переименование
+   таблиц = правка двух строк здесь + миграция на сервере. */
+const TBL_WEIGHTS='mq_weights';
+const TBL_STATS  ='mq_stats';
 const CZ_STEP=2, CZ_MIN=-20, CZ_MAX=20;
 // величина изменения веса по активному режиму: линейная ±1, прогрессивная ±2,
 // ручная — отдельные +N (plus=true) и −M (plus=false)
@@ -3952,7 +3917,7 @@ function czBuildSync(mode){
             best_pct:s.bestPct||0, last_pct:s.lastPct||0, total_time:s.timeMs||0, extra:{} };
   } else if(mode==='pork' || mode==='pork_find'){
     // Свинина: теперь И статистика уходит на сервер (рейтинг питается ТОЛЬКО
-    // серверной civics_stats — анти-чит; серверный триггер сам решает, какие
+    // серверной mq_stats — анти-чит; серверный триггер сам решает, какие
     // режимы считать). Форсируем pork-контекст, чтобы ct/fd-геттеры прочитали
     // именно wm2_porkstats / wm2_porkfdstats независимо от активного набора.
     const _ms=meatSet; meatSet='pork';
@@ -3986,11 +3951,13 @@ async function czCloudPush(mode){
   const ses=await czSession(); if(!ses) return;     // не залогинен — синк не нужен
   const uid=ses.user.id;
   // Статистика ВСЕХ режимов (включая свинину) уходит на сервер: рейтинг
-  // питается только серверной civics_stats (анти-чит), а какие режимы считать —
+  // питается только серверной mq_stats (анти-чит), а какие режимы считать —
   // решает серверный триггер sync_leaderboard. Гейт «турнир выкл» применяется
   // ко всем 4 игровым режимам (test/find/pork/pork_find): без участия в
   // рейтинге их статистика не выгружается, веса — всегда.
   const ratingMode = (mode==='test'||mode==='find'||mode==='pork'||mode==='pork_find');
+  let pushErr=null;   // ошибка ИМЕННО этого вызова: возвращается вызывающему,
+                      // чтобы параллельный pushAllToCloud не гонялся за глобалью
   try{
     // ===== ЗАЩИТА ОТ ЗАДАВЛИВАНИЯ (два устройства / упавший pull) =====
     // Push — это read-merge-write: сперва читаем серверные веса режима и
@@ -3999,13 +3966,13 @@ async function czCloudPush(mode){
     // слепой upsert затирал бы более свежие данные другого устройства
     // (подтверждено стендом: pull упал → push давил games 7→4). Локальная
     // копия цела, следующий успешный синк всё выгрузит.
-    const rw = await s.from('civics_weights')
+    const rw = await s.from(TBL_WEIGHTS)
       .select('item_id,weight,seen,correct,wrong,last_seen').eq('user_id',uid).eq('mode',mode);
     if(rw && rw.error){
-      window.__czLastPushError={ mode, table:'civics_weights',
+      pushErr=window.__czLastPushError={ mode, table:TBL_WEIGHTS,
         message:'чтение перед выгрузкой не удалось ('+rw.error.message+') — выгрузка пропущена, чтобы не затереть данные другого устройства' };
       console.warn('czCloudPush('+mode+'): pull-guard failed, push skipped:', rw.error.message);
-      return;
+      return pushErr;
     }
     if(Array.isArray(rw && rw.data) && rw.data.length){
       const local=czLoadW(mode);
@@ -4021,25 +3988,24 @@ async function czCloudPush(mode){
     const { weights, stats } = czBuildSync(mode);   // уже ПОСЛЕ слияния с сервером
     if(weights.length){
       const rows=weights.map(w=>({ user_id:uid, ...w }));
-      const r1 = await s.from('civics_weights').upsert(rows, { onConflict:'user_id,mode,item_id' });
-      // Supabase не бросает — ошибки (RLS, схема) лежат в .error. Раньше они
-      // глотались молча и отказ синка был невидим. Пишем в диагностику.
-      if(r1 && r1.error){ window.__czLastPushError={ mode, table:'civics_weights', message:r1.error.message }; console.warn('czCloudPush('+mode+') civics_weights:', r1.error.message); }
+      const r1 = await s.from(TBL_WEIGHTS).upsert(rows, { onConflict:'user_id,mode,item_id' });
+      // Supabase не бросает — ошибки (RLS, схема) лежат в .error; пишем их в
+      // диагностику, чтобы отказ синка был виден.
+      if(r1 && r1.error){ pushErr=window.__czLastPushError={ mode, table:TBL_WEIGHTS, message:r1.error.message }; console.warn('czCloudPush('+mode+') '+TBL_WEIGHTS+':', r1.error.message); }
     }
     if(!ratingMode || (typeof isTournament!=='function') || isTournament()){
       // Тот же guard для статистики: читаем серверную строку и НИКОГДА не
       // понижаем счётчики (max-слияние; last_pct/extra — от стороны, где игр
-      // больше). Раньше after-game push без pull регрессировал сервер
-      // (стенд: B запушил 7, A следом 5 → сервер 5, рейтинг проседал до
-      // следующего синка B).
-      const rs = await s.from('civics_stats')
+      // больше): слепой after-game push регрессировал бы сервер, когда другое
+      // устройство успело уйти вперёд.
+      const rs = await s.from(TBL_STATS)
         .select('games,answered,correct,best_pct,last_pct,total_time,extra')
         .eq('user_id',uid).eq('mode',stats.mode).maybeSingle();
       if(rs && rs.error){
-        window.__czLastPushError={ mode, table:'civics_stats',
+        pushErr=window.__czLastPushError={ mode, table:TBL_STATS,
           message:'чтение перед выгрузкой не удалось ('+rs.error.message+') — выгрузка статистики пропущена (защита от затирания)' };
         console.warn('czCloudPush('+mode+'): stats pull-guard failed, push skipped:', rs.error.message);
-        return;
+        return pushErr;
       }
       const sv=(rs && rs.data)||{};
       const mx=(a,b)=>Math.max(a||0,b||0);
@@ -4050,14 +4016,17 @@ async function czCloudPush(mode){
         total_time:mx(stats.total_time,sv.total_time),
         last_pct: localAhead ? (stats.last_pct||0) : (sv.last_pct||0),
         extra:    localAhead ? (stats.extra||{})   : (sv.extra||stats.extra||{}) };
-      const r2 = await s.from('civics_stats').upsert([{ user_id:uid, ...merged }], { onConflict:'user_id,mode' });
-      if(r2 && r2.error){ window.__czLastPushError={ mode, table:'civics_stats', message:r2.error.message }; console.warn('czCloudPush('+mode+') civics_stats:', r2.error.message); }
-      else if(window.__czLastPushError && window.__czLastPushError.mode===mode){
-        // режим прошёл целиком — устаревшая ошибка этого режима больше не пугает
+      const r2 = await s.from(TBL_STATS).upsert([{ user_id:uid, ...merged }], { onConflict:'user_id,mode' });
+      if(r2 && r2.error){ pushErr=window.__czLastPushError={ mode, table:TBL_STATS, message:r2.error.message }; console.warn('czCloudPush('+mode+') '+TBL_STATS+':', r2.error.message); }
+      else if(!pushErr && window.__czLastPushError && window.__czLastPushError.mode===mode){
+        // режим прошёл целиком без ошибок — сбрасываем его устаревшую ошибку.
+        // Проверка !pushErr обязательна: успех статистики не должен скрывать
+        // свежую ошибку весов этого же вызова.
         window.__czLastPushError=null;
       }
     }
   }catch(e){ /* офлайн / нет таблиц — не критично, локальная копия сохранена */ }
+  return pushErr;
 }
 // загрузка+слияние: на устройство берём то, где больше активности (seen)
 async function czCloudPull(mode){
@@ -4065,7 +4034,7 @@ async function czCloudPull(mode){
   const ses=await czSession(); if(!ses) return;
   const uid=ses.user.id;
   try{
-    const { data:rows } = await s.from('civics_weights')
+    const { data:rows } = await s.from(TBL_WEIGHTS)
       .select('item_id,weight,seen,correct,wrong,last_seen').eq('user_id',uid).eq('mode',mode);
     if(Array.isArray(rows) && rows.length){
       const local=czLoadW(mode);
@@ -4080,15 +4049,15 @@ async function czCloudPull(mode){
     }
   }catch(e){}
 }
-// загрузка личной статистики теста (civics_stats) → локальные wm2_*stats слиянием
-// max (не откатываем более свежие локальные очки). Раньше тянулись только веса, а
-// games/best% на новом устройстве не восстанавливались вовсе.
+// загрузка личной статистики (mq_stats) → локальные wm2_*stats слиянием max:
+// более свежие локальные очки не откатываются, а на новом устройстве
+// восстанавливаются games/best% всех режимов.
 async function czCloudPullStats(){
   const s=czSupa(); if(!s) return;
   const ses=await czSession(); if(!ses) return;
   const uid=ses.user.id;
   try{
-    const { data:rows } = await s.from('civics_stats')
+    const { data:rows } = await s.from(TBL_STATS)
       .select('mode,games,answered,correct,best_pct,last_pct,total_time,extra').eq('user_id',uid);
     if(!Array.isArray(rows)) return;
     const mx=(a,b)=>Math.max(a||0,b||0);
@@ -4132,11 +4101,9 @@ async function czCloudPullAll(){
   ]); }catch(e){}
   try{ await czCloudPullStats(); }catch(e){}
 }
-// ПРИМЕЧАНИЕ: раньше здесь был вызов czCloudPullAll() «при загрузке» — он был
-// МЁРТВЫМ кодом: исполнялся до создания клиента Supabase (библиотека грузится
-// асинхронно в initSupabaseAuth), czSupa() возвращал null → тихий no-op, и
-// авто-подтяжка прогресса при открытии НЕ работала никогда. Рабочий boot-pull
-// теперь внутри initSupabase, после восстановления сессии (getSession).
+// Авто-подтяжка прогресса при открытии (boot-pull) живёт внутри initSupabase,
+// ПОСЛЕ восстановления сессии (getSession): в этой точке файла клиента Supabase
+// ещё не существует, и любой вызов pull отсюда был бы тихим no-op.
 
 $('#faqBtn').onclick=()=>navPush('faq');
 $('#faqBack').onclick=goBack;
@@ -4208,10 +4175,9 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
     if (!document.getElementById('auth-block')) return;
     elAuthBlock.style.display = 'block';
 
-    // 2. Загружаем библиотеку Supabase. РАНЬШЕ был ровно один источник (jsdelivr):
-    //    если он недоступен (блокировки/перебои сети) — авторизация и регистрация
-    //    не запускались (кнопки молчали), хотя остальное приложение работает офлайн.
-    //    Теперь сначала берём ЛОКАЛЬНУЮ копию (./supabase.js, кэшируется service
+    // 2. Загружаем библиотеку Supabase с фолбэками — иначе один недоступный CDN
+    //    (блокировки/перебои сети) оставил бы авторизацию без библиотеки.
+    //    Сначала берём ЛОКАЛЬНУЮ копию (./supabase.js, кэшируется service
     //    worker'ом — работает офлайн и при заблокированных CDN), а если её нет —
     //    по очереди пробуем публичные CDN.
     const SUPA_SOURCES = [
@@ -4239,9 +4205,8 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
     }
 
     const initSupabase = () => {
-        // v115: выделенный проект MeatQuiz (meatquiz-db). Старый общий проект
-        // ojqpwwlwtdodwlvllbhy остаётся у других приложений; данные туда больше
-        // не пишутся. Схема нового проекта — meatquiz_schema_full.sql.
+        // Проект Supabase: meatquiz-db (выделенный под MeatQuiz).
+        // Схема — meatquiz_schema_full.sql + migration_civics_to_mq.sql.
         const SUPABASE_URL = 'https://emqfaezqmoyhvzfgzrso.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_p9nFLFINi2sWmtU0GOO02w_F200EoGK';
 
@@ -4251,10 +4216,8 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         try{ window.__supa = supabase; }catch(e){}   // доступ к клиенту для модуля викторины (веса WRITE/READ)
 
         // ===== ПРОГРЕСС/СТАТИСТИКА В ОБЛАКЕ =====
-        // Прогресс теста (Test/Write/Read) синхронизируется модулем cz*
-        // (civics_weights + civics_stats). Словарная выгрузка в user_progress/
-        // user_stats и режим грамматики удалены.
-        // Достаёт {games,answered,correct,lastPct,gweights,gseen} из строки grammar.
+        // Прогресс всех режимов синхронизируется модулем cz*
+        // (mq_weights + mq_stats — протокол сервера, менять только с миграцией).
 
         // Обновление отображаемого ИМЕНИ игрока в строке рейтинга.
         // Используется при: 1) завершении игры, 2) ручной выгрузке в облако, 3) регистрации/входе.
@@ -4262,14 +4225,13 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         // Разделение ответственности (MeatQuiz):
         //   • games / correct / недельные базы (wk_games_base, wk_corr_base, wk_start)
         //     — СОБСТВЕННОСТЬ серверного триггера sync_leaderboard, который питается
-        //       из civics_stats. Клиент их НЕ ПИШЕТ.
-        //   • name — собственность КЛИЕНТА (в civics_stats имени нет).
-        // Раньше эта функция суммировала игры старых словарных режимов и upsert-ила
-        // games=<эта сумма>. Для MeatQuiz сумма всегда 0 → при каждом входе строка
-        // рейтинга обнулялась (games 2→0), и зачёт теста, поднятый триггером, пропадал.
-        // Теперь функция трогает ТОЛЬКО name (+ updated_at). Строку с нулями создаём лишь
-        // если её ещё нет (регистрация/переименование до первой игры) — триггер поднимет
-        // счётчики при первой игре, имя сохранится.
+        //       из mq_stats. Клиент их НЕ ПИШЕТ.
+        //   • name — собственность КЛИЕНТА (в mq_stats имени нет).
+        // Функция трогает ТОЛЬКО name (+ updated_at): счётчики games/correct —
+        // собственность серверного триггера, клиентский upsert по ним обнулял бы
+        // зачёт. Строку с нулями создаём лишь если её ещё нет (регистрация или
+        // переименование до первой партии) — триггер поднимет счётчики при
+        // первой игре, имя сохранится.
         window.__lbLastError = null;
         window.cloudPushLeaderboard = async (playerName) => {
             try{
@@ -4418,7 +4380,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         // ---- ДИАГНОСТИКА: собирает реальное состояние облака для текущей сессии ----
         // Возвращает объект (без бросков): сессия, строка leaderboard (пожизненно+базы),
         // строка weekly_leaderboard (недельный зачёт → место в рейтинге), строки
-        // civics_stats по режимам, число весов в civics_weights, последняя ошибка рейтинга.
+        // mq_stats по режимам, число весов в mq_weights, последняя ошибка рейтинга.
         window.cloudDiagnostics = async () => {
             const out = { libLoaded: true };
             try {
@@ -4436,13 +4398,13 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                         out.weekly = wk.error ? { error: wk.error.message } : (wk.data || null);
                     } catch(e){ out.weekly = { error: String(e) }; }
                     try {
-                        const st = await supabase.from('civics_stats')
+                        const st = await supabase.from(TBL_STATS)
                             .select('mode,games,correct,answered,best_pct,last_pct,updated_at').eq('user_id', uid)
                             .order('mode', { ascending: true });
                         out.stats = st.error ? { error: st.error.message } : (st.data || []);
                     } catch(e){ out.stats = { error: String(e) }; }
                     try {
-                        const pr = await supabase.from('civics_weights')
+                        const pr = await supabase.from(TBL_WEIGHTS)
                             .select('item_id', { count:'exact', head:true }).eq('user_id', uid);
                         out.weightsCount = pr.error ? ('ошибка: '+pr.error.message) : pr.count;
                     } catch(e){ out.weightsCount = 'ошибка: '+String(e); }
@@ -4450,7 +4412,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                     // свиные веса (mode='pork'/'pork_find') отдельно и убедиться,
                     // что синхронизация свинины реально работает.
                     try {
-                        const wm = await supabase.from('civics_weights')
+                        const wm = await supabase.from(TBL_WEIGHTS)
                             .select('mode').eq('user_id', uid);
                         if (wm.error) { out.weightsByMode = { error: wm.error.message }; }
                         else {
@@ -4462,8 +4424,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                 }
             } catch(e) { out.error = String(e); }
             out.lastLbError = window.__lbLastError ? (window.__lbLastError.message || String(window.__lbLastError)) : null;
-            // последняя ошибка ВЫГРУЗКИ (civics_weights/civics_stats) — RLS-отказы
-            // и пр., которые czCloudPush раньше глотал молча
+            // последняя ошибка ВЫГРУЗКИ (mq_weights/mq_stats): RLS-отказы и пр.
             out.lastPushError = window.__czLastPushError || null;
             return out;
         };
@@ -4504,11 +4465,10 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         // Привязка хранится в user_metadata аккаунта: local_id = идентификатор той
         // локальной записи, с которой аккаунт сейчас связан (+ local_name для подсказок).
         async function linkCloudToLocal(lid, name){
-            // Пишем привязку local_id в аккаунт (user_metadata). Раньше запись была
-            // «выстрелил и забыл»: при сбое updateUser local_id оставался пустым, а
-            // локально стоял флаг «связан». Следующий вход видел cloudLid='' ≠ deviceLid
-            // и уводил в СЛИЯНИЕ с собственными данными → задвоение. Теперь проверяем,
-            // что значение реально записалось, и при неудаче повторяем один раз.
+            // Пишем привязку local_id в аккаунт (user_metadata) С ПРОВЕРКОЙ записи
+            // и одним повтором при неудаче: если local_id не записался, а локальный
+            // флаг «связан» стоит, следующий вход увидел бы cloudLid='' ≠ deviceLid
+            // и увёл бы в слияние с собственными данными → задвоение.
             let ok=false;
             for(let attempt=0; attempt<2 && !ok; attempt++){
                 try{
@@ -4526,17 +4486,16 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         async function pushAllToCloud(uid, name){
             // Выгрузка всех 6 режимов: веса + статистика (включая свинину и время).
             // ЧЕСТНЫЙ РЕЗУЛЬТАТ: ошибки push'а (RLS, чек-констрейнты) не глотаются
-            // молча — собираются и возвращаются вызывающему. Раньше кнопка
-            // «Сохранить в облако» рапортовала успех, даже когда сервер отбросил
-            // строки (продакшен: constraint резал pork, кнопка говорила «☁️!»).
+            // молча — собираются и возвращаются вызывающему, чтобы кнопка не
+            // рапортовала успех при отброшенных сервером строках.
             window.__czLastPushError = null;   // чистим след прошлых попыток
-            const errs=[];
-            for(const m of ['test','find','write','read','pork','pork_find']){
-                try{ await czCloudPush(m); }catch(e){}
-                if(window.__czLastPushError && window.__czLastPushError.mode===m){
-                    errs.push(window.__czLastPushError);
-                }
-            }
+            // Шесть режимов — ПАРАЛЛЕЛЬНО: они независимы (каждый пишет свои
+            // mode-строки в mq_weights/mq_stats), а последовательная
+            // цепочка держала 12–18 сетевых запросов друг за другом. Ошибку
+            // каждый czCloudPush теперь ВОЗВРАЩАЕТ — при параллельном запуске
+            // глобальный __czLastPushError режимы перезаписывали бы друг другу.
+            const MODES=['test','find','write','read','pork','pork_find'];
+            const errs=(await Promise.all(MODES.map(m=>czCloudPush(m).catch(()=>null)))).filter(Boolean);
             try{ await window.cloudPushLeaderboard(name); }catch(e){}   // имя в строке рейтинга
             return { ok: errs.length===0, errors: errs };
         }
@@ -4551,12 +4510,11 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                 const name = localStorage.getItem('wm2_current');
                 if(!name) return;                       // локального профиля нет — нечего сверять
                 const deviceLid = ensureLocalId();
-                // MeatQuiz: слияние прогресса теста (веса + статистика, max, без потерь и
-                // без задвоения) уже выполнил czCloudPullAll. Осталось выгрузить объединённое
-                // состояние и привязать local_id, чтобы впредь вход был мгновенным. Старые
-                // словарные диалоги «Дополнить/Заменить/Скачать» были нужны лишь из-за
-                // суммирования счётчиков в словарной игре — при max-слиянии они не нужны и
-                // только путали (данные не теряются в любом случае).
+                // Слияние прогресса (веса + статистика, max, без потерь и без
+                // задвоения) уже выполнил czCloudPullAll. Осталось выгрузить
+                // объединённое состояние и привязать local_id, чтобы впредь вход
+                // был мгновенным; диалоги «Дополнить/Заменить/Скачать» при
+                // max-слиянии не нужны — данные не теряются в любом случае.
                 try{ await czCloudPullAll(); }catch(e){}
                 try{ await pushAllToCloud(uid, name); }catch(e){}
                 try{ await linkCloudToLocal(deviceLid, name); }catch(e){}
@@ -4634,7 +4592,7 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             if (reg.data.session) return { user: reg.data.user, created: true };
             // Анти-enumeration Supabase: при ЗАНЯТОМ логине и включённом подтверждении
             // e-mail signUp возвращает «пустого» user БЕЗ error и с identities:[] —
-            // раньше это маскировалось под «Аккаунт создан…». Распознаём честно.
+            // распознаём этот ответ как «логин занят», а не как «аккаунт создан».
             const ids = reg.data && reg.data.user && reg.data.user.identities;
             if (Array.isArray(ids) && ids.length === 0) {
                 showMsg(msgEl, 'Такой логин уже занят — нажмите «Войти»', 'var(--red)');
@@ -4823,10 +4781,9 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         };
 
         // ===== ЗАЩИТА ПЕРЕД РЕГИСТРАЦИЕЙ НОВОГО АККАУНТА =====
-        // Дубли в рейтинге возникали так: при регистрации НОВОГО аккаунта, пока на
-        // устройстве оставался локальный профиль (например, «Abraziv777»), его имя и
-        // статистика уходили в рейтинг под новым user_id → одно имя под двумя
-        // аккаунтами. Решение: регистрация всегда начинается с «чистого» устройства.
+        // Регистрация НОВОГО аккаунта всегда начинается с «чистого» устройства:
+        // если бы локальный профиль оставался, его имя и статистика ушли бы в
+        // рейтинг под новым user_id — одно имя под двумя аккаунтами (дубль).
         window.cloudSignOut = async () => { try{ await supabase.auth.signOut(); }catch(e){} };
 
         function regBtnFor(src){ return src==='entry'?$('#entry-register'):src==='modal'?$('#modal-register'):$('#btn-register'); }
@@ -4837,10 +4794,10 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
                  :                 readCreds($('#auth-username'),$('#auth-password'),elErrorMsg);
         }
         // полная очистка локального профиля БЕЗ перезагрузки (+ выход из облака и токенов).
-        // ВАЖНО: чистим и ПРОГРЕСС (веса + статистику всех режимов), а не только имя.
-        // Раньше wm2_*weights / wm2_*stats оставались, и первый же push нового аккаунта
-        // выгружал ЧУЖОЙ прогресс в civics_stats → триггер поднимал рейтинг → дубль,
-        // ради предотвращения которого regGuard и существует. Настройки (звук, шрифт,
+        // ВАЖНО: чистим и ПРОГРЕСС (веса + статистику всех режимов), а не только имя —
+        // иначе первый же push нового аккаунта выгрузил бы ЧУЖОЙ прогресс в mq_stats,
+        // триггер поднял бы рейтинг и получился бы дубль, ради предотвращения
+        // которого regGuard и существует. Настройки (звук, шрифт,
         // выбранный набор) намеренно НЕ трогаем — это не данные игрока.
         async function wipeLocalForRegister(){
             try{ await supabase.auth.signOut(); }catch(e){}
@@ -4877,8 +4834,8 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         let __pendingReg = null;
         function openRegGuard(localName, linked){
             // Кнопка «Синхронизировать» имеет смысл ТОЛЬКО при живой сессии:
-            // cloudSyncNow без сессии всегда возвращает needAuth (тупик, в который
-            // раньше и упирались). Флаг wm2_linked тут не годится — updateAuthUI
+            // cloudSyncNow без сессии всегда возвращает needAuth. Флаг wm2_linked
+            // тут не годится — updateAuthUI
             // ставит его при ЛЮБОМ входе, даже под чужим аккаунтом, и после logout
             // он продолжает врать «связан». Смотрим на реальную сессию.
             const canSync = !!window.__hasCloudSession;
@@ -4936,10 +4893,10 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
             if(localName){
                 // Усыновление безопасно ТОЛЬКО для профиля, который НИКОГДА не был
                 // привязан к аккаунту. Признаки прежней привязки (достаточно любого):
-                // живая сессия, wm2_bounduid, wm2_linked, wm2_lastsync. Продакшен-кейс:
-                // играл под abraziv777 (игра в рейтинге), logout, регистрация
-                // abraziv666 → усыновление выгрузило тот же прогресс под новый uid →
-                // задвоение. Logout не стирает локальные данные — сессии мало.
+                // живая сессия, wm2_bounduid, wm2_linked, wm2_lastsync — logout не
+                // стирает локальные данные, поэтому одной проверки сессии мало.
+                // Без этого усыновление выгрузило бы тот же прогресс под новый uid
+                // → задвоение в рейтинге.
                 let hasSession=false;
                 try{ const { data:{ session } } = await supabase.auth.getSession(); hasSession=!!(session&&session.user); }catch(e){}
                 const wasBound = !!localStorage.getItem('wm2_bounduid') ||
@@ -5021,16 +4978,14 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
         supabase.auth.getSession().then(({ data: { session } }) => {
             updateAuthUI(session ? session.user : null);
             refreshEntry(session || null);
-            // Облачные функции (cloudFetchWeekly и т.п.) определяются только здесь, после
-            // загрузки библиотеки Supabase — то есть ПОЗЖЕ первого refreshHome(). Поэтому
-            // на старте медаль на аватаре не успевала обновиться (раньше она оживала лишь
-            // при заходе в рейтинг). Обновляем её сразу, как только облако готово.
+            // Облачные функции (cloudFetchWeekly и т.п.) появляются только здесь,
+            // ПОЗЖЕ первого refreshHome() — поэтому медаль на аватаре обновляем
+            // сразу, как только облако готово.
             if(typeof refreshMyCup==='function'){ try{ refreshMyCup(); }catch(e){} }
             // BOOT-PULL: возвращающийся пользователь с локальным профилем минует
-            // entry-экран (сразу home) и раньше НЕ получал прогресс из облака при
-            // открытии (стартовый czCloudPullAll был мёртвым — клиента ещё не было).
-            // Теперь тянем здесь, когда клиент и сессия готовы; после — обновляем
-            // домашний экран, чтобы подтянутые очки было видно сразу.
+            // entry-экран (сразу home) — прогресс из облака тянем здесь, когда
+            // клиент и сессия готовы; после — обновляем домашний экран, чтобы
+            // подтянутые очки было видно сразу.
             if (session && localStorage.getItem('wm2_current')) {
                 czCloudPullAll().then(() => {
                     if(typeof refreshHome==='function'){ try{ refreshHome(); }catch(e){} }
@@ -5078,10 +5033,9 @@ $('#bkImportText').onclick=()=>{ const t=$('#bkPaste').value.trim(); if(!t){ ale
   else navReplace('name');
 })();
 
-// Панель режимов закрепляется чисто через CSS (position:sticky).
-// IntersectionObserver, переключавший класс .stuck во время скролла, удалён:
-// именно изменение стилей внутри backdrop-filter на первом скролле и вызывало
-// «отскок» страницы наверх на части Android. Тени кнопок теперь постоянны (CSS),
+// Панель режимов закреплена чисто через CSS (position:sticky). НЕЛЬЗЯ менять
+// её стили из JS во время скролла (и нельзя возвращать backdrop-filter):
+// это вызывает «отскок» страницы наверх на части Android. Тени кнопок постоянны,
 // поэтому при прокрутке ничего не пересобирается.
 
 // Адаптив блока прослушивания: держим кнопки в одну строку. Если контент не
@@ -5109,7 +5063,7 @@ html,body{
   overflow-y:auto; overflow-x:hidden;
   -webkit-overflow-scrolling:touch;    /* инерция */
   overscroll-behavior-y:contain;       /* без «протяжки» на корень/без pull-to-refresh */
-  padding:var(--scroll-pad-top) 16px 40px;  /* бывший отступ body; верх вынесен в переменную */
+  padding:var(--scroll-pad-top) 16px 40px;  /* верхний отступ вынесен в переменную */
 }
 /* «Крышка» над прилипающим баром: фиксированная полоса высотой во весь
    верхний отступ скроллера. Когда бар прилип, он начинается на --scroll-pad-top
@@ -5121,16 +5075,16 @@ html,body{
 body::after{
   content:""; position:fixed; left:0; right:0; top:0;
   height:var(--scroll-pad-top);
-  z-index:49; pointer-events:none;   /* выше прокручиваемого контента, но НИЖЕ оверлеев (#results и т.п. на z:60+) */
+  z-index:49; pointer-events:none;   /* выше прокручиваемого контента, но НИЖЕ модалок/оверлеев (z:60+) */
   background: var(--decor), var(--bg);
   background-attachment: fixed;
 }
-/* .wrap по центру (раньше центровал flex на body) */
+/* .wrap по центру */
 #scrollroot>.wrap{margin-left:auto; margin-right:auto;}
 </style>
 <script>
-/* (тестовый скрипт принудительной очистки SW/кэша удалён — он не должен
-   попадать в прод, т.к. стирает офлайн-кэш у уже установленных пользователей) */
+/* Принудительную очистку SW/кэша в прод не добавлять: она стирает офлайн-кэш
+   у уже установленных пользователей. */
 </script>
 
 <script>
@@ -5172,8 +5126,8 @@ window.kickStickyBg = function(){
   // РОВНО ОДИН импульс = детерминированная перерисовка «шторки»: на кадр прячем
   // ::before (бар залит плоским фоном — контент не просвечивает) + микро-сдвиг
   // скролла, затем в следующем кадре всё возвращаем — фон встаёт на место.
-  // Никаких ПОВТОРНЫХ пульсов: каждый лишний пульс = ещё одно «моргание» уже
-  // показанной шторки. Один раз выровняли — и больше не трогаем.
+  // Пульс строго один: каждый повторный = ещё одно «моргание» уже показанной
+  // шторки.
   requestAnimationFrame(function(){
     var y = sr.scrollTop;
     var canScroll = sr.scrollHeight > sr.clientHeight + 1;
