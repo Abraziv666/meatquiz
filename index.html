@@ -478,19 +478,26 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
    разрешения: вписываем по ширине карточки, ограничиваем высоту, пропорции
    сохраняем. Стрелки — для мыши/десктопа, на телефоне листается свайпом. */
 .ct-qimg{position:relative;background:var(--card);border:2px solid var(--line);border-radius:16px;
-  padding:8px;display:flex;align-items:center;justify-content:center;min-height:120px;
+  padding:8px;display:flex;align-items:center;justify-content:center;
+  height:clamp(190px,42vh,430px);   /* СТАТИЧНАЯ сцена: не зависит от пропорций кадра */
   touch-action:pan-y;overflow:hidden}
-.ct-gal-img{display:block;max-width:100%;max-height:42vh;width:auto;height:auto;
+.ct-gal-img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;
   border-radius:10px;object-fit:contain;user-select:none;-webkit-user-drag:none}
 .ct-gal-img.swap{animation:ctGalFade .22s ease}
 @keyframes ctGalFade{from{opacity:.25}to{opacity:1}}
-.ct-gal-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;
+.ct-gal-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;
   border-radius:50%;border:2px solid var(--line);background:rgba(22,25,34,.78);color:#fff;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
-.ct-gal-nav .ic{width:20px;height:20px}
+  cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;
+  touch-action:manipulation;z-index:2}
+.ct-gal-nav .ic{width:20px;height:20px;transition:transform .1s}
 .ct-gal-nav.prev{left:10px}
 .ct-gal-nav.next{right:10px}
-.ct-gal-nav:active{transform:translateY(-50%) scale(.9)}
+/* кнопка НЕ двигается и НЕ ужимается при нажатии — область клика всегда на
+   одном месте, можно листать серией, не поправляя мышь/палец. Отклик даёт
+   подсветка фона и «вжатие» только иконки. */
+.ct-gal-nav:hover{background:rgba(40,46,62,.92)}
+.ct-gal-nav:active{background:#1c7fd6;border-color:#1c7fd6}
+.ct-gal-nav:active .ic{transform:scale(.86)}
 .ct-gal-count{position:absolute;right:12px;bottom:10px;font-family:'Nunito';font-weight:900;
   font-size:calc(12px * var(--fs,1));padding:3px 10px;border-radius:999px;
   background:rgba(12,14,20,.72);color:#fff;pointer-events:none}
@@ -508,15 +515,32 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
 .ct-cow .cow-zone path{fill:#3f4a5e;stroke:none;transition:fill .12s}
 .ct-cow .cow-zone .tailline{fill:none;stroke:#3f4a5e;stroke-width:8;stroke-linecap:round;transition:stroke .12s}
 @media (hover:hover){
-.ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover .tailline{stroke:#4d5a72}
+.ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):not(.sel):hover .tailline{stroke:#4d5a72}
 }
 .ct-cow .cow-zone text{fill:#fff;font-family:'Nunito';font-weight:800;text-anchor:middle;pointer-events:none}
 .ct-cow .zpill{fill:transparent;stroke:none;transition:fill .12s;pointer-events:none}
+.ct-cow .zhit{fill:transparent;stroke:none}
 @media (hover:hover){
-.ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover path{fill:#4d5a72}
-.ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):hover .zpill{fill:rgba(255,255,255,.16)}
+.ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):not(.sel):hover path{fill:#4d5a72}
+.ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):not(.sel):hover .zpill{fill:rgba(255,255,255,.16)}
 }
+/* динамика выбора зоны: плашка и подпись «выпрыгивают» при клике.
+   Анимируются ТОЛЬКО обёртки .zpw/.zlw без атрибута transform —
+   transform-origin не должен трогать повёрнутые подписи (rotate у .zl). */
+@keyframes zpop{0%{transform:scale(.7)}55%{transform:scale(1.12)}100%{transform:scale(1)}}
+.ct-cow .cow-zone.sel .zpw,.ct-cow .cow-zone.sel .zlw,
+.ct-cow .cow-zone.ok .zpw,.ct-cow .cow-zone.ok .zlw{
+  animation:zpop .3s cubic-bezier(.34,1.56,.64,1);
+  transform-box:fill-box;transform-origin:center}
+.pig-hits .cow-zone.sel .zlab,.pig-hits .cow-zone.ok .zlab{
+  animation:zpop .3s cubic-bezier(.34,1.56,.64,1);
+  transform-box:fill-box;transform-origin:center}
 .ct-cow .cow-zone.sel .zpill{fill:#1c7fd6}
+.ct-cow .cow-zone.sel path{fill:#4d5a72}
+.ct-cow .cow-zone.sel .tailline{stroke:#4d5a72}
+/* мгновенный отклик на нажатие (до отпускания), в т.ч. на тач-экранах */
+.ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):active path{fill:#4d5a72}
+.ct-cow:not(.off) .cow-zone:not(.bad):not(.ok):active .zpill{fill:rgba(255,255,255,.16)}
 .ct-cow .cow-zone.ok .zpill{fill:#2f9e57}
 .ct-cow .cow-zone.bad .zpill{fill:#8a2f3a}
 .ct-cow .cow-zone.bad text{opacity:.85}
@@ -531,10 +555,10 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
       и auto на детях «пробивал» бы none, выставленный на самой зоне.
    3) touch-action:manipulation убирает задержку двойного тапа на схеме. */
 .ct-cow{touch-action:manipulation}
-.ct-cow .cow-zone .zpill,.ct-cow .cow-zone text{pointer-events:auto;cursor:pointer}
-.ct-cow .cow-zone.bad .zpill,.ct-cow .cow-zone.bad text,
-.ct-cow .cow-zone.ok .zpill,.ct-cow .cow-zone.ok text,
-.ct-cow.off .cow-zone .zpill,.ct-cow.off .cow-zone text{pointer-events:none;cursor:default}
+.ct-cow .cow-zone .zhit,.ct-cow .cow-zone .zpill,.ct-cow .cow-zone text{pointer-events:auto;cursor:pointer}
+.ct-cow .cow-zone.bad .zhit,.ct-cow .cow-zone.bad .zpill,.ct-cow .cow-zone.bad text,
+.ct-cow .cow-zone.ok .zhit,.ct-cow .cow-zone.ok .zpill,.ct-cow .cow-zone.ok text,
+.ct-cow.off .cow-zone .zhit,.ct-cow.off .cow-zone .zpill,.ct-cow.off .cow-zone text{pointer-events:none;cursor:default}
 /* ── СХЕМЫ ТУШИ (Beef/Pork · Find) ── силуэт грузится из внешнего файла
    (dictionary/cow_diagram.svg или pig_diagram.svg). Поверх — слой с ТЕКСТОВЫМИ
    подписами (Nunito) и прозрачными кликабельными зонами. Подсветка ТОЛЬКО
@@ -546,7 +570,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg)}
   text-anchor:middle;dominant-baseline:middle;paint-order:stroke;
   stroke:rgba(0,0,0,.55);stroke-width:3px;transition:fill .12s}
 @media (hover:hover){
-.pig-hits .cow-zone:not(.bad):not(.ok):hover .zlab{fill:#4fb8ff}
+.pig-hits .cow-zone:not(.bad):not(.ok):not(.sel):hover .zlab{fill:#4fb8ff}
 }
 .pig-hits .cow-zone.sel .zlab{fill:#3b9dff}
 /* выбор — синий */
@@ -1046,7 +1070,7 @@ html:not(.bg-ready) .modesticky::before{ display:none; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef and Pork</span></span></span><span class="by"><b>by Abraziv</b> · версия 17</span></span></div>
+    <div class="logo"><span class="dot"><svg class="logoic" viewBox="0 0 32 32"><use href="#ic-logo"/></svg></span><span class="txt"><span class="ttl-row"><span class="appname">MeatQuiz</span><span class="tagcol"><span class="t1"><span class="ru">RU</span> <span class="dash">-</span> <span class="en">EN</span></span><span class="t2">Beef and Pork</span></span></span><span class="by"><b>by Abraziv</b> · версия 18</span></span></div>
     <button class="profile" id="userPill"><span class="av"><svg class="ic"><use href="#ic-profile"/></svg><span class="medal" id="pillCup" style="display:none"><span class="mn"></span></span><span class="av-warn" id="pillWarn" style="display:none" title="Сессия истекла — войдите снова">!</span></span><span class="nm" id="userName">—</span></button>
   </div>
 
@@ -3409,6 +3433,7 @@ function ctCowPick(g){
   if(g.classList.contains('ok') || g.classList.contains('bad')) return;
   const cow=$('#ctCow');
   if(cow) cow.querySelectorAll('.cow-zone.sel').forEach(x=>x.classList.remove('sel'));
+  void g.getBoundingClientRect();      // reflow: перезапуск анимации zpop при повторном клике
   g.classList.add('sel');                                     // синяя подсветка выбора
   const cb=$('#ctCheck'); if(cb) cb.style.display='';
   const exp=$('#ctExp');

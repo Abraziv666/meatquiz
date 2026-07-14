@@ -37,14 +37,21 @@
     font-weight:800; text-anchor:middle; pointer-events:none}
   .ct-cow .zpill{fill:transparent; stroke:none; transition:fill .12s; pointer-events:none}
   @media (hover:hover){
-    .ct-cow .cow-zone:not(.bad):not(.ok):hover path{fill:#4d5a72}
-    .ct-cow .cow-zone:not(.bad):not(.ok):hover .zpill{fill:rgba(255,255,255,.16)}
-    .ct-cow .cow-zone:not(.bad):not(.ok):hover .tailline{stroke:#4d5a72}
+    .ct-cow .cow-zone:not(.bad):not(.ok):not(.sel):hover path{fill:#4d5a72}
+    .ct-cow .cow-zone:not(.bad):not(.ok):not(.sel):hover .zpill{fill:rgba(255,255,255,.16)}
+    .ct-cow .cow-zone:not(.bad):not(.ok):not(.sel):hover .tailline{stroke:#4d5a72}
   }
+  @keyframes zpop{0%{transform:scale(.7)}55%{transform:scale(1.12)}100%{transform:scale(1)}}
+  .ct-cow .cow-zone.sel .zpw,.ct-cow .cow-zone.sel .zlw{
+    animation:zpop .3s cubic-bezier(.34,1.56,.64,1);
+    transform-box:fill-box;transform-origin:center}
   .ct-cow .cow-zone.sel .zpill{fill:#1c7fd6}
+  .ct-cow .cow-zone.sel path{fill:#4d5a72}
+  .ct-cow .cow-zone:not(.bad):not(.ok):active path{fill:#4d5a72}
   /* удобство тапа: подпись зоны кликабельна, промах «дотягивается» (см. скрипт) */
   .ct-cow{touch-action:manipulation}
-  .ct-cow .cow-zone .zpill,.ct-cow .cow-zone text{pointer-events:auto;cursor:pointer}
+  .ct-cow .cow-zone .zhit,.ct-cow .cow-zone .zpill,.ct-cow .cow-zone text{pointer-events:auto;cursor:pointer}
+  .ct-cow .zhit{fill:transparent;stroke:none}
 
   /* --- легенда (слова) --- */
   h2{font-size:16px; margin:26px 0 10px}
